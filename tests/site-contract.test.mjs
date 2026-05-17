@@ -63,7 +63,7 @@ test('photo manifest covers every named pizza with SpotOn export metadata', () =
     assert.match(photo.file, /^assets\/images\/menu\/pizzas\/[a-z0-9-]+\.jpg$/);
     assert.match(photo.spotOnExportName, /^[a-z0-9-]+\.jpg$/);
     assert.ok(photo.alt.length > 20, `${photo.name} needs useful alt text`);
-    assert.ok(['approved-existing', 'generated-approved', 'needs-generation'].includes(photo.approvalStatus));
+    assert.ok(['approved-existing', 'generated-approved', 'generated-review', 'needs-generation'].includes(photo.approvalStatus));
   }
 });
 

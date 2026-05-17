@@ -20,12 +20,12 @@
       "ingredients": "Pizza sauce and mozzarella cheese.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Cheese. Toppings must match: Pizza sauce and mozzarella cheese.",
       "file": "assets/images/menu/pizzas/cheese.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Cheese pizza with pizza sauce and mozzarella cheese on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "cheese.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "garlic-cheese",
@@ -33,12 +33,12 @@
       "ingredients": "Garlic butter sauce and mozzarella cheese.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Garlic Cheese. Toppings must match: Garlic butter sauce and mozzarella cheese.",
       "file": "assets/images/menu/pizzas/garlic-cheese.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Garlic Cheese pizza with garlic butter sauce and mozzarella cheese on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "garlic-cheese.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "pepperoni",
@@ -46,12 +46,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, and pepperoni.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Pepperoni. Toppings must match: Pizza sauce, mozzarella cheese, and pepperoni.",
       "file": "assets/images/menu/pizzas/pepperoni.jpg",
-      "source": "existing/user-supplied overhead reference",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Pepperoni pizza with pizza sauce, mozzarella cheese, and pepperoni on a warm wood table.",
-      "approvalStatus": "approved-existing",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "pepperoni.jpg",
-      "notes": "Existing reference image is usable for visual direction; final crop can be replaced after owner approval."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "ground-sausage",
@@ -59,12 +59,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, and ground Italian sausage.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Ground Sausage. Toppings must match: Pizza sauce, mozzarella cheese, and ground Italian sausage.",
       "file": "assets/images/menu/pizzas/ground-sausage.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Ground Sausage pizza with pizza sauce, mozzarella cheese, and ground italian sausage on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "ground-sausage.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "western-bbq",
@@ -72,12 +72,12 @@
       "ingredients": "BBQ sauce, mozzarella cheese, and grilled chicken.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Western BBQ. Toppings must match: BBQ sauce, mozzarella cheese, and grilled chicken.",
       "file": "assets/images/menu/pizzas/western-bbq.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Western BBQ pizza with bbq sauce, mozzarella cheese, and grilled chicken on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "western-bbq.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "ham",
@@ -85,12 +85,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, and ham.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Ham. Toppings must match: Pizza sauce, mozzarella cheese, and ham.",
       "file": "assets/images/menu/pizzas/ham.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Ham pizza with pizza sauce, mozzarella cheese, and ham on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "ham.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "canadian",
@@ -98,12 +98,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, and Canadian bacon.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Canadian. Toppings must match: Pizza sauce, mozzarella cheese, and Canadian bacon.",
       "file": "assets/images/menu/pizzas/canadian.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Canadian pizza with pizza sauce, mozzarella cheese, and canadian bacon on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "canadian.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "hawaiian",
@@ -111,12 +111,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, ham, and pineapple.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Hawaiian. Toppings must match: Pizza sauce, mozzarella cheese, ham, and pineapple.",
       "file": "assets/images/menu/pizzas/hawaiian.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Hawaiian pizza with pizza sauce, mozzarella cheese, ham, and pineapple on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "hawaiian.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "red-black",
@@ -124,12 +124,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and black olives.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Red & Black. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, and black olives.",
       "file": "assets/images/menu/pizzas/red-black.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Red & Black pizza with pizza sauce, mozzarella cheese, pepperoni, and black olives on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "red-black.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "red-green",
@@ -137,12 +137,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Red & Green. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.",
       "file": "assets/images/menu/pizzas/red-green.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Red & Green pizza with pizza sauce, mozzarella cheese, pepperoni, and jalapenos on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "red-green.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "red-green-yellow",
@@ -150,12 +150,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Red Green & Yellow. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.",
       "file": "assets/images/menu/pizzas/red-green-yellow.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Red Green & Yellow pizza with pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "red-green-yellow.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "lone-peak",
@@ -163,12 +163,12 @@
       "ingredients": "Garlic butter sauce, mozzarella cheese, and chicken.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Lone Peak. Toppings must match: Garlic butter sauce, mozzarella cheese, and chicken.",
       "file": "assets/images/menu/pizzas/lone-peak.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Lone Peak pizza with garlic butter sauce, mozzarella cheese, and chicken on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "lone-peak.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "mt-olympus",
@@ -176,12 +176,12 @@
       "ingredients": "Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Mt Olympus. Toppings must match: Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.",
       "file": "assets/images/menu/pizzas/mt-olympus.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Mt Olympus pizza with honey mustard sauce, mozzarella cheese, chicken, bacon, and bbq sauce drizzle on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "mt-olympus.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "twin-peaks",
@@ -189,12 +189,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Twin Peaks. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.",
       "file": "assets/images/menu/pizzas/twin-peaks.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Twin Peaks pizza with pizza sauce, mozzarella cheese, pepperoni, and mushrooms on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "twin-peaks.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "kings-peak",
@@ -202,12 +202,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Kings Peak. Toppings must match: Pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms.",
       "file": "assets/images/menu/pizzas/kings-peak.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Kings Peak pizza with pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "kings-peak.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "little-litzas",
@@ -215,12 +215,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Little Litzas. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.",
       "file": "assets/images/menu/pizzas/little-litzas.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Little Litzas pizza with pizza sauce, mozzarella cheese, pepperoni, and ground italian sausage on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "little-litzas.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "classic-litzas",
@@ -228,12 +228,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Classic Litzas. Toppings must match: Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.",
       "file": "assets/images/menu/pizzas/classic-litzas.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Classic Litzas pizza with pizza sauce, mozzarella cheese, ground italian sausage, and mushrooms on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "classic-litzas.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "litzas-meatza",
@@ -241,12 +241,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Litzas Meatza. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.",
       "file": "assets/images/menu/pizzas/litzas-meatza.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Litzas Meatza pizza with pizza sauce, mozzarella cheese, pepperoni, ham, and ground italian sausage on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "litzas-meatza.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "spinach-artichoke",
@@ -254,12 +254,12 @@
       "ingredients": "Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Spinach Artichoke. Toppings must match: Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.",
       "file": "assets/images/menu/pizzas/spinach-artichoke.jpg",
-      "source": "existing/user-supplied overhead reference",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Spinach Artichoke pizza with garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese on a warm wood table.",
-      "approvalStatus": "approved-existing",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "spinach-artichoke.jpg",
-      "notes": "Existing reference image is usable for visual direction; final crop can be replaced after owner approval."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "five-cheese",
@@ -267,12 +267,12 @@
       "ingredients": "Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Five Cheese. Toppings must match: Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.",
       "file": "assets/images/menu/pizzas/five-cheese.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Five Cheese pizza with garlic butter sauce, mozzarella, cheddar and monterey jack blend, parmesan, and feta on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "five-cheese.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "vegetarian",
@@ -280,12 +280,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Vegetarian. Toppings must match: Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.",
       "file": "assets/images/menu/pizzas/vegetarian.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Vegetarian pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "vegetarian.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "traditional",
@@ -293,12 +293,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Traditional. Toppings must match: Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat.",
       "file": "assets/images/menu/pizzas/traditional.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Traditional pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "traditional.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     },
     {
       "slug": "deluxe",
@@ -306,12 +306,12 @@
       "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Deluxe. Toppings must match: Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.",
       "file": "assets/images/menu/pizzas/deluxe.jpg",
-      "source": "provisional style reference; generate final with scripts/generate-menu-photos.mjs",
+      "source": "OpenAI API gpt-image-2 generated 2026-05-17",
       "usage": "Website menu card and SpotOn menu photo export",
       "alt": "Deluxe pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats on a warm wood table.",
-      "approvalStatus": "needs-generation",
+      "approvalStatus": "generated-review",
       "spotOnExportName": "deluxe.jpg",
-      "notes": "Queued for GPT Image generation in the Litzas overhead wood-table style."
+      "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
     }
   ]
 }

@@ -17,7 +17,7 @@ const args = new Set(process.argv.slice(2));
 const dryRun = args.has('--dry-run');
 const onlyArg = process.argv.find((arg) => arg.startsWith('--only='));
 const only = onlyArg ? new Set(onlyArg.slice('--only='.length).split(',').map((slug) => slug.trim())) : null;
-const model = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-1.5';
+const model = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 
 const targets = manifest.pizzas.filter((item) => {
   if (only && !only.has(item.slug)) return false;

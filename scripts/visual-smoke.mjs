@@ -24,8 +24,8 @@ async function checkPage(path, viewport, name) {
   if (!heroVisible) errors.push(`${path} missing visible h1 at ${viewport.width}px`);
 
   if (path === '/menu/') {
-    const duplicatedPendingImages = await page.locator('img[src*="/assets/images/menu/pizzas/"]').count();
-    if (duplicatedPendingImages > 2) errors.push('/menu/ renders too many pizza photos; pending images should stay text-first');
+    const generatedPizzaImages = await page.locator('img[src*="/assets/images/menu/pizzas/"]').count();
+    if (generatedPizzaImages !== 23) errors.push(`/menu/ should render 23 generated pizza photos, found ${generatedPizzaImages}`);
   }
 
   await page.screenshot({ path: new URL(`${name}.png`, outDir).pathname, fullPage: false });
