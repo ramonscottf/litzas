@@ -1,0 +1,92 @@
+{
+  "source": {
+    "name": "Litzas public menu",
+    "url": "https://www.litzaspizza.com/menu",
+    "capturedOn": "2026-05-17"
+  },
+  "sizes": ["Mini 8\"", "Small 10\"", "Medium 12\"", "Large 16\""],
+  "note": "Pizzas are handmade with a medium thickness crust and Litzas traditional pizza sauce unless noted.",
+  "categories": [
+    {
+      "id": "pizzas",
+      "name": "Litzas Favorites",
+      "items": [
+        {"slug": "cheese", "name": "Cheese", "ingredients": "Pizza sauce and mozzarella cheese.", "prices": ["8.75", "11.50", "14.25", "21.00"]},
+        {"slug": "garlic-cheese", "name": "Garlic Cheese", "ingredients": "Garlic butter sauce and mozzarella cheese.", "prices": ["8.75", "11.50", "14.25", "21.00"]},
+        {"slug": "pepperoni", "name": "Pepperoni", "ingredients": "Pizza sauce, mozzarella cheese, and pepperoni.", "prices": ["9.25", "12.50", "15.75", "22.25"]},
+        {"slug": "ground-sausage", "name": "Ground Sausage", "ingredients": "Pizza sauce, mozzarella cheese, and ground Italian sausage.", "prices": ["9.25", "12.50", "15.75", "22.25"]},
+        {"slug": "western-bbq", "name": "Western BBQ", "ingredients": "BBQ sauce, mozzarella cheese, and grilled chicken.", "prices": ["9.75", "13.00", "16.25", "23.50"]},
+        {"slug": "ham", "name": "Ham", "ingredients": "Pizza sauce, mozzarella cheese, and ham.", "prices": ["8.75", "11.50", "14.25", "21.00"]},
+        {"slug": "canadian", "name": "Canadian", "ingredients": "Pizza sauce, mozzarella cheese, and Canadian bacon.", "prices": ["9.25", "12.50", "15.75", "22.25"]},
+        {"slug": "hawaiian", "name": "Hawaiian", "ingredients": "Pizza sauce, mozzarella cheese, ham, and pineapple.", "prices": ["10.50", "14.00", "17.50", "25.00"]},
+        {"slug": "red-black", "name": "Red & Black", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and black olives.", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"slug": "red-green", "name": "Red & Green", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"slug": "red-green-yellow", "name": "Red Green & Yellow", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "lone-peak", "name": "Lone Peak", "ingredients": "Garlic butter sauce, mozzarella cheese, and chicken.", "prices": ["9.75", "13.00", "16.25", "23.50"]},
+        {"slug": "mt-olympus", "name": "Mt Olympus", "ingredients": "Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"slug": "twin-peaks", "name": "Twin Peaks", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.", "prices": ["10.25", "14.00", "17.75", "24.25"]},
+        {"slug": "kings-peak", "name": "Kings Peak", "ingredients": "Pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "little-litzas", "name": "Little Litzas", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"slug": "classic-litzas", "name": "Classic Litzas", "ingredients": "Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"slug": "litzas-meatza", "name": "Litzas Meatza", "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "spinach-artichoke", "name": "Spinach Artichoke", "ingredients": "Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "five-cheese", "name": "Five Cheese", "ingredients": "Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "vegetarian", "name": "Vegetarian", "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"slug": "traditional", "name": "Traditional", "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat.", "prices": ["12.75", "17.50", "22.25", "31.00"]},
+        {"slug": "deluxe", "name": "Deluxe", "ingredients": "Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.", "prices": ["13.75", "19.00", "24.50", "33.50"]}
+      ]
+    },
+    {
+      "id": "create-your-own",
+      "name": "Create Your Own",
+      "items": [
+        {"name": "One Item", "prices": ["9.75", "13.00", "16.25", "23.50"]},
+        {"name": "Two Items", "prices": ["10.75", "14.50", "18.25", "26.00"]},
+        {"name": "Three Items", "prices": ["11.75", "16.00", "20.25", "28.50"]},
+        {"name": "Four Items", "prices": ["12.75", "17.50", "22.25", "31.00"]},
+        {"name": "Five Items", "prices": ["13.75", "19.00", "24.50", "33.50"]},
+        {"name": "Gluten-Free Crust", "description": "Medium only.", "prices": ["+4.00"]}
+      ],
+      "toppings": {
+        "saucesAndCheeses": ["Litzas traditional pizza sauce", "Garlic butter sauce", "BBQ sauce", "Cheddar and Monterey Jack blend", "Mozzarella", "Feta", "Parmesan"],
+        "meats": ["Pepperoni", "Ham", "Spicy sausage", "Ground Italian sausage", "Bacon", "Canadian bacon", "Grilled chicken"],
+        "vegetables": ["Mushrooms", "Black olives", "Green peppers", "Onions", "Pineapple", "Sliced tomatoes", "Jalapenos", "Spinach"]
+      }
+    },
+    {
+      "id": "salads-appetizers",
+      "name": "Salads & Appetizers",
+      "items": [
+        {"name": "Garden Salad", "description": "Iceberg and romaine lettuce, purple cabbage, tomatoes, red beets, home-style croutons, and dressing.", "prices": ["6.00", "9.75"]},
+        {"name": "Chef Salad", "description": "Garden salad with black olives, Monterey Jack and cheddar, Danish ham, and roasted turkey.", "prices": ["10.55", "16.75"]},
+        {"name": "Garlic Bread", "description": "Thick toasted French bread with garlic butter spread.", "prices": ["1.35", "5.40 / 4"]},
+        {"name": "Cheesy Garlic Bread", "description": "Thick toasted French bread with garlic butter spread and cheese.", "prices": ["2.60", "10.40 / 4"]}
+      ]
+    },
+    {
+      "id": "specials-entrees",
+      "name": "Specials & Entrees",
+      "items": [
+        {"name": "Spaghetti Lunch", "description": "Served with a small salad, garlic bread, and a medium drink.", "prices": ["15.50"]},
+        {"name": "Mini One-Item Pizza Lunch", "description": "Served with a small salad, garlic bread, and a medium drink.", "prices": ["16.50"]},
+        {"name": "Meal for One", "description": "Mini two-item pizza, medium salad, garlic bread, and a medium drink.", "prices": ["18.25"]},
+        {"name": "Meal for Two", "description": "Small two-item pizza, two medium salads, garlic bread, and two medium drinks.", "prices": ["29.50"]},
+        {"name": "Meal for More", "description": "Large two-item pizza, large family salad, garlic bread, and pitcher of soda.", "prices": ["46.75"]},
+        {"name": "Spaghetti", "description": "Traditional noodles with Litzas spaghetti sauce made with pork.", "prices": ["9.50", "11.75", "+7.00 combo"]},
+        {"name": "Lasagna", "description": "Ricotta, mozzarella, spaghetti sauce, and ground beef.", "prices": ["11.75", "+7.00 combo"]},
+        {"name": "Calzone", "description": "Pizza sauce, mozzarella, ricotta, and your choice of three toppings.", "prices": ["11.25", "+7.00 combo"]}
+      ]
+    },
+    {
+      "id": "beverages",
+      "name": "Beverages",
+      "items": [
+        {"name": "Fountain Drinks", "description": "Root beer, diet root beer, apple beer, Coke, Diet Coke, caffeine-free Diet Coke, Dr. Pepper, Diet Dr. Pepper, Sprite, punch, lemonade, Coke Zero, or iced tea.", "prices": ["2.85", "3.10", "3.35", "7.50 pitcher"]},
+        {"name": "Extra Flavors", "description": "Lemon, lime, cherry, vanilla, or chocolate at no extra charge."},
+        {"name": "Specialty Drinks", "description": "Limeade and cherry limeade.", "prices": ["3.85"]},
+        {"name": "Take Home Dressing", "description": "Pint.", "prices": ["6.00"]},
+        {"name": "Take Home Spaghetti Sauce", "description": "Pint.", "prices": ["6.00"]}
+      ]
+    }
+  ]
+}

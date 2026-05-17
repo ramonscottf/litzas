@@ -1,0 +1,32 @@
+{
+  "locations": [
+    {
+      "id": "salt-lake-city",
+      "name": "Salt Lake City",
+      "tag": "Original · 1965",
+      "address": ["400 South 716 East", "Salt Lake City, UT 84102"],
+      "phone": "801-359-5352",
+      "tel": "+18013595352",
+      "hours": [
+        {"days": "Wed-Thu", "time": "11:00 am - 8:00 pm"},
+        {"days": "Fri-Sat", "time": "11:00 am - 9:00 pm"},
+        {"days": "Sun-Tue", "time": "Closed"}
+      ],
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=400%20South%20716%20East%20Salt%20Lake%20City%20UT%2084102"
+    },
+    {
+      "id": "midvale",
+      "name": "Midvale",
+      "tag": "Fort Union",
+      "address": ["835 East Fort Union", "Midvale, UT 84047"],
+      "phone": "801-561-2171",
+      "tel": "+18015612171",
+      "hours": [
+        {"days": "Mon-Thu", "time": "10:30 am - 8:00 pm"},
+        {"days": "Fri-Sat", "time": "10:30 am - 9:00 pm"},
+        {"days": "Sun", "time": "Closed"}
+      ],
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=835%20East%20Fort%20Union%20Midvale%20UT%2084047"
+    }
+  ]
+}

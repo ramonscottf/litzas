@@ -11,13 +11,20 @@ Two consequences:
 1. The `ramonscottf/litzas` repo was empty apart from the Skippy-Capture workflow YAML. The production HTML/CSS/JS had no git home.
 2. If the build machine had been lost (Dutchman power-out, laptop drive failure, accidental directory delete) the site source was gone.
 
-## What this branch does
+## Historical note
+
+This document describes the original rescue snapshot. The branch has since been
+expanded into the heritage site build described in `README.md`, with real
+`/menu/`, `/locations/`, `/story/`, and `/shop/` pages, local optimized assets,
+structured data files, and a SpotOn photo-pack workflow.
+
+## What this branch originally did
 
 `rescue/from-preview-2026-05-17` captures everything `https://preview.litzas.pages.dev` is currently serving:
 
-- `index.html` — homepage (the only real page)
+- `index.html` — homepage (the only real page in the rescued preview)
 - `css/style.css` — 730 lines, Brand v2 system
-- `js/main.js` — interactions + easter eggs (pepperoni rain on typing "pizza", souvenir Z via localStorage, click-wobble on Z marks)
+- `js/main.js` — interactions from the rescued preview
 - `_r2-snapshot/litzas-v2/*` — local backup of the four R2 assets the page references (logo-wordmark, pizza-boxes, dough-hands, pizzeria-mural). **Not the live path** — `index.html` continues to reference `pub-8c4898b448c84fa9a36cf230c13c60e3.r2.dev/litzas-v2/` directly. The snapshot is insurance.
 
 The pre-existing `.github/workflows/skippy-capture.yml` is preserved.
@@ -39,7 +46,7 @@ The pre-existing `.github/workflows/skippy-capture.yml` is preserved.
    - Build output directory: `/` (it's static HTML)
    - Once connected, the next push to `main` deploys to `litzas.pages.dev` automatically
 4. **Verify production deploy** is byte-identical to current preview (or near enough)
-5. **Build the real sub-pages** — `/menu/`, `/locations/`, `/order/`, `/blog/` currently fall back to `index.html` via SPA-style routing. Either build them or remove from the nav
+5. **Build the real sub-pages** — completed in the heritage build with `/menu/`, `/locations/`, `/story/`, and `/shop/`
 6. **Resolve founding-date question** — page says 1965, family history mentions 1959 multi-location lineage. Confirm with Ali which year leads the brand story
 7. **Attach `litzaspizza.com`** as a custom domain on the Pages project once 1-6 are done
 

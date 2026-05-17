@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+.env.local
+.deploy/
+_asset-source/
+downloads/visual-smoke/
+downloads/*-smoke.png
+downloads/spoton-menu-photos/

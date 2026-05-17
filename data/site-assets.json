@@ -1,0 +1,75 @@
+{
+  "r2Prefix": "litzas-v3/",
+  "images": [
+    {
+      "file": "assets/images/optimized/logo-wordmark.webp",
+      "source": "R2 snapshot",
+      "roles": ["interior"],
+      "usage": "Navigation and footer wordmark",
+      "alt": "Litzas Pizza wordmark"
+    },
+    {
+      "file": "assets/images/optimized/pizza-overhead-pair.jpg",
+      "source": "User supplied Litzas pizza reference",
+      "roles": ["hero", "food", "menuPhoto"],
+      "usage": "Homepage hero, menu hero, feature image",
+      "alt": "Two overhead Litzas-style pizzas on a worn wood table"
+    },
+    {
+      "file": "assets/images/optimized/dough-hands.jpg",
+      "source": "R2 snapshot",
+      "roles": ["craft"],
+      "usage": "Dough and handmade craft section",
+      "alt": "Hands holding fresh pizza dough dusted with flour"
+    },
+    {
+      "file": "assets/images/optimized/pizzeria-mural.jpg",
+      "source": "R2 snapshot",
+      "roles": ["interior", "story"],
+      "usage": "Story and interior mood sections",
+      "alt": "Gold Litzas mural inside the Salt Lake City restaurant"
+    },
+    {
+      "file": "assets/images/optimized/rootbeer-mug.jpg",
+      "source": "Drive root beer folder",
+      "roles": ["rootBeer", "interior"],
+      "usage": "Root beer feature section",
+      "alt": "A frosty mug of Hires Big H root beer on a diner table"
+    },
+    {
+      "file": "assets/images/optimized/litzas-night-sign.jpg",
+      "source": "Drive location photos",
+      "roles": ["interior", "story"],
+      "usage": "Night exterior and heritage atmosphere",
+      "alt": "The Litzas and Hires Big H sign glowing at night"
+    },
+    {
+      "file": "assets/images/optimized/litzas-brick-door.jpg",
+      "source": "Drive location photos",
+      "roles": ["interior", "story"],
+      "usage": "Location cards and building texture",
+      "alt": "The brick Litzas Pizza entrance with arched windows"
+    },
+    {
+      "file": "assets/images/optimized/rootbeer-floats.jpg",
+      "source": "Drive root beer folder",
+      "roles": ["rootBeer"],
+      "usage": "Root beer shop page supporting image",
+      "alt": "Two frosty root beer floats held in front of a Hires Big H sign"
+    },
+    {
+      "file": "assets/images/optimized/rootbeer-extract-front.png",
+      "source": "Drive root beer folder",
+      "roles": ["rootBeer"],
+      "usage": "Root beer extract product card",
+      "alt": "Hires Big H root beer extract bottle"
+    },
+    {
+      "file": "downloads/litzas-spoton-menu-photos.zip",
+      "source": "Generated local export",
+      "roles": ["downloadOnly"],
+      "usage": "SpotOn menu photo handoff package",
+      "alt": "Downloadable SpotOn menu photo archive"
+    }
+  ]
+}

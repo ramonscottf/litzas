@@ -1,142 +1,97 @@
-/* ============================================================
-   Litzas Pizza — interactions + easter eggs
-   ============================================================ */
 (function () {
   'use strict';
 
-  /* ---------- mobile nav ---------- */
+  document.documentElement.classList.add('js');
+
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('.nav-toggle');
+
   if (toggle && nav) {
     toggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.addEventListener('click', () => nav.classList.remove('open'));
+
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 
-  /* ---------- sticky nav shadow ---------- */
   if (nav) {
-    const onScroll = () => {
-      if (window.scrollY > 8) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+    const progress = document.getElementById('scroll-progress');
+    const updateNav = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+      if (progress) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        progress.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+      }
     };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    updateNav();
+    window.addEventListener('scroll', updateNav, { passive: true });
   }
 
-  /* ---------- year (so footer stays correct forever) ---------- */
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 
-  /* ============================================================
-     EASTER EGGS
-     ============================================================ */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
 
-  // Honor reduced motion — keep eggs available but skip the showy animations.
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- 1. Type "pizza" anywhere → pepperoni rain → permanent z ---------- */
-  let buffer = '';
-  const SECRET = 'pizza';
-  document.addEventListener('keydown', (e) => {
-    // ignore when user is in an input
-    if (e.target.matches('input, textarea, [contenteditable]')) return;
-    if (e.key.length !== 1) return;
-    buffer = (buffer + e.key.toLowerCase()).slice(-SECRET.length);
-    if (buffer === SECRET) {
-      buffer = '';
-      rainPepperoni();
-    }
-  });
-
-  function rainPepperoni() {
-    if (reduced) {
-      placeSouvenirZ();
-      return;
-    }
-    const stage = document.getElementById('z-toss');
-    if (!stage) return;
-    const count = 28;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('span');
-      p.className = 'pepperoni';
-      p.style.left = (Math.random() * 100) + 'vw';
-      p.style.animationDelay = (Math.random() * 0.8) + 's';
-      p.style.animationDuration = (1.8 + Math.random() * 1.4) + 's';
-      const scale = 0.6 + Math.random() * 0.9;
-      p.style.transform = `scale(${scale})`;
-      stage.appendChild(p);
-      setTimeout(() => p.remove(), 4000);
-    }
-    setTimeout(placeSouvenirZ, 1200);
-  }
-
-  function placeSouvenirZ() {
-    if (document.querySelector('.z-souvenir')) return;
-    const z = document.createElement('span');
-    z.className = 'z-souvenir';
-    z.textContent = 'z';
-    z.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(z);
-    try { localStorage.setItem('litzas-z', '1'); } catch (_) {}
-  }
-
-  // Restore the souvenir z on repeat visits.
-  try {
-    if (localStorage.getItem('litzas-z')) placeSouvenirZ();
-  } catch (_) {}
-
-  /* ---------- 2. The Z in the strip — click to wobble, hover for color ----------
-     Already CSS-only (.z-mark:hover). On click, fire a one-time wobble. */
-  document.querySelectorAll('[data-z]').forEach(z => {
-    z.addEventListener('click', () => {
-      z.animate(
-        [
-          { transform: 'rotate(0deg) scale(1)' },
-          { transform: 'rotate(-12deg) scale(1.06)' },
-          { transform: 'rotate(8deg) scale(1.02)' },
-          { transform: 'rotate(0deg) scale(1)' }
-        ],
-        { duration: 600, easing: 'ease-out' }
-      );
-    });
-  });
-
-  /* ---------- 4. Click the "Hungry yet?" h2 → frosted root beer mug clinks ---------- */
-  // Wire to .cta-h text. Single tap spawns one mug emoji that arcs and disappears.
-  const cta = document.querySelector('.cta-h');
-  if (cta) {
-    cta.style.cursor = 'pointer';
-    cta.addEventListener('click', (e) => {
-      const rect = cta.getBoundingClientRect();
-      const mug = document.createElement('div');
-      mug.className = 'mug-clink';
-      mug.textContent = '🍺';
-      // Position at click point, in viewport coords
-      mug.style.left = (e.clientX || rect.left + rect.width / 2) + 'px';
-      mug.style.top  = (e.clientY || rect.top  + rect.height / 2) + 'px';
-      mug.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(mug);
-      setTimeout(() => mug.remove(), 900);
-    });
-  }
-
-  /* ---------- 5. Dough-toss footer wordmark when it enters the viewport ---------- */
-  const footer = document.querySelector('.footer');
-  if (footer && 'IntersectionObserver' in window && !reduced) {
-    let tossed = false;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(en => {
-        if (en.isIntersecting && !tossed) {
-          tossed = true;
-          footer.classList.add('tossed');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.6 });
-    io.observe(footer);
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+
+    revealEls.forEach((el) => observer.observe(el));
   }
 
+  document.querySelectorAll('.order-button').forEach((button) => {
+    button.classList.add('is-disabled');
+    button.setAttribute('aria-label', 'SpotOn ordering is coming soon. Click for current phone ordering details.');
+    button.addEventListener('click', () => {
+      const message = 'Online ordering is being configured with SpotOn. Please call Salt Lake City at 801.359.5352 or Midvale at 801.561.2171 for now.';
+      button.textContent = message;
+      setTimeout(() => {
+        button.textContent = 'Order with SpotOn Soon';
+      }, 4200);
+    });
+  });
+
+  const parallaxImages = document.querySelectorAll('[data-parallax]');
+  if (!prefersReduced && parallaxImages.length) {
+    let ticking = false;
+    const updateParallax = () => {
+      ticking = false;
+      const viewport = window.innerHeight || 1;
+      parallaxImages.forEach((image) => {
+        const rect = image.getBoundingClientRect();
+        if (rect.bottom < -120 || rect.top > viewport + 120) return;
+        const center = rect.top + rect.height / 2;
+        const distance = (center - viewport / 2) / viewport;
+        const offset = Math.max(-18, Math.min(18, distance * -24));
+        image.style.setProperty('--parallax-y', `${offset}px`);
+        image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.05)`;
+      });
+    };
+
+    const requestParallax = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener('scroll', requestParallax, { passive: true });
+    window.addEventListener('resize', requestParallax);
+  }
 })();

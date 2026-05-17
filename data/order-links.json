@@ -1,0 +1,10 @@
+{
+  "provider": "SpotOn",
+  "status": "pending",
+  "enabled": false,
+  "message": "Online ordering is being configured. Buttons are wired through this file so the final SpotOn URLs can be pasted here once Ali finishes setup.",
+  "locations": [
+    {"id": "salt-lake-city", "label": "Order Salt Lake City", "orderUrl": ""},
+    {"id": "midvale", "label": "Order Midvale", "orderUrl": ""}
+  ]
+}
