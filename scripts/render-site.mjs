@@ -19,9 +19,35 @@ const esc = (value) => String(value ?? '')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
 
-const priceLine = (prices = []) => prices.length
-  ? `<p class="pizza-price">${prices.map((p) => `$${p}`).join(' <span>·</span> ')}</p>`
+// Pizza price line.
+// All four sizes are embedded as data attributes; the visible span shows ONE
+// price at a time. A size-tabs UI on the menu page (and homepage menu band)
+// updates the active size for every card in unison via JS. Default size = md
+// (Medium 12" — the canonical Litzas order).
+// Labels mirror data/menu.json `sizes` exactly: Mini 8" / Small 10" / Medium 12" / Large 16".
+const SIZE_KEYS = ['mini', 'sm', 'md', 'lg'];
+const SIZE_LABELS = { mini: 'Mini 8"', sm: 'Small 10"', md: 'Medium 12"', lg: 'Large 16"' };
+const DEFAULT_SIZE = 'md';
+
+const priceLine = (prices = []) => {
+  if (!prices.length) return '';
+  // Pad/truncate to exactly four sizes so the data attributes always exist.
+  const four = [...prices].slice(0, 4);
+  while (four.length < 4) four.push(four[four.length - 1] || '');
+  const dataAttrs = SIZE_KEYS.map((k, i) => `data-price-${k}="${esc(four[i])}"`).join(' ');
+  const defaultIdx = SIZE_KEYS.indexOf(DEFAULT_SIZE);
+  return `<p class="pizza-price" ${dataAttrs}><span class="price-size">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span><span class="price-amount">$${esc(four[defaultIdx])}</span></p>`;
+};
+
+// Simpler price line for single-price items (salads, apps, drinks).
+const singlePriceLine = (price) => price
+  ? `<p class="pizza-price single"><span class="price-amount">$${esc(price)}</span></p>`
   : '';
+
+// Size-tabs UI rendered above any grid of multi-size pizza cards.
+const sizeTabs = () => `<div class="size-tabs" role="tablist" aria-label="Pizza size">
+  ${SIZE_KEYS.map((k) => `<button type="button" class="size-tab${k === DEFAULT_SIZE ? ' active' : ''}" role="tab" aria-selected="${k === DEFAULT_SIZE}" data-size="${k}">${esc(SIZE_LABELS[k])}</button>`).join('\n  ')}
+</div>`;
 
 const HIRES_API_BASE = 'https://hiresbigh.com';
 const JOBS_ENDPOINT = `${HIRES_API_BASE}/api/jobs`;
@@ -234,8 +260,8 @@ function homePage() {
 
   return layout({
     current: '/',
-    title: 'Litzas Pizza · Family Pizza in Salt Lake City & Midvale Since 1965',
-    description: 'Pizza Don Hale brought home from a thousand road trips with his kids. Made by hand in Salt Lake City and Midvale since 1965.'
+    title: 'Litzas Pizza · Salt Lake City\u2019s pizza joint since 1965',
+    description: 'Hand-rolled dough, real mozzarella, a frosted mug of Hires next door. Salt Lake City and Midvale\u2019s pizza joint since 1965.'
   }, `
 <section class="cinema-hero" aria-labelledby="hero-h">
   <div class="hero-bg" aria-hidden="true">
@@ -243,18 +269,18 @@ function homePage() {
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
-    <p class="eyebrow">A Hale Family Restaurant · Salt Lake City &amp; Midvale</p>
-    <h1 id="hero-h">Just Pizza.<span class="slab">The Way Don Made It.</span></h1>
-    <p>Family-owned since 1965. Same crust. Same sauce. Same gold lettering on the box. Walk in. Order a Classic. Pour yourself a Hires. Sit down.</p>
+    <p class="eyebrow">Salt Lake City &amp; Midvale &middot; Since 1965</p>
+    <h1 id="hero-h">Salt Lake&rsquo;s pizza joint.<span class="slab">Sixty years and counting.</span></h1>
+    <p>Hand-rolled dough. Real mozzarella. A booth, a slice, a frosted Hires next door. That&rsquo;s the deal. That&rsquo;s always been the deal.</p>
     <div class="button-row">
       <a href="/menu/" class="btn btn-primary">See the Menu</a>
-      <a href="/story/" class="btn btn-ghost">The Don Hale Story</a>
+      <a href="/locations/" class="btn btn-ghost">Find a Shop</a>
     </div>
   </div>
   <aside class="hero-note reveal" aria-label="Litzas house notes">
-    <span>Dough hand-rolled daily</span>
-    <span>House sauce since '65</span>
-    <span>Hires Big H on tap</span>
+    <span>Two shops</span>
+    <span>Hand-rolled dough</span>
+    <span>Hires on tap</span>
   </aside>
 </section>
 
@@ -262,79 +288,55 @@ function homePage() {
   <div>
     <span>Fresh Hot Pizza</span>
     <span>Since 1965</span>
-    <span>Family Owned</span>
-    <span>Real Mozzarella</span>
-    <span>Hand-Rolled Dough</span>
-    <span>Hires Root Beer</span>
     <span>Salt Lake &amp; Midvale</span>
+    <span>Hand-Rolled Dough</span>
+    <span>Real Mozzarella</span>
+    <span>Hires Root Beer</span>
+    <span>Family Owned</span>
     <span>Fresh Hot Pizza</span>
     <span>Since 1965</span>
-    <span>Family Owned</span>
-    <span>Real Mozzarella</span>
-    <span>Hand-Rolled Dough</span>
-    <span>Hires Root Beer</span>
     <span>Salt Lake &amp; Midvale</span>
+    <span>Hand-Rolled Dough</span>
+    <span>Real Mozzarella</span>
+    <span>Hires Root Beer</span>
+    <span>Family Owned</span>
   </div>
 </section>
 
 <section class="dark-section" aria-labelledby="story-tease-h">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">Our Story</p>
-      <h2 id="story-tease-h">Don loaded up the kids<span class="slab">and went looking.</span></h2>
-      <p>In 1965, Don Hale already had a hamburger drive-in on his hands — Hires Big H — six years deep and the busiest joint in Salt Lake. He didn't need another restaurant. He just loved pizza.</p>
-      <p>So he piled the family into the car and drove. Utah. Idaho. Wyoming. Colorado. Anywhere he heard there was a good slice. He tasted, he asked questions, he wrote things down. The kids loved it.</p>
-      <p>When he came home he started building. Sauce. Dough. Garlic bread. Salad dressing. Spaghetti. He wanted a name that fit. Something with a <em>z</em>, because a name with a <em>z</em> sounds solid.</p>
-      <p><strong>Litzas.</strong> Rhymes with pizza. Sounds like it means something. Sixty years later, it does.</p>
+      <p class="eyebrow">Sixty years on 400 South</p>
+      <h2 id="story-tease-h">Walk in.<span class="slab">Order. Sit down.</span></h2>
+      <p>There&rsquo;s a building on East 400 South that&rsquo;s been making the same pizza for sixty years. Sticky booths in the best way. The cheese pulls. The cut is still done by hand. On Friday nights the line goes out the door and nobody complains, because the food is worth it.</p>
+      <p>Litzas isn&rsquo;t a date-night place. It&rsquo;s not a reservation place. It&rsquo;s the place your dad took you. It&rsquo;s where the team eats after the game. It&rsquo;s the one your kids will bring their kids to.</p>
+      <p>You don&rsquo;t need a menu to know what you want. But there is one if you want it.</p>
       <div class="button-row">
-        <a href="/story/" class="btn btn-primary">Read the Full Story</a>
+        <a href="/story/" class="btn btn-primary">The Story</a>
+        <a href="/menu/" class="btn btn-ghost">Open the Menu</a>
       </div>
     </div>
     <div class="image-stack">
       <figure class="reveal">
         <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the Salt Lake City restaurant" loading="lazy">
-        <figcaption>SLC · The mural</figcaption>
+        <figcaption>SLC &middot; 400 South</figcaption>
       </figure>
       <figure class="reveal">
         <img src="/assets/images/optimized/dough-hands.jpg" alt="Hands rolling fresh pizza dough on flour" loading="lazy">
-        <figcaption>Hand-rolled every morning</figcaption>
+        <figcaption>Hand-rolled, every morning, every shop</figcaption>
       </figure>
     </div>
-  </div>
-</section>
-
-<section class="warm-section">
-  <div class="pillars">
-    <article class="pillar reveal">
-      <div class="pillar-num">01 · DOUGH</div>
-      <h3>Hand-Rolled Daily</h3>
-      <p>Every morning. Every shop. The dough still has to earn the day.</p>
-    </article>
-    <article class="pillar reveal">
-      <div class="pillar-num">02 · SAUCE</div>
-      <h3>Made from Scratch</h3>
-      <p>Don's recipe. Same tomato, same spice, same restraint.</p>
-    </article>
-    <article class="pillar reveal">
-      <div class="pillar-num">03 · CHEESE</div>
-      <h3>100% Real Mozzarella</h3>
-      <p>Not a blend. Not a substitute. The real thing — because the real thing tastes better.</p>
-    </article>
-    <article class="pillar reveal">
-      <div class="pillar-num">04 · CRUST</div>
-      <h3>Utah Pizzeria Medium</h3>
-      <p>Not thin-and-fancy. Not deep-dish heavy. The crust you grew up on.</p>
-    </article>
   </div>
 </section>
 
 <section class="dark-section" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
     <p class="eyebrow">The Menu</p>
-    <h2 id="menu-tease-h">Pizzas named after Utah peaks.<span class="slab"> Because Don was from here.</span></h2>
-    <p>The full menu is below. Photos are owner-review stand-ins until the camera comes through. The pizza is the same as it has always been.</p>
+    <h2 id="menu-tease-h">Twenty-three pizzas.<span class="slab"> Hand-rolled in the morning. Baked when you order.</span></h2>
+    <p>A few favorites below. Tap a size to see prices. The full menu is one click away.</p>
   </div>
   <div class="menu-band">
+    ${sizeTabs()}
     <div class="menu-grid">
       ${featured}
     </div>
@@ -347,10 +349,9 @@ function homePage() {
 <section class="warm-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">The Family Brand</p>
-      <h2>Same Family.<span class="slab"> Same Don.</span></h2>
-      <p>Hires Big H came first — Don Hale opened it in 1959. Litzas came six years later. In Midvale, we share a building. In Salt Lake, we share a parking lot. Different menus, one family, one set of values.</p>
-      <p>If you grew up with a frosty mug of Hires Root Beer, you already know how this story goes.</p>
+      <p class="eyebrow">Hires next door</p>
+      <h2>Same parking lot.<span class="slab"> Same family.</span></h2>
+      <p>In Salt Lake, Litzas shares a parking lot with Hires Big H. In Midvale, we share a building. Pour yourself a root beer in a frosted mug. Eat your pizza. It&rsquo;s been the deal since 1965.</p>
       <div class="button-row">
         <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
       </div>
@@ -365,7 +366,7 @@ function homePage() {
   <div class="section-kicker center reveal">
     <p class="eyebrow">Find Your Litzas</p>
     <h2 id="loc-h">Two shops.<span class="slab"> Same pizza.</span></h2>
-    <p>Salt Lake City and Midvale. Walk in. Call ahead. We'll have a pie waiting.</p>
+    <p>Walk in. Call ahead. We&rsquo;ll have a pie waiting.</p>
   </div>
   <div class="loc-band">
     <div class="loc-grid">${locationCards()}</div>
@@ -374,11 +375,30 @@ function homePage() {
 }
 
 function menuPage() {
-  const cards = pizzas.map((pizza, i) => pizzaCard(pizza, i)).join('\n');
+  // Pizzas — multi-size cards
+  const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i)).join('\n');
+
+  // Build-Your-Own — multi-size (uses same shape as pizzas)
+  const byo = (menu.categories.find((c) => c.id === 'create-your-own') || {}).items || [];
+  const byoCards = byo.map((item, i) => pizzaCard(item, i)).join('\n');
+
+  // Salads / appetizers / specials / drinks — single price
+  const sideCards = (catId) => {
+    const cat = menu.categories.find((c) => c.id === catId);
+    if (!cat) return '';
+    return cat.items.map((item) => `<article class="side-card reveal">
+      <div class="side-body">
+        <h3 class="side-name">${esc(item.name)}</h3>
+        ${item.ingredients ? `<p class="toppings">${esc(item.ingredients)}</p>` : ''}
+        ${singlePriceLine((item.prices && item.prices[0]) || item.price)}
+      </div>
+    </article>`).join('\n');
+  };
+
   return layout({
     current: '/menu/',
-    title: 'Litzas Pizza Menu · Salt Lake City &amp; Midvale',
-    description: 'The full Litzas Pizza menu. Classic Litzas, Litzas Meatza, Utah peaks specialties, and the Hires Big H family of starters.'
+    title: 'Menu · Litzas Pizza · Salt Lake City &amp; Midvale',
+    description: 'Twenty-three pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
@@ -386,15 +406,68 @@ function menuPage() {
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
-    <h1 id="menu-h">Pizza by the peak.<span class="slab"> Made by hand.</span></h1>
-    <p>Don named his pizzas after Utah peaks. Lone Peak. Mt Olympus. Twin Peaks. Kings Peak. It was a small thing — but small things matter.</p>
+    <h1 id="menu-h">Twenty-three pizzas.<span class="slab"> Hand-rolled. Cut by hand. Boxed in gold.</span></h1>
+    <p>Pick a size up top. The price updates on every pizza. Browse, or jump to a section.</p>
   </div>
 </section>
 
-<section class="dark-section">
+<nav class="menu-jump" aria-label="Menu sections">
+  <a href="#favorites">Favorites</a>
+  <a href="#build">Build Your Own</a>
+  <a href="#sides">Salads &amp; Apps</a>
+  <a href="#specials">Specials</a>
+  <a href="#drinks">Drinks</a>
+</nav>
+
+<section class="dark-section" id="favorites">
   <div class="menu-band">
-    <div class="menu-grid">${cards}</div>
-    <p class="menu-note"><strong>Heads up —</strong> menu photography you see here is from a generated-review batch awaiting owner approval. The pizza is real. The recipe hasn't changed since 1965. Prices and full topping detail are available at both locations and on the SpotOn menu once it launches.</p>
+    <div class="menu-section-head reveal">
+      <h2>Litzas Favorites</h2>
+      <p>Twenty-three pies, each available in four sizes.</p>
+    </div>
+    ${sizeTabs()}
+    <div class="menu-grid">${pizzaCards}</div>
+  </div>
+</section>
+
+${byoCards ? `<section class="warm-section" id="build">
+  <div class="menu-band">
+    <div class="menu-section-head reveal">
+      <h2>Build Your Own</h2>
+      <p>Start with a crust, add what you want.</p>
+    </div>
+    ${sizeTabs()}
+    <div class="menu-grid">${byoCards}</div>
+  </div>
+</section>` : ''}
+
+<section class="dark-section" id="sides">
+  <div class="menu-band">
+    <div class="menu-section-head reveal">
+      <h2>Salads &amp; Appetizers</h2>
+    </div>
+    <div class="side-grid">${sideCards('salads-appetizers')}</div>
+  </div>
+</section>
+
+<section class="warm-section" id="specials">
+  <div class="menu-band">
+    <div class="menu-section-head reveal">
+      <h2>Specials &amp; Entrees</h2>
+      <p>Lasagna, spaghetti, garlic bread — Don worked on these recipes too, back when he was figuring out the pizza.</p>
+    </div>
+    <div class="side-grid">${sideCards('specials-entrees')}</div>
+  </div>
+</section>
+
+<section class="dark-section" id="drinks">
+  <div class="menu-band">
+    <div class="menu-section-head reveal">
+      <h2>Drinks</h2>
+      <p>Yes — that includes Hires Root Beer in a frosted mug.</p>
+    </div>
+    <div class="side-grid">${sideCards('beverages')}</div>
+    <p class="menu-note">Prices and full topping detail are available at both locations and on the SpotOn menu once it launches. Menu photography on this page is owner-review stand-in until the camera comes through.</p>
   </div>
 </section>`);
 }
@@ -488,32 +561,32 @@ function shopPage() {
 function storyPage() {
   return layout({
     current: '/story/',
-    title: 'The Litzas Story · Don Hale, the Hale Family, and 60 Years of Pizza',
-    description: 'Don Hale loaded his kids into the car in the 1960s and went looking for the perfect pizza. He brought one home. It has been on the menu ever since.'
+    title: 'The Story \u00B7 Litzas Pizza \u00B7 Sixty years on 400 South',
+    description: 'Sixty years of pizza in Salt Lake City. The place, the dough, the booths, the regulars \u2014 and the family that\u2019s been keeping it going since 1965.'
   }, `
 <section class="page-hero" aria-labelledby="story-h">
   <div class="page-hero-bg" aria-hidden="true">
     <img data-parallax src="/assets/images/optimized/pizzeria-mural.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Est. 1965 · A Hale Family Restaurant</p>
-    <h1 id="story-h">A grocer.<span class="slab"> A station wagon. Some pizza.</span></h1>
-    <p>Don Hale already had a hamburger joint. He just loved pizza. So one summer he packed up the kids and went looking for a good slice.</p>
+    <p class="eyebrow">The Story</p>
+    <h1 id="story-h">There&rsquo;s a place<span class="slab"> on 400 South.</span></h1>
+    <p>It&rsquo;s been there longer than most things in this city. Salt Lake has gotten taller and weirder around it. The pizza hasn&rsquo;t moved.</p>
   </div>
 </section>
 
 <section class="dark-section">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">Chapter One · 1959</p>
-      <h2>Hires came<span class="slab"> first.</span></h2>
-      <p>Don Hale opened the first Hires Big H drive-in on a Salt Lake City corner in 1959. He was a grocer before that — he knew produce, he knew quality, and he knew that the best food comes from knowing your farmer by name. The drive-in was busy from the day it opened.</p>
-      <p>He could have stopped there. He had a good thing going. He didn't.</p>
+      <p class="eyebrow">The Place</p>
+      <h2>You know it<span class="slab"> when you walk in.</span></h2>
+      <p>Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a counter you order at, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound.</p>
+      <p>It&rsquo;s the place you went after the game. The place your parents took you on Friday. The place where the same song&rsquo;s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.</p>
     </div>
     <div class="image-stack">
       <figure class="reveal">
-        <img src="/assets/images/optimized/litzas-night-sign.jpg" alt="The Litzas and Hires Big H sign glowing at night" loading="lazy">
-        <figcaption>SLC · Litzas &amp; Hires share a corner</figcaption>
+        <img src="/assets/images/optimized/litzas-night-sign.jpg" alt="Litzas and Hires Big H sign glowing at night on East 400 South" loading="lazy">
+        <figcaption>SLC &middot; 400 South, after dark</figcaption>
       </figure>
     </div>
   </div>
@@ -524,16 +597,18 @@ function storyPage() {
     <div class="image-stack">
       <figure class="reveal">
         <img src="/assets/images/optimized/dough-hands.jpg" alt="Fresh pizza dough being rolled by hand" loading="lazy">
-        <figcaption>The dough still has to earn the day</figcaption>
+        <figcaption>Rolled in the morning, baked when you order</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="Two Litzas pizzas on a worn wood table" loading="lazy">
+        <figcaption>The same pizza, sixty years running</figcaption>
       </figure>
     </div>
     <div class="copy reveal">
-      <p class="eyebrow">Chapter Two · The Search</p>
-      <h2>He loaded up<span class="slab"> the kids.</span></h2>
-      <p>Don wanted to add pizza to the family. He didn't want to add a frozen-crust afterthought. He wanted the real thing — rich, top-quality, the kind of pizza you remember.</p>
-      <p>So he did what a Utah dad in the 1960s would do. He gassed up the car, piled the kids in, and drove. Utah pizzerias. Idaho pizzerias. Wherever someone said "you have to try this place." The kids loved it — a thousand pizza dinners across a thousand miles.</p>
-      <p>He tasted. He asked questions. He wrote things down. He came home with recipes — for pizza, for spaghetti, for salad dressing, for garlic bread. He worked on them. Tweaked. Tested. Pulled the family in as the tasting panel.</p>
-      <p>When the pizza passed Don's own bar — and Don's bar was a high one — he was ready.</p>
+      <p class="eyebrow">The Pizza</p>
+      <h2>The dough still has<span class="slab"> to earn the day.</span></h2>
+      <p>The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce &mdash; tomato, the right amount of spice, the right amount of restraint. The cheese is real mozzarella. Not a blend. Not a substitute. When you pick up a slice, the cheese pulls the way it&rsquo;s supposed to pull.</p>
+      <p>The pies come out of the oven hot. The cut is done by hand. The box says <em>Fresh Hot Pizza</em> on the side in gold lettering. It&rsquo;s not a slogan. It&rsquo;s the instructions.</p>
     </div>
   </div>
 </section>
@@ -541,21 +616,15 @@ function storyPage() {
 <section class="dark-section">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">Chapter Three · The Name</p>
-      <h2>He wanted<span class="slab"> a name with a z.</span></h2>
-      <p>Don was particular. He thought a name with a <em>z</em> in it sounded solid. He wanted something with zip. Something that rhymed with pizza.</p>
-      <p>He landed on <strong>Litzas</strong>. It rhymed. It had the z. It was his.</p>
-      <p>In 1965, Litzas Pizza opened on 400 South, sharing a parking lot with the Hires Big H drive-in. Same family. Same standards. Different menu.</p>
-      <p>Sixty years later, the recipes are the recipes. The cheese is still 100% real mozzarella — not a blend, not a substitute, the way Don insisted. The dough is still hand-rolled every morning. The sauce is still made from scratch. The Hires root beer still comes in a frosted mug.</p>
+      <p class="eyebrow">A note on Don Hale</p>
+      <h2>The guy who<span class="slab"> started it.</span></h2>
+      <p>Litzas exists because Don Hale couldn&rsquo;t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn&rsquo;t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.</p>
+      <p>Don passed on. The recipes didn&rsquo;t. He and his son Mark wrote a book about it called <em>Opportunity Knocks Twice</em>, if you&rsquo;re curious. Otherwise that&rsquo;s the whole Don story. The rest is the pizza.</p>
     </div>
     <div class="image-stack">
       <figure class="reveal">
-        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The Litzas mural in gold lettering inside the SLC restaurant" loading="lazy">
-        <figcaption>The mural · 400 South</figcaption>
-      </figure>
-      <figure class="reveal">
-        <img src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="Two Litzas pizzas on a worn wood table" loading="lazy">
-        <figcaption>Don's pizza, still on the menu</figcaption>
+        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the SLC dining room" loading="lazy">
+        <figcaption>The mural &middot; 400 South dining room</figcaption>
       </figure>
     </div>
   </div>
@@ -564,33 +633,18 @@ function storyPage() {
 <section class="warm-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">The Hale Family Today</p>
-      <h2>One family.<span class="slab"> Two restaurants. Same pride.</span></h2>
-      <p>Hires Big H is still hand-cutting beef every morning. Litzas is still hand-rolling dough. Different food, same family — and a lot of the same team. Some of our crew have been with us for more than 25 years. That kind of consistency is what makes a place feel like a fixture.</p>
-      <p>Don wrote a book about it called <em>Opportunity Knocks Twice</em>. He wrote it with his son Mark. It's a Utah story — a grocer who took his shot, took it again, and never stopped caring about the details.</p>
-      <p>Want to taste the family connection? Order a pizza, pour yourself a Hires, and you've got it.</p>
+      <p class="eyebrow">Today</p>
+      <h2>Same family.<span class="slab"> Same crew. Same pizza.</span></h2>
+      <p>The Hale family still runs both places. A lot of the kitchen crew has been here longer than most marriages last &mdash; some of them remember Don himself working the counter. When you walk in on a Friday night you&rsquo;ll wait a few minutes. The line is part of it.</p>
+      <p>You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
-        <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
+        <a href="/locations/" class="btn btn-ghost">Find a Shop</a>
       </div>
     </div>
     <figure class="reveal">
-      <img src="/assets/images/optimized/rootbeer-floats.jpg" alt="Hires Big H root beer floats" loading="lazy">
+      <img src="/assets/images/optimized/rootbeer-floats.jpg" alt="Hires Big H root beer floats on a Litzas table" loading="lazy">
     </figure>
-  </div>
-</section>
-
-<section class="dark-section">
-  <div class="page-band">
-    <div class="section-kicker center reveal">
-      <p class="eyebrow">Boxed up to go</p>
-      <h2>The same gold lettering.<span class="slab"> The same fresh hot pizza.</span></h2>
-      <p>It says it on the side of every box: <em>Fresh Hot Pizza</em>. It's not marketing. It's instructions. Pizza is supposed to be hot. Pizza is supposed to be fresh. We've been keeping that promise since 1965.</p>
-      <div class="button-row center-row">
-        <a href="/locations/" class="btn btn-primary">Visit a Shop</a>
-        <a href="/catering/" class="btn btn-ghost">Cater an Event</a>
-      </div>
-    </div>
   </div>
 </section>`);
 }
@@ -602,44 +656,44 @@ function storyPage() {
 const blogPosts = [
   {
     slug: 'best-pizza-salt-lake-city',
-    title: 'Where to Find the Best Pizza in Salt Lake City',
+    title: 'Where to Get Pizza in Salt Lake City',
     date: '2026-05-17',
-    excerpt: 'Family-owned since 1965, real mozzarella, hand-rolled dough — what makes a Salt Lake City pizza last six decades.',
+    excerpt: 'A short guide to Salt Lake pizza, from a place that\u2019s been part of it since 1965.',
     photo: '/assets/images/optimized/pizza-overhead-pair.jpg',
-    eyebrow: 'Salt Lake City · Pizza'
-  },
-  {
-    slug: 'why-litzas-is-named-with-a-z',
-    title: 'Why Don Hale Picked a Name with a Z',
-    date: '2026-05-12',
-    excerpt: 'A station wagon, four kids, a thousand miles of road trips, and a founder who thought a name needed a Z to sound solid.',
-    photo: '/assets/images/optimized/pizzeria-mural.jpg',
-    eyebrow: 'Heritage · 1965'
+    eyebrow: 'Salt Lake \u00B7 Pizza'
   },
   {
     slug: 'midvale-family-pizza',
-    title: 'Family Pizza Near Midvale — What\u2019s Still Hand-Made',
+    title: 'The Fort Union Building',
     date: '2026-05-06',
-    excerpt: 'Why Litzas Pizza Midvale still rolls dough every morning, still uses real mozzarella, and still tastes like 1965.',
+    excerpt: 'Why our Midvale shop shares a building with a hamburger drive-in, and why the parking lot is busier than it has any business being.',
     photo: '/assets/images/optimized/litzas-brick-door.jpg',
-    eyebrow: 'Midvale · Family'
+    eyebrow: 'Midvale \u00B7 Fort Union'
+  },
+  {
+    slug: 'why-litzas-is-named-with-a-z',
+    title: 'About the Z',
+    date: '2026-05-12',
+    excerpt: 'People ask about the spelling. Here\u2019s the short answer.',
+    photo: '/assets/images/optimized/pizzeria-mural.jpg',
+    eyebrow: 'House Notes'
   }
 ];
 
 function blogIndexPage() {
   return layout({
     current: '/blog/',
-    title: 'Stories from the Booth · Litzas Pizza',
-    description: 'Stories about Don Hale, the Hires family, and 60 years of making pizza in Salt Lake City and Midvale.'
+    title: 'House Notes \u00B7 Litzas Pizza',
+    description: 'Notes from the booth. Salt Lake pizza, the dough, the room, the regulars.'
   }, `
 <section class="page-hero" aria-labelledby="blog-h">
   <div class="page-hero-bg" aria-hidden="true">
     <img data-parallax src="/assets/images/optimized/litzas-night-sign.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Stories from the booth</p>
-    <h1 id="blog-h">Sixty years of pizza.<span class="slab"> One family.</span></h1>
-    <p>Stories about Don Hale, the Hale family, the dough, the sauce, and the Salt Lake corner that started it all.</p>
+    <p class="eyebrow">House notes</p>
+    <h1 id="blog-h">From the booth.<span class="slab"> Short reads about a long-running pizza joint.</span></h1>
+    <p>Salt Lake pizza, the dough, the room, the regulars.</p>
   </div>
 </section>
 
@@ -677,38 +731,23 @@ function blogPostPage(post, body) {
 
 const postBodies = {
   'best-pizza-salt-lake-city': `
-<p class="lead">Searching for the best pizza in Salt Lake City is a fair sport. There are good spots. There are great spots. And then there are the ones that have been doing it the same way since the Beatles were on the radio.</p>
-<p>Litzas Pizza opened on 400 South in 1965 — a Salt Lake City pizza shop founded by Don Hale, the same Don Hale who started Hires Big H six years earlier on the corner up the street. We've been around long enough to remember when "fresh mozzarella" wasn't a marketing line. We just kept doing it.</p>
-<h2>What we still do by hand</h2>
-<p>The dough is hand-rolled every morning at both shops. The sauce is made from scratch using Don's recipe. The cheese is 100% real mozzarella — not the blend most kitchens swap in to cut costs. Don was particular about that one. So are we.</p>
-<p>The ground sausage is ours alone — a recipe you won't find at any other pizzeria. The ground beef comes from Hires Big H, butchered fresh that morning. The produce is washed and sliced fresh. None of this is exotic. It's just the right way to make pizza.</p>
-<h2>The peaks</h2>
-<p>The specialty pies are named after Utah peaks — Lone Peak, Mt Olympus, Twin Peaks, Kings Peak. Don was a Utah kid through and through. The names are a small detail. But the small details are what make a place feel like a place.</p>
-<h2>Where to find us</h2>
-<p>We're at <a href="/locations/">716 East 400 South in Salt Lake City</a> and 835 East Fort Union in Midvale. Walk in. Order a Classic. Pour a Hires root beer in a frosted mug. Sit down. You'll see what we mean.</p>
-<blockquote>You don't need a reservation. You don't need to dress up. You just need to be hungry.</blockquote>
-`,
-  'why-litzas-is-named-with-a-z': `
-<p class="lead">Don Hale was a particular man. When he decided to add pizza to the family, he didn't just pick a name out of a hat. He drove around for months — kids in the car, no air conditioning — looking for the right one.</p>
-<p>By 1965 Don had a thriving hamburger drive-in (Hires Big H, since 1959) and an itch he couldn't ignore. He loved pizza. He didn't have one good place to get it in Salt Lake City. So he decided to build one.</p>
-<h2>The road trips</h2>
-<p>He started with research. Don gathered up the kids and drove. Utah. Idaho. Wyoming. Anywhere he heard there was a pizza worth trying. He'd order a pie, taste it, ask the owner questions. The kids loved it — a thousand pizza dinners across a thousand miles. He brought home recipes for pizza, spaghetti, salad dressing, garlic bread. He worked on each one until it passed his own bar. Don's bar was high.</p>
-<h2>The name</h2>
-<p>Then came the hard part: the name. Don wanted something that fit. He thought a name needed a <strong>Z</strong> in it to sound solid. He wanted it to rhyme with pizza. He wanted something that sounded like it meant something.</p>
-<p>He landed on <em>Litzas</em>. Rhymes with pizza. Has the Z. Sounds solid. Sixty years later, you can still find it in gold letters on every box.</p>
-<h2>Why it stuck</h2>
-<p>The name worked because Don worked. He didn't compromise on the dough. He didn't compromise on the cheese. He didn't compromise on the sauce. And he didn't compromise on the name. That's the through-line. <a href="/story/">Read the full story →</a></p>
+<p class="lead">Salt Lake has a real pizza scene now. There are wood-fired places, Detroit-square places, fancy places with tasting menus. Some of it is genuinely great. I&rsquo;m not going to rank anyone.</p>
+<p>Here&rsquo;s what I&rsquo;ll say about Litzas: we&rsquo;ve been on 400 South since 1965, doing the same thing the same way, and we&rsquo;re still here. The dough is hand-rolled in the morning. The sauce is the sauce. The cheese is real mozzarella, not a blend. The pies come out hot and get cut by hand.</p>
+<p>It&rsquo;s a booth-and-counter joint. You order at the counter. You sit in a booth. You eat. If you want a frosted mug of Hires root beer, the Hires next door pours it.</p>
+<p>That&rsquo;s the deal. It&rsquo;s the deal a lot of Salt Lake families know by heart. If you&rsquo;re new in town and you want a pizza that isn&rsquo;t trying to impress you, come find us.</p>
+<p><a href="/locations/">SLC \u00B7 716 East 400 South</a> &middot; <a href="/locations/">Midvale \u00B7 835 East Fort Union</a></p>
 `,
   'midvale-family-pizza': `
-<p class="lead">If you've been to Litzas in Midvale, you've been to a building that's been making the same pizza since the 1970s — and you've probably had a Hires Big H burger from the other side of the same kitchen.</p>
-<p>Our Midvale shop shares a building with Hires Big H Midvale, at <a href="/locations/">835 East Fort Union Boulevard</a>. Two restaurants, one family, one set of standards. You can order a Litzas pizza and a Hires burger from the same parking lot. Most people do.</p>
-<h2>What hasn't changed</h2>
-<p>The dough is still hand-rolled. The sauce is still made from scratch. The mozzarella is still real. The ground sausage is still our signature recipe, unique to Litzas. The ground beef still comes from Hires's morning butchery.</p>
-<p>The crew has barely changed either. Many of the team have been with us for more than 25 years. When you walk in, the people behind the counter are probably the same people you remember.</p>
-<h2>What the room feels like</h2>
-<p>It's a neighborhood pizzeria. Cozy and warm. Booth lighting. Frosted mugs of root beer. The Midvale dining room works for date nights, family dinners, and post-game pickups. No frills. Just pizza, the right way.</p>
-<h2>For larger groups</h2>
-<p>Our SLC location has a private back room that hosts up to 40 — great for birthday parties, team dinners, and family events. <a href="/catering/">Catering and large orders</a> are easy at both shops. Just give us a call.</p>
+<p class="lead">Our Midvale shop is in a building it shares with a Hires Big H drive-in. Same family runs both. Same parking lot, same kitchen-adjacent set-up, two menus.</p>
+<p>You can order a Litzas pizza and a Hires cheeseburger and a frosted mug of root beer and walk out with a perfectly absurd dinner. People do it all the time. We&rsquo;ve been watching them do it for fifty years.</p>
+<p>The Midvale dining room is small and warm and busy. Booth lighting. The kitchen sound is right there. Friday and Saturday nights it&rsquo;s packed. Tuesday at 4pm you can walk in and have a slice in five minutes. Both are valid.</p>
+<p>The pizza is the same as the SLC pizza. The dough is rolled in the morning. The sauce is the sauce. The cheese is real. We&rsquo;re open every day. <a href="/locations/">835 East Fort Union Boulevard</a>.</p>
+`,
+  'why-litzas-is-named-with-a-z': `
+<p class="lead">People ask about the spelling pretty often. Here&rsquo;s the short answer.</p>
+<p>When Don Hale was picking a name in 1965, he wanted it to rhyme with pizza and have a Z in it because he thought a Z looked solid. That&rsquo;s it. That&rsquo;s the whole reason.</p>
+<p>It is, on the merits, a slightly weird name. We&rsquo;ve owned it for sixty years. It&rsquo;s on every box. It works.</p>
+<p>The pizza is the same as it&rsquo;s always been. <a href="/menu/">Menu&rsquo;s here</a>.</p>
 `
 };
 

@@ -156,4 +156,36 @@
     window.addEventListener('scroll', requestParallax, { passive: true });
     window.addEventListener('resize', requestParallax);
   }
+
+  // Size tabs — toggle visible price on every multi-size pizza card.
+  // Buttons live in .size-tabs blocks; price cells live in .pizza-price
+  // with data-price-mini / sm / md / lg attributes. Tapping a tab updates
+  // every price-amount + price-size span on the page (and every tab's
+  // active state) to the chosen size. Default = md (rendered server-side).
+  const SIZE_LABELS = { mini: 'Mini 8"', sm: 'Small 10"', md: 'Medium 12"', lg: 'Large 16"' };
+  const sizeTabBlocks = document.querySelectorAll('.size-tabs');
+  if (sizeTabBlocks.length) {
+    const setSize = (size) => {
+      document.querySelectorAll('.size-tab').forEach((btn) => {
+        const active = btn.dataset.size === size;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      document.querySelectorAll('.pizza-price[data-price-md]').forEach((priceEl) => {
+        const amt = priceEl.dataset['price' + size.charAt(0).toUpperCase() + size.slice(1)];
+        const label = SIZE_LABELS[size] || '';
+        const amtEl = priceEl.querySelector('.price-amount');
+        const labelEl = priceEl.querySelector('.price-size');
+        if (amtEl) amtEl.textContent = amt ? '$' + amt : '';
+        if (labelEl) labelEl.textContent = label;
+      });
+    };
+    sizeTabBlocks.forEach((block) => {
+      block.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('.size-tab');
+        if (!btn) return;
+        setSize(btn.dataset.size);
+      });
+    });
+  }
 })();

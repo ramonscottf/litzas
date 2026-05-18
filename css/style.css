@@ -1464,3 +1464,172 @@ section { position: relative; }
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   MENU — size tabs, category jump, side cards (added 2026-05-18)
+   Per house rule: CSS-only appends, no inline-HTML edits.
+   ============================================================ */
+
+/* Pizza price — show ONE size at a time */
+.pizza-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft);
+}
+.pizza-price .price-size {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 11px;
+  color: var(--gold-bright);
+  opacity: .85;
+}
+.pizza-price .price-amount {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--bone);
+  letter-spacing: .02em;
+}
+.pizza-price.single {
+  justify-content: flex-end;
+}
+
+/* Size-tabs bar — sticky pill row */
+.size-tabs {
+  position: sticky;
+  top: 78px;
+  z-index: 50;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: var(--max);
+  margin: 0 auto 28px;
+  padding: 12px 16px;
+  background: rgba(10, 9, 8, .82);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-pill);
+  justify-content: center;
+}
+.size-tab {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: rgba(244, 237, 224, .68);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .2s var(--ease-out);
+}
+.size-tab:hover {
+  color: var(--bone);
+  border-color: var(--rule-gold);
+}
+.size-tab.active {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* Menu category jump nav */
+.menu-jump {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 12px var(--gutter);
+  background: rgba(10, 9, 8, .94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule-soft);
+  justify-content: center;
+}
+.menu-jump a {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  color: rgba(244, 237, 224, .72);
+  text-decoration: none;
+  transition: all .2s var(--ease-out);
+}
+.menu-jump a:hover {
+  color: var(--gold-bright);
+  background: var(--glass);
+}
+
+/* Section heading inside menu-band */
+.menu-section-head {
+  max-width: var(--max);
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.menu-section-head h2 {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--bone);
+  font-weight: 400;
+  margin: 0 0 8px;
+}
+.menu-section-head p {
+  color: rgba(244, 237, 224, .68);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Side grid for salads / specials / drinks (single-price items) */
+.side-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+.side-card {
+  background: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  transition: border-color .3s, transform .3s;
+}
+.side-card:hover {
+  border-color: var(--rule-gold);
+  transform: translateY(-2px);
+}
+.side-name {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--bone);
+  margin: 0 0 6px;
+  font-weight: 400;
+}
+.side-body .toppings {
+  color: rgba(244, 237, 224, .68);
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .size-tabs { top: 64px; padding: 10px 12px; }
+  .size-tab { padding: 8px 14px; font-size: 11px; }
+  .menu-jump { padding: 10px var(--gutter); gap: 2px; }
+  .menu-jump a { padding: 6px 10px; font-size: 11px; letter-spacing: .1em; }
+}
