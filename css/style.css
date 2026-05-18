@@ -165,29 +165,19 @@ em {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: .02em;
-  color: var(--bone);
-  text-transform: uppercase;
-  transition: transform .3s var(--ease-spring), color .3s;
+  transition: transform .3s var(--ease-spring), opacity .3s;
   position: relative;
+  line-height: 0;
 }
-.nav-mark::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 12px;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 1px;
-}
-.nav-mark:hover { transform: scale(1.04); color: var(--gold-bright); }
+.nav-mark:hover { transform: scale(1.04); opacity: .92; }
 .nav-mark img {
-  width: 120px;
+  /* Real Litzas logo (LITZAS over PIZZA with rules). Recolored to cream
+     (#f4ede0) at build time — see assets/images/brand/litzas-logo-cream.png.
+     Source ratio is 394:137 ≈ 2.876:1. Width chosen to keep the wordmark
+     readable on mobile + give room for nav links on desktop. */
+  width: clamp(88px, 9.5vw, 130px);
   height: auto;
-  filter: brightness(2.2) contrast(1.05);
+  display: block;
 }
 
 .nav-links {
@@ -1353,21 +1343,15 @@ section { position: relative; }
   .footer-inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 }
 .footer-mark {
-  font-family: var(--display);
-  font-size: 32px;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  color: var(--bone);
-  line-height: 1;
+  display: inline-block;
+  line-height: 0;
+  transition: opacity .3s;
 }
-.footer-mark .slab {
+.footer-mark:hover { opacity: .85; }
+.footer-mark img {
+  width: clamp(140px, 18vw, 180px);
+  height: auto;
   display: block;
-  font-family: var(--slab);
-  font-size: .5em;
-  color: var(--gold-bright);
-  margin-top: 4px;
-  letter-spacing: 0;
-  font-weight: 400;
 }
 .footer-tagline {
   margin: 16px 0 0;

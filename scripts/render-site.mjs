@@ -68,7 +68,9 @@ function nav(current = '') {
 <header class="nav" id="nav">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="nav-inner">
-    <a href="/" class="nav-mark" aria-label="Litzas Pizza home">LITZAS</a>
+    <a href="/" class="nav-mark" aria-label="Litzas Pizza home">
+      <img src="/assets/images/brand/litzas-logo-cream.png" alt="Litzas Pizza" width="394" height="137" loading="eager">
+    </a>
     <nav id="nav-links" class="nav-links" aria-label="Primary">
       ${links.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ''}>${label}</a>`).join('\n      ')}
       <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
@@ -85,7 +87,9 @@ function footer() {
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-mark">LITZAS<span class="slab">PIZZA</span></div>
+      <a href="/" class="footer-mark" aria-label="Litzas Pizza home">
+        <img src="/assets/images/brand/litzas-logo-cream.png" alt="Litzas Pizza" width="394" height="137" loading="lazy">
+      </a>
       <p class="footer-tagline">Family pizza in Salt Lake City and Midvale since 1965. Same Hale family. Same Utah pride.</p>
     </div>
     <div class="footer-col">
@@ -580,7 +584,7 @@ function storyPage() {
     <div class="copy reveal">
       <p class="eyebrow">The Place</p>
       <h2>You know it<span class="slab"> when you walk in.</span></h2>
-      <p>Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a counter you order at, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound.</p>
+      <p>Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a waitress who knows the menu by heart, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound. You sit down. They bring it to you. You pay on the way out.</p>
       <p>It&rsquo;s the place you went after the game. The place your parents took you on Friday. The place where the same song&rsquo;s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.</p>
     </div>
     <div class="image-stack">
@@ -635,7 +639,7 @@ function storyPage() {
     <div class="copy reveal">
       <p class="eyebrow">Today</p>
       <h2>Same family.<span class="slab"> Same crew. Same pizza.</span></h2>
-      <p>The Hale family still runs both places. A lot of the kitchen crew has been here longer than most marriages last &mdash; some of them remember Don himself working the counter. When you walk in on a Friday night you&rsquo;ll wait a few minutes. The line is part of it.</p>
+      <p>The Hale family still runs both places. A lot of the kitchen and floor crew has been here longer than most marriages last &mdash; some of them remember Don himself working a Friday rush. When you walk in on a Friday night you&rsquo;ll wait a few minutes. The line is part of it.</p>
       <p>You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
@@ -733,7 +737,7 @@ const postBodies = {
   'best-pizza-salt-lake-city': `
 <p class="lead">Salt Lake has a real pizza scene now. There are wood-fired places, Detroit-square places, fancy places with tasting menus. Some of it is genuinely great. I&rsquo;m not going to rank anyone.</p>
 <p>Here&rsquo;s what I&rsquo;ll say about Litzas: we&rsquo;ve been on 400 South since 1965, doing the same thing the same way, and we&rsquo;re still here. The dough is hand-rolled in the morning. The sauce is the sauce. The cheese is real mozzarella, not a blend. The pies come out hot and get cut by hand.</p>
-<p>It&rsquo;s a booth-and-counter joint. You order at the counter. You sit in a booth. You eat. If you want a frosted mug of Hires root beer, the Hires next door pours it.</p>
+<p>It&rsquo;s a sit-down place. Waitresses bring the food, you pay on the way out, the Hires next door pours the root beer in a frosted mug. Pretty straightforward.</p>
 <p>That&rsquo;s the deal. It&rsquo;s the deal a lot of Salt Lake families know by heart. If you&rsquo;re new in town and you want a pizza that isn&rsquo;t trying to impress you, come find us.</p>
 <p><a href="/locations/">SLC \u00B7 716 East 400 South</a> &middot; <a href="/locations/">Midvale \u00B7 835 East Fort Union</a></p>
 `,
