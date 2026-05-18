@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Menu - Litzas Pizza</title>
-<meta name="description" content="The full Litzas Pizza menu with named pizzas, full menu sections, and SpotOn-ready order placeholders.">
-<meta property="og:title" content="Menu - Litzas Pizza">
-<meta property="og:description" content="The full Litzas Pizza menu with named pizzas, full menu sections, and SpotOn-ready order placeholders.">
+<title>Litzas Pizza Menu · Salt Lake City &amp;amp; Midvale</title>
+<meta name="description" content="The full Litzas Pizza menu. Classic Litzas, Litzas Meatza, Utah peaks specialties, and the Hires Big H family of starters.">
+<meta property="og:title" content="Litzas Pizza Menu · Salt Lake City &amp;amp; Midvale">
+<meta property="og:description" content="The full Litzas Pizza menu. Classic Litzas, Litzas Meatza, Utah peaks specialties, and the Hires Big H family of starters.">
 <meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
@@ -27,8 +27,8 @@
   "telephone": "+1-801-359-5352",
   "foundingDate": "1965",
   "address": [
-    {"@type": "PostalAddress", "streetAddress": "400 South 716 East", "addressLocality": "Salt Lake City", "addressRegion": "UT", "postalCode": "84102"},
-    {"@type": "PostalAddress", "streetAddress": "835 East Fort Union", "addressLocality": "Midvale", "addressRegion": "UT", "postalCode": "84047"}
+    {"@type": "PostalAddress", "streetAddress": "716 East 400 South", "addressLocality": "Salt Lake City", "addressRegion": "UT", "postalCode": "84102"},
+    {"@type": "PostalAddress", "streetAddress": "835 East Fort Union Boulevard", "addressLocality": "Midvale", "addressRegion": "UT", "postalCode": "84047"}
   ]
 }
 </script>
@@ -39,419 +39,308 @@
 <header class="nav" id="nav">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="nav-inner">
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/" class="nav-mark" aria-label="Litzas Pizza home">
-      <img src="/assets/images/optimized/logo-wordmark.webp" alt="Litzas Pizza" width="160" height="56">
-    </a>
+    <a href="/" class="nav-mark" aria-label="Litzas Pizza home">LITZAS</a>
     <nav id="nav-links" class="nav-links" aria-label="Primary">
       <a href="/">Home</a>
       <a href="/menu/" aria-current="page">Menu</a>
       <a href="/locations/">Locations</a>
       <a href="/story/">Story</a>
-      <a href="/shop/">Root Beer</a>
-      <a href="/locations/#order" class="nav-cta">Order Soon</a>
+      <a href="/catering/">Catering</a>
+      <a href="/blog/">Stories</a>
+      <a href="/jobs/">Jobs</a>
+      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
     </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 <main id="main">
 
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
-  <div class="page-hero-bg" aria-hidden="true"><img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt=""></div>
+  <div class="page-hero-bg" aria-hidden="true">
+    <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
+  </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Full menu</p>
-    <h1 id="menu-h">Pizza first. Everything else earns its place.</h1>
-    <p>Pizzas are handmade with a medium thickness crust and Litzas traditional pizza sauce unless noted. Final online ordering will connect through SpotOn when the links are ready.</p>
+    <p class="eyebrow">The Menu</p>
+    <h1 id="menu-h">Pizza by the peak.<span class="slab"> Made by hand.</span></h1>
+    <p>Don named his pizzas after Utah peaks. Lone Peak. Mt Olympus. Twin Peaks. Kings Peak. It was a small thing — but small things matter.</p>
   </div>
 </section>
 
-<nav class="menu-jump" aria-label="Menu sections">
-  <a href="#pizzas">Pizzas</a>
-  <a href="#create-your-own">Create Your Own</a>
-  <a href="#salads-appetizers">Salads</a>
-  <a href="#specials-entrees">Entrees</a>
-  <a href="#beverages">Drinks</a>
-</nav>
-
-<section class="menu-section page-band" id="pizzas" aria-labelledby="pizza-h">
-  <div class="section-kicker reveal">
-    <p class="eyebrow">Mini 8&quot; · Small 10&quot; · Medium 12&quot; · Large 16&quot;</p>
-    <h2 id="pizza-h">Litzas Favorites</h2>
-    <p>Approved photos appear as photos. Everything still waiting on final photography stays clean and text-led.</p>
+<section class="dark-section">
+  <div class="menu-band">
+    <div class="menu-grid"><article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/cheese.jpg" alt="Cheese pizza with pizza sauce and mozzarella cheese on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-  <div class="pizza-grid pizza-grid--menu">
-    <article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/cheese.jpg" alt="Cheese pizza with pizza sauce and mozzarella cheese on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">01</span>
-        <h3>Cheese</h3>
-        <p>Pizza sauce and mozzarella cheese.</p>
-        <p class="price">$8.75 <span>/</span> $11.50 <span>/</span> $14.25 <span>/</span> $21.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/garlic-cheese.jpg" alt="Garlic Cheese pizza with garlic butter sauce and mozzarella cheese on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">02</span>
-        <h3>Garlic Cheese</h3>
-        <p>Garlic butter sauce and mozzarella cheese.</p>
-        <p class="price">$8.75 <span>/</span> $11.50 <span>/</span> $14.25 <span>/</span> $21.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/pepperoni.jpg" alt="Pepperoni pizza with pizza sauce, mozzarella cheese, and pepperoni on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">03</span>
-        <h3>Pepperoni</h3>
-        <p>Pizza sauce, mozzarella cheese, and pepperoni.</p>
-        <p class="price">$9.25 <span>/</span> $12.50 <span>/</span> $15.75 <span>/</span> $22.25</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/ground-sausage.jpg" alt="Ground Sausage pizza with pizza sauce, mozzarella cheese, and ground italian sausage on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">04</span>
-        <h3>Ground Sausage</h3>
-        <p>Pizza sauce, mozzarella cheese, and ground Italian sausage.</p>
-        <p class="price">$9.25 <span>/</span> $12.50 <span>/</span> $15.75 <span>/</span> $22.25</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/western-bbq.jpg" alt="Western BBQ pizza with bbq sauce, mozzarella cheese, and grilled chicken on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">05</span>
-        <h3>Western BBQ</h3>
-        <p>BBQ sauce, mozzarella cheese, and grilled chicken.</p>
-        <p class="price">$9.75 <span>/</span> $13.00 <span>/</span> $16.25 <span>/</span> $23.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/ham.jpg" alt="Ham pizza with pizza sauce, mozzarella cheese, and ham on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">06</span>
-        <h3>Ham</h3>
-        <p>Pizza sauce, mozzarella cheese, and ham.</p>
-        <p class="price">$8.75 <span>/</span> $11.50 <span>/</span> $14.25 <span>/</span> $21.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/canadian.jpg" alt="Canadian pizza with pizza sauce, mozzarella cheese, and canadian bacon on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">07</span>
-        <h3>Canadian</h3>
-        <p>Pizza sauce, mozzarella cheese, and Canadian bacon.</p>
-        <p class="price">$9.25 <span>/</span> $12.50 <span>/</span> $15.75 <span>/</span> $22.25</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/hawaiian.jpg" alt="Hawaiian pizza with pizza sauce, mozzarella cheese, ham, and pineapple on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">08</span>
-        <h3>Hawaiian</h3>
-        <p>Pizza sauce, mozzarella cheese, ham, and pineapple.</p>
-        <p class="price">$10.50 <span>/</span> $14.00 <span>/</span> $17.50 <span>/</span> $25.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/red-black.jpg" alt="Red &amp; Black pizza with pizza sauce, mozzarella cheese, pepperoni, and black olives on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">09</span>
-        <h3>Red &amp; Black</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, and black olives.</p>
-        <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/red-green.jpg" alt="Red &amp; Green pizza with pizza sauce, mozzarella cheese, pepperoni, and jalapenos on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">10</span>
-        <h3>Red &amp; Green</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.</p>
-        <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/red-green-yellow.jpg" alt="Red Green &amp; Yellow pizza with pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">11</span>
-        <h3>Red Green &amp; Yellow</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/lone-peak.jpg" alt="Lone Peak pizza with garlic butter sauce, mozzarella cheese, and chicken on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">12</span>
-        <h3>Lone Peak</h3>
-        <p>Garlic butter sauce, mozzarella cheese, and chicken.</p>
-        <p class="price">$9.75 <span>/</span> $13.00 <span>/</span> $16.25 <span>/</span> $23.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/mt-olympus.jpg" alt="Mt Olympus pizza with honey mustard sauce, mozzarella cheese, chicken, bacon, and bbq sauce drizzle on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">13</span>
-        <h3>Mt Olympus</h3>
-        <p>Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.</p>
-        <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/twin-peaks.jpg" alt="Twin Peaks pizza with pizza sauce, mozzarella cheese, pepperoni, and mushrooms on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">14</span>
-        <h3>Twin Peaks</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.</p>
-        <p class="price">$10.25 <span>/</span> $14.00 <span>/</span> $17.75 <span>/</span> $24.25</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/kings-peak.jpg" alt="Kings Peak pizza with pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">15</span>
-        <h3>Kings Peak</h3>
-        <p>Pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/little-litzas.jpg" alt="Little Litzas pizza with pizza sauce, mozzarella cheese, pepperoni, and ground italian sausage on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">16</span>
-        <h3>Little Litzas</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.</p>
-        <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/classic-litzas.jpg" alt="Classic Litzas pizza with pizza sauce, mozzarella cheese, ground italian sausage, and mushrooms on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">17</span>
-        <h3>Classic Litzas</h3>
-        <p>Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.</p>
-        <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/litzas-meatza.jpg" alt="Litzas Meatza pizza with pizza sauce, mozzarella cheese, pepperoni, ham, and ground italian sausage on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">18</span>
-        <h3>Litzas Meatza</h3>
-        <p>Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/spinach-artichoke.jpg" alt="Spinach Artichoke pizza with garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">19</span>
-        <h3>Spinach Artichoke</h3>
-        <p>Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/five-cheese.jpg" alt="Five Cheese pizza with garlic butter sauce, mozzarella, cheddar and monterey jack blend, parmesan, and feta on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">20</span>
-        <h3>Five Cheese</h3>
-        <p>Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/vegetarian.jpg" alt="Vegetarian pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">21</span>
-        <h3>Vegetarian</h3>
-        <p>Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.</p>
-        <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/traditional.jpg" alt="Traditional pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">22</span>
-        <h3>Traditional</h3>
-        <p>Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat.</p>
-        <p class="price">$12.75 <span>/</span> $17.50 <span>/</span> $22.25 <span>/</span> $31.00</p>
-      </div>
-    </article>
-<article class="pizza-card pizza-card--photo reveal">
-      <img src="/assets/images/menu/pizzas/deluxe.jpg" alt="Deluxe pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats on a warm wood table." width="1536" height="1024" loading="lazy">
-      <div class="pizza-body">
-        <span class="pizza-number">23</span>
-        <h3>Deluxe</h3>
-        <p>Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.</p>
-        <p class="price">$13.75 <span>/</span> $19.00 <span>/</span> $24.50 <span>/</span> $33.50</p>
-      </div>
-    </article>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Cheese</h3>
+    <p class="toppings">Pizza sauce and mozzarella cheese.</p>
+    <p class="pizza-price">$8.75 <span>·</span> $11.50 <span>·</span> $14.25 <span>·</span> $21.00</p>
   </div>
-</section>
-
-
-<section class="menu-list-section dark-section" id="create-your-own" aria-labelledby="create-your-own-h">
-  <div class="section-kicker reveal">
-    <p class="eyebrow">Litzas menu</p>
-    <h2 id="create-your-own-h">Create Your Own</h2>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/garlic-cheese.jpg" alt="Garlic Cheese pizza with garlic butter sauce and mozzarella cheese on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-  <div class="menu-list">
-    <article class="menu-row reveal">
-      <div><h3>One Item</h3></div>
-      <p class="price">$9.75 <span>/</span> $13.00 <span>/</span> $16.25 <span>/</span> $23.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Two Items</h3></div>
-      <p class="price">$10.75 <span>/</span> $14.50 <span>/</span> $18.25 <span>/</span> $26.00</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Three Items</h3></div>
-      <p class="price">$11.75 <span>/</span> $16.00 <span>/</span> $20.25 <span>/</span> $28.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Four Items</h3></div>
-      <p class="price">$12.75 <span>/</span> $17.50 <span>/</span> $22.25 <span>/</span> $31.00</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Five Items</h3></div>
-      <p class="price">$13.75 <span>/</span> $19.00 <span>/</span> $24.50 <span>/</span> $33.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Gluten-Free Crust</h3><p>Medium only.</p></div>
-      <p class="price">$+4.00</p>
-    </article>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Garlic Cheese</h3>
+    <p class="toppings">Garlic butter sauce and mozzarella cheese.</p>
+    <p class="pizza-price">$8.75 <span>·</span> $11.50 <span>·</span> $14.25 <span>·</span> $21.00</p>
   </div>
-  <div class="topping-panel reveal">
-    <h3>Toppings</h3>
-    <p><strong>Sauces & cheeses:</strong> Litzas traditional pizza sauce, Garlic butter sauce, BBQ sauce, Cheddar and Monterey Jack blend, Mozzarella, Feta, Parmesan</p>
-    <p><strong>Meats:</strong> Pepperoni, Ham, Spicy sausage, Ground Italian sausage, Bacon, Canadian bacon, Grilled chicken</p>
-    <p><strong>Vegetables:</strong> Mushrooms, Black olives, Green peppers, Onions, Pineapple, Sliced tomatoes, Jalapenos, Spinach</p>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/pepperoni.jpg" alt="Pepperoni pizza with pizza sauce, mozzarella cheese, and pepperoni on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-</section>
-
-<section class="menu-list-section page-band" id="salads-appetizers" aria-labelledby="salads-appetizers-h">
-  <div class="section-kicker reveal">
-    <p class="eyebrow">Litzas menu</p>
-    <h2 id="salads-appetizers-h">Salads &amp; Appetizers</h2>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Pepperoni</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, and pepperoni.</p>
+    <p class="pizza-price">$9.25 <span>·</span> $12.50 <span>·</span> $15.75 <span>·</span> $22.25</p>
   </div>
-  <div class="menu-list">
-    <article class="menu-row reveal">
-      <div><h3>Garden Salad</h3><p>Iceberg and romaine lettuce, purple cabbage, tomatoes, red beets, home-style croutons, and dressing.</p></div>
-      <p class="price">$6.00 <span>/</span> $9.75</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Chef Salad</h3><p>Garden salad with black olives, Monterey Jack and cheddar, Danish ham, and roasted turkey.</p></div>
-      <p class="price">$10.55 <span>/</span> $16.75</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Garlic Bread</h3><p>Thick toasted French bread with garlic butter spread.</p></div>
-      <p class="price">$1.35 <span>/</span> $5.40 / 4</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Cheesy Garlic Bread</h3><p>Thick toasted French bread with garlic butter spread and cheese.</p></div>
-      <p class="price">$2.60 <span>/</span> $10.40 / 4</p>
-    </article>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/ground-sausage.jpg" alt="Ground Sausage pizza with pizza sauce, mozzarella cheese, and ground italian sausage on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-  
-</section>
-
-<section class="menu-list-section page-band" id="specials-entrees" aria-labelledby="specials-entrees-h">
-  <div class="section-kicker reveal">
-    <p class="eyebrow">Litzas menu</p>
-    <h2 id="specials-entrees-h">Specials &amp; Entrees</h2>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Ground Sausage</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, and ground Italian sausage.</p>
+    <p class="pizza-price">$9.25 <span>·</span> $12.50 <span>·</span> $15.75 <span>·</span> $22.25</p>
   </div>
-  <div class="menu-list">
-    <article class="menu-row reveal">
-      <div><h3>Spaghetti Lunch</h3><p>Served with a small salad, garlic bread, and a medium drink.</p></div>
-      <p class="price">$15.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Mini One-Item Pizza Lunch</h3><p>Served with a small salad, garlic bread, and a medium drink.</p></div>
-      <p class="price">$16.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Meal for One</h3><p>Mini two-item pizza, medium salad, garlic bread, and a medium drink.</p></div>
-      <p class="price">$18.25</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Meal for Two</h3><p>Small two-item pizza, two medium salads, garlic bread, and two medium drinks.</p></div>
-      <p class="price">$29.50</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Meal for More</h3><p>Large two-item pizza, large family salad, garlic bread, and pitcher of soda.</p></div>
-      <p class="price">$46.75</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Spaghetti</h3><p>Traditional noodles with Litzas spaghetti sauce made with pork.</p></div>
-      <p class="price">$9.50 <span>/</span> $11.75 <span>/</span> $+7.00 combo</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Lasagna</h3><p>Ricotta, mozzarella, spaghetti sauce, and ground beef.</p></div>
-      <p class="price">$11.75 <span>/</span> $+7.00 combo</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Calzone</h3><p>Pizza sauce, mozzarella, ricotta, and your choice of three toppings.</p></div>
-      <p class="price">$11.25 <span>/</span> $+7.00 combo</p>
-    </article>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/western-bbq.jpg" alt="Western BBQ pizza with bbq sauce, mozzarella cheese, and grilled chicken on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-  
-</section>
-
-<section class="menu-list-section page-band" id="beverages" aria-labelledby="beverages-h">
-  <div class="section-kicker reveal">
-    <p class="eyebrow">Litzas menu</p>
-    <h2 id="beverages-h">Beverages</h2>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Western BBQ</h3>
+    <p class="toppings">BBQ sauce, mozzarella cheese, and grilled chicken.</p>
+    <p class="pizza-price">$9.75 <span>·</span> $13.00 <span>·</span> $16.25 <span>·</span> $23.50</p>
   </div>
-  <div class="menu-list">
-    <article class="menu-row reveal">
-      <div><h3>Fountain Drinks</h3><p>Root beer, diet root beer, apple beer, Coke, Diet Coke, caffeine-free Diet Coke, Dr. Pepper, Diet Dr. Pepper, Sprite, punch, lemonade, Coke Zero, or iced tea.</p></div>
-      <p class="price">$2.85 <span>/</span> $3.10 <span>/</span> $3.35 <span>/</span> $7.50 pitcher</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Extra Flavors</h3><p>Lemon, lime, cherry, vanilla, or chocolate at no extra charge.</p></div>
-      
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Specialty Drinks</h3><p>Limeade and cherry limeade.</p></div>
-      <p class="price">$3.85</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Take Home Dressing</h3><p>Pint.</p></div>
-      <p class="price">$6.00</p>
-    </article>
-    <article class="menu-row reveal">
-      <div><h3>Take Home Spaghetti Sauce</h3><p>Pint.</p></div>
-      <p class="price">$6.00</p>
-    </article>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/ham.jpg" alt="Ham pizza with pizza sauce, mozzarella cheese, and ham on a warm wood table." loading="lazy" width="1024" height="768">
   </div>
-  
-</section>
-
-<section class="download-panel" aria-labelledby="photo-pack-h">
-  <div class="reveal">
-    <p class="eyebrow">SpotOn assets</p>
-    <h2 id="photo-pack-h">Photo pack stays ready without faking the menu.</h2>
-    <p>The ZIP is still available for Ali and SpotOn, but public-facing pages only show approved photography until final image generation can run.</p>
-    <a href="/downloads/litzas-spoton-menu-photos.zip" class="btn btn-primary">Download Photo Pack</a>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Ham</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, and ham.</p>
+    <p class="pizza-price">$8.75 <span>·</span> $11.50 <span>·</span> $14.25 <span>·</span> $21.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/canadian.jpg" alt="Canadian pizza with pizza sauce, mozzarella cheese, and canadian bacon on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Canadian</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, and Canadian bacon.</p>
+    <p class="pizza-price">$9.25 <span>·</span> $12.50 <span>·</span> $15.75 <span>·</span> $22.25</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/hawaiian.jpg" alt="Hawaiian pizza with pizza sauce, mozzarella cheese, ham, and pineapple on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Hawaiian</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, ham, and pineapple.</p>
+    <p class="pizza-price">$10.50 <span>·</span> $14.00 <span>·</span> $17.50 <span>·</span> $25.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/red-black.jpg" alt="Red &amp; Black pizza with pizza sauce, mozzarella cheese, pepperoni, and black olives on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Red &amp; Black</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and black olives.</p>
+    <p class="pizza-price">$10.75 <span>·</span> $14.50 <span>·</span> $18.25 <span>·</span> $26.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/red-green.jpg" alt="Red &amp; Green pizza with pizza sauce, mozzarella cheese, pepperoni, and jalapenos on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Red &amp; Green</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.</p>
+    <p class="pizza-price">$10.75 <span>·</span> $14.50 <span>·</span> $18.25 <span>·</span> $26.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/red-green-yellow.jpg" alt="Red Green &amp; Yellow pizza with pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Red Green &amp; Yellow</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/lone-peak.jpg" alt="Lone Peak pizza with garlic butter sauce, mozzarella cheese, and chicken on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Lone Peak</h3>
+    <p class="toppings">Garlic butter sauce, mozzarella cheese, and chicken.</p>
+    <p class="pizza-price">$9.75 <span>·</span> $13.00 <span>·</span> $16.25 <span>·</span> $23.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/mt-olympus.jpg" alt="Mt Olympus pizza with honey mustard sauce, mozzarella cheese, chicken, bacon, and bbq sauce drizzle on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Mt Olympus</h3>
+    <p class="toppings">Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.</p>
+    <p class="pizza-price">$10.75 <span>·</span> $14.50 <span>·</span> $18.25 <span>·</span> $26.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/twin-peaks.jpg" alt="Twin Peaks pizza with pizza sauce, mozzarella cheese, pepperoni, and mushrooms on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Twin Peaks</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.</p>
+    <p class="pizza-price">$10.25 <span>·</span> $14.00 <span>·</span> $17.75 <span>·</span> $24.25</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/kings-peak.jpg" alt="Kings Peak pizza with pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Kings Peak</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, black olives, pepperoni, and mushrooms.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/little-litzas.jpg" alt="Little Litzas pizza with pizza sauce, mozzarella cheese, pepperoni, and ground italian sausage on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Little Litzas</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.</p>
+    <p class="pizza-price">$10.75 <span>·</span> $14.50 <span>·</span> $18.25 <span>·</span> $26.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/classic-litzas.jpg" alt="Classic Litzas pizza with pizza sauce, mozzarella cheese, ground italian sausage, and mushrooms on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Classic Litzas</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.</p>
+    <p class="pizza-price">$10.75 <span>·</span> $14.50 <span>·</span> $18.25 <span>·</span> $26.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/litzas-meatza.jpg" alt="Litzas Meatza pizza with pizza sauce, mozzarella cheese, pepperoni, ham, and ground italian sausage on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Litzas Meatza</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/spinach-artichoke.jpg" alt="Spinach Artichoke pizza with garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Spinach Artichoke</h3>
+    <p class="toppings">Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/five-cheese.jpg" alt="Five Cheese pizza with garlic butter sauce, mozzarella, cheddar and monterey jack blend, parmesan, and feta on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Five Cheese</h3>
+    <p class="toppings">Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/vegetarian.jpg" alt="Vegetarian pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Vegetarian</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.</p>
+    <p class="pizza-price">$11.75 <span>·</span> $16.00 <span>·</span> $20.25 <span>·</span> $28.50</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/traditional.jpg" alt="Traditional pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Traditional</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of meat.</p>
+    <p class="pizza-price">$12.75 <span>·</span> $17.50 <span>·</span> $22.25 <span>·</span> $31.00</p>
+  </div>
+</article>
+<article class="pizza-card reveal">
+  <div class="pizza-photo">
+    <img src="/assets/images/menu/pizzas/deluxe.jpg" alt="Deluxe pizza with pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats on a warm wood table." loading="lazy" width="1024" height="768">
+  </div>
+  <div class="pizza-body">
+    <h3 class="pizza-name">Deluxe</h3>
+    <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.</p>
+    <p class="pizza-price">$13.75 <span>·</span> $19.00 <span>·</span> $24.50 <span>·</span> $33.50</p>
+  </div>
+</article></div>
+    <p class="menu-note"><strong>Heads up —</strong> menu photography you see here is from a generated-review batch awaiting owner approval. The pizza is real. The recipe hasn't changed since 1965. Prices and full topping detail are available at both locations and on the SpotOn menu once it launches.</p>
   </div>
 </section>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
-    <a href="/" class="footer-mark"><img src="/assets/images/optimized/logo-wordmark.webp" alt="Litzas Pizza" width="120" height="42"></a>
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="/menu/">Menu</a>
-      <a href="/locations/">Locations</a>
-      <a href="/story/">Story</a>
-      <a href="/shop/">Root Beer</a>
-    </nav>
-    <p class="footer-legal">
-      &copy; <span id="year">2026</span> Litzas Pizza Co. A Utah classic since 1965.
-      <br><a href="tel:+18013595352">801.359.5352</a> · <a href="tel:+18015612171">801.561.2171</a>
-    </p>
+    <div>
+      <div class="footer-mark">LITZAS<span class="slab">PIZZA</span></div>
+      <p class="footer-tagline">Family pizza in Salt Lake City and Midvale since 1965. Same Hale family. Same Utah pride.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="/locations/">Locations &amp; Hours</a></li>
+        <li><a href="/menu/">Full Menu</a></li>
+        <li><a href="/catering/">Catering</a></li>
+        <li><a href="/story/">Our Story</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Order</h4>
+      <ul>
+        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
+        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="/locations/">Get Directions</a></li>
+        <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Family</h4>
+      <ul>
+        <li><a href="/jobs/">Join the Team</a></li>
+        <li><a href="/catering/">Catering &amp; Events</a></li>
+        <li><a href="/blog/">Stories from the Booth</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year">2026</span> Litzas Pizza · A Hale Family Restaurant</span>
+    <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
 <script src="/js/main.js" defer></script>

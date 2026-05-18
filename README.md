@@ -1,113 +1,182 @@
 # Litzas Pizza
 
-Website for Litzas Pizza — Salt Lake City and Midvale. A Utah classic since 1965.
+Family-owned since 1965. Salt Lake City and Midvale. Same family that runs Hires Big H.
 
-Production: https://www.litzaspizza.com (not yet attached)
-Preview:    https://preview.litzas.pages.dev
-Pages project: `litzas` (Cloudflare)
-Latest review: https://codex-creative-overhaul-2026.litzas.pages.dev
+- Production: `https://www.litzaspizza.com` (not yet attached)
+- Preview: `https://preview.litzas.pages.dev`
+- Pages project: `litzas` (Cloudflare)
+- Latest review URL: `https://codex-creative-overhaul-2026.litzas.pages.dev`
 
 ---
 
-## Heritage site build — 2026-05-17
+## What this site is
 
-This branch now contains a static Cloudflare Pages-ready refresh:
+A static, Cloudflare Pages-ready heritage site for Litzas Pizza. Single source
+of truth: every public page is rendered from `scripts/render-site.mjs` against
+the JSON data in `data/`. No CMS. No runtime backend on Litzas itself — the
+jobs and catering forms post to the Hires Big H Launch Control backend (same
+company, same inbox), and the response is brand-tagged so Ali can sort by
+brand in the dashboard.
+
+### Brand system (locked)
+
+- **Palette:** `#ae9860` gold, warm black (`#0a0908`), warm off-white (`#f4ede0`).
+  That is the entire color system. Everything else is glass, shadow, and depth
+  built on those three.
+- **Type:** Anton (LITZAS display), Alfa Slab One (PIZZA slab), Oswald (labels,
+  eyebrows, marquees), Inter (body, blog reading).
+- **Nav:** Floating pill, brand-continuous with Hires Big H.
+- **Motion rule:** No entrance animations on hero sections. Functional micro-
+  motion only (scroll-hint bounce, nav state shift, hover transitions).
+
+### Pages
 
 ```
 index.html                         homepage
 menu/index.html                    structured full menu
-locations/index.html               location cards + SpotOn-ready buttons
-story/index.html                   Litzas / Hires / old-Utah story page
-shop/index.html                    Litzas-branded Hires Big H root beer bridge
-data/menu.json                     menu source data captured from litzaspizza.com/menu
-data/locations.json                location details
-data/order-links.json              final SpotOn URLs go here
+locations/index.html               cards + cinematic Google Maps embeds
+                                   + iOS/Android native-app deep links
+story/index.html                   Don Hale, the Hale family, 60 years of pizza
+shop/index.html                    root-beer-extract bridge to Hires
+blog/index.html                    Stories from the Booth (3 posts)
+blog/why-litzas-is-named-with-a-z/
+blog/best-pizza-salt-lake-city/
+blog/midvale-family-pizza/
+catering/index.html                form POSTs hiresbigh.com/api/catering?brand=litzas
+jobs/index.html                    form POSTs hiresbigh.com/api/jobs?brand=litzas
+```
+
+### Data
+
+```
+data/menu.json                     menu source (23 named pizzas + sides)
+data/locations.json                addresses, hours, phones, lat/lng
+data/order-links.json              SpotOn URLs (final values pending)
 data/menu-photo-manifest.json      pizza photo queue + SpotOn export metadata
-assets/images/optimized/           optimized site photography
+data/shop-links.json               root beer + merch links
+data/site-assets.json              hero image assignments per page
+```
+
+### Assets
+
+```
+assets/images/optimized/           page heroes + supporting photography
 assets/images/menu/pizzas/         slug-named menu photo slots
 downloads/litzas-spoton-menu-photos.zip  current SpotOn photo pack
 ```
 
-The latest handoff notes are in `docs/HANDOFF-2026-05-17.md`.
+---
 
-No runtime backend, CMS, or production build command is required. The HTML is
-committed and can be served directly by Cloudflare Pages. Development scripts
-exist only to re-render pages, validate the contract, regenerate menu photos,
-and rebuild the SpotOn photo pack.
+## Forms wired to Hires backend
 
-### Commands
+The jobs and catering forms point at the existing Hires Big H Launch Control
+API. Both forms send `brand=litzas` so the same dashboard at
+`hiresbigh.com/dashboard/` can show Litzas applications/inquiries alongside
+Hires ones, sorted by brand.
 
+```html
+<form action="https://hiresbigh.com/api/jobs"      data-brand="litzas" ...>
+<form action="https://hiresbigh.com/api/catering"  data-brand="litzas" ...>
 ```
-npm test
-npm run check
+
+**Hires backend changes are NOT yet shipped.** The forms will return 500 on
+submit until `functions/api/jobs/index.js` and `functions/api/catering/index.js`
+in the `hiresbigh` repo are updated to:
+
+1. Accept `brand` from form data (default `'hires'`)
+2. Add `brand` column to the D1 tables (`ALTER TABLE ... ADD COLUMN brand TEXT DEFAULT 'hires'`)
+3. Render a Litzas-branded HTML email template when `brand === 'litzas'`
+4. Tag the dashboard cards with the brand
+
+The diff for the Hires backend changes is a planned next step. Scott wants to
+review it before it's pushed. See `docs/PLAN-litzas-heritage-build.md`.
+
+---
+
+## Commands
+
+```bash
+# Re-render all pages from render-site.mjs (single source of truth)
 node scripts/render-site.mjs
-node scripts/package-spoton-photos.mjs
-python3 -m http.server 4173
-```
 
-### Local review loop
-
-```
-node scripts/render-site.mjs
+# Run the contract tests
 npm test
+
+# Run the page sanity check (8 pages)
 npm run check
+
+# Local preview server
 python3 -m http.server 4173
+
+# Visual smoke (writes screenshots to downloads/visual-smoke/)
 npm run visual:smoke
 ```
 
-Visual smoke screenshots are written to `downloads/visual-smoke/` and ignored
-by git.
+---
 
-### Cloudflare review deploy
+## Maps + deep links
 
-Production should stay untouched until Scott approves the review. To deploy a
-new preview alias:
+The locations page uses Google Maps embed iframes for the cinematic in-page
+view. The "Directions" button uses `data-maps` / `data-lat` / `data-lng`
+attributes that `js/main.js` rewrites at runtime:
 
-```
+- iOS  → `maps://?q=...&ll=lat,lng`  (opens Apple Maps native app)
+- Android → `geo:lat,lng?q=lat,lng(label)`  (opens default maps app)
+- Desktop → `https://www.google.com/maps/search/?api=1&query=...`
+
+One tap on mobile launches the user's native maps app. No keys, no embed quota.
+
+---
+
+## Cloudflare review deploy
+
+Production stays untouched until Scott approves. To publish a new preview:
+
+```bash
 rm -rf .deploy && mkdir -p .deploy/review/downloads
-rsync -a index.html css js assets data menu locations shop story .deploy/review/
+rsync -a index.html css js assets data menu locations shop story blog jobs catering .deploy/review/
 cp downloads/litzas-spoton-menu-photos.zip .deploy/review/downloads/
 npx wrangler pages deploy .deploy/review --project-name litzas --branch <review-branch-name>
 ```
 
-### SpotOn order links
+---
+
+## SpotOn order links
 
 SpotOn is intentionally pending. When final URLs arrive, edit only
-`data/order-links.json`, then run:
+`data/order-links.json`, then:
 
-```
+```bash
 node scripts/render-site.mjs
 npm test
 ```
 
-### Menu photos
+---
 
-The menu-photo manifest covers the 23 unique named pizzas from the public
-Litzas menu. Current files are slug-named and packaged for SpotOn, but most are
-marked `needs-generation` until the final generated/approved set replaces them.
-Do not send the current zip to SpotOn as final photography until every manifest
-entry is approved.
+## Menu photos
 
-Pilot generation command:
+The manifest covers the 23 unique named pizzas. Current files are slug-named
+and packaged for SpotOn, but most are marked `needs-generation`. **Do not send
+the current zip to SpotOn as final photography until every manifest entry is
+approved.**
 
-```
+Pilot generation command (after OpenAI billing is cleared):
+
+```bash
 node scripts/generate-menu-photos.mjs --all --only=pepperoni,western-bbq,vegetarian
 ```
 
-Full missing-photo generation command:
+Full missing-photo generation:
 
-```
+```bash
 node scripts/generate-menu-photos.mjs
 node scripts/package-spoton-photos.mjs
 ```
 
-The first API generation attempt on 2026-05-17 was blocked by the connected
-OpenAI account with `billing_hard_limit_reached`, before any pilot image was
-returned. Once billing is cleared, rerun the pilot command above.
+The first API generation attempt on 2026-05-17 hit `billing_hard_limit_reached`
+on the connected OpenAI account. Rerun when billing is cleared.
 
-### Next photo pass
-
-Start with the manifest, not the rendered cards:
+### Photo approval flow
 
 1. Replace or approve real pizza photos in `assets/images/menu/pizzas/`.
 2. Update `data/menu-photo-manifest.json` from `needs-generation` to
@@ -117,37 +186,32 @@ Start with the manifest, not the rendered cards:
 5. Verify with `npm test`, `npm run check`, and `npm run visual:smoke`.
 
 The public menu intentionally renders text-first cards for pizzas that still
-need approved photos, so customers do not see repeated or misleading images.
+need approved photos.
 
 ---
 
-## Source rescue — 2026-05-17
+## Source rescue history — 2026-05-17
 
-This repo was sitting empty (only the Skippy-Capture workflow) while a fully
-designed v2 preview was live on Cloudflare Pages, deployed via direct upload
-from a Claude Code session (`claude/migrate-litzas-pizza-ykXcE` branch, never
-pushed). Source had no git home — a power-out on the build machine would have
-taken the site with it.
+This branch (`rescue/from-preview-2026-05-17`) originally captured a bundle
+that was live on Cloudflare Pages but had no git home. See
+`docs/PLAN-source-rescue.md` for the original rescue notes.
 
-This branch (`rescue/from-preview-2026-05-17`) originally captured the deployed bundle:
-
-```
-index.html              homepage (single page currently real)
-css/style.css           Brand v2 — Black / Bone / Gold, no red
-                        Oswald (display) + Inter Tight (body) + Fraunces (editorial)
-js/main.js              interactions
-_r2-snapshot/litzas-v2/ local backup of R2 assets referenced by the page
-```
-
-The `_r2-snapshot/` folder is a backup so the rescue is self-contained if the
-R2 bucket ever goes away. The refreshed site now serves optimized local copies
-from `assets/images/optimized/` and is ready for an R2 upload prefix such as
-`litzas-v3/`.
+The branch has since been expanded into the heritage build documented above
+and in `docs/PLAN-litzas-heritage-build.md`.
 
 ### Project metadata
 
 - Cloudflare account: `77f3d6611f5ceab7651744268d434342`
 - Pages project: `litzas`, subdomain `litzas.pages.dev`
-- R2 bucket (assets): `pub-8c4898b448c84fa9a36cf230c13c60e3.r2.dev`, path prefix `litzas-v2/`
-- Phone (SLC): 801·359·5352
-- Phone (Midvale): 801·561·2171
+- R2 bucket (assets): `pub-8c4898b448c84fa9a36cf230c13c60e3.r2.dev`
+- Phone (SLC): 801·359·5352  ·  716 East 400 South, SLC 84102
+- Phone (Midvale): 801·561·2171  ·  835 East Fort Union Blvd, Midvale 84047
+
+---
+
+## Family
+
+Litzas and Hires Big H are the same company. Don Hale opened Hires in 1959,
+then went looking for a great pizza, and opened Litzas in 1965. The Midvale
+locations share a building. The Salt Lake locations share a parking lot.
+The Hires kinship is real, not aesthetic.

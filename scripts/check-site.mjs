@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const pages = ['index.html', 'menu/index.html', 'locations/index.html', 'shop/index.html', 'story/index.html'];
+const pages = ['index.html', 'menu/index.html', 'locations/index.html', 'shop/index.html', 'story/index.html', 'blog/index.html', 'jobs/index.html', 'catering/index.html'];
 const errors = [];
 
 for (const page of pages) {
@@ -16,7 +16,7 @@ for (const page of pages) {
   if (!html.includes('<title>')) errors.push(`${page} missing title`);
   if (!html.includes('css/style.css') && !html.includes('/css/style.css')) errors.push(`${page} missing stylesheet`);
   if (!html.includes('js/main.js') && !html.includes('/js/main.js')) errors.push(`${page} missing script`);
-  if (/<a[^>]+href="\/(order|blog)\//.test(html)) errors.push(`${page} links to removed /order/ or /blog/ route`);
+  if (/<a[^>]+href="\/order\//.test(html)) errors.push(`${page} links to removed /order/ route`);
 }
 
 const order = JSON.parse(readFileSync(join(root, 'data/order-links.json'), 'utf8'));
