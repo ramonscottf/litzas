@@ -1,0 +1,40 @@
+name: Publish Site Content
+
+# Fired by the ali-cms worker when Ali taps "Publish" in the editor.
+# Renders the site from the live content store, then deploys to a PREVIEW
+# branch so Scott can review at a preview URL before promoting to production.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "deploy target: preview (default) or production"
+        required: false
+        default: "preview"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fetch latest content from store
+        run: node scripts/fetch-content.mjs
+      - name: Render site
+        run: node scripts/render-site.mjs
+      - name: Deploy to preview
+        if: ${{ github.event.inputs.target != 'production' }}
+        run: npx --yes wrangler@latest pages deploy . --project-name=litzas --branch=ali-preview --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_PAGES_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: "77f3d6611f5ceab7651744268d434342"
+      - name: Deploy to production
+        if: ${{ github.event.inputs.target == 'production' }}
+        run: npx --yes wrangler@latest pages deploy . --project-name=litzas --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_PAGES_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: "77f3d6611f5ceab7651744268d434342"

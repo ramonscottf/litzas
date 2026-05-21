@@ -4,8 +4,17 @@ import { fileURLToPath } from 'node:url';
 import menu from '../data/menu.json' with { type: 'json' };
 import locationsData from '../data/locations.json' with { type: 'json' };
 import manifest from '../data/menu-photo-manifest.json' with { type: 'json' };
+import content from '../data/content.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+
+// t(key, fallback): editable copy from the Foster Content Store (edit.fosterlabs.org).
+// Ali edits these values; `fallback` is the original baked-in text so a missing
+// key never blanks the page. content.json is produced by scripts/fetch-content.mjs.
+const t = (key, fallback = '') => {
+  const v = content[key];
+  return (v === undefined || v === null || v === '') ? fallback : v;
+};
 const pizzas = menu.categories.find((category) => category.id === 'pizzas').items;
 const approvedPhotos = new Map(
   manifest.pizzas
@@ -18,6 +27,18 @@ const esc = (value) => String(value ?? '')
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
+
+// tc(): HTML-escape + encode common typographic chars as named entities, so
+// store-driven copy renders byte-identical to the hand-entered entities the
+// templates used before (&rsquo;, &middot;, etc). Used for editable text blocks.
+const tc = (value) => esc(value)
+  .replaceAll('\u2019', '&rsquo;')   // ’ right single quote
+  .replaceAll('\u2018', '&lsquo;')   // ‘ left single quote
+  .replaceAll('\u201C', '&ldquo;')   // “ left double quote
+  .replaceAll('\u201D', '&rdquo;')   // ” right double quote
+  .replaceAll('\u2014', '&mdash;')   // — em dash
+  .replaceAll('\u2013', '&ndash;')   // – en dash
+  .replaceAll('\u00B7', '&middot;'); // · middot
 
 // Pizza price line.
 // All four sizes are embedded as data attributes; the visible span shows ONE
@@ -273,18 +294,18 @@ function homePage() {
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
-    <p class="eyebrow">Salt Lake City &amp; Midvale &middot; Since 1965</p>
-    <h1 id="hero-h">Salt Lake&rsquo;s pizza joint.<span class="slab">Sixty years and counting.</span></h1>
-    <p>Hand-rolled dough. Real mozzarella. A booth, a slice, a frosted Hires next door. That&rsquo;s the deal. That&rsquo;s always been the deal.</p>
+    <p class="eyebrow">${tc(t('hero.eyebrow', 'Salt Lake City & Midvale · Since 1965'))}</p>
+    <h1 id="hero-h">${tc(t('hero.headline', 'Salt Lake’s pizza joint.'))}<span class="slab">${tc(t('hero.headline_slab', 'Sixty years and counting.'))}</span></h1>
+    <p>${tc(t('hero.body', 'Hand-rolled dough. Real mozzarella. A booth, a slice, a frosted Hires next door. That’s the deal. That’s always been the deal.'))}</p>
     <div class="button-row">
-      <a href="/menu/" class="btn btn-primary">See the Menu</a>
-      <a href="/locations/" class="btn btn-ghost">Find a Shop</a>
+      <a href="/menu/" class="btn btn-primary">${tc(t('hero.cta_primary', 'See the Menu'))}</a>
+      <a href="/locations/" class="btn btn-ghost">${tc(t('hero.cta_secondary', 'Find a Shop'))}</a>
     </div>
   </div>
   <aside class="hero-note reveal" aria-label="Litzas house notes">
-    <span>Two shops</span>
-    <span>Hand-rolled dough</span>
-    <span>Hires on tap</span>
+    <span>${tc(t('hero.note_1', 'Two shops'))}</span>
+    <span>${tc(t('hero.note_2', 'Hand-rolled dough'))}</span>
+    <span>${tc(t('hero.note_3', 'Hires on tap'))}</span>
   </aside>
 </section>
 
@@ -310,14 +331,14 @@ function homePage() {
 <section class="dark-section" aria-labelledby="story-tease-h">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">Sixty years on 400 South</p>
-      <h2 id="story-tease-h">Walk in.<span class="slab">Order. Sit down.</span></h2>
-      <p>There&rsquo;s a building on East 400 South that&rsquo;s been making the same pizza for sixty years. Sticky booths in the best way. The cheese pulls. The cut is still done by hand. On Friday nights the line goes out the door and nobody complains, because the food is worth it.</p>
-      <p>Litzas isn&rsquo;t a date-night place. It&rsquo;s not a reservation place. It&rsquo;s the place your dad took you. It&rsquo;s where the team eats after the game. It&rsquo;s the one your kids will bring their kids to.</p>
-      <p>You don&rsquo;t need a menu to know what you want. But there is one if you want it.</p>
+      <p class="eyebrow">${tc(t('story.eyebrow', 'Sixty years on 400 South'))}</p>
+      <h2 id="story-tease-h">${tc(t('story.headline', 'Walk in.'))}<span class="slab">${tc(t('story.headline_slab', 'Order. Sit down.'))}</span></h2>
+      <p>${tc(t('story.p1', 'There’s a building on East 400 South that’s been making the same pizza for sixty years. Sticky booths in the best way. The cheese pulls. The cut is still done by hand. On Friday nights the line goes out the door and nobody complains, because the food is worth it.'))}</p>
+      <p>${tc(t('story.p2', 'Litzas isn’t a date-night place. It’s not a reservation place. It’s the place your dad took you. It’s where the team eats after the game. It’s the one your kids will bring their kids to.'))}</p>
+      <p>${tc(t('story.p3', 'You don’t need a menu to know what you want. But there is one if you want it.'))}</p>
       <div class="button-row">
-        <a href="/story/" class="btn btn-primary">The Story</a>
-        <a href="/menu/" class="btn btn-ghost">Open the Menu</a>
+        <a href="/story/" class="btn btn-primary">${tc(t('story.cta_primary', 'The Story'))}</a>
+        <a href="/menu/" class="btn btn-ghost">${tc(t('story.cta_secondary', 'Open the Menu'))}</a>
       </div>
     </div>
     <div class="image-stack">
@@ -335,9 +356,9 @@ function homePage() {
 
 <section class="dark-section" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
-    <p class="eyebrow">The Menu</p>
-    <h2 id="menu-tease-h">Twenty-three pizzas.<span class="slab"> Hand-rolled in the morning. Baked when you order.</span></h2>
-    <p>A few favorites below. Tap a size to see prices. The full menu is one click away.</p>
+    <p class="eyebrow">${tc(t('menu.eyebrow', 'The Menu'))}</p>
+    <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-three pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled in the morning. Baked when you order.'))}</span></h2>
+    <p>${tc(t('menu.body', 'A few favorites below. Tap a size to see prices. The full menu is one click away.'))}</p>
   </div>
   <div class="menu-band">
     ${sizeTabs()}
@@ -353,9 +374,9 @@ function homePage() {
 <section class="warm-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">Hires next door</p>
-      <h2>Same parking lot.<span class="slab"> Same family.</span></h2>
-      <p>In Salt Lake, Litzas shares a parking lot with Hires Big H. In Midvale, we share a building. Pour yourself a root beer in a frosted mug. Eat your pizza. It&rsquo;s been the deal since 1965.</p>
+      <p class="eyebrow">${tc(t('bridge.eyebrow', 'Hires next door'))}</p>
+      <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
+      <p>${tc(t('bridge.p1', 'In Salt Lake, Litzas shares a parking lot with Hires Big H. In Midvale, we share a building. Pour yourself a root beer in a frosted mug. Eat your pizza. It’s been the deal since 1965.'))}</p>
       <div class="button-row">
         <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
       </div>
@@ -368,9 +389,9 @@ function homePage() {
 
 <section class="dark-section" aria-labelledby="loc-h">
   <div class="section-kicker center reveal">
-    <p class="eyebrow">Find Your Litzas</p>
-    <h2 id="loc-h">Two shops.<span class="slab"> Same pizza.</span></h2>
-    <p>Walk in. Call ahead. We&rsquo;ll have a pie waiting.</p>
+    <p class="eyebrow">${tc(t('loc.eyebrow', 'Find Your Litzas'))}</p>
+    <h2 id="loc-h">${tc(t('loc.headline', 'Two shops.'))}<span class="slab">${tc(t('loc.headline_slab', ' Same pizza.'))}</span></h2>
+    <p>${tc(t('loc.body', 'Walk in. Call ahead. We’ll have a pie waiting.'))}</p>
   </div>
   <div class="loc-band">
     <div class="loc-grid">${locationCards()}</div>
