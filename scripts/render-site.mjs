@@ -4,8 +4,24 @@ import { fileURLToPath } from 'node:url';
 import menu from '../data/menu.json' with { type: 'json' };
 import locationsData from '../data/locations.json' with { type: 'json' };
 import manifest from '../data/menu-photo-manifest.json' with { type: 'json' };
+import content from '../data/content.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+
+// t(key, fallback): editable copy from the Foster Content Store (edit.fosterlabs.org).
+// Ali edits these values; `fallback` is the original baked-in text so a missing
+// key never blanks the page. content.json is produced by scripts/fetch-content.mjs.
+const t = (key, fallback = '') => {
+  const v = content[key];
+  return (v === undefined || v === null || v === '') ? fallback : v;
+};
+
+// raw(key, fallback): for a SMALL allowlist of copy fields that carry intentional
+// inline styling (gold wordmark, italic emphasis). Ali types plain words; the
+// template re-applies the markup around known phrases. NOT general HTML — these
+// transforms are explicit and limited, so an editor can't inject markup.
+const STYLE_WORDMARK = (s) => esc(s).replace(/Litzas\.?/g, (m) => '<strong>' + m + '</strong>');
+const STYLE_ZEMPH = (s) => esc(s).replace(/\ba (z)\b/g, 'a <em>$1</em>').replace(/\bz sounds\b/g, '<em>z</em> sounds');
 const pizzas = menu.categories.find((category) => category.id === 'pizzas').items;
 const approvedPhotos = new Map(
   manifest.pizzas
@@ -243,18 +259,18 @@ function homePage() {
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
-    <p class="eyebrow">A Hale Family Restaurant · Salt Lake City &amp; Midvale</p>
-    <h1 id="hero-h">Just Pizza.<span class="slab">The Way Don Made It.</span></h1>
-    <p>Family-owned since 1965. Same crust. Same sauce. Same gold lettering on the box. Walk in. Order a Classic. Pour yourself a Hires. Sit down.</p>
+    <p class="eyebrow">${esc(t('hero.eyebrow', 'A Hale Family Restaurant · Salt Lake City & Midvale'))}</p>
+    <h1 id="hero-h">${esc(t('hero.headline', 'Just Pizza.'))}<span class="slab">${esc(t('hero.headline_slab', 'The Way Don Made It.'))}</span></h1>
+    <p>${esc(t('hero.body', 'Family-owned since 1965. Same crust. Same sauce. Same gold lettering on the box. Walk in. Order a Classic. Pour yourself a Hires. Sit down.'))}</p>
     <div class="button-row">
-      <a href="/menu/" class="btn btn-primary">See the Menu</a>
-      <a href="/story/" class="btn btn-ghost">The Don Hale Story</a>
+      <a href="/menu/" class="btn btn-primary">${esc(t('hero.cta_primary', 'See the Menu'))}</a>
+      <a href="/story/" class="btn btn-ghost">${esc(t('hero.cta_secondary', 'The Don Hale Story'))}</a>
     </div>
   </div>
   <aside class="hero-note reveal" aria-label="Litzas house notes">
-    <span>Dough hand-rolled daily</span>
-    <span>House sauce since '65</span>
-    <span>Hires Big H on tap</span>
+    <span>${esc(t('hero.note_1', 'Dough hand-rolled daily'))}</span>
+    <span>${esc(t('hero.note_2', "House sauce since '65"))}</span>
+    <span>${esc(t('hero.note_3', 'Hires Big H on tap'))}</span>
   </aside>
 </section>
 
@@ -280,14 +296,14 @@ function homePage() {
 <section class="dark-section" aria-labelledby="story-tease-h">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">Our Story</p>
-      <h2 id="story-tease-h">Don loaded up the kids<span class="slab">and went looking.</span></h2>
-      <p>In 1965, Don Hale already had a hamburger drive-in on his hands — Hires Big H — six years deep and the busiest joint in Salt Lake. He didn't need another restaurant. He just loved pizza.</p>
-      <p>So he piled the family into the car and drove. Utah. Idaho. Wyoming. Colorado. Anywhere he heard there was a good slice. He tasted, he asked questions, he wrote things down. The kids loved it.</p>
-      <p>When he came home he started building. Sauce. Dough. Garlic bread. Salad dressing. Spaghetti. He wanted a name that fit. Something with a <em>z</em>, because a name with a <em>z</em> sounds solid.</p>
-      <p><strong>Litzas.</strong> Rhymes with pizza. Sounds like it means something. Sixty years later, it does.</p>
+      <p class="eyebrow">${esc(t('story.eyebrow', 'Our Story'))}</p>
+      <h2 id="story-tease-h">${esc(t('story.headline', 'Don loaded up the kids'))}<span class="slab">${esc(t('story.headline_slab', 'and went looking.'))}</span></h2>
+      <p>${esc(t('story.p1', "In 1965, Don Hale already had a hamburger drive-in on his hands — Hires Big H — six years deep and the busiest joint in Salt Lake. He didn't need another restaurant. He just loved pizza."))}</p>
+      <p>${esc(t('story.p2', 'So he piled the family into the car and drove. Utah. Idaho. Wyoming. Colorado. Anywhere he heard there was a good slice. He tasted, he asked questions, he wrote things down. The kids loved it.'))}</p>
+      <p>${STYLE_ZEMPH(t('story.p3', 'When he came home he started building. Sauce. Dough. Garlic bread. Salad dressing. Spaghetti. He wanted a name that fit. Something with a z, because a name with a z sounds solid.'))}</p>
+      <p>${STYLE_WORDMARK(t('story.p4', 'Litzas. Rhymes with pizza. Sounds like it means something. Sixty years later, it does.'))}</p>
       <div class="button-row">
-        <a href="/story/" class="btn btn-primary">Read the Full Story</a>
+        <a href="/story/" class="btn btn-primary">${esc(t('story.cta', 'Read the Full Story'))}</a>
       </div>
     </div>
     <div class="image-stack">
@@ -330,9 +346,9 @@ function homePage() {
 
 <section class="dark-section" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
-    <p class="eyebrow">The Menu</p>
-    <h2 id="menu-tease-h">Pizzas named after Utah peaks.<span class="slab"> Because Don was from here.</span></h2>
-    <p>The full menu is below. Photos are owner-review stand-ins until the camera comes through. The pizza is the same as it has always been.</p>
+    <p class="eyebrow">${esc(t('menu.eyebrow', 'The Menu'))}</p>
+    <h2 id="menu-tease-h">${esc(t('menu.headline', 'Pizzas named after Utah peaks.'))}<span class="slab">${esc(t('menu.headline_slab', ' Because Don was from here.'))}</span></h2>
+    <p>${esc(t('menu.body', 'The full menu is below. Photos are owner-review stand-ins until the camera comes through. The pizza is the same as it has always been.'))}</p>
   </div>
   <div class="menu-band">
     <div class="menu-grid">
@@ -347,10 +363,10 @@ function homePage() {
 <section class="warm-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">The Family Brand</p>
-      <h2>Same Family.<span class="slab"> Same Don.</span></h2>
-      <p>Hires Big H came first — Don Hale opened it in 1959. Litzas came six years later. In Midvale, we share a building. In Salt Lake, we share a parking lot. Different menus, one family, one set of values.</p>
-      <p>If you grew up with a frosty mug of Hires Root Beer, you already know how this story goes.</p>
+      <p class="eyebrow">${esc(t('bridge.eyebrow', 'The Family Brand'))}</p>
+      <h2>${esc(t('bridge.headline', 'Same Family.'))}<span class="slab">${esc(t('bridge.headline_slab', ' Same Don.'))}</span></h2>
+      <p>${esc(t('bridge.p1', 'Hires Big H came first — Don Hale opened it in 1959. Litzas came six years later. In Midvale, we share a building. In Salt Lake, we share a parking lot. Different menus, one family, one set of values.'))}</p>
+      <p>${esc(t('bridge.p2', 'If you grew up with a frosty mug of Hires Root Beer, you already know how this story goes.'))}</p>
       <div class="button-row">
         <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
       </div>
@@ -363,9 +379,9 @@ function homePage() {
 
 <section class="dark-section" aria-labelledby="loc-h">
   <div class="section-kicker center reveal">
-    <p class="eyebrow">Find Your Litzas</p>
-    <h2 id="loc-h">Two shops.<span class="slab"> Same pizza.</span></h2>
-    <p>Salt Lake City and Midvale. Walk in. Call ahead. We'll have a pie waiting.</p>
+    <p class="eyebrow">${esc(t('loc.eyebrow', 'Find Your Litzas'))}</p>
+    <h2 id="loc-h">${esc(t('loc.headline', 'Two shops.'))}<span class="slab">${esc(t('loc.headline_slab', ' Same pizza.'))}</span></h2>
+    <p>${esc(t('loc.body', "Salt Lake City and Midvale. Walk in. Call ahead. We'll have a pie waiting."))}</p>
   </div>
   <div class="loc-band">
     <div class="loc-grid">${locationCards()}</div>
