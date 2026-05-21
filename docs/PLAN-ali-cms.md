@@ -119,3 +119,79 @@ Decision: build it all in one go. Done and live.
 - Hires renderer not yet wired to store (10 keys seeded, needs t() seam + publish.yml).
 - Links/images editing (order URLs, hero photos) — same key/value model, deferred.
 - Multi-staff logins (schema supports; needs user-mgmt UI).
+
+---
+
+## v3 — Agency domain move + Hires wired (2026-05-21, same day) — SHIPPED
+
+Scott: move the editor to wickowaypoint.com (his agency, who bills for this) and
+wire in hiresbigh.com (already managed by us). Decision: cms.wickowaypoint.com,
+full move off fosterlabs, Hires "focused" round one → ended up finishing it fully
+(text + hours + blog).
+
+### Domain move
+- Editor now at **cms.wickowaypoint.com** (custom domain on the `ali-cms` worker;
+  wickowaypoint.com zone `370d5f52ef487886be319734396143da`).
+- **edit.fosterlabs.org retired** → 301-redirects to cms.wickowaypoint.com via a
+  tiny worker `fl-edit-redirect` (repo-less; deployed from /home/claude/fl-redirect,
+  redirect.js). Old worker domain detached from ali-cms first.
+- Editor masthead rebranded: login = "Wicko Waypoint Website Editor"; header brand
+  shows the current site's friendly name (Litzas Pizza / Hires Big H), set in loadAll().
+
+### Hires architecture (KEY: different from Litzas)
+Hires (`ramonscottf/hiresbigh`, CF Pages **git-connected**, prod branch `main`,
+push-to-deploy) is hand-authored static HTML with Cloudflare **Pages Functions**
+already running (its own D1 `glass-house`, R2 `hires-assets`, dashboard auth in
+`functions/_middleware.js`). NO render step like Litzas. So content is injected at
+the **edge at request time** — no rebuild, edits live within ~60s (store cache).
+
+- `functions/lib/cms-content.js` — HTMLRewriter injects store content:
+  - `[data-cms="key"]` → text swap; add `data-cms-html` to allow stored HTML
+  - `[data-cms-hours="<locId>"]` → formatted hours block built from structured
+    store hours (collapses same-time day ranges, appends holidays)
+  - `[data-cms-posts]` → prepends store blog-post cards into the grid
+  - Fetches cms.wickowaypoint.com/api/content/hires + /api/posts/hires (edge-cached 60s)
+  - **Gotcha learned:** do NOT cache the fetched content in a module-global var —
+    warm isolates served a stale empty `{}` and injection silently no-op'd. Fetch
+    fresh each request; rely on CF edge cache (cf.cacheTtl) for performance.
+- `functions/_middleware.js` — chains `injectContent(response)` after `context.next()`
+  (non-destructive; existing dashboard-auth + security headers preserved).
+- `functions/blog/[slug].js` — serves store posts at /blog/<slug> by fetching an
+  existing post page (`/blog/new-website`) as chrome template and swapping
+  title/meta/body via HTMLRewriter. Static .html posts always win (function calls
+  next() for them). 14 hand-built SEO posts untouched.
+- **URL gotcha:** Hires uses clean URLs (`/locations/salt-lake-city`, not `.html`).
+  `.html` 308-redirects. Test against clean URLs.
+
+### Tagged + wired (Hires round one)
+- Home: hero.eyebrow, hero.headline (html, preserves `<span class="accent">`), hero.subhead
+- About: about.opening
+- Hours: SLC / Midvale / Daybreak `.location-hours` divs (structured per-day hours
+  in store; visible block rendered from them). NOTE: location pages also have
+  JSON-LD `openingHoursSpecification` — NOT yet synced to store edits (deferred;
+  see "still open").
+- Blog: index card-grid + dynamic post pages; seeded "Fresh From the Grill" (Ali Foster)
+- Store values synced to exact page text → injection invisible until edited.
+
+### Publish behavior (site-aware in editor)
+- Litzas: edit → save → offers GitHub preview build (render pipeline).
+- Hires: edit → save → "live within a minute" (edge injection, no build). Same for blog.
+
+### Verified live
+- cms.wickowaypoint.com 200; edit.fosterlabs.org 301 ✓
+- Hires text edit loop (eyebrow marker) live + reverted ✓
+- Hires hours edit loop (Daybreak Fri→11pm) live + reverted ✓
+- Hires blog: card on index, post page 200 w/ chrome, 14 static posts intact ✓
+- Editor: Ali logs in, both sites in dropdown, Litzas (Home29/Hours4/Story24) +
+  Hires (Home5/About2/Hours6), posts for each ✓
+
+### STILL OPEN (next session)
+- **Hires JSON-LD hours sync**: visible hours edit from store, but the SEO
+  `openingHoursSpecification` on each location page is still hardcoded. If Ali
+  changes hours, structured data drifts. Wire the JSON-LD from the same store hours.
+- **Hires page-text coverage**: only home hero + about.opening tagged. Menu,
+  catering, more about paragraphs, locations addresses still hardcoded.
+- **Litzas Hires-parity**: n/a (Litzas fuller).
+- **Hires blog images**: store posts use a default hero image; no image picker yet.
+- **Hires `about.story`** key exists in store but not tagged to a page element
+  (page paragraph didn't match cleanly; needs careful tag).
