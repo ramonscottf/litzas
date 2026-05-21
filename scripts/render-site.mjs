@@ -5,6 +5,7 @@ import menu from '../data/menu.json' with { type: 'json' };
 import locationsData from '../data/locations.json' with { type: 'json' };
 import manifest from '../data/menu-photo-manifest.json' with { type: 'json' };
 import content from '../data/content.json' with { type: 'json' };
+import storePosts from '../data/posts.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -39,6 +40,50 @@ const tc = (value) => esc(value)
   .replaceAll('\u2014', '&mdash;')   // — em dash
   .replaceAll('\u2013', '&ndash;')   // – en dash
   .replaceAll('\u00B7', '&middot;'); // · middot
+
+// hoursFor(locationId, fallbackRows): build {days,time} display rows from the
+// structured hours in the content store (content['hours.<id>']), collapsing
+// consecutive same-time days into ranges (e.g. "Wed–Thu"). Holiday/special-day
+// overrides (content['holidays.<id>']) are appended as note lines. If the store
+// has no hours for this location, returns the fallback rows from locations.json.
+const DOW = [['mon','Mon'],['tue','Tue'],['wed','Wed'],['thu','Thu'],['fri','Fri'],['sat','Sat'],['sun','Sun']];
+// emphasize(text, phrases): tc()-encode then italicize known phrases. Lets a
+// few editable fields keep intentional <em> styling (book title, box wordmark)
+// without letting Ali inject arbitrary HTML.
+const emphasize = (value, phrases) => {
+  let s = tc(value);
+  for (const p of phrases) s = s.split(tc(p)).join('<em>' + tc(p) + '</em>');
+  return s;
+};
+function hoursFor(locId, fallbackRows) {
+  let h;
+  try { h = JSON.parse(content['hours.' + locId] || 'null'); } catch (e) { h = null; }
+  if (!h || typeof h !== 'object') return fallbackRows || [];
+  // group consecutive days with identical time string
+  const cell = (d) => {
+    const x = h[d] || {};
+    if (x.closed || (!x.open && !x.close)) return 'Closed';
+    return (x.open || '') + ' - ' + (x.close || '');
+  };
+  const rows = [];
+  let i = 0;
+  while (i < DOW.length) {
+    const t = cell(DOW[i][0]);
+    let j = i;
+    while (j + 1 < DOW.length && cell(DOW[j + 1][0]) === t) j++;
+    const label = i === j ? DOW[i][1] : DOW[i][1] + '-' + DOW[j][1];
+    rows.push({ days: label, time: t });
+    i = j + 1;
+  }
+  // holiday overrides
+  let hol = [];
+  try { hol = JSON.parse(content['holidays.' + locId] || '[]'); } catch (e) { hol = []; }
+  for (const x of hol) {
+    if (!x || !x.date) continue;
+    rows.push({ days: x.date, time: x.note || 'Closed' });
+  }
+  return rows;
+}
 
 // Pizza price line.
 // All four sizes are embedded as data attributes; the visible span shows ONE
@@ -255,7 +300,7 @@ function locationCards(opts = {}) {
     <p class="loc-meta">${esc(location.tag || 'Family pizza · Since 1965')}</p>
     <p class="loc-address">${location.address.map(esc).join('<br>')}</p>
     <div class="loc-hours">
-      ${location.hours.map((row) => `<div><strong>${esc(row.days)}</strong> · ${esc(row.time)}</div>`).join('\n      ')}
+      ${hoursFor(location.id, location.hours).map((row) => `<div><strong>${esc(row.days)}</strong> · ${esc(row.time)}</div>`).join('\n      ')}
     </div>
     <div class="loc-actions">
       <a class="btn btn-primary" href="tel:${esc(location.tel)}">${esc(location.phone)}</a>
@@ -594,19 +639,19 @@ function storyPage() {
     <img data-parallax src="/assets/images/optimized/pizzeria-mural.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">The Story</p>
-    <h1 id="story-h">There&rsquo;s a place<span class="slab"> on 400 South.</span></h1>
-    <p>It&rsquo;s been there longer than most things in this city. Salt Lake has gotten taller and weirder around it. The pizza hasn&rsquo;t moved.</p>
+    <p class="eyebrow">${tc(t('storypg.hero.eyebrow','The Story'))}</p>
+    <h1 id="story-h">${tc(t('storypg.hero.headline','There’s a place'))}<span class="slab">${tc(t('storypg.hero.headline_slab',' on 400 South.'))}</span></h1>
+    <p>${tc(t('storypg.hero.body','It’s been there longer than most things in this city. Salt Lake has gotten taller and weirder around it. The pizza hasn’t moved.'))}</p>
   </div>
 </section>
 
 <section class="dark-section">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">The Place</p>
-      <h2>You know it<span class="slab"> when you walk in.</span></h2>
-      <p>Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a waitress who knows the menu by heart, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound. You sit down. They bring it to you. You pay on the way out.</p>
-      <p>It&rsquo;s the place you went after the game. The place your parents took you on Friday. The place where the same song&rsquo;s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.</p>
+      <p class="eyebrow">${tc(t('storypg.place.eyebrow','The Place'))}</p>
+      <h2>${tc(t('storypg.place.headline','You know it'))}<span class="slab">${tc(t('storypg.place.headline_slab',' when you walk in.'))}</span></h2>
+      <p>${tc(t('storypg.place.p1','Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a waitress who knows the menu by heart, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound. You sit down. They bring it to you. You pay on the way out.'))}</p>
+      <p>${tc(t('storypg.place.p2','It’s the place you went after the game. The place your parents took you on Friday. The place where the same song’s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.'))}</p>
     </div>
     <div class="image-stack">
       <figure class="reveal">
@@ -630,10 +675,10 @@ function storyPage() {
       </figure>
     </div>
     <div class="copy reveal">
-      <p class="eyebrow">The Pizza</p>
-      <h2>The dough still has<span class="slab"> to earn the day.</span></h2>
-      <p>The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce &mdash; tomato, the right amount of spice, the right amount of restraint. The cheese is real mozzarella. Not a blend. Not a substitute. When you pick up a slice, the cheese pulls the way it&rsquo;s supposed to pull.</p>
-      <p>The pies come out of the oven hot. The cut is done by hand. The box says <em>Fresh Hot Pizza</em> on the side in gold lettering. It&rsquo;s not a slogan. It&rsquo;s the instructions.</p>
+      <p class="eyebrow">${tc(t('storypg.pizza.eyebrow','The Pizza'))}</p>
+      <h2>${tc(t('storypg.pizza.headline','The dough still has'))}<span class="slab">${tc(t('storypg.pizza.headline_slab',' to earn the day.'))}</span></h2>
+      <p>${tc(t('storypg.pizza.p1','The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce — tomato, the right amount of spice, the right amount of restraint. The cheese is real mozzarella. Not a blend. Not a substitute. When you pick up a slice, the cheese pulls the way it’s supposed to pull.'))}</p>
+      <p>${emphasize(t('storypg.pizza.p2','The pies come out of the oven hot. The cut is done by hand. The box says Fresh Hot Pizza on the side in gold lettering. It’s not a slogan. It’s the instructions.'),['Fresh Hot Pizza'])}</p>
     </div>
   </div>
 </section>
@@ -641,10 +686,10 @@ function storyPage() {
 <section class="dark-section">
   <div class="sticky-story">
     <div class="copy reveal">
-      <p class="eyebrow">A note on Don Hale</p>
-      <h2>The guy who<span class="slab"> started it.</span></h2>
-      <p>Litzas exists because Don Hale couldn&rsquo;t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn&rsquo;t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.</p>
-      <p>Don passed on. The recipes didn&rsquo;t. He and his son Mark wrote a book about it called <em>Opportunity Knocks Twice</em>, if you&rsquo;re curious. Otherwise that&rsquo;s the whole Don story. The rest is the pizza.</p>
+      <p class="eyebrow">${tc(t('storypg.don.eyebrow','A note on Don Hale'))}</p>
+      <h2>${tc(t('storypg.don.headline','The guy who'))}<span class="slab">${tc(t('storypg.don.headline_slab',' started it.'))}</span></h2>
+      <p>${tc(t('storypg.don.p1','Litzas exists because Don Hale couldn’t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn’t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.'))}</p>
+      <p>${emphasize(t('storypg.don.p2','Don passed on. The recipes didn’t. He and his son Mark wrote a book about it called Opportunity Knocks Twice, if you’re curious. Otherwise that’s the whole Don story. The rest is the pizza.'),['Opportunity Knocks Twice'])}</p>
     </div>
     <div class="image-stack">
       <figure class="reveal">
@@ -658,10 +703,10 @@ function storyPage() {
 <section class="warm-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">Today</p>
-      <h2>Same family.<span class="slab"> Same crew. Same pizza.</span></h2>
-      <p>The Hale family still runs both places. A lot of the kitchen and floor crew has been here longer than most marriages last &mdash; some of them remember Don himself working a Friday rush. When you walk in on a Friday night you&rsquo;ll wait a few minutes. The line is part of it.</p>
-      <p>You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.</p>
+      <p class="eyebrow">${tc(t('storypg.today.eyebrow','Today'))}</p>
+      <h2>${tc(t('storypg.today.headline','Same family.'))}<span class="slab">${tc(t('storypg.today.headline_slab',' Same crew. Same pizza.'))}</span></h2>
+      <p>${tc(t('storypg.today.p1','The Hale family still runs both places. A lot of the kitchen and floor crew has been here longer than most marriages last — some of them remember Don himself working a Friday rush. When you walk in on a Friday night you’ll wait a few minutes. The line is part of it.'))}</p>
+      <p>${tc(t('storypg.today.p2','You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.'))}</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
         <a href="/locations/" class="btn btn-ghost">Find a Shop</a>
@@ -706,6 +751,16 @@ const blogPosts = [
 ];
 
 function blogIndexPage() {
+  // Store posts (written by Ali in the editor) come first, newest first; then
+  // any hardcoded SEO posts whose slug isn't overridden by a store post.
+  const fmtDate = (d) => { try { return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); } catch(e){ return d || ''; } };
+  const fromStore = (storePosts || []).map((p) => ({
+    slug: p.slug, title: p.title, date: fmtDate(p.published_at),
+    excerpt: p.excerpt || '', photo: p.hero_image || '/assets/images/optimized/litzas-night-sign.jpg',
+    eyebrow: p.category || 'House Notes'
+  }));
+  const storeSlugs = new Set(fromStore.map((p) => p.slug));
+  const merged = [...fromStore, ...blogPosts.filter((p) => !storeSlugs.has(p.slug))];
   return layout({
     current: '/blog/',
     title: 'House Notes \u00B7 Litzas Pizza',
@@ -724,7 +779,7 @@ function blogIndexPage() {
 
 <section class="dark-section">
   <div class="blog-grid">
-    ${blogPosts.map((post) => `
+    ${merged.map((post) => `
     <article class="post-card reveal">
       <a href="/blog/${esc(post.slug)}/" class="photo">
         <img src="${esc(post.photo)}" alt="${esc(post.title)}" loading="lazy">
@@ -777,10 +832,23 @@ const postBodies = {
 };
 
 function blogPostPages() {
-  return blogPosts.map((post) => ({
+  const fmtDate = (d) => { try { return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); } catch(e){ return d || ''; } };
+  // markdown-lite: split body on blank lines into paragraphs
+  const bodyHtml = (raw) => String(raw || '').trim().split(/\n\s*\n/).map((para, i) =>
+    `<p${i === 0 ? ' class="lead"' : ''}>${tc(para.trim())}</p>`).join('\n');
+  const storeSlugs = new Set((storePosts || []).map((p) => p.slug));
+  const storePages = (storePosts || []).map((p) => ({
+    path: `blog/${p.slug}/index.html`,
+    html: blogPostPage(
+      { slug: p.slug, title: p.title, date: fmtDate(p.published_at), excerpt: p.excerpt || '', eyebrow: p.category || 'House Notes' },
+      bodyHtml(p.body)
+    )
+  }));
+  const hardPages = blogPosts.filter((post) => !storeSlugs.has(post.slug)).map((post) => ({
     path: `blog/${post.slug}/index.html`,
     html: blogPostPage(post, postBodies[post.slug] || '<p>Coming soon.</p>')
   }));
+  return [...storePages, ...hardPages];
 }
 
 // ============================================================
