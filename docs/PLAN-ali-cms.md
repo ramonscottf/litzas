@@ -67,3 +67,55 @@ and it was not working well. so we stopped."
   `wrangler secret put`). Not in this doc.
 - Worker repo: needs a home repo (currently deployed from /home build; SHOULD be
   committed to a ramonscottf/ali-cms repo to avoid drift — TODO).
+
+---
+
+## v2 Expansion (2026-05-21, same day) — SHIPPED TO PRODUCTION
+
+Scott asked for: edit more than homepage, visual hierarchy in editor, blog
+creation + live blog, Ali's own named login, hours editor with holiday overrides.
+Decision: build it all in one go. Done and live.
+
+### Editor (worker ali-cms v2, edit.fosterlabs.org)
+- **Visual hierarchy**: fields render by ROLE — headlines in Anton big/bold, eyebrows
+  uppercase, buttons as gold pill chips, body normal; colored role badges; each page
+  section is a labeled card with emoji + plain-English title ("🍕 Hero — the big top banner").
+- **All pages**: 📄 Pages tab with horizontal page chips (Home, Story, …); SECTION_META
+  maps key-prefixes to friendly section cards per page.
+- **Blog**: ✍️ Blog tab — post list + writer (title, summary, body, category),
+  Save draft / Publish, delete. Author = logged-in user's display_name.
+- **Hours**: 🕒 Hours tab — per-day open/close inputs with Open/Closed toggle,
+  plus "+ Add special day" holiday rows (date + note like "Closed" or "11am-3pm").
+- **Login**: named users (users table, salted sha256). Ali = username `ali`,
+  display "Ali Foster", role admin. Shared-password fallback retained.
+
+### Store (D1 ali-cms 62538589-78f4-4f31-8d0f-5fdbac4050bb)
+- New tables: `users`, `posts`. Hours/holidays ride in `content` as structured
+  JSON (type=hours / type=holidays), one row per location.
+- Seeded: Home 29 keys, Story 24 keys, Hours 4 (2 locations × hours+holidays),
+  1 published post. Ali admin user created.
+
+### Renderer (litzas main)
+- Story page wired to `t('storypg.*')`; italics preserved via `emphasize(value,[phrases])`
+  for "Fresh Hot Pizza" + "Opportunity Knocks Twice". Story renders byte-identical.
+- `hoursFor(locId, fallback)`: builds {days,time} rows from structured store hours,
+  collapses consecutive same-time days into ranges (plain hyphen), appends holidays.
+  Falls back to locations.json. Wired at locations + homepage.
+- Blog: `data/posts.json` (pulled by fetch-content.mjs from /api/posts/litzas).
+  blogIndexPage + blogPostPages merge store posts (priority by slug, newest first,
+  markdown-lite body) with the 3 hardcoded SEO posts.
+
+### Verified live (litzas.wickowaypoint.com)
+- Home/locations hours store-driven & correctly grouped ✓
+- Blog index + post page (HTTP 200) show Ali's post ✓
+- Story italics intact, byte-identical ✓
+- 7/7 contract tests pass ✓
+
+### Ali's login
+- URL: https://edit.fosterlabs.org
+- Username: `ali`  Password: `litzas1965` (rotate anytime)
+
+### Still open
+- Hires renderer not yet wired to store (10 keys seeded, needs t() seam + publish.yml).
+- Links/images editing (order URLs, hero photos) — same key/value model, deferred.
+- Multi-staff logins (schema supports; needs user-mgmt UI).
