@@ -102,7 +102,9 @@ const priceLine = (prices = []) => {
   while (four.length < 4) four.push(four[four.length - 1] || '');
   const dataAttrs = SIZE_KEYS.map((k, i) => `data-price-${k}="${esc(four[i])}"`).join(' ');
   const defaultIdx = SIZE_KEYS.indexOf(DEFAULT_SIZE);
-  return `<p class="pizza-price" ${dataAttrs}><span class="price-size">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span><span class="price-amount">$${esc(four[defaultIdx])}</span></p>`;
+  const shown = String(four[defaultIdx] ?? '');
+  const amount = shown.startsWith('+') ? `+$${shown.slice(1)}` : `$${shown}`;
+  return `<p class="pizza-price" ${dataAttrs}><span class="price-size">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span><span class="price-amount">${esc(amount)}</span></p>`;
 };
 
 // Simpler price line for single-price items (salads, apps, drinks).
