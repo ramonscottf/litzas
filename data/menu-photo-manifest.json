@@ -146,7 +146,7 @@
     },
     {
       "slug": "red-green-yellow",
-      "name": "Red Green & Yellow",
+      "name": "Red, Green & Yellow",
       "ingredients": "Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.",
       "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Visible browned mozzarella, medium crust, generous but believable toppings. No hands, no plates, no text, no logos, no labels, no impossible slices. Pizza: Red Green & Yellow. Toppings must match: Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.",
       "file": "assets/images/menu/pizzas/red-green-yellow.jpg",
@@ -156,6 +156,16 @@
       "approvalStatus": "generated-review",
       "spotOnExportName": "red-green-yellow.jpg",
       "notes": "Generated in the Litzas overhead wood-table style; needs owner visual approval before SpotOn final delivery."
+    },
+    {
+      "slug": "italian-carbonara",
+      "name": "Italian Carbonara",
+      "ingredients": "Garlic butter sauce, mozzarella cheese, chicken, bacon, and sliced tomatoes.",
+      "prompt": "Photorealistic menu photograph for Litzas Pizza in Utah. One whole medium-thick crust pizza in a metal pan on a warm, worn wood table. 3/4 overhead angle, warm dark restaurant lighting, classic neighborhood pizzeria feel. Pizza: Italian Carbonara. Toppings must match: garlic butter sauce base (no red sauce), mozzarella, grilled chicken, bacon, and fresh sliced tomatoes. No hands, no plates, no text, no logos.",
+      "file": "assets/images/menu/pizzas/italian-carbonara.jpg",
+      "spotOnExportName": "italian-carbonara.jpg",
+      "alt": "Italian Carbonara pizza with garlic butter base, chicken, bacon, and sliced tomatoes",
+      "approvalStatus": "needs-generation"
     },
     {
       "slug": "lone-peak",

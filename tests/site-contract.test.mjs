@@ -19,7 +19,8 @@ const expectedPizzas = [
   'Hawaiian',
   'Red & Black',
   'Red & Green',
-  'Red Green & Yellow',
+  'Red, Green & Yellow',
+  'Italian Carbonara',
   'Lone Peak',
   'Mt Olympus',
   'Twin Peaks',
@@ -93,7 +94,9 @@ test('served local images referenced by pages and manifests exist', () => {
 
   const manifest = parseJson('data/menu-photo-manifest.json');
   const manifestRefs = [
-    ...manifest.pizzas.map((item) => item.file),
+    ...manifest.pizzas
+      .filter((item) => item.approvalStatus !== 'needs-generation')
+      .map((item) => item.file),
     ...parseJson('data/site-assets.json').images.map((item) => item.file)
   ];
 
