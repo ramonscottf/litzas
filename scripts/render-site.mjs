@@ -113,9 +113,11 @@ const singlePriceLine = (price) => price
 // Labeled, multi-tier price rows for items sold in more than one size/format
 // (Garden Salad medium/large, garlic bread slice/full order, spaghetti combo, etc.).
 const priceTierLines = (tiers = []) => tiers.length
-  ? `<ul class="price-tiers">${tiers.map((tier) =>
-      `<li><span class="tier-label">${esc(tier.label)}</span><span class="tier-amount">$${esc(tier.price)}</span></li>`
-    ).join('')}</ul>`
+  ? `<ul class="price-tiers">${tiers.map((tier) => {
+      const raw = String(tier.price ?? '');
+      const amount = raw.startsWith('+') ? `+$${raw.slice(1)}` : `$${raw}`;
+      return `<li><span class="tier-label">${esc(tier.label)}</span><span class="tier-amount">${esc(amount)}</span></li>`;
+    }).join('')}</ul>`
   : '';
 
 // Size-tabs UI rendered above any grid of multi-size pizza cards.
