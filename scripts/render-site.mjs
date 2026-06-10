@@ -256,14 +256,16 @@ ${footer()}
 `;
 }
 
-function pizzaCard(pizza, index) {
+function pizzaCard(pizza, index, { numbered = false } = {}) {
   const photo = approvedPhotos.get(pizza.slug);
   const ingredients = pizza.ingredients || '';
   const number = String(index + 1).padStart(2, '0');
+  const chip = numbered ? `<span class="pizza-no" aria-hidden="true">N<sup>o</sup> ${number}</span>` : '';
 
   if (photo) {
     return `<article class="pizza-card reveal">
   <div class="pizza-photo">
+    ${chip}
     <img src="/${esc(photo.file)}" alt="${esc(photo.alt)}" loading="lazy" width="1024" height="768">
   </div>
   <div class="pizza-body">
@@ -275,7 +277,7 @@ function pizzaCard(pizza, index) {
   }
 
   return `<article class="pizza-card reveal">
-  <div class="pizza-photo-empty"></div>
+  <div class="pizza-photo-empty">${chip}</div>
   <div class="pizza-body">
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
     <p class="toppings">${esc(ingredients)}</p>
@@ -457,12 +459,16 @@ function homePage() {
 }
 
 function menuPage() {
-  // Pizzas — multi-size cards
-  const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i)).join('\n');
+  // Pizzas — multi-size cards, numbered 01–24 like the printed menu
+  const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i, { numbered: true })).join('\n');
 
   // Build-Your-Own — multi-size (uses same shape as pizzas)
   const byo = (menu.categories.find((c) => c.id === 'create-your-own') || {}).items || [];
   const byoCards = byo.map((item, i) => pizzaCard(item, i)).join('\n');
+
+  // True counts, surfaced as small chips next to the section heads.
+  const countOf = (catId) => ((menu.categories.find((c) => c.id === catId) || {}).items || []).length;
+  const countChip = (n, noun) => `<span class="count-chip">${n} ${noun}</span>`;
 
   // Salads / appetizers / dressings / specials / drinks.
   // Supports: category note, per-item group subheads, labeled price tiers,
@@ -521,7 +527,7 @@ function menuPage() {
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Litzas Favorites</h2>
+      <h2>Litzas Favorites ${countChip(pizzas.length, "pies")}</h2>
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
     ${sizeTabs()}
@@ -532,7 +538,7 @@ function menuPage() {
 ${byoCards ? `<section class="warm-section" id="build">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Build Your Own</h2>
+      <h2>Build Your Own ${countChip(countOf("create-your-own"), "ways")}</h2>
       <p>Start with a crust, add what you want.</p>
     </div>
     ${sizeTabs()}
@@ -543,7 +549,7 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="dark-section" id="sides">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Salads &amp; Appetizers</h2>
+      <h2>Salads &amp; Appetizers ${countChip(countOf("salads-appetizers"), "plates")}</h2>
     </div>
     <div class="side-grid">${sideCards('salads-appetizers')}</div>
   </div>
@@ -552,7 +558,7 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="warm-section" id="dressings">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Dressings</h2>
+      <h2>Dressings ${countChip(7, "from scratch")}</h2>
       <p>All made from scratch. Pick one with any salad.</p>
     </div>
     <div class="side-grid">${sideCards('dressings')}</div>
@@ -562,7 +568,7 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="dark-section" id="specials">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Specials &amp; Entrees</h2>
+      <h2>Specials &amp; Entrees ${countChip(countOf("specials-entrees"), "meals")}</h2>
       <p>Lasagna, spaghetti, garlic bread — Don worked on these recipes too, back when he was figuring out the pizza.</p>
     </div>
     <div class="side-grid">${sideCards('specials-entrees')}</div>
@@ -572,7 +578,7 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="warm-section" id="drinks">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Drinks</h2>
+      <h2>Drinks ${countChip(13, "on tap")}</h2>
       <p>Yes — that includes Hires Root Beer in a frosted mug.</p>
     </div>
     <div class="side-grid">${sideCards('beverages')}</div>

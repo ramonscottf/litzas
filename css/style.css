@@ -1402,8 +1402,17 @@ section { position: relative; }
   .nav.scrolled { top: 8px; }
   .nav-toggle { display: block; }
   .nav-links {
+    /* The pill nav is a transformed, backdrop-filtered ancestor, so it is the
+       containing block for this "fixed" panel — inset:0 would size the panel
+       to the 64px pill and the link column would bleed over the page (the
+       always-showing mobile menu bug). Size to the viewport explicitly and
+       hard-hide the closed state. */
     position: fixed;
-    inset: 0;
+    top: -24px;
+    left: 50%;
+    width: 100vw;
+    height: calc(100vh + 24px);
+    height: calc(100dvh + 24px);
     background: var(--glass-3);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
@@ -1411,11 +1420,21 @@ section { position: relative; }
     justify-content: center;
     gap: 24px;
     font-size: 18px;
-    transform: translateY(-100%);
-    transition: transform .5s var(--ease-out);
+    transform: translate(-50%, -106%);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .5s var(--ease-out), opacity .4s, visibility 0s .5s;
     padding: 80px 30px 30px;
   }
-  .nav-links.open { transform: translateY(0); }
+  .nav-links.open {
+    transform: translate(-50%, 0);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: transform .5s var(--ease-out), opacity .3s, visibility 0s;
+  }
+  .nav-toggle { position: relative; z-index: 5; }
   .nav-cta { font-size: 14px !important; }
 
   .hero-note { right: 16px; left: 16px; bottom: 24px; padding: 16px 18px; }
@@ -1431,13 +1450,18 @@ section { position: relative; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .9s var(--ease-out), transform .9s var(--ease-out);
 }
-.reveal.is-visible,
-.reveal.in {
+.reveal.is-visible {
+  animation: reveal-rise .7s var(--ease-out) both;
+  animation-delay: var(--d, 0s);
+}
+.reveal.done {
+  animation: none;
   opacity: 1;
-  transform: translateY(0);
+}
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translateY(24px) scale(.985); }
+  to   { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1659,6 +1683,109 @@ section { position: relative; }
   font-size: 14px;
   line-height: 1.6;
   max-width: 60ch;
+}
+
+/* ============================================================
+   MENU POLISH — cascade, gold rail, tickets, depth (2026-06-09)
+   ============================================================ */
+
+/* Anchored sections land below the sticky rail + tabs */
+#favorites, #build, #sides, #dressings, #specials, #drinks {
+  scroll-margin-top: 140px;
+}
+
+/* Numbered ticket on each of the 24 favorites */
+.pizza-no {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 2;
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--gold-bright);
+  background: rgba(10, 9, 8, .72);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule-gold);
+  border-radius: var(--radius-pill);
+  padding: 5px 10px;
+  box-shadow: var(--shadow-sm);
+}
+.pizza-no sup { font-size: 8px; letter-spacing: 0; }
+.pizza-photo-empty { position: relative; }
+
+/* True-count chips beside section heads */
+.count-chip {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 12px;
+  font-family: var(--label);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  border: 1px solid var(--rule-gold);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  transform: translateY(-4px);
+  white-space: nowrap;
+}
+
+/* Card depth — layered shadow at rest, gold-rimmed lift on hover */
+.pizza-card {
+  box-shadow: 0 1px 0 rgba(244, 237, 224, .05) inset, var(--shadow-sm);
+}
+.pizza-card:hover {
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+}
+.pizza-photo img {
+  transition: transform .7s var(--ease-out);
+}
+.pizza-card:hover .pizza-photo img {
+  transform: scale(1.045);
+}
+.side-card {
+  box-shadow: 0 1px 0 rgba(244, 237, 224, .04) inset, var(--shadow-sm);
+  transition: border-color .35s, transform .35s var(--ease-out), box-shadow .35s;
+}
+.side-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), var(--shadow-gold);
+}
+
+/* Gold rail — scroll-spy underline tracks the section you're in */
+.menu-jump a { position: relative; }
+.menu-jump a::after {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px; bottom: 4px;
+  height: 2px;
+  background: var(--gold-bright);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .35s var(--ease-out);
+}
+.menu-jump a.active { color: var(--gold-bright); }
+.menu-jump a.active::after { transform: scaleX(1); }
+
+/* Size tabs cast a shadow once actually stuck */
+.size-tabs {
+  transition: box-shadow .35s, background .35s;
+}
+.size-tabs.is-stuck {
+  background: rgba(10, 9, 8, .92);
+  box-shadow: var(--shadow-md);
+  border-color: var(--rule-gold);
+}
+
+/* Price tick — register flip when the size changes */
+@keyframes price-tick {
+  0%   { opacity: 0; transform: translateY(7px); }
+  100% { opacity: 1; transform: none; }
+}
+.price-amount.tick {
+  animation: price-tick .32s var(--ease-spring);
 }
 
 @media (max-width: 640px) {

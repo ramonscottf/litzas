@@ -42,9 +42,23 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealEls = document.querySelectorAll('.reveal');
 
+  // Stagger: cards inside a grid cascade in (55ms steps) instead of slamming
+  // in as one block. Delay is per-grid index, capped, and cleared after the
+  // animation ends so hover transforms stay free.
+  document.querySelectorAll('.menu-grid, .side-grid, .loc-grid, .blog-grid').forEach((grid) => {
+    Array.from(grid.children).forEach((el, i) => {
+      if (el.classList.contains('reveal')) {
+        el.style.setProperty('--d', `${Math.min(i % 12, 9) * 55}ms`);
+      }
+    });
+  });
+
   if (prefersReduced || !('IntersectionObserver' in window)) {
-    revealEls.forEach((el) => el.classList.add('is-visible'));
+    revealEls.forEach((el) => el.classList.add('is-visible', 'done'));
   } else {
+    revealEls.forEach((el) => {
+      el.addEventListener('animationend', () => el.classList.add('done'), { once: true });
+    });
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -55,6 +69,51 @@
     }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
 
     revealEls.forEach((el) => observer.observe(el));
+  }
+
+  // Menu scroll-spy — the gold underline on the jump rail tracks the section
+  // you're reading. Sections own their slice of the viewport via a midline test.
+  const jump = document.querySelector('.menu-jump');
+  if (jump) {
+    const links = Array.from(jump.querySelectorAll('a[href^="#"]'));
+    const sections = links
+      .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+      .filter(Boolean);
+    const setActive = () => {
+      const mid = window.innerHeight * 0.38;
+      let current = sections[0];
+      for (const sec of sections) {
+        if (sec.getBoundingClientRect().top <= mid) current = sec;
+      }
+      links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+    };
+    let spyTick = false;
+    window.addEventListener('scroll', () => {
+      if (!spyTick) {
+        spyTick = true;
+        requestAnimationFrame(() => { setActive(); spyTick = false; });
+      }
+    }, { passive: true });
+    setActive();
+  }
+
+  // Sticky elevation — size-tab pills cast a shadow once they're actually stuck.
+  const stickies = document.querySelectorAll('.size-tabs');
+  if (stickies.length) {
+    let stickTick = false;
+    const updateStuck = () => {
+      stickies.forEach((bar) => {
+        const top = parseFloat(getComputedStyle(bar).top) || 0;
+        bar.classList.toggle('is-stuck', Math.abs(bar.getBoundingClientRect().top - top) < 2);
+      });
+    };
+    window.addEventListener('scroll', () => {
+      if (!stickTick) {
+        stickTick = true;
+        requestAnimationFrame(() => { updateStuck(); stickTick = false; });
+      }
+    }, { passive: true });
+    updateStuck();
   }
 
   // Maps deep links — one-tap-to-native-maps
@@ -176,7 +235,12 @@
         const label = SIZE_LABELS[size] || '';
         const amtEl = priceEl.querySelector('.price-amount');
         const labelEl = priceEl.querySelector('.price-size');
-        if (amtEl) amtEl.textContent = amt ? (amt.charAt(0) === '+' ? '+$' + amt.slice(1) : '$' + amt) : '';
+        if (amtEl) {
+          amtEl.textContent = amt ? (amt.charAt(0) === '+' ? '+$' + amt.slice(1) : '$' + amt) : '';
+          amtEl.classList.remove('tick');
+          void amtEl.offsetWidth; // restart the tick animation
+          amtEl.classList.add('tick');
+        }
         if (labelEl) labelEl.textContent = label;
       });
     };

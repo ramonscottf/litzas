@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const BASE = process.env.CONTENT_API_BASE || 'https://edit.fosterlabs.org';
+const BASE = process.env.CONTENT_API_BASE || 'https://cms.wickowaypoint.com';
 
 async function pull(path, outName, minOk, validate) {
   const out = join(root, 'data', outName);
