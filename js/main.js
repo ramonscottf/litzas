@@ -176,7 +176,7 @@
         const label = SIZE_LABELS[size] || '';
         const amtEl = priceEl.querySelector('.price-amount');
         const labelEl = priceEl.querySelector('.price-size');
-        if (amtEl) amtEl.textContent = amt ? '$' + amt : '';
+        if (amtEl) amtEl.textContent = amt ? (amt.charAt(0) === '+' ? '+$' + amt.slice(1) : '$' + amt) : '';
         if (labelEl) labelEl.textContent = label;
       });
     };

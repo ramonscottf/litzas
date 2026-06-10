@@ -1611,6 +1611,56 @@ section { position: relative; }
   margin: 0;
 }
 
+/* Labeled multi-tier prices (salad sizes, garlic-bread slice/order, combos) */
+.price-tiers {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.price-tiers li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--rule);
+  padding-top: 6px;
+}
+.price-tiers li:first-child { border-top: none; padding-top: 0; }
+.tier-label {
+  color: rgba(244, 237, 224, .72);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.tier-amount {
+  color: var(--gold-bright);
+  font-family: var(--display);
+  font-size: 16px;
+  white-space: nowrap;
+}
+/* Full-width subheads and notes inside a side grid */
+.side-grid .side-group {
+  grid-column: 1 / -1;
+  margin: 14px 0 0;
+  font-family: var(--label);
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+.side-grid .side-group:first-child { margin-top: 0; }
+.side-grid .side-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: rgba(244, 237, 224, .72);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
 @media (max-width: 640px) {
   .size-tabs { top: 64px; padding: 10px 12px; }
   .size-tab { padding: 8px 14px; font-size: 11px; }

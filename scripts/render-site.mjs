@@ -102,12 +102,24 @@ const priceLine = (prices = []) => {
   while (four.length < 4) four.push(four[four.length - 1] || '');
   const dataAttrs = SIZE_KEYS.map((k, i) => `data-price-${k}="${esc(four[i])}"`).join(' ');
   const defaultIdx = SIZE_KEYS.indexOf(DEFAULT_SIZE);
-  return `<p class="pizza-price" ${dataAttrs}><span class="price-size">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span><span class="price-amount">$${esc(four[defaultIdx])}</span></p>`;
+  const shown = String(four[defaultIdx] ?? '');
+  const amount = shown.startsWith('+') ? `+$${shown.slice(1)}` : `$${shown}`;
+  return `<p class="pizza-price" ${dataAttrs}><span class="price-size">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span><span class="price-amount">${esc(amount)}</span></p>`;
 };
 
 // Simpler price line for single-price items (salads, apps, drinks).
 const singlePriceLine = (price) => price
   ? `<p class="pizza-price single"><span class="price-amount">$${esc(price)}</span></p>`
+  : '';
+
+// Labeled, multi-tier price rows for items sold in more than one size/format
+// (Garden Salad medium/large, garlic bread slice/full order, spaghetti combo, etc.).
+const priceTierLines = (tiers = []) => tiers.length
+  ? `<ul class="price-tiers">${tiers.map((tier) => {
+      const raw = String(tier.price ?? '');
+      const amount = raw.startsWith('+') ? `+$${raw.slice(1)}` : `$${raw}`;
+      return `<li><span class="tier-label">${esc(tier.label)}</span><span class="tier-amount">${esc(amount)}</span></li>`;
+    }).join('')}</ul>`
   : '';
 
 // Size-tabs UI rendered above any grid of multi-size pizza cards.
@@ -402,7 +414,7 @@ function homePage() {
 <section class="dark-section" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
     <p class="eyebrow">${tc(t('menu.eyebrow', 'The Menu'))}</p>
-    <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-three pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled in the morning. Baked when you order.'))}</span></h2>
+    <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-four pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled in the morning. Baked when you order.'))}</span></h2>
     <p>${tc(t('menu.body', 'A few favorites below. Tap a size to see prices. The full menu is one click away.'))}</p>
   </div>
   <div class="menu-band">
@@ -452,23 +464,39 @@ function menuPage() {
   const byo = (menu.categories.find((c) => c.id === 'create-your-own') || {}).items || [];
   const byoCards = byo.map((item, i) => pizzaCard(item, i)).join('\n');
 
-  // Salads / appetizers / specials / drinks — single price
+  // Salads / appetizers / dressings / specials / drinks.
+  // Supports: category note, per-item group subheads, labeled price tiers,
+  // and plain single prices (fallback).
   const sideCards = (catId) => {
     const cat = menu.categories.find((c) => c.id === catId);
     if (!cat) return '';
-    return cat.items.map((item) => `<article class="side-card reveal">
+    let lastGroup = null;
+    const parts = [];
+    if (cat.note) parts.push(`<p class="side-note">${esc(cat.note)}</p>`);
+    cat.items.forEach((item) => {
+      if (item.group && item.group !== lastGroup) {
+        parts.push(`<h3 class="side-group">${esc(item.group)}</h3>`);
+        lastGroup = item.group;
+      }
+      const desc = item.description || item.ingredients;
+      const priceBlock = (item.priceTiers && item.priceTiers.length)
+        ? priceTierLines(item.priceTiers)
+        : singlePriceLine((item.prices && item.prices[0]) || item.price);
+      parts.push(`<article class="side-card reveal">
       <div class="side-body">
-        <h3 class="side-name">${esc(item.name)}</h3>
-        ${item.ingredients ? `<p class="toppings">${esc(item.ingredients)}</p>` : ''}
-        ${singlePriceLine((item.prices && item.prices[0]) || item.price)}
+        <h4 class="side-name">${esc(item.name)}</h4>
+        ${desc ? `<p class="toppings">${esc(desc)}</p>` : ''}
+        ${priceBlock}
       </div>
-    </article>`).join('\n');
+    </article>`);
+    });
+    return parts.join('\n');
   };
 
   return layout({
     current: '/menu/',
     title: 'Menu · Litzas Pizza · Salt Lake City &amp; Midvale',
-    description: 'Twenty-three pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
+    description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
@@ -476,8 +504,8 @@ function menuPage() {
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
-    <h1 id="menu-h">Twenty-three pizzas.<span class="slab"> Hand-rolled. Cut by hand. Boxed in gold.</span></h1>
-    <p>Pick a size up top. The price updates on every pizza. Browse, or jump to a section.</p>
+    <h1 id="menu-h">Twenty-four pizzas.<span class="slab"> Hand rolled. Hand cut. Premium ingredients for premium pizza.</span></h1>
+    <p>Prices update based on the size you pick up top. Browse, or jump to a section.</p>
   </div>
 </section>
 
@@ -485,6 +513,7 @@ function menuPage() {
   <a href="#favorites">Favorites</a>
   <a href="#build">Build Your Own</a>
   <a href="#sides">Salads &amp; Apps</a>
+  <a href="#dressings">Dressings</a>
   <a href="#specials">Specials</a>
   <a href="#drinks">Drinks</a>
 </nav>
@@ -493,7 +522,7 @@ function menuPage() {
   <div class="menu-band">
     <div class="menu-section-head reveal">
       <h2>Litzas Favorites</h2>
-      <p>Twenty-three pies, each available in four sizes.</p>
+      <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
     ${sizeTabs()}
     <div class="menu-grid">${pizzaCards}</div>
@@ -520,7 +549,17 @@ ${byoCards ? `<section class="warm-section" id="build">
   </div>
 </section>
 
-<section class="warm-section" id="specials">
+<section class="warm-section" id="dressings">
+  <div class="menu-band">
+    <div class="menu-section-head reveal">
+      <h2>Dressings</h2>
+      <p>All made from scratch. Pick one with any salad.</p>
+    </div>
+    <div class="side-grid">${sideCards('dressings')}</div>
+  </div>
+</section>
+
+<section class="dark-section" id="specials">
   <div class="menu-band">
     <div class="menu-section-head reveal">
       <h2>Specials &amp; Entrees</h2>
@@ -530,7 +569,7 @@ ${byoCards ? `<section class="warm-section" id="build">
   </div>
 </section>
 
-<section class="dark-section" id="drinks">
+<section class="warm-section" id="drinks">
   <div class="menu-band">
     <div class="menu-section-head reveal">
       <h2>Drinks</h2>
