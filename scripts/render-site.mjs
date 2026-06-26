@@ -312,7 +312,7 @@ function locationCards(opts = {}) {
     const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&z=16&output=embed`;
     const photoBySlug = {
       'salt-lake-city': '/assets/images/optimized/litzas-night-sign-2026.jpg',
-      'midvale':        '/assets/images/optimized/litzas-brick-door.jpg'
+      'midvale':        '/assets/images/optimized/litzas-exterior-dusk.jpg'
     };
     const photo = photoBySlug[location.id] || '/assets/images/optimized/pizza-overhead-pair.jpg';
 
