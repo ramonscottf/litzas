@@ -942,6 +942,43 @@ section { position: relative; }
 }
 @media (min-width: 900px) { .loc-grid { grid-template-columns: 1fr 1fr; } }
 
+/* Home-page location banner — wide establishing shot above the two cards. */
+.loc-banner {
+  max-width: var(--max);
+  margin: 0 auto 28px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-md);
+}
+.loc-banner img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: center 52%;
+}
+.loc-banner figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 30px 26px 18px;
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 12px;
+  color: var(--bone);
+  background: linear-gradient(180deg, transparent, rgba(10, 9, 8, .8));
+}
+@media (max-width: 600px) {
+  .loc-banner img { aspect-ratio: 4 / 3; }
+  .loc-banner figcaption { font-size: 10px; letter-spacing: .14em; padding: 22px 18px 14px; }
+}
+
+/* The SLC card photo is a vertical sign shot — bias the crop upward so the
+   Litzas / Hires sign stays in frame inside the 16:10 card window. */
+.loc-card[data-loc="salt-lake-city"] .loc-photo img { object-position: center 15%; }
+
 .loc-card {
   position: relative;
   background: var(--ink-2);
@@ -1402,38 +1439,50 @@ section { position: relative; }
   .nav.scrolled { top: 8px; }
   .nav-toggle { display: block; }
   .nav-links {
-    /* The pill nav is a transformed, backdrop-filtered ancestor, so it is the
-       containing block for this "fixed" panel — inset:0 would size the panel
-       to the 64px pill and the link column would bleed over the page (the
-       always-showing mobile menu bug). Size to the viewport explicitly and
-       hard-hide the closed state. */
-    position: fixed;
-    top: -24px;
-    left: 50%;
-    width: 100vw;
-    height: calc(100vh + 24px);
-    height: calc(100dvh + 24px);
-    background: var(--glass-3);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    /* Mobile menu = solid dropdown card anchored beneath the pill.
+       The pill is a transformed + backdrop-filtered ancestor, so it is the
+       containing block for positioned descendants. position:fixed gets trapped
+       in the ~64px pill box and the link column bleeds over the page (the
+       long-standing "menu always showing" bug). Absolute positioning against
+       that same pill (top:100%, left/right:0) is reliable, and a near-opaque
+       background means the hero never shows through. */
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    width: 100%;
     flex-direction: column;
-    justify-content: center;
-    gap: 24px;
-    font-size: 18px;
-    transform: translate(-50%, -106%);
-    visibility: hidden;
+    align-items: stretch;
+    gap: 4px;
+    font-size: 16px;
+    background: linear-gradient(180deg, #141110 0%, #0b0a09 100%);
+    border: 1px solid var(--rule-gold);
+    border-radius: 22px;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .65), inset 0 1px 0 rgba(244, 237, 224, .05);
+    padding: 12px;
     opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px) scale(.97);
+    transform-origin: top center;
     pointer-events: none;
-    transition: transform .5s var(--ease-out), opacity .4s, visibility 0s .5s;
-    padding: 80px 30px 30px;
+    transition: opacity .26s var(--ease-out), transform .3s var(--ease-out), visibility 0s .3s;
   }
   .nav-links.open {
-    transform: translate(-50%, 0);
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
     pointer-events: auto;
-    transition: transform .5s var(--ease-out), opacity .3s, visibility 0s;
+    transition: opacity .26s var(--ease-out), transform .3s var(--ease-out), visibility 0s;
   }
+  .nav-links a {
+    padding: 14px 16px;
+    border-radius: 12px;
+    text-align: center;
+    color: rgba(244, 237, 224, .82);
+  }
+  .nav-links a:not(.nav-cta)::after { display: none; }
+  .nav-links a:active { background: rgba(244, 237, 224, .07); }
+  .nav-cta { margin-top: 6px; text-align: center; }
   .nav-toggle { position: relative; z-index: 5; }
   .nav-cta { font-size: 14px !important; }
 

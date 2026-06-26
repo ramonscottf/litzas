@@ -311,12 +311,12 @@ function locationCards(opts = {}) {
     const mapsQuery = coords.mapsQuery || `Litzas Pizza ${location.name}`;
     const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&z=16&output=embed`;
     const photoBySlug = {
-      'salt-lake-city': '/assets/images/optimized/litzas-night-sign.jpg',
+      'salt-lake-city': '/assets/images/optimized/litzas-night-sign-2026.jpg',
       'midvale':        '/assets/images/optimized/litzas-brick-door.jpg'
     };
     const photo = photoBySlug[location.id] || '/assets/images/optimized/pizza-overhead-pair.jpg';
 
-    return `<article class="loc-card reveal">
+    return `<article class="loc-card reveal" data-loc="${esc(location.id)}">
   <div class="loc-photo">
     <img src="${photo}" alt="${esc(location.name + ' Litzas exterior')}" loading="lazy">
     <span class="badge">${esc(location.tag || '')}</span>
@@ -465,6 +465,10 @@ function homePage() {
     <p>${tc(t('loc.body', 'Walk in. Call ahead. We’ll have a pie waiting.'))}</p>
   </div>
   <div class="loc-band">
+    <figure class="loc-banner reveal">
+      <img src="/assets/images/optimized/litzas-exterior-dusk.jpg" alt="Hires Big H and Litzas Pizza at dusk, mountains behind, since 1965" loading="lazy">
+      <figcaption>Same family, same lot, since 1965</figcaption>
+    </figure>
     <div class="loc-grid">${locationCards()}</div>
   </div>
 </section>`);
