@@ -873,6 +873,7 @@ function blogPostPage(post, body) {
 <article class="post-article">
   <p class="post-meta">${esc(post.eyebrow)} · ${esc(post.date)}</p>
   <h1>${esc(post.title)}</h1>
+  ${post.photo ? `<figure class="post-hero reveal"><img src="${esc(post.photo)}" alt="${esc(post.title)}" loading="lazy"></figure>` : ''}
   ${body}
   <p style="margin-top: 48px;"><a href="/blog/" class="btn btn-ghost">← All Stories</a></p>
 </article>`);
@@ -909,7 +910,7 @@ function blogPostPages() {
   const storePages = (storePosts || []).map((p) => ({
     path: `blog/${p.slug}/index.html`,
     html: blogPostPage(
-      { slug: p.slug, title: p.title, date: fmtDate(p.published_at), excerpt: p.excerpt || '', eyebrow: p.category || 'House Notes' },
+      { slug: p.slug, title: p.title, date: fmtDate(p.published_at), excerpt: p.excerpt || '', eyebrow: p.category || 'House Notes', photo: p.hero_image || '/assets/images/optimized/litzas-night-sign.jpg' },
       bodyHtml(p.body)
     )
   }));

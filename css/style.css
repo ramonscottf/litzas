@@ -2005,72 +2005,128 @@ body.lz-rebrand .hires-bridge figure img,
 body.lz-rebrand .image-stack figure,
 body.lz-rebrand .image-stack figure img { border-radius: var(--r); }
 
-/* ============================================================
-   DESIGN LIFT — 2026-06-26  (lighten + early scroll hooks)
-   Research-grounded: warm cream canvas for a heritage/family
-   pizzeria, lively gold ticker, an animated "since 1965" hook.
-   All additive + scoped so it is easy to dial back on review.
-   ============================================================ */
 
-/* 1) Marquee becomes a lively GOLD band — the first pop under the hero */
-.marquee {
-  background: var(--gold);
-  border-block-color: var(--gold-deep);
+/* ============================================================
+   DESIGN LIFT — 2026-06-26  ·  CREAM ALL THE WAY THROUGH
+   Lighten the entire canvas to warm cream while keeping the
+   current design (floating-pill nav, display fonts, rounded
+   cards). Colour logic borrowed from the parked brand guide:
+   charcoal text, accessible gold-on-cream, soft light cards.
+   Only the photographic hero stays cinematic; everything below
+   is warm. Additive + un-gated so it is easy to dial back.
+   ============================================================ */
+:root {
+  --cream-1: #fbf6ec;            /* lightest band */
+  --cream-2: #f1e9da;            /* deeper alternating band */
+  --cream-3: #e7e1d2;            /* deepest — footer */
+  --card-1:  #ffffff;            /* elevated cards */
+  --char:    #29272a;            /* primary text on cream (AA) */
+  --char-2:  rgba(41,39,42,.66); /* secondary text */
+  --gink:    #7c5a2e;            /* accessible gold text on cream */
+  --rule-cm: rgba(41,39,42,.14); /* hairline on cream */
 }
+
+/* Page base + html behind everything goes cream (no dark overscroll) */
+html, body { background: var(--cream-1); }
+
+/* ---- Marquee → lively gold band (first pop under the hero) ---- */
+.marquee { background: var(--gold); border-block-color: var(--gold-deep); }
 .marquee::before { background: linear-gradient(90deg, var(--gold), transparent); }
 .marquee::after  { background: linear-gradient(270deg, var(--gold), transparent); }
 .marquee span { color: var(--ink); }
 .marquee span + span::before { color: var(--ink); opacity: .35; }
 
-/* 2) "Warm" sections become genuinely warm — cream canvas, ink text.
-      Done with scoped variable overrides so every child that draws its
-      text from --bone / its accent from --gold-bright flips automatically. */
-.warm-section {
-  background: var(--paper);
-  color: var(--ink);
-  --bone: var(--ink);
-  --gold-bright: var(--gold-deep);
+/* ---- Every content band is warm; two tones alternate for rhythm ---- */
+.dark-section, .warm-section {
+  color: var(--char);
+  --bone: var(--char);        /* cream text  -> charcoal      */
+  --gold-bright: var(--gink); /* bright gold -> gold-on-cream */
 }
-.warm-section .eyebrow,
-.warm-section .section-kicker p { color: var(--gold-deep); }
-.warm-section h2,
-.warm-section .section-kicker h2,
-.warm-section figcaption,
-.warm-section p { color: var(--ink); }
-.warm-section .btn-ghost { color: var(--gold-deep); border-color: var(--gold-deep); }
-.warm-section .btn-ghost:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-.warm-section figure img { box-shadow: 0 14px 40px rgba(10, 9, 8, .16); }
+.dark-section { background: var(--cream-1); }
+.warm-section { background: var(--cream-2); }
+.dark-section h2, .warm-section h2,
+.dark-section h3, .warm-section h3,
+.dark-section p,  .warm-section p,
+.dark-section .section-kicker h2, .warm-section .section-kicker h2,
+.dark-section figcaption, .warm-section figcaption { color: var(--char); }
+.dark-section .eyebrow, .warm-section .eyebrow { color: var(--gink); }
+.dark-section .section-kicker p, .warm-section .section-kicker p { color: var(--char-2); }
+.dark-section .btn-ghost, .warm-section .btn-ghost { color: var(--gink); border-color: var(--rule-cm); }
+.dark-section .btn-ghost:hover, .warm-section .btn-ghost:hover { background: var(--char); color: var(--cream-1); border-color: var(--char); }
+.dark-section figure img, .warm-section figure img,
+.dark-section .loc-banner, .warm-section .loc-banner { box-shadow: 0 14px 40px rgba(10,9,8,.16); }
 
-/* 3) Early hook: animated "since 1965" stat strip */
-.stat-strip {
-  background: var(--bone);
-  border-block: 1px solid var(--rule-gold);
-  padding: clamp(34px, 6vw, 60px) 24px;
-}
-.stat-strip .stats {
-  max-width: 980px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; text-align: center;
-}
+/* ---- Early hook: animated "since 1965" stat strip ---- */
+.stat-strip { background: var(--cream-2); border-block: 1px solid var(--rule-cm); padding: clamp(34px,6vw,60px) 24px; }
+.stat-strip .stats { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; text-align: center; }
 .stat-strip .stat { position: relative; }
-.stat-strip .stat + .stat::before {
-  content: ""; position: absolute; left: -12px; top: 50%;
-  transform: translateY(-50%);
-  width: 1px; height: 54px; background: var(--rule-gold);
-}
-.stat-strip .num {
-  display: block; font-family: var(--display);
-  font-size: clamp(46px, 7vw, 78px); line-height: 1;
-  color: var(--gold-deep); letter-spacing: .01em;
-  font-variant-numeric: tabular-nums;
-}
-.stat-strip .lbl {
-  display: block; margin-top: 10px;
-  font-family: "Oswald", "Inter", sans-serif;
-  text-transform: uppercase; letter-spacing: .14em;
-  font-size: 12.5px; color: rgba(10, 9, 8, .60);
-}
-@media (max-width: 640px) {
-  .stat-strip .stats { grid-template-columns: 1fr; gap: 26px; }
-  .stat-strip .stat + .stat::before { display: none; }
-}
+.stat-strip .stat + .stat::before { content:""; position:absolute; left:-12px; top:50%; transform:translateY(-50%); width:1px; height:54px; background:var(--rule-cm); }
+.stat-strip .num { display:block; font-family:var(--display); font-size:clamp(46px,7vw,78px); line-height:1; color:var(--gink); letter-spacing:.01em; font-variant-numeric:tabular-nums; }
+.stat-strip .lbl { display:block; margin-top:10px; font-family:"Oswald","Inter",sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:12.5px; color:var(--char-2); }
+@media (max-width:640px){ .stat-strip .stats{grid-template-columns:1fr;gap:26px;} .stat-strip .stat + .stat::before{display:none;} }
+
+/* ---- Pizza cards → light recipe cards ---- */
+.pizza-card { background: var(--card-1); border: 1px solid var(--rule-cm); box-shadow: 0 10px 30px rgba(10,9,8,.07); }
+.pizza-card:hover { border-color: var(--gold); }
+.pizza-name { color: var(--char); }
+.pizza-card .toppings, .pizza-desc, .pizza-card p { color: var(--char-2); }
+.pizza-photo, .pizza-photo-empty { background: var(--cream-2); }
+.pizza-no { background: #fff; color: var(--gink); border: 1px solid var(--gold); -webkit-backdrop-filter:none; backdrop-filter:none; }
+.pizza-badge { background: var(--gold); color: var(--ink); }
+.pizza-price { border-top-color: var(--rule-cm); }
+.price-size { color: var(--char-2); }
+.price-amount { color: var(--gink); }
+
+/* size tabs + menu note + jump rail */
+.size-tabs { background: rgba(41,39,42,.05); border:1px solid var(--rule-cm); }
+.size-tab { color: var(--char-2); }
+.size-tab.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.menu-note { background: var(--card-1); border:1px solid var(--rule-cm); color: var(--char); }
+.menu-note strong { color: var(--gink); }
+.menu-jump a { color: var(--char-2); }
+.menu-jump a:hover, .menu-jump a.active { color: var(--gink); background: rgba(41,39,42,.05); }
+
+/* ---- Location cards + map + shop cards ---- */
+.loc-card { background: var(--card-1); border: 1px solid var(--rule-cm); box-shadow: 0 12px 34px rgba(10,9,8,.08); }
+.loc-card:hover { border-color: var(--gold); }
+.loc-photo { background: var(--cream-2); }
+.loc-body h3 { color: var(--char); }
+.loc-meta { color: var(--gink); }
+.loc-address { color: var(--char); }
+.loc-hours { color: var(--char-2); }
+.loc-map { background: var(--cream-2); }
+.shop-card { background: var(--card-1); border:1px solid var(--rule-cm); box-shadow: 0 12px 34px rgba(10,9,8,.08); }
+.shop-card .photo { background: var(--cream-2); }
+
+/* ---- Side / dressings / specials / drinks ---- */
+.side-card { background: var(--card-1); border:1px solid var(--rule-cm); }
+.side-name, .side-grid .side-group { color: var(--char); }
+.side-grid .side-note { color: var(--char-2); }
+
+/* ---- Blog post cards ---- */
+.post-card { background: var(--card-1); border:1px solid var(--rule-cm); box-shadow: 0 12px 34px rgba(10,9,8,.08); }
+.post-card h3 { color: var(--char); }
+.post-card .post-meta, .post-card p { color: var(--char-2); }
+
+/* ---- Story pillars + Hires bridge copy (soft light feature cards) ---- */
+.pillar { background: var(--card-1); border:1px solid var(--rule-cm); box-shadow: 0 10px 30px rgba(10,9,8,.07); color: var(--char); }
+.hires-bridge .copy { background: var(--card-1); border:1px solid var(--rule-cm); box-shadow: 0 12px 34px rgba(10,9,8,.08); }
+
+/* ---- Contact form on cream ---- */
+.form-shell { background: var(--card-1); border:1px solid var(--rule-cm); box-shadow: 0 12px 34px rgba(10,9,8,.08); }
+.field label { color: var(--char); }
+.field input, .field textarea, .field select { background: #fff; color: var(--char); border:1px solid var(--rule-cm); }
+.field input:focus, .field textarea:focus, .field select:focus { background:#fff; border-color: var(--gold); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(41,39,42,.42); }
+
+/* ---- Footer → deepest warm tone, gold rule, charcoal text ---- */
+.footer { background: var(--cream-3); border-top: 1px solid var(--gold); color: var(--char); }
+.footer h4 { color: var(--gink); }
+.footer a { color: var(--char-2); }
+.footer a:hover { color: var(--char); }
+.footer-tagline, .footer-bottom { color: var(--char-2); }
+.footer-bottom { border-top-color: var(--rule-cm); }
+
+/* Blog post hero image (added with the design lift) */
+.post-hero { margin: 28px 0 36px; border-radius: var(--radius, 14px); overflow: hidden; box-shadow: 0 18px 48px rgba(10,9,8,.16); }
+.post-hero img { display:block; width:100%; height:auto; aspect-ratio: 16 / 9; object-fit: cover; }
