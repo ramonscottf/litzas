@@ -251,7 +251,7 @@ function head({ title, description, current = '' }) {
 }
 </script>
 </head>
-<body data-page="${esc(current)}"${current === '/' ? ' class="lz-rebrand"' : ''}>
+<body data-page="${esc(current)}">
 ${nav(current)}`;
 }
 
