@@ -798,7 +798,7 @@ const blogPosts = [
     title: 'The Fort Union Building',
     date: '2026-05-06',
     excerpt: 'Why our Midvale shop shares a building with a hamburger drive-in, and why the parking lot is busier than it has any business being.',
-    photo: '/assets/images/optimized/litzas-brick-door.jpg',
+    photo: '/assets/images/optimized/litzas-exterior-dusk.jpg',
     eyebrow: 'Midvale \u00B7 Fort Union'
   },
   {
