@@ -399,7 +399,15 @@ function homePage() {
   </div>
 </section>
 
-<section class="dark-section" aria-labelledby="story-tease-h">
+<section class="stat-strip" aria-label="Litzas by the numbers">
+  <div class="stats reveal">
+    <div class="stat"><span class="num" data-count="1965">1965</span><span class="lbl">Est. &middot; 400 South</span></div>
+    <div class="stat"><span class="num" data-count="24">24</span><span class="lbl">Pizzas, hand-rolled</span></div>
+    <div class="stat"><span class="num" data-count="2">2</span><span class="lbl">Shops &middot; one family</span></div>
+  </div>
+</section>
+
+<section class="warm-section" aria-labelledby="story-tease-h">
   <div class="sticky-story">
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('story.eyebrow', 'Sixty years on 400 South'))}</p>

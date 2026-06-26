@@ -71,6 +71,36 @@
     revealEls.forEach((el) => observer.observe(el));
   }
 
+  // Count-up stats — the "since 1965" hook tallies into place on first view.
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    const runCount = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      if (!Number.isFinite(target)) return;
+      const dur = 1200;
+      const startVal = target > 100 ? target - 80 : 0;
+      const t0 = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(startVal + (target - startVal) * eased).toString();
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toString();
+      };
+      requestAnimationFrame(tick);
+    };
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      counters.forEach((el) => { el.textContent = el.getAttribute('data-count'); });
+    } else {
+      const countObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { runCount(entry.target); countObs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.4 });
+      counters.forEach((el) => countObs.observe(el));
+    }
+  }
+
   // Menu scroll-spy — the gold underline on the jump rail tracks the section
   // you're reading. Sections own their slice of the viewport via a midline test.
   const jump = document.querySelector('.menu-jump');

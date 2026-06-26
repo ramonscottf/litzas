@@ -2004,3 +2004,73 @@ body.lz-rebrand .hires-bridge figure,
 body.lz-rebrand .hires-bridge figure img,
 body.lz-rebrand .image-stack figure,
 body.lz-rebrand .image-stack figure img { border-radius: var(--r); }
+
+/* ============================================================
+   DESIGN LIFT — 2026-06-26  (lighten + early scroll hooks)
+   Research-grounded: warm cream canvas for a heritage/family
+   pizzeria, lively gold ticker, an animated "since 1965" hook.
+   All additive + scoped so it is easy to dial back on review.
+   ============================================================ */
+
+/* 1) Marquee becomes a lively GOLD band — the first pop under the hero */
+.marquee {
+  background: var(--gold);
+  border-block-color: var(--gold-deep);
+}
+.marquee::before { background: linear-gradient(90deg, var(--gold), transparent); }
+.marquee::after  { background: linear-gradient(270deg, var(--gold), transparent); }
+.marquee span { color: var(--ink); }
+.marquee span + span::before { color: var(--ink); opacity: .35; }
+
+/* 2) "Warm" sections become genuinely warm — cream canvas, ink text.
+      Done with scoped variable overrides so every child that draws its
+      text from --bone / its accent from --gold-bright flips automatically. */
+.warm-section {
+  background: var(--paper);
+  color: var(--ink);
+  --bone: var(--ink);
+  --gold-bright: var(--gold-deep);
+}
+.warm-section .eyebrow,
+.warm-section .section-kicker p { color: var(--gold-deep); }
+.warm-section h2,
+.warm-section .section-kicker h2,
+.warm-section figcaption,
+.warm-section p { color: var(--ink); }
+.warm-section .btn-ghost { color: var(--gold-deep); border-color: var(--gold-deep); }
+.warm-section .btn-ghost:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.warm-section figure img { box-shadow: 0 14px 40px rgba(10, 9, 8, .16); }
+
+/* 3) Early hook: animated "since 1965" stat strip */
+.stat-strip {
+  background: var(--bone);
+  border-block: 1px solid var(--rule-gold);
+  padding: clamp(34px, 6vw, 60px) 24px;
+}
+.stat-strip .stats {
+  max-width: 980px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; text-align: center;
+}
+.stat-strip .stat { position: relative; }
+.stat-strip .stat + .stat::before {
+  content: ""; position: absolute; left: -12px; top: 50%;
+  transform: translateY(-50%);
+  width: 1px; height: 54px; background: var(--rule-gold);
+}
+.stat-strip .num {
+  display: block; font-family: var(--display);
+  font-size: clamp(46px, 7vw, 78px); line-height: 1;
+  color: var(--gold-deep); letter-spacing: .01em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-strip .lbl {
+  display: block; margin-top: 10px;
+  font-family: "Oswald", "Inter", sans-serif;
+  text-transform: uppercase; letter-spacing: .14em;
+  font-size: 12.5px; color: rgba(10, 9, 8, .60);
+}
+@media (max-width: 640px) {
+  .stat-strip .stats { grid-template-columns: 1fr; gap: 26px; }
+  .stat-strip .stat + .stat::before { display: none; }
+}
