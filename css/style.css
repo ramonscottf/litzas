@@ -1856,3 +1856,151 @@ section { position: relative; }
   .menu-jump { padding: 10px var(--gutter); gap: 2px; }
   .menu-jump a { padding: 6px 10px; font-size: 11px; letter-spacing: .1em; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   LITZAS — BRAND-GUIDE REBRAND   (gated: body.lz-rebrand = homepage)
+   Source of truth: Litzas Pizza Brand Guide (EST. 1965 / SLC).
+   Cream menu-paper page · charcoal text · purposeful dark bands
+   (hero · menu-box · footer) · aged-gold accents · square print UI.
+   Roll site-wide later = add class="lz-rebrand" to every page <body>.
+   ════════════════════════════════════════════════════════════════ */
+body.lz-rebrand {
+  --paper:     #F7F4EC;   /* menu paper — main background + menu cards */
+  --cream:     #EFE7D8;   /* warm cream — reverse text / alt panels */
+  --whitewash: #E7E1D2;   /* shiplap support tone */
+  --char:      #292728;   /* charcoal — primary text on cream */
+  --steel:     #615B55;   /* secondary text */
+  --black:     #11100E;   /* nav, footer, hero overlays, dark bands */
+  --box:       #1F1D1D;   /* matte pizza-box panels / dark feature cards */
+  --gold:      #B18B5C;   /* aged gold — rules, buttons, on-dark accents */
+  --gold-ink:  #7C5A2E;   /* gold-dark — accessible gold text on cream */
+  --copper:    #7A4E3D;
+  --rule-cream:   rgba(41,39,40,.14);
+  --rule-cream-2: rgba(41,39,40,.30);
+  --rule-dark:    rgba(177,139,92,.32);
+  --r: 2px;
+  --disp:  "Bebas Neue","Oswald","PT Sans Narrow","Arial Narrow",sans-serif;
+  --herit: "Roboto Slab",Rockwell,Georgia,serif;
+  --lbl:   "Oswald","Arial Narrow",sans-serif;
+  --bdy:   "Inter","Avenir Next",Arial,sans-serif;
+
+  background: var(--paper);
+  color: var(--char);
+  font-family: var(--bdy);
+}
+body.lz-rebrand main { background: var(--paper); }
+
+/* ---------- Type ---------- */
+body.lz-rebrand h1,
+body.lz-rebrand h2,
+body.lz-rebrand h3 { font-family: var(--disp); font-weight: 400; line-height: .94; letter-spacing: .006em; color: var(--char); }
+body.lz-rebrand .slab { font-family: var(--disp); font-weight: 400; color: var(--gold-ink); display: block; letter-spacing: .01em; }
+body.lz-rebrand p { color: var(--char); }
+body.lz-rebrand .eyebrow { font-family: var(--lbl); text-transform: uppercase; letter-spacing: .22em; font-weight: 600; font-size: 12px; color: var(--gold-ink); }
+
+/* ---------- Buttons (square, condensed) ---------- */
+body.lz-rebrand .btn { border-radius: var(--r); font-family: var(--disp); font-weight: 400; font-size: 18px; letter-spacing: .07em; padding: 13px 28px; box-shadow: none; border: 1px solid transparent; }
+body.lz-rebrand .btn-primary { background: var(--gold); color: var(--black); border-color: var(--gold); }
+body.lz-rebrand .btn-primary:hover { background: var(--gold-ink); border-color: var(--gold-ink); color: var(--paper); transform: none; }
+body.lz-rebrand .btn-ghost { background: transparent; color: var(--char); border-color: var(--rule-cream-2); }
+body.lz-rebrand .btn-ghost:hover { background: var(--char); color: var(--paper); border-color: var(--char); transform: none; }
+body.lz-rebrand .cinema-hero .btn-ghost,
+body.lz-rebrand .dark-section:has(.menu-band) .btn-ghost { color: var(--paper); border-color: rgba(247,244,236,.42); }
+body.lz-rebrand .cinema-hero .btn-ghost:hover,
+body.lz-rebrand .dark-section:has(.menu-band) .btn-ghost:hover { background: var(--paper); color: var(--black); border-color: var(--paper); }
+
+/* ---------- Nav: solid black box-bar with gold hairline ---------- */
+body.lz-rebrand .nav { position: fixed; top: 0; left: 0; right: 0; width: 100%; max-width: none; transform: none; background: var(--black); border: 0; border-bottom: 1px solid var(--rule-dark); border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; animation: none; }
+body.lz-rebrand .nav.scrolled { top: 0; background: var(--black); border-bottom-color: var(--gold); box-shadow: 0 1px 0 rgba(0,0,0,.4); }
+body.lz-rebrand .nav-inner { max-width: var(--max); width: 100%; margin: 0 auto; padding: 12px var(--gutter); }
+body.lz-rebrand .nav-links { color: rgba(247,244,236,.78); font-family: var(--lbl); }
+body.lz-rebrand .nav-links a { color: rgba(247,244,236,.78); }
+body.lz-rebrand .nav-links a:hover,
+body.lz-rebrand .nav-links a[aria-current="page"] { color: var(--paper); }
+body.lz-rebrand .nav-links a:not(.nav-cta)::after { background: var(--gold); }
+body.lz-rebrand .nav-cta { background: var(--gold); color: var(--black) !important; border-radius: var(--r) !important; font-family: var(--disp); font-size: 16px; letter-spacing: .07em !important; box-shadow: none; padding: 9px 20px !important; }
+body.lz-rebrand .nav-cta:hover { background: var(--gold-ink); color: var(--paper) !important; transform: none; box-shadow: none; }
+body.lz-rebrand .nav-toggle { color: var(--paper); }
+body.lz-rebrand .scroll-progress { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+@media (max-width: 780px) {
+  body.lz-rebrand .nav-links { background: linear-gradient(180deg, #1a1815 0%, #100f0d 100%); border: 1px solid var(--rule-dark); border-radius: var(--r); box-shadow: 0 20px 50px rgba(0,0,0,.6); }
+}
+
+/* ---------- Hero: dark band, cream type, gold accents ---------- */
+body.lz-rebrand .cinema-hero { background: var(--black); }
+body.lz-rebrand .hero-content .eyebrow { color: var(--gold); }
+body.lz-rebrand .hero-content h1 { color: var(--paper); }
+body.lz-rebrand .hero-content h1 .slab { color: var(--gold); }
+body.lz-rebrand .hero-content p { color: rgba(247,244,236,.86); }
+body.lz-rebrand .hero-note { background: rgba(17,16,14,.6); border: 1px solid var(--rule-dark); border-radius: var(--r); box-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+body.lz-rebrand .hero-note span { color: var(--cream); font-family: var(--lbl); }
+
+/* ---------- Marquee: slim dark rule band ---------- */
+body.lz-rebrand .marquee { background: var(--black); border-block: 1px solid var(--rule-dark); }
+body.lz-rebrand .marquee span { color: var(--cream); font-family: var(--lbl); }
+
+/* ---------- Sections: cream by default; menu = matte-black band ---------- */
+body.lz-rebrand .dark-section { background: var(--paper); color: var(--char); }
+body.lz-rebrand .dark-section .eyebrow { color: var(--gold-ink); }
+body.lz-rebrand .dark-section h2 { color: var(--char); }
+body.lz-rebrand .dark-section h2 .slab { color: var(--gold-ink); }
+body.lz-rebrand .dark-section p { color: var(--char); }
+body.lz-rebrand .warm-section { background: var(--whitewash); color: var(--char); }
+body.lz-rebrand .warm-section .eyebrow { color: var(--gold-ink); }
+body.lz-rebrand .warm-section h2 { color: var(--char); }
+body.lz-rebrand .warm-section h2 .slab { color: var(--gold-ink); }
+body.lz-rebrand .warm-section p { color: var(--char); }
+body.lz-rebrand .dark-section:has(.menu-band) { background: var(--box); color: var(--paper); }
+body.lz-rebrand .dark-section:has(.menu-band) .eyebrow { color: var(--gold); }
+body.lz-rebrand .dark-section:has(.menu-band) h2 { color: var(--paper); }
+body.lz-rebrand .dark-section:has(.menu-band) h2 .slab { color: var(--gold); }
+body.lz-rebrand .dark-section:has(.menu-band) .section-kicker p { color: rgba(247,244,236,.84); }
+
+/* ---------- Size tabs: square segmented ---------- */
+body.lz-rebrand .size-tabs { background: rgba(17,16,14,.5); border: 1px solid var(--rule-dark); border-radius: var(--r); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+body.lz-rebrand .size-tab { border-radius: var(--r); font-family: var(--lbl); color: rgba(247,244,236,.7); }
+body.lz-rebrand .size-tab.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+/* ---------- Pizza cards: cream menu-paper, square ---------- */
+body.lz-rebrand .pizza-card { background: var(--paper); border: 1px solid var(--rule-cream); border-radius: var(--r); box-shadow: none; }
+body.lz-rebrand .pizza-card:hover { border-color: var(--gold); box-shadow: none; transform: none; }
+body.lz-rebrand .pizza-no { color: var(--gold-ink); background: var(--paper); border: 1px solid var(--gold); border-radius: var(--r); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+body.lz-rebrand .pizza-name { color: var(--char); }
+body.lz-rebrand .pizza-card .toppings { color: var(--steel); }
+body.lz-rebrand .pizza-price { border-top: 1px solid var(--rule-cream); }
+body.lz-rebrand .price-size { color: var(--steel); }
+body.lz-rebrand .price-amount { color: var(--gold-ink); font-family: var(--disp); }
+
+/* ---------- Location cards: cream, square, thin border ---------- */
+body.lz-rebrand .loc-banner { border-radius: var(--r); border: 1px solid var(--rule-cream); box-shadow: none; }
+body.lz-rebrand .loc-card { background: var(--paper); border: 1px solid var(--rule-cream); border-radius: var(--r); box-shadow: none; }
+body.lz-rebrand .loc-card:hover { border-color: var(--gold); box-shadow: none; transform: none; }
+body.lz-rebrand .loc-photo { border-radius: 0; }
+body.lz-rebrand .loc-body h3 { color: var(--char); }
+body.lz-rebrand .loc-meta { color: var(--gold-ink); }
+body.lz-rebrand .loc-address { color: var(--char); }
+body.lz-rebrand .loc-hours { color: var(--steel); }
+body.lz-rebrand .badge { color: var(--cream); background: rgba(17,16,14,.78); border: 1px solid var(--rule-dark); border-radius: var(--r); }
+
+/* ---------- Footer: matte black, gold rules ---------- */
+body.lz-rebrand .footer { background: var(--black); border-top: 1px solid var(--rule-dark); color: var(--cream); }
+body.lz-rebrand .footer h4 { color: var(--gold); font-family: var(--lbl); }
+body.lz-rebrand .footer a { color: rgba(247,244,236,.74); }
+body.lz-rebrand .footer a:hover { color: var(--paper); }
+body.lz-rebrand .footer-tagline { color: rgba(247,244,236,.6); }
+body.lz-rebrand .footer-bottom { color: rgba(247,244,236,.5); border-top-color: var(--rule-dark); }
+
+/* Hires bridge — matte-black feature card on the warm band (light text) */
+body.lz-rebrand .hires-bridge .copy { background: var(--box); border: 1px solid var(--rule-dark); border-radius: var(--r); }
+body.lz-rebrand .hires-bridge .copy .eyebrow { color: var(--gold); }
+body.lz-rebrand .hires-bridge .copy h2 { color: var(--paper); }
+body.lz-rebrand .hires-bridge .copy h2 .slab { color: var(--gold); }
+body.lz-rebrand .hires-bridge .copy p { color: rgba(247,244,236,.84); }
+body.lz-rebrand .hires-bridge .copy .btn-ghost { color: var(--paper); border-color: rgba(247,244,236,.42); }
+body.lz-rebrand .hires-bridge .copy .btn-ghost:hover { background: var(--paper); color: var(--black); border-color: var(--paper); }
+
+/* Square the photo figures (print-informed, per guide) */
+body.lz-rebrand .hires-bridge figure,
+body.lz-rebrand .hires-bridge figure img,
+body.lz-rebrand .image-stack figure,
+body.lz-rebrand .image-stack figure img { border-radius: var(--r); }

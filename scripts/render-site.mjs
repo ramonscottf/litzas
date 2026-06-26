@@ -230,7 +230,7 @@ function head({ title, description, current = '' }) {
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json">
@@ -251,7 +251,7 @@ function head({ title, description, current = '' }) {
 }
 </script>
 </head>
-<body data-page="${esc(current)}">
+<body data-page="${esc(current)}"${current === '/' ? ' class="lz-rebrand"' : ''}>
 ${nav(current)}`;
 }
 
