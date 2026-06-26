@@ -111,15 +111,29 @@ test('served local images referenced by pages and manifests exist', () => {
 test('menu does not render generated-photo placeholders as customer-facing pizza photos', () => {
   const manifest = parseJson('data/menu-photo-manifest.json');
   const menuHtml = read('menu/index.html');
-  const approved = manifest.pizzas.filter((item) => item.approvalStatus !== 'needs-generation');
-  const pending = manifest.pizzas.filter((item) => item.approvalStatus === 'needs-generation');
+  const renderSrc = read('scripts/render-site.mjs');
+  const photosOn = /const\s+SHOW_MENU_PHOTOS\s*=\s*true/.test(renderSrc);
 
-  for (const photo of approved) {
-    assert.match(menuHtml, new RegExp(photo.file.replaceAll('/', '\\/')), `${photo.name} approved photo should render`);
-  }
-
-  for (const photo of pending) {
-    assert.doesNotMatch(menuHtml, new RegExp(photo.file.replaceAll('/', '\\/')), `${photo.name} pending photo should not render as real`);
+  if (photosOn) {
+    // Photos enabled: approved photos render, pending (generated) ones never do.
+    const approved = manifest.pizzas.filter((item) => item.approvalStatus !== 'needs-generation');
+    const pending = manifest.pizzas.filter((item) => item.approvalStatus === 'needs-generation');
+    for (const photo of approved) {
+      assert.match(menuHtml, new RegExp(photo.file.replaceAll('/', '\\/')), `${photo.name} approved photo should render`);
+    }
+    for (const photo of pending) {
+      assert.doesNotMatch(menuHtml, new RegExp(photo.file.replaceAll('/', '\\/')), `${photo.name} pending photo should not render as real`);
+    }
+  } else {
+    // Photos OFF (real food photography pending): the menu is text-only. No
+    // pizza photos and no "in approval" placeholder ever reach customers.
+    assert.doesNotMatch(menuHtml, /class="pizza-photo"/, 'no pizza photos should render while SHOW_MENU_PHOTOS is off');
+    assert.doesNotMatch(menuHtml, /PHOTO IN APPROVAL/, 'no in-approval placeholder should render to customers');
+    for (const photo of manifest.pizzas) {
+      assert.doesNotMatch(menuHtml, new RegExp(photo.file.replaceAll('/', '\\/')), `${photo.name} photo file should not render while photos are off`);
+    }
+    // Cards still render — favorites appear as clean text-only tiles.
+    assert.match(menuHtml, /pizza-card text-only/, 'favorites should render as text-only cards');
   }
 });
 

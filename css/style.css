@@ -1713,6 +1713,19 @@ section { position: relative; }
 .pizza-no sup { font-size: 8px; letter-spacing: 0; }
 .pizza-photo-empty { position: relative; }
 
+/* Text-only menu cards — clean numbered gold-on-black tiles shown while real
+   food photography is pending (SHOW_MENU_PHOTOS=false in render-site.mjs).
+   The numbered ticket pill flows inline at the top of the body instead of
+   floating over a photo. */
+.pizza-card.text-only .pizza-body {
+  padding: 26px 24px 24px;
+}
+.pizza-card.text-only .pizza-no {
+  position: static;
+  display: inline-block;
+  margin: 0 0 14px;
+}
+
 /* True-count chips beside section heads */
 .count-chip {
   display: inline-block;

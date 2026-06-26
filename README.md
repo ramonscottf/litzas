@@ -93,6 +93,37 @@ review it before it's pushed. See `docs/PLAN-litzas-heritage-build.md`.
 
 ---
 
+## Deploying — READ THIS
+
+**Merging to `main` does NOT publish the site.** Production only updates when the
+**Publish Site Content** GitHub Action (`.github/workflows/publish.yml`) is run
+manually (`workflow_dispatch`). It fetches the latest content, re-renders, and
+deploys via wrangler to the `litzas` Pages project.
+
+- **Preview** (`target=preview`) → `ali-preview` branch → https://ali-preview.litzas.pages.dev
+- **Production** (`target=production`) → `main` branch → https://litzas.wickowaypoint.com
+
+> History note: the June 9–10 menu pass (24 pizzas, dressings, drinks, corrected
+> prices) sat correct on `main` for two weeks while production served a stale
+> build, because nobody fired the production deploy after merge. If the live
+> site looks behind the repo, **the deploy is the first thing to check.**
+
+Trigger from a shell with the GitHub API (PAT in CF KV `github_pat`):
+
+```bash
+# production:
+curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github+json" \
+  https://api.github.com/repos/ramonscottf/litzas/actions/workflows/281119920/dispatches \
+  -d '{"ref":"main","inputs":{"target":"production"}}'
+```
+
+### Menu photos toggle
+
+Pizza photos are **off** (`SHOW_MENU_PHOTOS = false` in `scripts/render-site.mjs`)
+until Litzas' real food photography lands — the menu renders as clean numbered
+text cards. To restore: flip the flag to `true` **and** mark real photos
+`approvalStatus !== 'needs-generation'` in `data/menu-photo-manifest.json`.
+
 ## Commands
 
 ```bash

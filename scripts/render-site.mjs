@@ -17,10 +17,20 @@ const t = (key, fallback = '') => {
   return (v === undefined || v === null || v === '') ? fallback : v;
 };
 const pizzas = menu.categories.find((category) => category.id === 'pizzas').items;
+
+// MENU PHOTOS — OFF until Litzas' real food photography lands.
+// Ali flagged the placeholder AI shots as off-brand on 2026-05-25 (cheese
+// browns wrong, pepperoni laid out wrong, "looks like Little Caesars"). Until
+// real photos arrive, the menu renders as clean numbered text cards.
+// TO RESTORE PHOTOS: set this to true AND approve real photos in
+// data/menu-photo-manifest.json (approvalStatus !== 'needs-generation').
+const SHOW_MENU_PHOTOS = false;
 const approvedPhotos = new Map(
-  manifest.pizzas
-    .filter((item) => item.approvalStatus !== 'needs-generation')
-    .map((item) => [item.slug, item])
+  SHOW_MENU_PHOTOS
+    ? manifest.pizzas
+        .filter((item) => item.approvalStatus !== 'needs-generation')
+        .map((item) => [item.slug, item])
+    : []
 );
 
 const esc = (value) => String(value ?? '')
@@ -276,9 +286,11 @@ function pizzaCard(pizza, index, { numbered = false } = {}) {
 </article>`;
   }
 
-  return `<article class="pizza-card reveal">
-  <div class="pizza-photo-empty">${chip}</div>
+  // Text-only card — used while real food photography is pending. No empty
+  // photo box, no "in approval" stamp: a clean numbered gold-on-black tile.
+  return `<article class="pizza-card text-only reveal">
   <div class="pizza-body">
+    ${chip}
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
     <p class="toppings">${esc(ingredients)}</p>
     ${priceLine(pizza.prices)}
