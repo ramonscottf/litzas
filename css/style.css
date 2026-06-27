@@ -2130,3 +2130,43 @@ html, body { background: var(--cream-1); }
 /* Blog post hero image (added with the design lift) */
 .post-hero { margin: 28px 0 36px; border-radius: var(--radius, 14px); overflow: hidden; box-shadow: 0 18px 48px rgba(10,9,8,.16); }
 .post-hero img { display:block; width:100%; height:auto; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* ============================================================
+   CONTRAST FIXES — 2026-06-26  (menu page review)
+   The sticky jump rail + size-tabs kept dark backgrounds and the
+   side-card description/price labels were never recoloured, so
+   they read invisibly on the new cream canvas. Light them up.
+   ============================================================ */
+
+/* Sticky section jump rail → translucent cream bar */
+.menu-jump {
+  background: rgba(251,246,236,.92);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule-cm);
+}
+.menu-jump a { color: var(--char-2); }
+.menu-jump a:hover, .menu-jump a.active { color: var(--gink); background: rgba(41,39,42,.06); }
+.menu-jump a.active::after { background: var(--gink); }
+
+/* Size-tabs → cream in BOTH resting and stuck states (was dark when stuck) */
+.size-tabs {
+  background: rgba(251,246,236,.86);
+  border: 1px solid var(--rule-cm);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.size-tabs.is-stuck {
+  background: rgba(251,246,236,.96);
+  border-color: var(--rule-cm);
+  box-shadow: 0 8px 24px rgba(10,9,8,.10);
+}
+.size-tab { color: var(--char-2); }
+.size-tab:hover { color: var(--char); border-color: var(--rule-cm); }
+.size-tab.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+/* Side cards (salads / apps / breads / drinks) — readable text on white */
+.side-body .toppings { color: var(--char-2); }
+.side-group { color: var(--char); }
+.side-note  { color: var(--char-2); }
+.tier-label { color: var(--char-2); }
+.price-tiers li { border-top-color: var(--rule-cm); }
+.pizza-price .price-size { color: var(--char-2); }
