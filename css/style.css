@@ -2171,122 +2171,41 @@ html, body { background: var(--cream-1); }
 .price-tiers li { border-top-color: var(--rule-cm); }
 .pizza-price .price-size { color: var(--char-2); }
 
-/* ============================================================
-   MENU PILL STACK — 2026-06-26
-   On the menu page the floating pill expands downward to hold
-   the category rail (always) and the size rail (only on pizza
-   sections). One pill that grows, instead of three sticky bars.
-   Rails sit INSIDE the dark glass pill, so their text is cream.
-   ============================================================ */
-.nav--stacked { border-radius: 26px; }
-.nav--stacked .nav-inner { padding-bottom: 8px; }
-
-.nav-stack {
-  margin: 0 12px;
-  padding: 8px 0 6px;
-  border-top: 1px solid rgba(244,237,224,.12);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* Category rail — cream text on the dark pill, horizontally scrollable */
-.nav-stack .menu-jump {
-  position: static;
-  background: transparent;
-  -webkit-backdrop-filter: none; backdrop-filter: none;
-  border: 0;
-  padding: 2px;
-  gap: 2px;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.nav-stack .menu-jump::-webkit-scrollbar { display: none; }
-.nav-stack .menu-jump a {
-  color: rgba(244,237,224,.66);
-  background: transparent;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-.nav-stack .menu-jump a:hover { color: var(--bone); background: rgba(244,237,224,.08); }
-.nav-stack .menu-jump a.active { color: var(--gold-bright); background: rgba(174,152,96,.16); }
-.nav-stack .menu-jump a.active::after { display: none; }
-
-/* Size rail — blends in/out, only on pizza sections */
-.nav-sizes {
-  max-height: 0; opacity: 0; overflow: hidden;
-  transition: max-height .42s var(--ease-out), opacity .3s var(--ease-out);
-}
-.nav.show-sizes .nav-sizes { max-height: 60px; opacity: 1; }
-.nav-stack .size-tabs {
-  position: static;
-  background: transparent;
-  border: 0; box-shadow: none;
-  -webkit-backdrop-filter: none; backdrop-filter: none;
-  padding: 2px;
-  gap: 4px;
-  justify-content: flex-start;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-stack .size-tabs::-webkit-scrollbar { display: none; }
-.nav-stack .size-tab {
-  color: rgba(244,237,224,.62);
-  border: 1px solid rgba(244,237,224,.16);
-  background: transparent;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-.nav-stack .size-tab:hover { color: var(--bone); border-color: var(--rule-gold); }
-.nav-stack .size-tab.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-
-/* Anchor jumps clear the (taller) expanded pill */
-body[data-page="/menu/"] .dark-section[id],
-body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 196px; }
-@media (max-width: 640px) {
-  .nav--stacked { border-radius: 22px; }
-  body[data-page="/menu/"] .dark-section[id],
-  body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 184px; }
-}
 
 /* ============================================================
-   MENU RAILS — 2026-06-26  (ride-under-hero, dock-into-pill)
-   Rails sit in the page under the hero at rest, then stick up
-   and fuse into the floating pill as you scroll. Size row blends
-   in only on pizza sections. Supersedes the in-pill stack.
+   MENU RAILS — 2026-06-26  (dock INTO the pill, one box)
+   At rest the rails are a dark glass bar under the hero. On
+   scroll, JS moves them INSIDE the floating pill, which simply
+   grows taller — corners pinned so they never change. A slot
+   preserves the page space while the rails are docked.
    ============================================================ */
+
+/* Pin the pill radius so corners are identical short OR tall */
+.nav { border-radius: 28px; }
+
+/* Slot holds the rails + their space in the page under the hero */
+.menu-rails-slot { width: calc(100% - 32px); max-width: 1080px; margin: 18px auto 22px; }
+
+/* Rails AT REST — dark glass bar under the hero */
 .menu-rails {
-  position: sticky;
-  top: 66px;                 /* docks just under the floating pill */
-  z-index: 90;
-  width: calc(100% - 32px);
-  max-width: 1080px;
-  margin: 16px auto;
   background: var(--glass-2);
   -webkit-backdrop-filter: blur(22px) saturate(140%);
   backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid var(--rule);
-  border-radius: 24px;
-  box-shadow: 0 10px 32px rgba(0,0,0,.30);
-  transition: border-radius .32s var(--ease-out), box-shadow .32s var(--ease-out), margin .32s var(--ease-out);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
 }
 .menu-rails-inner { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px; }
 
-/* Docked: flatten the joining edges + close the gap so it fuses with the pill */
-.menu-rails.is-docked {
-  margin-top: 8px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top-color: rgba(244,237,224,.08);
-  box-shadow: 0 16px 34px rgba(0,0,0,.34);
+/* Rails DOCKED — inside the pill: no box of its own, just rows + a hairline */
+.nav .menu-rails {
+  background: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  border: 0; box-shadow: none; border-radius: 0;
+  margin: 0 10px;
+  border-top: 1px solid rgba(244,237,224,.12);
 }
-.nav.has-rails-docked {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
+.nav.is-docked-host { padding-bottom: 6px; }
 
 /* Category rail — cream text on dark glass, horizontally scrollable */
 .menu-rails .menu-jump {
@@ -2316,11 +2235,10 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 196px; }
 .menu-rails .size-tab:hover { color: var(--bone); border-color: var(--rule-gold); }
 .menu-rails .size-tab.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
 
-/* Anchor jumps clear the docked rails + pill */
+/* Anchor jumps clear the taller docked pill */
 body[data-page="/menu/"] .dark-section[id],
-body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 200px; }
+body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 @media (max-width: 640px) {
-  .menu-rails { top: 72px; }
   body[data-page="/menu/"] .dark-section[id],
-  body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 190px; }
+  body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 200px; }
 }

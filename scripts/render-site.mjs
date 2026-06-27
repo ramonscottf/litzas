@@ -525,17 +525,19 @@ function menuPage() {
   };
 
   const menuRails = `
-<div class="menu-rails" id="menu-rails">
-  <div class="menu-rails-inner">
-    <nav class="menu-jump" aria-label="Menu sections">
-      <a href="#favorites">Favorites</a>
-      ${byoCards ? '<a href="#build">Build Your Own</a>' : ''}
-      <a href="#sides">Salads &amp; Apps</a>
-      <a href="#dressings">Dressings</a>
-      <a href="#specials">Specials</a>
-      <a href="#drinks">Drinks</a>
-    </nav>
-    <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>
+<div class="menu-rails-slot" id="menu-rails-slot">
+  <div class="menu-rails" id="menu-rails">
+    <div class="menu-rails-inner">
+      <nav class="menu-jump" aria-label="Menu sections">
+        <a href="#favorites">Favorites</a>
+        ${byoCards ? '<a href="#build">Build Your Own</a>' : ''}
+        <a href="#sides">Salads &amp; Apps</a>
+        <a href="#dressings">Dressings</a>
+        <a href="#specials">Specials</a>
+        <a href="#drinks">Drinks</a>
+      </nav>
+      <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>
+    </div>
   </div>
 </div>`;
 

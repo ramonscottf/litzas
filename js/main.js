@@ -111,13 +111,25 @@
       .filter(Boolean);
     const navEl = document.getElementById('nav');
     const railsEl = document.getElementById('menu-rails');
+    const slotEl = document.getElementById('menu-rails-slot');
     const pizzaSections = new Set(['favorites', 'build']);
+    let railsDocked = false;
+    const DOCK_IN = 74;   // dock once the slot reaches just under the pill
+    const DOCK_OUT = 92;  // undock above here (hysteresis prevents flicker)
     const updateDock = () => {
-      if (!railsEl || !navEl) return;
-      const topVal = parseFloat(getComputedStyle(railsEl).top) || 0;
-      const docked = railsEl.getBoundingClientRect().top <= topVal + 1;
-      railsEl.classList.toggle('is-docked', docked);
-      navEl.classList.toggle('has-rails-docked', docked);
+      if (!railsEl || !navEl || !slotEl) return;
+      const slotTop = slotEl.getBoundingClientRect().top;
+      if (!railsDocked && slotTop <= DOCK_IN) {
+        slotEl.style.minHeight = railsEl.offsetHeight + 'px';
+        navEl.appendChild(railsEl);
+        navEl.classList.add('is-docked-host');
+        railsDocked = true;
+      } else if (railsDocked && slotTop > DOCK_OUT) {
+        slotEl.appendChild(railsEl);
+        slotEl.style.minHeight = '';
+        navEl.classList.remove('is-docked-host');
+        railsDocked = false;
+      }
     };
     const setActive = () => {
       const mid = window.innerHeight * 0.38;
