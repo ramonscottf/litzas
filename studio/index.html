@@ -54,6 +54,12 @@
   .preview{margin-top:8px;display:none;}
   .preview.show{display:block}
   .preview canvas{width:84px;height:84px;background:var(--cream-3);border-radius:10px;border:1px solid var(--rule);}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin:0 0 14px;}
+  .cats{display:flex;gap:7px;flex-wrap:wrap;}
+  .chip{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--muted);cursor:pointer;}
+  .chip.on{background:var(--char);color:#fdf8ec;border-color:var(--char);}
+  .chip:active{transform:translateY(1px)}
+  .dl{white-space:nowrap}
   footer{margin-top:30px;font-size:12px;color:var(--muted);text-align:center;line-height:1.6;}
   .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--char);color:#fdf8ec;padding:11px 18px;border-radius:999px;font-size:13px;font-family:var(--label);letter-spacing:.06em;opacity:0;transition:opacity .25s;pointer-events:none;z-index:20;}
   .toast.show{opacity:1}
@@ -84,6 +90,16 @@
     </ol>
   </div>
 
+  <div class="toolbar">
+    <div class="cats" id="cats">
+      <button class="chip on" data-cat="all">All</button>
+      <button class="chip" data-cat="red">Red sauce</button>
+      <button class="chip" data-cat="white">White / garlic</button>
+      <button class="chip" data-cat="specialty">Specialty</button>
+    </div>
+    <button class="btn gold dl" id="dlall" disabled>⬇ Download (0)</button>
+  </div>
+
   <div class="grid" id="grid"></div>
 
   <footer>
@@ -93,6 +109,7 @@
 </div>
 <div class="toast" id="toast"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 const WORKER = "https://litzas-menu.ramonscottf.workers.dev";
 const PIZZAS = [
@@ -121,6 +138,13 @@ const PIZZAS = [
   {slug:"traditional",name:"Traditional",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of one meat."},
   {slug:"deluxe",name:"Deluxe",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats."},
 ];
+
+const CAT_WHITE=["garlic-cheese","italian-carbonara","lone-peak","spinach-artichoke","five-cheese"];
+const CAT_SPECIAL=["western-bbq","mt-olympus"];
+PIZZAS.forEach(p=>{p.cat=CAT_WHITE.includes(p.slug)?"white":CAT_SPECIAL.includes(p.slug)?"specialty":"red";});
+const CAT_LABEL={all:"all",red:"red sauce",white:"white",specialty:"specialty"};
+const doneSet=new Set();
+let activeCat="all";
 
 const $=(s,el=document)=>el.querySelector(s);
 const tok=$("#tok");
@@ -183,6 +207,7 @@ PIZZAS.forEach(p=>{
         <button class="btn" data-copy>Copy prompt</button>
         <label class="btn file" data-pick>Add photo<input type="file" accept="image/*"></label>
         <button class="btn gold" data-up disabled>Upload</button>
+        <button class="btn" data-dl hidden>⬇ Save</button>
       </div>
       <div class="preview" data-prev><canvas width="760" height="760"></canvas></div>
       <div class="note" data-note></div>
@@ -191,8 +216,15 @@ PIZZAS.forEach(p=>{
   const refs={el,blob:null,
     badge:el.querySelector("[data-badge]"),thumb:el.querySelector("[data-thumb]"),
     note:el.querySelector("[data-note]"),prev:el.querySelector("[data-prev]"),
-    prevC:el.querySelector("canvas"),up:el.querySelector("[data-up]")};
+    prevC:el.querySelector("canvas"),up:el.querySelector("[data-up]"),dl:el.querySelector("[data-dl]")};
   cards[p.slug]=refs;
+
+  refs.dl.addEventListener("click",async()=>{
+    refs.dl.disabled=true;
+    try{ triggerDownload(await blobFor(p.slug), p.name+".png"); }
+    catch(e){ toast("Couldn't download"); }
+    refs.dl.disabled=false;
+  });
 
   el.querySelector("[data-copy]").addEventListener("click",async()=>{
     try{await navigator.clipboard.writeText(promptFor(p));toast("Prompt copied — paste & attach a reference");}
@@ -242,17 +274,62 @@ function markDone(slug){
   const c=cards[slug]; if(!c)return;
   c.badge.className="badge done"; c.badge.textContent="Done";
   c.thumb.innerHTML=`<img src="${WORKER}/img/${slug}.png?cb=${Date.now()}" alt="">`;
+  c.dl.hidden=false;
+  doneSet.add(slug);
+  updateDl();
 }
+
+// ---- download helpers ----
+async function blobFor(slug){
+  const r=await fetch(WORKER+"/img/"+slug+".png?cb="+Date.now());
+  if(!r.ok) throw new Error("missing");
+  return await r.blob();
+}
+function triggerDownload(blob,filename){
+  const u=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),4000);
+}
+function inView(p){ return activeCat==="all"||p.cat===activeCat; }
+function viewDone(){ return PIZZAS.filter(p=>inView(p)&&doneSet.has(p.slug)); }
+function updateDl(){
+  const n=viewDone().length, btn=$("#dlall");
+  const lbl=activeCat==="all"?"Download all":("Download "+CAT_LABEL[activeCat]);
+  btn.textContent="⬇ "+lbl+" ("+n+")";
+  btn.disabled=n===0;
+}
+function applyFilter(){
+  PIZZAS.forEach(p=>{ cards[p.slug].el.style.display=inView(p)?"":"none"; });
+  updateDl();
+}
+document.querySelectorAll("#cats .chip").forEach(ch=>ch.addEventListener("click",()=>{
+  document.querySelectorAll("#cats .chip").forEach(c=>c.classList.remove("on"));
+  ch.classList.add("on"); activeCat=ch.dataset.cat; applyFilter();
+}));
+$("#dlall").addEventListener("click",async()=>{
+  const items=viewDone(); if(!items.length)return;
+  const btn=$("#dlall"), orig=btn.textContent; btn.disabled=true; btn.textContent="Zipping…";
+  try{
+    const zip=new JSZip();
+    for(const p of items){ try{ zip.file(p.name+".png", await blobFor(p.slug)); }catch(e){} }
+    const blob=await zip.generateAsync({type:"blob"});
+    triggerDownload(blob, activeCat==="all"?"litzas-pizza-photos.zip":("litzas-"+activeCat+"-pizzas.zip"));
+    toast(items.length+" photos zipped");
+  }catch(e){ toast("Zip failed"); }
+  btn.textContent=orig; btn.disabled=false; updateDl();
+});
 
 async function refresh(){
   $("#prog").textContent="loading…";
   try{
     const r=await fetch(WORKER+"/list?cb="+Date.now());
     const j=await r.json();
-    const set=new Set(j.slugs||[]);
-    let done=0;
-    PIZZAS.forEach(p=>{ if(set.has(p.slug)){done++;markDone(p.slug);} });
+    doneSet.clear();
+    (j.slugs||[]).forEach(s=>doneSet.add(s));
+    PIZZAS.forEach(p=>{ if(doneSet.has(p.slug)) markDone(p.slug); });
+    const done=PIZZAS.filter(p=>doneSet.has(p.slug)).length;
     $("#prog").innerHTML=`<b>${done}</b> / ${PIZZAS.length} done`;
+    applyFilter();
   }catch(e){ $("#prog").textContent="offline"; }
 }
 $("#refresh").addEventListener("click",refresh);
