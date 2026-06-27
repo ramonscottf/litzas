@@ -565,7 +565,7 @@ ${menuRails}
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Litzas Favorites ${countChip(pizzas.length, "pies")}</h2>
+      <h2>Litzas Favorites ${countChip(pizzas.length, "pizzas")}</h2>
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
     <div class="menu-grid">${pizzaCards}</div>
@@ -1070,7 +1070,7 @@ function cateringPage() {
   <div class="page-hero-copy reveal">
     <p class="eyebrow">Catering &amp; Big Orders</p>
     <h1 id="catering-h">Pizza for the<span class="slab"> whole crew.</span></h1>
-    <p>Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a family pie — give us a heads-up and we'll take care of it.</p>
+    <p>Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a family pizza — give us a heads-up and we'll take care of it.</p>
   </div>
 </section>
 
