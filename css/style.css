@@ -43,13 +43,13 @@
 
   /* Type */
   --display: "Anton", "Arial Narrow", system-ui, sans-serif;
-  --slab:    "Alfa Slab One", Georgia, serif;
+  --slab:    "Oswald", "Arial Narrow", system-ui, sans-serif;
   --label:   "Oswald", "Arial Narrow", system-ui, sans-serif;
   --body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Layout */
   --max:        1240px;
-  --gutter:     clamp(20px, 4vw, 56px);
+  --gutter:     clamp(26px, 5vw, 56px);
   --nav-h:      82px;
   --radius:     18px;
   --radius-lg:  28px;
@@ -2265,3 +2265,10 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   z-index: 1;
 }
 .pizza-card.text-only .pizza-name { padding-right: 32%; }
+
+/* Menu hero — force each sentence onto its own line, sized so the longest fits */
+#menu-h { font-size: clamp(30px, 8vw, 88px); line-height: 1.05; max-width: none; }
+#menu-h .ln { display: block; white-space: nowrap; }
+
+/* Oswald accent (replaced the old Alfa Slab One) — give it presence */
+.slab { font-weight: 600; }

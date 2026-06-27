@@ -481,10 +481,6 @@ function homePage() {
     <p>${tc(t('loc.body', 'Walk in. Call ahead. We’ll have a pie waiting.'))}</p>
   </div>
   <div class="loc-band">
-    <figure class="loc-banner reveal">
-      <img src="/assets/images/optimized/litzas-exterior-dusk.jpg" alt="Hires Big H and Litzas Pizza at dusk, mountains behind, since 1965" loading="lazy">
-      <figcaption>Same family, same lot, since 1965</figcaption>
-    </figure>
     <div class="loc-grid">${locationCards()}</div>
   </div>
 </section>`);
@@ -559,7 +555,7 @@ function menuPage() {
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
-    <h1 id="menu-h">Hand-rolled dough.<span class="slab">Premium ingredients.</span><span class="slab">Unforgettable pizza.</span></h1>
+    <h1 id="menu-h"><span class="ln">Hand-rolled dough.</span><span class="ln">Premium ingredients.</span><span class="ln">Unforgettable pizza.</span></h1>
     <p>Prices update based on the size you pick up top. Browse, or jump to a section.</p>
   </div>
 </section>
