@@ -36,7 +36,7 @@
 <body data-page="/menu/">
 
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="nav" id="nav">
+<header class="nav nav--stacked" id="nav">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="nav-inner">
     <a href="/" class="nav-mark" aria-label="Litzas Pizza home">
@@ -56,6 +56,21 @@
       <span></span><span></span><span></span>
     </button>
   </div>
+  <div class="nav-stack">
+  <nav class="menu-jump" aria-label="Menu sections">
+    <a href="#favorites">Favorites</a>
+    <a href="#build">Build Your Own</a>
+    <a href="#sides">Salads &amp; Apps</a>
+    <a href="#dressings">Dressings</a>
+    <a href="#specials">Specials</a>
+    <a href="#drinks">Drinks</a>
+  </nav>
+  <div class="nav-sizes" data-nav-sizes><div class="size-tabs" role="tablist" aria-label="Pizza size">
+  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="mini">Mini 8&quot;</button>
+  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="sm">Small 10&quot;</button>
+  <button type="button" class="size-tab active" role="tab" aria-selected="true" data-size="md">Medium 12&quot;</button>
+  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="lg">Large 16&quot;</button>
+</div></div></div>
 </header>
 <main id="main">
 
@@ -70,27 +85,12 @@
   </div>
 </section>
 
-<nav class="menu-jump" aria-label="Menu sections">
-  <a href="#favorites">Favorites</a>
-  <a href="#build">Build Your Own</a>
-  <a href="#sides">Salads &amp; Apps</a>
-  <a href="#dressings">Dressings</a>
-  <a href="#specials">Specials</a>
-  <a href="#drinks">Drinks</a>
-</nav>
-
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
       <h2>Litzas Favorites <span class="count-chip">24 pies</span></h2>
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
-    <div class="size-tabs" role="tablist" aria-label="Pizza size">
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="mini">Mini 8&quot;</button>
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="sm">Small 10&quot;</button>
-  <button type="button" class="size-tab active" role="tab" aria-selected="true" data-size="md">Medium 12&quot;</button>
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="lg">Large 16&quot;</button>
-</div>
     <div class="menu-grid"><article class="pizza-card text-only reveal">
   <div class="pizza-body">
     <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 01</span>
@@ -292,12 +292,6 @@
       <h2>Build Your Own <span class="count-chip">8 ways</span></h2>
       <p>Start with a crust, add what you want.</p>
     </div>
-    <div class="size-tabs" role="tablist" aria-label="Pizza size">
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="mini">Mini 8&quot;</button>
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="sm">Small 10&quot;</button>
-  <button type="button" class="size-tab active" role="tab" aria-selected="true" data-size="md">Medium 12&quot;</button>
-  <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="lg">Large 16&quot;</button>
-</div>
     <div class="menu-grid"><article class="pizza-card text-only reveal">
   <div class="pizza-body">
     

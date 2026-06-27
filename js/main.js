@@ -109,6 +109,8 @@
     const sections = links
       .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
       .filter(Boolean);
+    const navEl = document.getElementById('nav');
+    const pizzaSections = new Set(['favorites', 'build']);
     const setActive = () => {
       const mid = window.innerHeight * 0.38;
       let current = sections[0];
@@ -116,6 +118,7 @@
         if (sec.getBoundingClientRect().top <= mid) current = sec;
       }
       links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+      if (navEl) navEl.classList.toggle('show-sizes', pizzaSections.has(current.id));
     };
     let spyTick = false;
     window.addEventListener('scroll', () => {

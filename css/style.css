@@ -2170,3 +2170,84 @@ html, body { background: var(--cream-1); }
 .tier-label { color: var(--char-2); }
 .price-tiers li { border-top-color: var(--rule-cm); }
 .pizza-price .price-size { color: var(--char-2); }
+
+/* ============================================================
+   MENU PILL STACK — 2026-06-26
+   On the menu page the floating pill expands downward to hold
+   the category rail (always) and the size rail (only on pizza
+   sections). One pill that grows, instead of three sticky bars.
+   Rails sit INSIDE the dark glass pill, so their text is cream.
+   ============================================================ */
+.nav--stacked { border-radius: 26px; }
+.nav--stacked .nav-inner { padding-bottom: 8px; }
+
+.nav-stack {
+  margin: 0 12px;
+  padding: 8px 0 6px;
+  border-top: 1px solid rgba(244,237,224,.12);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Category rail — cream text on the dark pill, horizontally scrollable */
+.nav-stack .menu-jump {
+  position: static;
+  background: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  border: 0;
+  padding: 2px;
+  gap: 2px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.nav-stack .menu-jump::-webkit-scrollbar { display: none; }
+.nav-stack .menu-jump a {
+  color: rgba(244,237,224,.66);
+  background: transparent;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.nav-stack .menu-jump a:hover { color: var(--bone); background: rgba(244,237,224,.08); }
+.nav-stack .menu-jump a.active { color: var(--gold-bright); background: rgba(174,152,96,.16); }
+.nav-stack .menu-jump a.active::after { display: none; }
+
+/* Size rail — blends in/out, only on pizza sections */
+.nav-sizes {
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .42s var(--ease-out), opacity .3s var(--ease-out);
+}
+.nav.show-sizes .nav-sizes { max-height: 60px; opacity: 1; }
+.nav-stack .size-tabs {
+  position: static;
+  background: transparent;
+  border: 0; box-shadow: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  padding: 2px;
+  gap: 4px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-stack .size-tabs::-webkit-scrollbar { display: none; }
+.nav-stack .size-tab {
+  color: rgba(244,237,224,.62);
+  border: 1px solid rgba(244,237,224,.16);
+  background: transparent;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.nav-stack .size-tab:hover { color: var(--bone); border-color: var(--rule-gold); }
+.nav-stack .size-tab.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+/* Anchor jumps clear the (taller) expanded pill */
+body[data-page="/menu/"] .dark-section[id],
+body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 196px; }
+@media (max-width: 640px) {
+  .nav--stacked { border-radius: 22px; }
+  body[data-page="/menu/"] .dark-section[id],
+  body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 184px; }
+}

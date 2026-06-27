@@ -141,7 +141,7 @@ const HIRES_API_BASE = 'https://hiresbigh.com';
 const JOBS_ENDPOINT = `${HIRES_API_BASE}/api/jobs`;
 const CATERING_ENDPOINT = `${HIRES_API_BASE}/api/catering`;
 
-function nav(current = '') {
+function nav(current = '', stack = '') {
   const links = [
     ['/', 'Home'],
     ['/menu/', 'Menu'],
@@ -153,7 +153,7 @@ function nav(current = '') {
   ];
   return `
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="nav" id="nav">
+<header class="nav${stack ? ' nav--stacked' : ''}" id="nav">
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="nav-inner">
     <a href="/" class="nav-mark" aria-label="Litzas Pizza home">
@@ -167,6 +167,7 @@ function nav(current = '') {
       <span></span><span></span><span></span>
     </button>
   </div>
+  ${stack ? `<div class="nav-stack">${stack}</div>` : ''}
 </header>`;
 }
 
@@ -215,7 +216,7 @@ function footer() {
 <script src="/js/main.js" defer></script>`;
 }
 
-function head({ title, description, current = '' }) {
+function head({ title, description, current = '', navStack = '' }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -252,7 +253,7 @@ function head({ title, description, current = '' }) {
 </script>
 </head>
 <body data-page="${esc(current)}">
-${nav(current)}`;
+${nav(current, navStack)}`;
 }
 
 function layout(meta, body) {
@@ -523,10 +524,22 @@ function menuPage() {
     return parts.join('\n');
   };
 
+  const navStack = `
+  <nav class="menu-jump" aria-label="Menu sections">
+    <a href="#favorites">Favorites</a>
+    ${byoCards ? '<a href="#build">Build Your Own</a>' : ''}
+    <a href="#sides">Salads &amp; Apps</a>
+    <a href="#dressings">Dressings</a>
+    <a href="#specials">Specials</a>
+    <a href="#drinks">Drinks</a>
+  </nav>
+  <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>`;
+
   return layout({
     current: '/menu/',
     title: 'Menu · Litzas Pizza · Salt Lake City &amp; Midvale',
-    description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
+    description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.',
+    navStack
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
@@ -539,22 +552,12 @@ function menuPage() {
   </div>
 </section>
 
-<nav class="menu-jump" aria-label="Menu sections">
-  <a href="#favorites">Favorites</a>
-  <a href="#build">Build Your Own</a>
-  <a href="#sides">Salads &amp; Apps</a>
-  <a href="#dressings">Dressings</a>
-  <a href="#specials">Specials</a>
-  <a href="#drinks">Drinks</a>
-</nav>
-
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
       <h2>Litzas Favorites ${countChip(pizzas.length, "pies")}</h2>
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
-    ${sizeTabs()}
     <div class="menu-grid">${pizzaCards}</div>
   </div>
 </section>
@@ -565,7 +568,6 @@ ${byoCards ? `<section class="warm-section" id="build">
       <h2>Build Your Own ${countChip(countOf("create-your-own"), "ways")}</h2>
       <p>Start with a crust, add what you want.</p>
     </div>
-    ${sizeTabs()}
     <div class="menu-grid">${byoCards}</div>
   </div>
 </section>` : ''}
