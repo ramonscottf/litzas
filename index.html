@@ -134,19 +134,25 @@
   </div>
 </section>
 
-<section class="dark-section" aria-labelledby="menu-tease-h">
+<section class="dark-section" id="home-menu" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
     <p class="eyebrow">The Menu</p>
     <h2 id="menu-tease-h">Twenty-four pizzas.<span class="slab"> Hand-rolled in the morning. Baked when you order.</span></h2>
     <p>A few favorites below. Tap a size to see prices. The full menu is one click away.</p>
   </div>
   <div class="menu-band">
-    <div class="size-tabs" role="tablist" aria-label="Pizza size">
+    <div class="menu-rails-slot" id="menu-rails-slot" data-dock-scope="#home-menu">
+      <div class="menu-rails show-sizes" id="menu-rails">
+        <div class="menu-rails-inner">
+          <div class="nav-sizes" data-nav-sizes><div class="size-tabs" role="tablist" aria-label="Pizza size">
   <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="mini">Mini 8&quot;</button>
   <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="sm">Small 10&quot;</button>
   <button type="button" class="size-tab active" role="tab" aria-selected="true" data-size="md">Medium 12&quot;</button>
   <button type="button" class="size-tab" role="tab" aria-selected="false" data-size="lg">Large 16&quot;</button>
-</div>
+</div></div>
+        </div>
+      </div>
+    </div>
     <div class="menu-grid">
       <article class="pizza-card text-only reveal">
   <div class="pizza-body">

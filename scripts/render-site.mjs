@@ -434,14 +434,20 @@ function homePage() {
   </div>
 </section>
 
-<section class="dark-section" aria-labelledby="menu-tease-h">
+<section class="dark-section" id="home-menu" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
     <p class="eyebrow">${tc(t('menu.eyebrow', 'The Menu'))}</p>
     <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-four pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled in the morning. Baked when you order.'))}</span></h2>
     <p>${tc(t('menu.body', 'A few favorites below. Tap a size to see prices. The full menu is one click away.'))}</p>
   </div>
   <div class="menu-band">
-    ${sizeTabs()}
+    <div class="menu-rails-slot" id="menu-rails-slot" data-dock-scope="#home-menu">
+      <div class="menu-rails show-sizes" id="menu-rails">
+        <div class="menu-rails-inner">
+          <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>
+        </div>
+      </div>
+    </div>
     <div class="menu-grid">
       ${featured}
     </div>

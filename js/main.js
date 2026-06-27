@@ -101,36 +101,47 @@
     }
   }
 
-  // Menu scroll-spy — the gold underline on the jump rail tracks the section
-  // you're reading. Sections own their slice of the viewport via a midline test.
-  const jump = document.querySelector('.menu-jump');
-  if (jump) {
-    const links = Array.from(jump.querySelectorAll('a[href^="#"]'));
-    const sections = links
-      .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
-      .filter(Boolean);
-    const navEl = document.getElementById('nav');
-    const railsEl = document.getElementById('menu-rails');
-    const slotEl = document.getElementById('menu-rails-slot');
-    const pizzaSections = new Set(['favorites', 'build']);
+  // Menu rails — dock into the pill on scroll (menu page + homepage mini menu).
+  const railsEl = document.getElementById('menu-rails');
+  const slotEl = document.getElementById('menu-rails-slot');
+  const navEl = document.getElementById('nav');
+  if (railsEl && slotEl && navEl) {
+    const scopeSel = slotEl.dataset.dockScope;
+    const scopeEl = scopeSel ? document.querySelector(scopeSel) : null;
     let railsDocked = false;
     const DOCK_IN = 74;   // dock once the slot reaches just under the pill
     const DOCK_OUT = 92;  // undock above here (hysteresis prevents flicker)
     const updateDock = () => {
-      if (!railsEl || !navEl || !slotEl) return;
       const slotTop = slotEl.getBoundingClientRect().top;
-      if (!railsDocked && slotTop <= DOCK_IN) {
+      const pastScope = scopeEl ? scopeEl.getBoundingClientRect().bottom <= DOCK_IN + 12 : false;
+      if (!railsDocked && slotTop <= DOCK_IN && !pastScope) {
         slotEl.style.minHeight = railsEl.offsetHeight + 'px';
         navEl.appendChild(railsEl);
         navEl.classList.add('is-docked-host');
         railsDocked = true;
-      } else if (railsDocked && slotTop > DOCK_OUT) {
+      } else if (railsDocked && (slotTop > DOCK_OUT || pastScope)) {
         slotEl.appendChild(railsEl);
         slotEl.style.minHeight = '';
         navEl.classList.remove('is-docked-host');
         railsDocked = false;
       }
     };
+    let dockTick = false;
+    window.addEventListener('scroll', () => {
+      if (!dockTick) { dockTick = true; requestAnimationFrame(() => { updateDock(); dockTick = false; }); }
+    }, { passive: true });
+    updateDock();
+  }
+
+  // Menu scroll-spy — highlight the section you're reading; show sizes on pizza sections.
+  const jump = document.querySelector('.menu-jump');
+  if (jump) {
+    const railsSpy = document.getElementById('menu-rails');
+    const links = Array.from(jump.querySelectorAll('a[href^="#"]'));
+    const sections = links
+      .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+      .filter(Boolean);
+    const pizzaSections = new Set(['favorites', 'build']);
     const setActive = () => {
       const mid = window.innerHeight * 0.38;
       let current = sections[0];
@@ -138,17 +149,16 @@
         if (sec.getBoundingClientRect().top <= mid) current = sec;
       }
       links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
-      if (railsEl) railsEl.classList.toggle('show-sizes', pizzaSections.has(current.id));
+      if (railsSpy) railsSpy.classList.toggle('show-sizes', pizzaSections.has(current.id));
     };
     let spyTick = false;
     window.addEventListener('scroll', () => {
       if (!spyTick) {
         spyTick = true;
-        requestAnimationFrame(() => { setActive(); updateDock(); spyTick = false; });
+        requestAnimationFrame(() => { setActive(); spyTick = false; });
       }
     }, { passive: true });
     setActive();
-    updateDock();
   }
 
   // Sticky elevation — size-tab pills cast a shadow once they're actually stuck.

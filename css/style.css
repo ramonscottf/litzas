@@ -2242,3 +2242,11 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   body[data-page="/menu/"] .dark-section[id],
   body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 200px; }
 }
+
+/* Smoother dock — grow the rails into the pill instead of snapping */
+.nav .menu-rails { overflow: hidden; }
+.nav.is-docked-host .menu-rails { animation: railsDockIn .34s var(--ease-out); }
+@keyframes railsDockIn {
+  from { max-height: 0; opacity: 0; }
+  to   { max-height: 130px; opacity: 1; }
+}
