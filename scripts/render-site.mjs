@@ -290,6 +290,7 @@ function pizzaCard(pizza, index, { numbered = false } = {}) {
   // Text-only card — used while real food photography is pending. No empty
   // photo box, no "in approval" stamp: a clean numbered gold-on-black tile.
   return `<article class="pizza-card text-only reveal">
+  <img class="pizza-peek" src="/assets/images/optimized/pizza-pepperoni-peek.png" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
     ${chip}
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
@@ -312,8 +313,8 @@ function locationCards(opts = {}) {
     const mapsQuery = coords.mapsQuery || `Litzas Pizza ${location.name}`;
     const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&z=16&output=embed`;
     const photoBySlug = {
-      'salt-lake-city': '/assets/images/optimized/litzas-night-sign-2026.jpg',
-      'midvale':        '/assets/images/optimized/litzas-exterior-dusk.jpg'
+      'salt-lake-city': '/assets/images/optimized/litzas-downtown-night-2026.jpg',
+      'midvale':        '/assets/images/optimized/litzas-midvale-dusk-2026.jpg'
     };
     const photo = photoBySlug[location.id] || '/assets/images/optimized/pizza-overhead-pair.jpg';
 

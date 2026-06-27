@@ -2250,3 +2250,18 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   from { max-height: 0; opacity: 0; }
   to   { max-height: 130px; opacity: 1; }
 }
+
+/* Pizza peek — a wedge of the pie tucked into the empty top-right of text cards,
+   clipped by the card edge with a soft shadow under the crust. */
+.pizza-card.text-only { position: relative; overflow: hidden; }
+.pizza-peek {
+  position: absolute;
+  top: 0; right: 0;
+  width: clamp(150px, 44%, 205px);
+  height: auto;
+  transform: translate(30%, -42%);
+  filter: drop-shadow(0 9px 12px rgba(20, 12, 6, .30));
+  pointer-events: none;
+  z-index: 1;
+}
+.pizza-card.text-only .pizza-name { padding-right: 32%; }
