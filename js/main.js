@@ -110,7 +110,15 @@
       .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
       .filter(Boolean);
     const navEl = document.getElementById('nav');
+    const railsEl = document.getElementById('menu-rails');
     const pizzaSections = new Set(['favorites', 'build']);
+    const updateDock = () => {
+      if (!railsEl || !navEl) return;
+      const topVal = parseFloat(getComputedStyle(railsEl).top) || 0;
+      const docked = railsEl.getBoundingClientRect().top <= topVal + 1;
+      railsEl.classList.toggle('is-docked', docked);
+      navEl.classList.toggle('has-rails-docked', docked);
+    };
     const setActive = () => {
       const mid = window.innerHeight * 0.38;
       let current = sections[0];
@@ -118,16 +126,17 @@
         if (sec.getBoundingClientRect().top <= mid) current = sec;
       }
       links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
-      if (navEl) navEl.classList.toggle('show-sizes', pizzaSections.has(current.id));
+      if (railsEl) railsEl.classList.toggle('show-sizes', pizzaSections.has(current.id));
     };
     let spyTick = false;
     window.addEventListener('scroll', () => {
       if (!spyTick) {
         spyTick = true;
-        requestAnimationFrame(() => { setActive(); spyTick = false; });
+        requestAnimationFrame(() => { setActive(); updateDock(); spyTick = false; });
       }
     }, { passive: true });
     setActive();
+    updateDock();
   }
 
   // Sticky elevation — size-tab pills cast a shadow once they're actually stuck.

@@ -524,22 +524,25 @@ function menuPage() {
     return parts.join('\n');
   };
 
-  const navStack = `
-  <nav class="menu-jump" aria-label="Menu sections">
-    <a href="#favorites">Favorites</a>
-    ${byoCards ? '<a href="#build">Build Your Own</a>' : ''}
-    <a href="#sides">Salads &amp; Apps</a>
-    <a href="#dressings">Dressings</a>
-    <a href="#specials">Specials</a>
-    <a href="#drinks">Drinks</a>
-  </nav>
-  <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>`;
+  const menuRails = `
+<div class="menu-rails" id="menu-rails">
+  <div class="menu-rails-inner">
+    <nav class="menu-jump" aria-label="Menu sections">
+      <a href="#favorites">Favorites</a>
+      ${byoCards ? '<a href="#build">Build Your Own</a>' : ''}
+      <a href="#sides">Salads &amp; Apps</a>
+      <a href="#dressings">Dressings</a>
+      <a href="#specials">Specials</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+    <div class="nav-sizes" data-nav-sizes>${sizeTabs()}</div>
+  </div>
+</div>`;
 
   return layout({
     current: '/menu/',
     title: 'Menu · Litzas Pizza · Salt Lake City &amp; Midvale',
-    description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.',
-    navStack
+    description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
@@ -551,6 +554,8 @@ function menuPage() {
     <p>Prices update based on the size you pick up top. Browse, or jump to a section.</p>
   </div>
 </section>
+
+${menuRails}
 
 <section class="dark-section" id="favorites">
   <div class="menu-band">
