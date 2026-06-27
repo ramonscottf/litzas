@@ -177,9 +177,9 @@ function footer() {
   <div class="footer-inner">
     <div>
       <a href="/" class="footer-mark" aria-label="Litzas Pizza home">
-        <img src="/assets/images/brand/litzas-logo-cream.png" alt="Litzas Pizza" width="394" height="137" loading="lazy">
+        <img src="/assets/images/brand/litzas-logo.png" alt="Litzas Pizza" width="394" height="137" loading="lazy">
       </a>
-      <p class="footer-tagline">Family pizza in Salt Lake City and Midvale since 1965. Same Hale family. Same Utah pride.</p>
+      <p class="footer-tagline">Family pizza in Salt Lake City and Midvale. Classic since 1965 — same family, same pizza, no notes.</p>
     </div>
     <div class="footer-col">
       <h4>Visit</h4>
@@ -367,16 +367,16 @@ function homePage() {
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
-    <p class="eyebrow">${tc(t('hero.eyebrow', 'Salt Lake City & Midvale · Since 1965'))}</p>
+    <p class="eyebrow">${tc(t('hero.eyebrow', 'Salt Lake City & Midvale'))}</p>
     <h1 id="hero-h">${tc(t('hero.headline', 'Salt Lake’s pizza joint.'))}<span class="slab">${tc(t('hero.headline_slab', 'Sixty years and counting.'))}</span></h1>
     <p>${tc(t('hero.body', 'Hand-rolled dough. Real mozzarella. A booth, a slice, a frosted Hires next door. That’s the deal. That’s always been the deal.'))}</p>
     <div class="button-row">
       <a href="/menu/" class="btn btn-primary">${tc(t('hero.cta_primary', 'See the Menu'))}</a>
-      <a href="/locations/" class="btn btn-ghost">${tc(t('hero.cta_secondary', 'Find a Shop'))}</a>
+      <a href="/locations/" class="btn btn-ghost">${tc(t('hero.cta_secondary', 'Find a Location'))}</a>
     </div>
   </div>
   <aside class="hero-note reveal" aria-label="Litzas house notes">
-    <span>${tc(t('hero.note_1', 'Two shops'))}</span>
+    <span>${tc(t('hero.note_1', 'Two locations'))}</span>
     <span>${tc(t('hero.note_2', 'Hand-rolled dough'))}</span>
     <span>${tc(t('hero.note_3', 'Hires on tap'))}</span>
   </aside>
@@ -405,7 +405,7 @@ function homePage() {
   <div class="stats reveal">
     <div class="stat"><span class="num" data-count="1965">1965</span><span class="lbl">Est. &middot; 400 South</span></div>
     <div class="stat"><span class="num" data-count="24">24</span><span class="lbl">Pizzas, hand-rolled</span></div>
-    <div class="stat"><span class="num" data-count="2">2</span><span class="lbl">Shops &middot; one family</span></div>
+    <div class="stat"><span class="num" data-count="2">2</span><span class="lbl">Locations &middot; one family</span></div>
   </div>
 </section>
 
@@ -429,7 +429,7 @@ function homePage() {
       </figure>
       <figure class="reveal">
         <img src="/assets/images/optimized/dough-hands.jpg" alt="Hands rolling fresh pizza dough on flour" loading="lazy">
-        <figcaption>Hand-rolled, every morning, every shop</figcaption>
+        <figcaption>Hand-rolled crust, made to order</figcaption>
       </figure>
     </div>
   </div>
@@ -438,7 +438,7 @@ function homePage() {
 <section class="dark-section" id="home-menu" aria-labelledby="menu-tease-h">
   <div class="section-kicker reveal">
     <p class="eyebrow">${tc(t('menu.eyebrow', 'The Menu'))}</p>
-    <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-four pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled in the morning. Baked when you order.'))}</span></h2>
+    <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-four pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled crust. Made to order.'))}</span></h2>
     <p>${tc(t('menu.body', 'A few favorites below. Tap a size to see prices. The full menu is one click away.'))}</p>
   </div>
   <div class="menu-band">
@@ -458,12 +458,23 @@ function homePage() {
   </div>
 </section>
 
-<section class="warm-section">
+<section class="warm-section" aria-labelledby="loc-h">
+  <div class="section-kicker center reveal">
+    <p class="eyebrow">${tc(t('loc.eyebrow', 'Choose Your Location'))}</p>
+    <h2 id="loc-h">${tc(t('loc.headline', 'Two locations.'))}<span class="slab">${tc(t('loc.headline_slab', ' Same pizza.'))}</span></h2>
+    <p>${tc(t('loc.body', 'Walk in, or call ahead to order.'))}</p>
+  </div>
+  <div class="loc-band">
+    <div class="loc-grid">${locationCards()}</div>
+  </div>
+</section>
+
+<section class="dark-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">${tc(t('bridge.eyebrow', 'Hires next door'))}</p>
+      <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
       <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
-      <p>${tc(t('bridge.p1', 'In Salt Lake, Litzas shares a parking lot with Hires Big H. In Midvale, we share a building. Pour yourself a root beer in a frosted mug. Eat your pizza. It’s been the deal since 1965.'))}</p>
+      <p>${tc(t('bridge.p1', 'In Salt Lake, we share a parking lot with Hires Big H. In Midvale, we share the building — same family runs both. Order a frosted mug of Hires root beer to go with your pizza.'))}</p>
       <div class="button-row">
         <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
       </div>
@@ -471,17 +482,6 @@ function homePage() {
     <figure class="reveal">
       <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer" loading="lazy">
     </figure>
-  </div>
-</section>
-
-<section class="dark-section" aria-labelledby="loc-h">
-  <div class="section-kicker center reveal">
-    <p class="eyebrow">${tc(t('loc.eyebrow', 'Find Your Litzas'))}</p>
-    <h2 id="loc-h">${tc(t('loc.headline', 'Two shops.'))}<span class="slab">${tc(t('loc.headline_slab', ' Same pizza.'))}</span></h2>
-    <p>${tc(t('loc.body', 'Walk in. Call ahead. We’ll have a pie waiting.'))}</p>
-  </div>
-  <div class="loc-band">
-    <div class="loc-grid">${locationCards()}</div>
   </div>
 </section>`);
 }
@@ -635,7 +635,7 @@ function locationsPage() {
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">Visit · Call · Stop In</p>
-    <h1 id="loc-page-h">Find your Litzas.<span class="slab"> Same pizza, two shops.</span></h1>
+    <h1 id="loc-page-h">Choose your location.<span class="slab"> Same pizza, two locations.</span></h1>
     <p>SLC shares a parking lot with Hires Big H. Midvale shares a building. You won't have to look hard.</p>
   </div>
 </section>
@@ -656,6 +656,7 @@ function locationsPage() {
       <div class="button-row center-row">
         <a href="/catering/" class="btn btn-primary">Plan a Gathering</a>
         <a href="tel:+18013595352" class="btn btn-ghost">Call SLC · 801.359.5352</a>
+        <a href="tel:+18015612171" class="btn btn-ghost">Call Midvale · 801.561.2171</a>
       </div>
     </div>
   </div>
@@ -670,7 +671,7 @@ function shopPage() {
   }, `
 <section class="page-hero shop-hero" aria-labelledby="shop-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/rootbeer-floats.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/rootbeer-mug.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">Hires Big H · Family Brand</p>
@@ -686,13 +687,6 @@ function shopPage() {
       <div class="body">
         <h3>Hires on Tap</h3>
         <p>Frosted mug, hand-pulled. The way it's been done since 1959.</p>
-      </div>
-    </article>
-    <article class="shop-card reveal">
-      <div class="photo"><img src="/assets/images/optimized/rootbeer-floats.jpg" alt="Root beer floats" loading="lazy"></div>
-      <div class="body">
-        <h3>Root Beer Floats</h3>
-        <p>Vanilla ice cream meets the Hires recipe. A classic dessert order.</p>
       </div>
     </article>
     <article class="shop-card reveal">
@@ -790,11 +784,11 @@ function storyPage() {
       <p>${tc(t('storypg.today.p2','You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.'))}</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
-        <a href="/locations/" class="btn btn-ghost">Find a Shop</a>
+        <a href="/locations/" class="btn btn-ghost">Find a Location</a>
       </div>
     </div>
     <figure class="reveal">
-      <img src="/assets/images/optimized/rootbeer-floats.jpg" alt="Hires Big H root beer floats on a Litzas table" loading="lazy">
+      <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer on a Litzas table" loading="lazy">
     </figure>
   </div>
 </section>`);
@@ -1083,7 +1077,7 @@ function cateringPage() {
 <section class="dark-section">
   <div class="form-band">
     <div class="form-shell">
-      <p class="form-intro">Tell us about the event. We'll come back with timing, pricing, and a plan. Need to talk it through? Call <a href="tel:+18013595352">801.359.5352</a>.</p>
+      <p class="form-intro">Tell us about the event. We'll come back with timing, pricing, and a plan. Need to talk it through? Call SLC at <a href="tel:+18013595352">801.359.5352</a> or Midvale at <a href="tel:+18015612171">801.561.2171</a>.</p>
 
       <form data-litzas-form action="${CATERING_ENDPOINT}" data-brand="litzas" method="post" novalidate>
         <div class="form-grid">
