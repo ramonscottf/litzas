@@ -33,6 +33,18 @@ const approvedPhotos = new Map(
     : []
 );
 
+// Per-pizza "peek" art (real photos, white knocked out) shown on the clean
+// text cards. Unmapped pizzas fall back to the generic pepperoni peek until
+// their photo lands.
+const PEEK_BY_SLUG = {
+  'pepperoni': 'peek-pepperoni.png',
+  'little-litzas': 'peek-little-litzas.png',
+  'litzas-meatza': 'peek-litzas-meatza.png',
+  'kings-peak': 'peek-kings-peak.png',
+  'italian-carbonara': 'peek-italian-carbonara.png',
+  'spinach-artichoke': 'peek-spinach-artichoke.png',
+};
+
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -289,8 +301,9 @@ function pizzaCard(pizza, index, { numbered = false } = {}) {
 
   // Text-only card — used while real food photography is pending. No empty
   // photo box, no "in approval" stamp: a clean numbered gold-on-black tile.
+  const peekFile = PEEK_BY_SLUG[pizza.slug] || 'pizza-pepperoni-peek.png';
   return `<article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="/assets/images/optimized/pizza-pepperoni-peek.png" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="/assets/images/optimized/${peekFile}" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
     ${chip}
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
@@ -551,7 +564,7 @@ function menuPage() {
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-pizza-hero-wood.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
