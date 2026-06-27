@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Litzas Menu Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream-1:#f7f2e8; --cream-2:#efe7d6; --cream-3:#e9dfc9; --card:#fffdf8;
+    --char:#211d18; --muted:#6f675a; --gold:#b08d3c; --gold-ink:#8a6d27;
+    --line:#e2d8c2; --ok:#3f7d4f; --rule:#d8cdb4;
+    --disp:"Anton","Arial Narrow",sans-serif; --label:"Oswald",sans-serif; --body:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream-1);color:var(--char);font-family:var(--body);-webkit-text-size-adjust:100%;}
+  .wrap{max-width:980px;margin:0 auto;padding:24px 18px 80px;}
+  header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,var(--cream-1) 78%,rgba(247,242,232,0));padding:14px 0 10px;margin:-24px -18px 6px;padding-left:18px;padding-right:18px;}
+  h1{font-family:var(--disp);font-weight:400;letter-spacing:.01em;text-transform:uppercase;font-size:clamp(26px,7vw,40px);margin:2px 0 2px;}
+  .sub{font-family:var(--label);text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--gold-ink);font-weight:600;}
+  .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;}
+  .tokbox{flex:1;min-width:220px;display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;}
+  .tokbox input{border:0;outline:0;background:transparent;font:inherit;font-size:15px;width:100%;color:var(--char);}
+  .pill{font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--char);cursor:pointer;white-space:nowrap;}
+  .pill:active{transform:translateY(1px)}
+  .prog{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--muted);font-weight:600;}
+  .prog b{color:var(--gold-ink)}
+  .how{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0 18px;font-size:14px;line-height:1.55;color:#4a4337;}
+  .how b{color:var(--char)}
+  .how ol{margin:8px 0 0;padding-left:20px} .how li{margin:3px 0}
+  .grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr;}}
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:14px;display:flex;gap:14px;position:relative;overflow:hidden;}
+  .thumb{flex:0 0 92px;width:92px;height:92px;border-radius:12px;background:var(--cream-3) center/70% no-repeat;border:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:contain;}
+  .thumb .ph{font-family:var(--label);font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;}
+  .meta{flex:1;min-width:0;}
+  .nm{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:.01em;font-size:19px;line-height:1.05;margin:0 0 3px;}
+  .ing{font-size:12.5px;color:var(--muted);line-height:1.4;margin:0 0 10px;}
+  .badge{position:absolute;top:10px;right:12px;font-family:var(--label);text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;}
+  .badge.todo{background:#f3ead3;color:var(--gold-ink);} .badge.done{background:#e4f0e4;color:var(--ok);}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .btn{font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;font-weight:600;padding:8px 12px;border-radius:10px;border:1px solid var(--rule);background:var(--cream-2);color:var(--char);cursor:pointer;}
+  .btn.gold{background:var(--gold);border-color:var(--gold);color:#231d10;}
+  .btn:disabled{opacity:.45;cursor:default;}
+  .btn:active{transform:translateY(1px)}
+  label.file{display:inline-block}
+  label.file input{display:none}
+  .note{font-size:11px;color:var(--muted);margin-top:8px;min-height:14px;}
+  .note.err{color:#9a3b2f} .note.ok{color:var(--ok)}
+  .preview{margin-top:8px;display:none;}
+  .preview.show{display:block}
+  .preview canvas{width:84px;height:84px;background:var(--cream-3);border-radius:10px;border:1px solid var(--rule);}
+  footer{margin-top:30px;font-size:12px;color:var(--muted);text-align:center;line-height:1.6;}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--char);color:#fdf8ec;padding:11px 18px;border-radius:999px;font-size:13px;font-family:var(--label);letter-spacing:.06em;opacity:0;transition:opacity .25s;pointer-events:none;z-index:20;}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="sub">Litzas Pizza · internal tool</div>
+    <h1>Menu Studio</h1>
+    <div class="bar">
+      <div class="tokbox">
+        <span class="sub" style="letter-spacing:.1em">Key</span>
+        <input id="tok" type="password" placeholder="upload key" autocomplete="off" spellcheck="false">
+      </div>
+      <button class="pill" id="refresh">↻ Refresh</button>
+      <span class="prog" id="prog">—</span>
+    </div>
+  </header>
+
+  <div class="how">
+    <b>How it works</b>
+    <ol>
+      <li><b>Copy prompt</b> on a pizza → paste it into your image generator, and attach one of the finished pizza photos as the style reference.</li>
+      <li>Save the image it makes to your iPad.</li>
+      <li>Back here, tap <b>Add photo</b> on that pizza, pick the image. It auto-removes the white background — check the preview.</li>
+      <li>Tap <b>Upload</b>. It lands in R2 and shows on the live menu on the next refresh. No rebuild.</li>
+    </ol>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    Photos go to the <b>litzas-menu</b> R2 bucket and serve straight onto litzas.wickowaypoint.com.<br>
+    Already finished: Pepperoni, Little Litzas, Litzas Meatza, Kings Peak, Italian Carbonara, Spinach Artichoke.
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WORKER = "https://litzas-menu.ramonscottf.workers.dev";
+const PIZZAS = [
+  {slug:"cheese",name:"Cheese",ingredients:"Pizza sauce and mozzarella cheese."},
+  {slug:"garlic-cheese",name:"Garlic Cheese",ingredients:"Garlic butter sauce and mozzarella cheese."},
+  {slug:"pepperoni",name:"Pepperoni",ingredients:"Pizza sauce, mozzarella cheese, and pepperoni."},
+  {slug:"ground-sausage",name:"Ground Sausage",ingredients:"Pizza sauce, mozzarella cheese, and ground Italian sausage."},
+  {slug:"western-bbq",name:"Western BBQ",ingredients:"BBQ sauce, mozzarella cheese, and grilled chicken."},
+  {slug:"ham",name:"Ham",ingredients:"Pizza sauce, mozzarella cheese, and ham."},
+  {slug:"canadian",name:"Canadian",ingredients:"Pizza sauce, mozzarella cheese, and Canadian bacon."},
+  {slug:"hawaiian",name:"Hawaiian",ingredients:"Pizza sauce, mozzarella cheese, ham, and pineapple."},
+  {slug:"red-black",name:"Red & Black",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, and black olives."},
+  {slug:"red-green",name:"Red & Green",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, and jalapenos."},
+  {slug:"red-green-yellow",name:"Red, Green & Yellow",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple."},
+  {slug:"italian-carbonara",name:"Italian Carbonara",ingredients:"Garlic butter sauce, mozzarella cheese, chicken, bacon, and sliced tomatoes."},
+  {slug:"lone-peak",name:"Lone Peak",ingredients:"Garlic butter sauce, mozzarella cheese, and chicken."},
+  {slug:"mt-olympus",name:"Mt Olympus",ingredients:"Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle."},
+  {slug:"twin-peaks",name:"Twin Peaks",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, and mushrooms."},
+  {slug:"kings-peak",name:"Kings Peak",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, black olives, and mushrooms."},
+  {slug:"little-litzas",name:"Little Litzas",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage."},
+  {slug:"classic-litzas",name:"Classic Litzas",ingredients:"Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms."},
+  {slug:"litzas-meatza",name:"Litzas Meatza",ingredients:"Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage."},
+  {slug:"spinach-artichoke",name:"Spinach Artichoke",ingredients:"Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese."},
+  {slug:"five-cheese",name:"Five Cheese",ingredients:"Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta."},
+  {slug:"vegetarian",name:"Vegetarian",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple."},
+  {slug:"traditional",name:"Traditional",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of one meat."},
+  {slug:"deluxe",name:"Deluxe",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats."},
+];
+
+const $=(s,el=document)=>el.querySelector(s);
+const tok=$("#tok");
+tok.value=localStorage.getItem("litzas_menu_key")||"";
+tok.addEventListener("input",()=>localStorage.setItem("litzas_menu_key",tok.value.trim()));
+const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),1900);};
+
+function promptFor(p){
+  return `Create a photorealistic top-down menu photo of a single whole ${p.name} pizza.
+
+STYLE — match the reference photo I'm attaching exactly: a straight 90° overhead view, the whole round pizza centered and filling the frame on a plain solid white seamless background (no plate, no table, no props), soft even lighting with no harsh shadows, a medium-thick golden hand-rolled crust with realistic browning, and melted, lightly browned mozzarella.
+
+TOPPINGS: ${p.ingredients} Distribute the toppings evenly and generously but realistically, like a classic Utah neighborhood pizzeria. Where pepperoni is used, about 3 per slice with the edges browned, not the centers.
+
+Do NOT include text, logos, labels, hands, utensils, plates, multiple pizzas, or unrealistic slices. Square 1:1 image on a white background.`;
+}
+
+// ---- white-background knockout (flood fill from borders) ----
+function knockout(img){
+  let w=img.naturalWidth,h=img.naturalHeight;
+  const cap=1100; if(Math.max(w,h)>cap){const s=cap/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s);}
+  const c=document.createElement("canvas");c.width=w;c.height=h;
+  const ctx=c.getContext("2d");ctx.drawImage(img,0,0,w,h);
+  const id=ctx.getImageData(0,0,w,h),d=id.data,N=w*h;
+  const vis=new Uint8Array(N);
+  const white=(p)=>{const i=p*4,r=d[i],g=d[i+1],b=d[i+2];return r>=234&&g>=234&&b>=234&&(Math.max(r,g,b)-Math.min(r,g,b))<=16;};
+  const st=[];
+  for(let x=0;x<w;x++){st.push(x);st.push((h-1)*w+x);}
+  for(let y=0;y<h;y++){st.push(y*w);st.push(y*w+w-1);}
+  while(st.length){
+    const p=st.pop(); if(vis[p])continue; vis[p]=1; if(!white(p))continue;
+    d[p*4+3]=0;
+    const x=p%w,y=(p-x)/w;
+    if(x>0)st.push(p-1); if(x<w-1)st.push(p+1); if(y>0)st.push(p-w); if(y<h-1)st.push(p+w);
+  }
+  ctx.putImageData(id,0,0);
+  // bbox of opaque pixels
+  let minX=w,minY=h,maxX=0,maxY=0,any=false;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){if(d[(y*w+x)*4+3]>10){any=true;if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;}}
+  if(!any){minX=0;minY=0;maxX=w-1;maxY=h-1;}
+  const cw=maxX-minX+1,ch=maxY-minY+1,side=Math.max(cw,ch);
+  const out=document.createElement("canvas");out.width=760;out.height=760;
+  const octx=out.getContext("2d");
+  const scale=760/side;
+  octx.drawImage(c,minX,minY,cw,ch,(760-cw*scale)/2,(760-ch*scale)/2,cw*scale,ch*scale);
+  return out;
+}
+
+const grid=$("#grid");
+const cards={};
+PIZZAS.forEach(p=>{
+  const el=document.createElement("div");el.className="card";
+  el.innerHTML=`
+    <span class="badge todo" data-badge>To do</span>
+    <div class="thumb" data-thumb><span class="ph">no photo</span></div>
+    <div class="meta">
+      <p class="nm">${p.name}</p>
+      <p class="ing">${p.ingredients}</p>
+      <div class="row">
+        <button class="btn" data-copy>Copy prompt</button>
+        <label class="btn file" data-pick>Add photo<input type="file" accept="image/*"></label>
+        <button class="btn gold" data-up disabled>Upload</button>
+      </div>
+      <div class="preview" data-prev><canvas width="760" height="760"></canvas></div>
+      <div class="note" data-note></div>
+    </div>`;
+  grid.appendChild(el);
+  const refs={el,blob:null,
+    badge:el.querySelector("[data-badge]"),thumb:el.querySelector("[data-thumb]"),
+    note:el.querySelector("[data-note]"),prev:el.querySelector("[data-prev]"),
+    prevC:el.querySelector("canvas"),up:el.querySelector("[data-up]")};
+  cards[p.slug]=refs;
+
+  el.querySelector("[data-copy]").addEventListener("click",async()=>{
+    try{await navigator.clipboard.writeText(promptFor(p));toast("Prompt copied — paste & attach a reference");}
+    catch(e){
+      const ta=document.createElement("textarea");ta.value=promptFor(p);document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("Prompt copied");
+    }
+  });
+
+  el.querySelector("[data-pick] input").addEventListener("change",ev=>{
+    const f=ev.target.files[0]; if(!f)return;
+    refs.note.className="note"; refs.note.textContent="Processing…";
+    const img=new Image();
+    img.onload=()=>{
+      const out=knockout(img);
+      const pc=refs.prevC,pctx=pc.getContext("2d");
+      pctx.clearRect(0,0,760,760);
+      // cream backdrop so the cutout reads like the card
+      pctx.fillStyle="#efe7d6";pctx.fillRect(0,0,760,760);
+      pctx.drawImage(out,0,0);
+      refs.prev.classList.add("show");
+      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent="Background removed — review, then upload.";},"image/png");
+    };
+    img.onerror=()=>{refs.note.className="note err";refs.note.textContent="Couldn't read that image.";};
+    img.src=URL.createObjectURL(f);
+  });
+
+  refs.up.addEventListener("click",async()=>{
+    const key=tok.value.trim();
+    if(!key){refs.note.className="note err";refs.note.textContent="Enter the upload key up top first.";return;}
+    if(!refs.blob){return;}
+    refs.up.disabled=true; refs.note.className="note"; refs.note.textContent="Uploading…";
+    try{
+      const r=await fetch(WORKER+"/upload",{method:"POST",headers:{"X-Upload-Token":key,"X-Slug":p.slug,"Content-Type":"image/png"},body:refs.blob});
+      const j=await r.json().catch(()=>({}));
+      if(r.ok&&j.ok){
+        refs.note.className="note ok";refs.note.textContent="Live on the menu ✓";
+        markDone(p.slug);toast(p.name+" uploaded");
+      }else{
+        refs.up.disabled=false;refs.note.className="note err";
+        refs.note.textContent=r.status===401?"Wrong upload key.":("Failed: "+(j.error||r.status));
+      }
+    }catch(e){refs.up.disabled=false;refs.note.className="note err";refs.note.textContent="Network error.";}
+  });
+});
+
+function markDone(slug){
+  const c=cards[slug]; if(!c)return;
+  c.badge.className="badge done"; c.badge.textContent="Done";
+  c.thumb.innerHTML=`<img src="${WORKER}/img/${slug}.png?cb=${Date.now()}" alt="">`;
+}
+
+async function refresh(){
+  $("#prog").textContent="loading…";
+  try{
+    const r=await fetch(WORKER+"/list?cb="+Date.now());
+    const j=await r.json();
+    const set=new Set(j.slugs||[]);
+    let done=0;
+    PIZZAS.forEach(p=>{ if(set.has(p.slug)){done++;markDone(p.slug);} });
+    $("#prog").innerHTML=`<b>${done}</b> / ${PIZZAS.length} done`;
+  }catch(e){ $("#prog").textContent="offline"; }
+}
+$("#refresh").addEventListener("click",refresh);
+refresh();
+</script>
+</body>
+</html>

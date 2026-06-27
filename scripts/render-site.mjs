@@ -33,17 +33,12 @@ const approvedPhotos = new Map(
     : []
 );
 
-// Per-pizza "peek" art (real photos, white knocked out) shown on the clean
-// text cards. Unmapped pizzas fall back to the generic pepperoni peek until
-// their photo lands.
-const PEEK_BY_SLUG = {
-  'pepperoni': 'peek-pepperoni.png',
-  'little-litzas': 'peek-little-litzas.png',
-  'litzas-meatza': 'peek-litzas-meatza.png',
-  'kings-peak': 'peek-kings-peak.png',
-  'italian-carbonara': 'peek-italian-carbonara.png',
-  'spinach-artichoke': 'peek-spinach-artichoke.png',
-};
+// Per-pizza photos live in R2 (bucket litzas-menu) and are served by the
+// litzas-menu Worker. Cards point at R2 by slug; if a pizza has no photo yet
+// the <img> onerror falls back to the generic pepperoni peek. Upload new ones
+// at /studio/ — they appear on the next page load, no rebuild needed.
+const MENU_IMG_BASE = 'https://litzas-menu.ramonscottf.workers.dev/img';
+const PEEK_FALLBACK = '/assets/images/optimized/pizza-pepperoni-peek.png';
 
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
@@ -299,11 +294,10 @@ function pizzaCard(pizza, index, { numbered = false } = {}) {
 </article>`;
   }
 
-  // Text-only card — used while real food photography is pending. No empty
-  // photo box, no "in approval" stamp: a clean numbered gold-on-black tile.
-  const peekFile = PEEK_BY_SLUG[pizza.slug] || 'pizza-pepperoni-peek.png';
+  // Text-only card — clean numbered tile with a per-pizza photo "peek" pulled
+  // from R2 by slug; falls back to the generic pepperoni peek if none yet.
   return `<article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="/assets/images/optimized/${peekFile}" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(pizza.slug)}.png" onerror="this.onerror=null;this.src='${PEEK_FALLBACK}'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
     ${chip}
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
