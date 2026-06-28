@@ -2282,6 +2282,10 @@ html, body { background: var(--cream-1); }
 
 /* Slot holds the rails + their space in the page under the hero */
 .menu-rails-slot { width: calc(100% - 32px); max-width: 1080px; margin: 18px auto 22px; }
+/* Mobile: match the nav pill width exactly so the floating rails bar is the SAME
+   width as the pill before it docks (smooth, no width jump). Placed after the base
+   rule above so it wins the cascade over the earlier @media block. */
+@media (max-width: 780px) { .menu-rails-slot { width: calc(100% - 20px); } }
 
 /* Rails AT REST — dark glass bar under the hero. Same width + corner radius as
    the nav pill so the two read as one system when they stack. */
@@ -2358,7 +2362,7 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   width: clamp(150px, 44%, 205px);
   height: auto;
   transform: translate(30%, -42%);
-  filter: drop-shadow(0 9px 12px rgba(20, 12, 6, .30));
+  filter: drop-shadow(0 3px 4px rgba(15, 10, 5, .40)) drop-shadow(0 11px 18px rgba(20, 12, 6, .22));
   pointer-events: none;
   z-index: 1;
 }
