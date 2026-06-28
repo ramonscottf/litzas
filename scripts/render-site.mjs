@@ -712,11 +712,13 @@ function menuPage() {
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
     <h1 id="menu-h"><span class="ln">Hand-rolled dough.</span><span class="ln">Premium ingredients.</span><span class="ln">Unforgettable pizza.</span></h1>
-    <p>Prices update based on the size you pick up top. Browse, or jump to a section.</p>
+    <p>Twenty-four pizzas, hand-rolled every morning and baked the minute you order. Real mozzarella &mdash; never a blend &mdash; over a sauce we haven't changed since 1965. Add scratch-made salads and dressings, lasagna and spaghetti, and a frosted mug of Hires root beer next door. Sixty years on 400 South, and still the same recipe.</p>
   </div>
 </section>
 
 ${menuRails}
+
+<p class="menu-rails-note">Prices update based on the size you pick up top. Browse, or jump to a section.</p>
 
 <section class="dark-section" id="favorites">
   <div class="menu-band">

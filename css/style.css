@@ -410,8 +410,20 @@ em {
 }
 .page-hero h1 {
   max-width: 14ch;
-  font-size: clamp(52px, 9vw, 116px);
+  font-size: clamp(30px, 8vw, 88px);
+  line-height: 1.05;
   font-weight: 400;
+}
+/* Sublines render as another uniform Anton line so every page hero matches the menu hero */
+.page-hero h1 .slab {
+  display: block;
+  font-family: var(--display);
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--bone);
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  margin-top: 0;
 }
 .shop-hero h1 { max-width: 9ch; }
 
@@ -2372,6 +2384,17 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 /* Menu hero — force each sentence onto its own line, sized so the longest fits */
 #menu-h { font-size: clamp(30px, 8vw, 88px); line-height: 1.05; max-width: none; }
 #menu-h .ln { display: block; white-space: nowrap; }
+
+/* The "prices update / browse or jump" note, moved below the sticky rails */
+.menu-rails-note {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2px var(--gutter) 10px;
+  color: rgba(244, 237, 224, .52);
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: .01em;
+}
 
 /* Oswald accent (replaced the old Alfa Slab One) — give it presence */
 .slab { font-weight: 600; }
