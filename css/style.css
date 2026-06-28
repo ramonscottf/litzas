@@ -1670,6 +1670,7 @@ section { position: relative; }
 }
 .side-card.has-peek { position: relative; overflow: hidden; }
 .side-card.has-peek .side-name { padding-right: 30%; }
+.side-card.has-peek .toppings { padding-right: 30%; }
 .side-name {
   font-family: var(--display);
   font-size: 20px;
@@ -2267,6 +2268,7 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   z-index: 1;
 }
 .pizza-card.text-only .pizza-name { padding-right: 32%; }
+.pizza-card.text-only .toppings { padding-right: 32%; }
 
 /* Menu hero — force each sentence onto its own line, sized so the longest fits */
 #menu-h { font-size: clamp(30px, 8vw, 88px); line-height: 1.05; max-width: none; }
