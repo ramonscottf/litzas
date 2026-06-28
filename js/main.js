@@ -36,6 +36,22 @@
     window.addEventListener('scroll', updateNav, { passive: true });
   }
 
+  // Adaptive status-bar colour. Every page opens on a dark hero, then flows into
+  // cream content. Keep the iOS status-bar tint matched to whatever sits at the
+  // very top so there's no mismatched bar above the floating nav -- dark while the
+  // hero covers the top edge, cream once it's scrolled past.
+  const tcMeta = document.querySelector('meta[name="theme-color"]');
+  if (tcMeta) {
+    const heroEl = document.querySelector('.page-hero, .cinema-hero');
+    const updateThemeColor = () => {
+      const dark = heroEl ? heroEl.getBoundingClientRect().bottom > 8 : false;
+      tcMeta.setAttribute('content', dark ? '#0a0908' : '#f7f4ec');
+    };
+    updateThemeColor();
+    window.addEventListener('scroll', updateThemeColor, { passive: true });
+    window.addEventListener('resize', updateThemeColor, { passive: true });
+  }
+
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
