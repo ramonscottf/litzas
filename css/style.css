@@ -2503,3 +2503,21 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 .loc-status.is-closed .loc-status-pill { color: #9a2b22; border-color: rgba(176,42,30,.30); background: rgba(176,42,30,.07); }
 .loc-status.is-closed .dot { background: #c0392b; }
 .order-button.is-disabled { opacity: .82; }
+
+/* ── Dark cap over the very top on mobile ────────────────────────────────────
+   The nav is a floating pill with a small gap above it; once the dark hero
+   scrolls off, the cream page bg (and the iOS safe-area strip behind the status
+   bar) showed as a cream bar above the nav. This fills that strip with the same
+   dark as the nav + theme-color so the top reads as one dark band. Sits behind
+   the nav (z-index 100) and is shorter than it, so it never bleeds into content. */
+@media (max-width: 780px) {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: calc(env(safe-area-inset-top, 0px) + 16px);
+    background: var(--ink);
+    z-index: 90;
+    pointer-events: none;
+  }
+}
