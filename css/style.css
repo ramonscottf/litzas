@@ -2368,3 +2368,96 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 
 /* Oswald accent (replaced the old Alfa Slab One) — give it presence */
 .slab { font-weight: 600; }
+
+/* ============================================================
+   REVIEWS — real Google reviews (scroll + standout pull-quote)
+   ============================================================ */
+.rev-stars { display: inline-flex; color: #e6a92e; font-size: 15px; letter-spacing: 2px; line-height: 1; }
+.rev-stars-empty { color: rgba(41,39,42,.18); }
+.g-mark { flex: 0 0 auto; display: inline-block; vertical-align: middle; }
+
+/* Horizontal scroll of review cards (mirrors .fav-scroll) */
+.review-scroll {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 10px var(--gutter) 16px;
+  scroll-padding-left: var(--gutter);
+}
+.review-scroll::-webkit-scrollbar { display: none; }
+.review-card {
+  flex: 0 0 auto;
+  width: min(82vw, 358px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  background: var(--card-1, #fff);
+  border: 1px solid var(--rule-cm, rgba(41,39,42,.14));
+  border-radius: 20px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 10px 28px rgba(10,9,8,.06);
+}
+.review-card blockquote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.58;
+  color: var(--ink, #16140f);
+}
+.review-card blockquote::before { content: "\201C"; }
+.review-card blockquote::after { content: "\201D"; }
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-top: 4px;
+  font-size: 13px;
+  color: rgba(41,39,42,.62);
+}
+.review-meta .rev-who { font-weight: 600; color: rgba(41,39,42,.82); }
+.review-meta .rev-dot { opacity: .5; }
+
+/* Spacing for the reviews band on the locations page */
+.reviews-band .review-scroll { margin-top: clamp(20px, 3vw, 30px); }
+
+/* Standout pull-quote — drops a single review between sections */
+.review-standout {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 64px) var(--gutter);
+  text-align: center;
+}
+.review-standout-kicker {
+  font-family: var(--font-condensed, inherit);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold, #b18b5c);
+  margin: 0 0 14px;
+}
+.review-standout .rev-stars { font-size: 18px; margin-bottom: 14px; }
+.review-standout blockquote {
+  margin: 0;
+  font-size: clamp(20px, 3.4vw, 27px);
+  line-height: 1.34;
+  font-weight: 500;
+  color: var(--ink, #16140f);
+  letter-spacing: -.01em;
+}
+.review-standout blockquote::before { content: "\201C"; }
+.review-standout blockquote::after { content: "\201D"; }
+.review-standout-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  font-size: 14px;
+  color: rgba(41,39,42,.66);
+}

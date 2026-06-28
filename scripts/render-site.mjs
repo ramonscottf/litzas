@@ -7,6 +7,7 @@ import locationsData from '../data/locations.json' with { type: 'json' };
 import manifest from '../data/menu-photo-manifest.json' with { type: 'json' };
 import content from '../data/content.json' with { type: 'json' };
 import storePosts from '../data/posts.json' with { type: 'json' };
+import reviewsData from '../data/reviews.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -368,6 +369,41 @@ function locationMaps() {
   }).join('\n');
 }
 
+// ---- Reviews (REAL Google reviews from data/reviews.json) -------------------
+const REVIEWS = (reviewsData && reviewsData.reviews) || [];
+function reviewById(id) { return REVIEWS.find(r => r.id === id); }
+function reviewsFeatured(slot) { return REVIEWS.find(r => r.feature === slot); }
+
+function gMark() {
+  return `<svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>`;
+}
+function stars(n = 5) {
+  const k = Math.max(0, Math.min(5, Math.round(n)));
+  return `<span class="rev-stars" aria-label="${k} out of 5 stars" role="img">${'★'.repeat(k)}<span class="rev-stars-empty">${'★'.repeat(5 - k)}</span></span>`;
+}
+function reviewWho(r) { return r.author ? esc(r.author) : 'Google review'; }
+
+function reviewCard(r) {
+  return `<figure class="review-card">
+  ${stars(r.rating)}
+  <blockquote>${tc(r.quote)}</blockquote>
+  <figcaption class="review-meta">${gMark()}<span class="rev-who">${reviewWho(r)}</span><span class="rev-dot">·</span><span class="rev-loc">${esc(r.location)}</span></figcaption>
+</figure>`;
+}
+function reviewScroll(list = REVIEWS) {
+  if (!list.length) return '';
+  return `<div class="review-scroll">${list.map(reviewCard).join('\n')}</div>`;
+}
+function reviewStandout(r, kicker = 'What people say') {
+  if (!r) return '';
+  return `<aside class="review-standout reveal" aria-label="Customer review">
+  <p class="review-standout-kicker">${esc(kicker)}</p>
+  ${stars(r.rating)}
+  <blockquote>${tc(r.pull || r.quote)}</blockquote>
+  <p class="review-standout-meta">${gMark()}<span>${reviewWho(r)} · ${esc(r.location)}</span></p>
+</aside>`;
+}
+
 function homePage() {
   const featured = ['classic-litzas', 'litzas-meatza', 'spinach-artichoke', 'pepperoni', 'vegetarian', 'deluxe']
     .map((slug, i) => pizzaCard(pizzas.find((p) => p.slug === slug), i, { showPrice: false }))
@@ -465,6 +501,8 @@ function homePage() {
     </div>
   </div>
 </section>
+
+${reviewStandout(reviewsFeatured('home'), 'From the reviews')}
 
 <section class="warm-section" aria-labelledby="loc-h">
   <div class="section-kicker center tight reveal">
@@ -614,6 +652,8 @@ ${menuRails}
   </div>
 </section>
 
+${reviewStandout(reviewsFeatured('menu'), 'Why people keep coming back')}
+
 ${byoCards ? `<section class="warm-section" id="build">
   <div class="menu-band">
     <div class="menu-section-head reveal">
@@ -686,6 +726,16 @@ function locationsPage() {
   <div class="loc-band">
     <div class="loc-grid">${locationCards({ withOrderButton: true })}</div>
     <div class="loc-map-strip">${locationMaps()}</div>
+  </div>
+</section>
+
+<section class="warm-section reviews-band">
+  <div class="page-band">
+    <div class="section-kicker center reveal">
+      <p class="eyebrow">Reviews · Google</p>
+      <h2>Don't take our word for it.<span class="slab"> Take theirs.</span></h2>
+    </div>
+    ${reviewScroll()}
   </div>
 </section>
 

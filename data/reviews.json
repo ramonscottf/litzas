@@ -1,0 +1,41 @@
+{
+  "_note": "REAL Google reviews only. Pulled from the Litzas Google Business Profiles. Never invent reviews. `author` may be null when the name isn't on hand — it renders as 'Google review'. Add your standout favorites here (with first names if you have them). `feature` pulls a review out as a standout: 'menu' shows it on the menu page, 'home' on the homepage. `pull` is an optional shorter verbatim excerpt used for the standout placement.",
+  "reviews": [
+    {
+      "id": "slc-incredible",
+      "quote": "This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs. A great little local spot I've frequented since my youth, now shared with my kids.",
+      "pull": "The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs.",
+      "author": null,
+      "rating": 5,
+      "location": "Salt Lake City",
+      "source": "Google",
+      "feature": "menu"
+    },
+    {
+      "id": "midvale-best-valley",
+      "quote": "This is some of the BEST pizza in the SLC valley! \u2026 Emily is the BEST waitress here!!!",
+      "pull": "This is some of the BEST pizza in the SLC valley!",
+      "author": null,
+      "rating": 5,
+      "location": "Midvale",
+      "source": "Google",
+      "feature": "home"
+    },
+    {
+      "id": "slc-parents-grad",
+      "quote": "My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent. The server was so friendly. It was a great place to bring our family, and we all had a great time.",
+      "author": null,
+      "rating": 5,
+      "location": "Salt Lake City",
+      "source": "Google"
+    },
+    {
+      "id": "slc-great-vibes",
+      "quote": "I really enjoyed my experience at Litzas. Great vibes, kind staff and great food!",
+      "author": null,
+      "rating": 5,
+      "location": "Salt Lake City",
+      "source": "Google"
+    }
+  ]
+}
