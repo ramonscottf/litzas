@@ -459,7 +459,7 @@ function homePage() {
     <p>${tc(t('menu.body', 'A few favorites below. The full menu — with sizes and prices — is one click away.'))}</p>
   </div>
   <div class="menu-band">
-    <div class="menu-grid">
+    <div class="fav-scroll" data-fav-scroll>
       ${featured}
     </div>
     <div class="center-row" style="margin-top: 36px;">
@@ -526,10 +526,11 @@ function menuPage() {
       const priceBlock = (item.priceTiers && item.priceTiers.length)
         ? priceTierLines(item.priceTiers)
         : singlePriceLine((item.prices && item.prices[0]) || item.price);
-      const sidePhoto = item.slug
+      const hasPeek = item.slug && item.peek !== false;
+      const sidePhoto = hasPeek
         ? `<img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(item.slug)}.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">`
         : '';
-      parts.push(`<article class="side-card reveal${item.slug ? ' has-peek' : ''}">
+      parts.push(`<article class="side-card reveal${hasPeek ? ' has-peek' : ''}">
       ${sidePhoto}
       <div class="side-body">
         <h4 class="side-name">${esc(item.name)}</h4>

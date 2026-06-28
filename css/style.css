@@ -831,6 +831,31 @@ section { position: relative; }
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
+
+/* Home favorites — horizontal scroll-snap carousel. Cards are a fixed width and
+   the row bleeds to the screen edges, so the next card peeks off-screen and
+   invites a horizontal swipe. Scrollbar hidden; snap keeps cards aligned. */
+.fav-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 8px var(--gutter) 6px;
+  scroll-padding-left: var(--gutter);
+}
+.fav-scroll::-webkit-scrollbar { display: none; }
+.fav-scroll > .pizza-card {
+  flex: 0 0 auto;
+  width: min(80vw, 320px);
+  scroll-snap-align: start;
+}
+@media (min-width: 720px) {
+  .fav-scroll > .pizza-card { width: 320px; }
+}
 .pizza-card {
   position: relative;
   background: linear-gradient(180deg, var(--ink-3), var(--ink-2));

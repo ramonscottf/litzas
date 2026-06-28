@@ -406,7 +406,8 @@
               "price": "9.75"
             }
           ],
-          "slug": "garden-salad"
+          "slug": "garden-salad",
+          "peek": false
         },
         {
           "name": "Chef Salad",
@@ -421,7 +422,8 @@
               "price": "16.75"
             }
           ],
-          "slug": "chef-salad"
+          "slug": "chef-salad",
+          "peek": false
         },
         {
           "name": "Garlic Bread",
@@ -534,7 +536,8 @@
               "price": "+7.00"
             }
           ],
-          "slug": "spaghetti"
+          "slug": "spaghetti",
+          "peek": false
         },
         {
           "name": "Kid Kaper Meal",
@@ -556,7 +559,8 @@
               "price": "+7.00"
             }
           ],
-          "slug": "lasagna"
+          "slug": "lasagna",
+          "peek": false
         },
         {
           "name": "Calzone",
