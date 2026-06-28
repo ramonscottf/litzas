@@ -593,8 +593,6 @@ section { position: relative; }
 }
 .section-kicker.center p { margin-inline: auto; }
 
-/* Home menu header was hugging the screen edge — inset it like the page gutter. */
-#home-menu .section-kicker { padding-inline: var(--gutter); }
 /* Location headline: force onto two lines and tighten the gap beneath it. */
 .section-kicker.tight { margin-bottom: clamp(20px, 3vw, 32px); }
 #loc-h .slab { display: block; }
@@ -773,25 +771,26 @@ section { position: relative; }
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(16px, 3vw, 30px);
-  align-items: center;
 }
 @media (min-width: 620px) {
-  .hires-bridge .copy { grid-template-columns: 1.35fr 1fr; padding: 44px 44px; }
+  .hires-bridge .copy { padding: 44px 44px; }
 }
 .hires-bridge .copy-text { min-width: 0; }
+/* Foot row: button + mug. On mobile the mug tucks into the bottom-right corner
+   under the button; on desktop they sit side-by-side, mug off to the right. */
+.hires-foot { display: flex; flex-direction: column; align-items: stretch; gap: clamp(14px, 3vw, 20px); margin-top: clamp(22px, 4vw, 30px); }
+.hires-foot .button-row { margin: 0; }
 .hires-mug {
-  display: block;
-  width: auto;
+  align-self: flex-end;
+  width: clamp(124px, 33vw, 160px);
   height: auto;
-  max-width: 100%;
-  max-height: 240px;
-  margin: 0 auto;
-  filter: drop-shadow(0 12px 18px rgba(20, 12, 6, .26));
+  margin-bottom: clamp(-14px, -2vw, -2px);
+  filter: drop-shadow(0 10px 16px rgba(20, 12, 6, .30));
+  pointer-events: none;
 }
-@media (min-width: 620px) { .hires-mug { max-height: 300px; } }
+@media (min-width: 620px) {
+  .hires-foot { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: clamp(16px, 3vw, 28px); }
+}
 .hires-bridge .copy::before {
   content: "";
   position: absolute;
@@ -874,6 +873,34 @@ section { position: relative; }
 }
 @media (min-width: 720px) {
   .fav-scroll > .pizza-card { width: 320px; }
+}
+
+/* Wide landscape banner image — mural in the story teaser, dough in the menu intro. */
+.wide-banner {
+  margin: clamp(24px, 3vw, 34px) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--rule);
+}
+.wide-banner img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+/* A landscape figure inside an image-stack (e.g. the wall sign) — show it wide
+   so nothing important gets cropped by the default portrait ratio. */
+.sticky-story .image-stack figure.wide-fig img { aspect-ratio: 4 / 3; }
+
+/* Sixty-years teaser — single column, mural sits inline between headline and copy. */
+.sticky-story.story-solo { grid-template-columns: 1fr; max-width: 880px; }
+.sticky-story.story-solo .copy { position: static; }
+.sticky-story.story-solo .wide-banner { margin: clamp(26px, 3.5vw, 40px) 0; }
+
+/* Menu intro — header beside the dough on desktop, dough beneath it on mobile. */
+.menu-intro { max-width: var(--max); margin: 0 auto; padding: clamp(48px, 6vw, 80px) var(--gutter) 0; }
+.menu-intro .section-kicker { margin-bottom: 0; padding-inline: 0; }
+.menu-dough { margin: clamp(22px, 4vw, 30px) 0 0; }
+.menu-dough img { aspect-ratio: 4 / 3; }
+@media (min-width: 860px) {
+  .menu-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 4vw, 60px); align-items: center; }
+  .menu-dough { margin: 0; }
 }
 .pizza-card {
   position: relative;

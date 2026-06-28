@@ -427,10 +427,13 @@ function homePage() {
 </section>
 
 <section class="warm-section" aria-labelledby="story-tease-h">
-  <div class="sticky-story">
+  <div class="sticky-story story-solo">
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('story.eyebrow', 'Sixty years on 400 South'))}</p>
       <h2 id="story-tease-h">${tc(t('story.headline', 'Walk in.'))}<span class="slab">${tc(t('story.headline_slab', 'Order. Sit down.'))}</span></h2>
+      <figure class="wide-banner reveal">
+        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the Salt Lake City restaurant" loading="lazy">
+      </figure>
       <p>${tc(t('story.p1', 'There’s a building on East 400 South that’s been making the same pizza for sixty years. Sticky booths in the best way. The cheese pulls. The cut is still done by hand. On Friday nights the line goes out the door and nobody complains, because the food is worth it.'))}</p>
       <p>${tc(t('story.p2', 'Litzas isn’t a date-night place. It’s not a reservation place. It’s the place your dad took you. It’s where the team eats after the game. It’s the one your kids will bring their kids to.'))}</p>
       <p>${tc(t('story.p3', 'You don’t need a menu to know what you want. But there is one if you want it.'))}</p>
@@ -439,24 +442,19 @@ function homePage() {
         <a href="/menu/" class="btn btn-ghost">${tc(t('story.cta_secondary', 'Open the Menu'))}</a>
       </div>
     </div>
-    <div class="image-stack">
-      <figure class="reveal">
-        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the Salt Lake City restaurant" loading="lazy">
-        <figcaption>SLC &middot; 400 South</figcaption>
-      </figure>
-      <figure class="reveal">
-        <img src="/assets/images/optimized/dough-hands.jpg" alt="Hands rolling fresh pizza dough on flour" loading="lazy">
-        <figcaption>Hand-rolled crust, made to order</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
 <section class="dark-section" id="home-menu" aria-labelledby="menu-tease-h">
+  <div class="menu-intro">
   <div class="section-kicker reveal">
     <p class="eyebrow">${tc(t('menu.eyebrow', 'The Menu'))}</p>
     <h2 id="menu-tease-h">${tc(t('menu.headline', 'Twenty-four pizzas.'))}<span class="slab">${tc(t('menu.headline_slab', ' Hand-rolled crust. Made to order.'))}</span></h2>
     <p>${tc(t('menu.body', 'A few favorites below. The full menu — with sizes and prices — is one click away.'))}</p>
+  </div>
+  <figure class="wide-banner menu-dough reveal">
+    <img src="/assets/images/optimized/dough-hands.jpg" alt="Hands rolling fresh pizza dough on flour" loading="lazy">
+  </figure>
   </div>
   <div class="menu-band">
     <div class="fav-scroll" data-fav-scroll>
@@ -486,11 +484,13 @@ function homePage() {
         <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
         <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
         <p>${tc(t('bridge.p1', 'In Salt Lake, we share a parking lot with Hires Big H. In Midvale, we share the building — same family runs both. Order a frosted mug of Hires root beer to go with your pizza.'))}</p>
+      </div>
+      <div class="hires-foot">
         <div class="button-row">
           <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
         </div>
+        <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
       </div>
-      <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
     </div>
   </div>
 </section>`);
@@ -590,7 +590,7 @@ function menuPage() {
 
   return layout({
     current: '/menu/',
-    title: 'Menu · Litzas Pizza · Salt Lake City &amp; Midvale',
+    title: 'Menu · Litzas Pizza · Salt Lake City & Midvale',
     description: 'Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.'
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
@@ -670,7 +670,7 @@ ${byoCards ? `<section class="warm-section" id="build">
 function locationsPage() {
   return layout({
     current: '/locations/',
-    title: 'Litzas Pizza Locations · Salt Lake City &amp; Midvale',
+    title: 'Litzas Pizza Locations · Salt Lake City & Midvale',
     description: 'Visit Litzas Pizza at 716 East 400 South in Salt Lake City, or 835 East Fort Union Boulevard in Midvale.'
   }, `
 <section class="page-hero" aria-labelledby="loc-page-h">
@@ -773,6 +773,10 @@ function storyPage() {
       <p>${tc(t('storypg.place.p2','It’s the place you went after the game. The place your parents took you on Friday. The place where the same song’s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.'))}</p>
     </div>
     <div class="image-stack">
+      <figure class="reveal wide-fig">
+        <img src="/assets/images/optimized/litzas-slc-wall-sign.jpg" alt="Litzas Pizza Salt Lake City sign on the wood-panel wall inside the dining room" loading="lazy">
+        <figcaption>The wall when you walk in</figcaption>
+      </figure>
       <figure class="reveal">
         <img src="/assets/images/optimized/litzas-night-sign.jpg" alt="Litzas and Hires Big H sign glowing at night on East 400 South" loading="lazy">
         <figcaption>SLC &middot; 400 South, after dark</figcaption>
@@ -1104,7 +1108,7 @@ function jobsPage() {
 function cateringPage() {
   return layout({
     current: '/catering/',
-    title: 'Litzas Pizza Catering · Salt Lake City &amp; Midvale',
+    title: 'Litzas Pizza Catering · Salt Lake City & Midvale',
     description: 'Catering for offices, schools, teams, weddings, and family gatherings. Big pizza orders, gluten-free options, and the SLC back room for up to 40 guests.'
   }, `
 <section class="page-hero" aria-labelledby="catering-h">
