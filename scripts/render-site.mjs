@@ -523,7 +523,11 @@ function menuPage() {
       const priceBlock = (item.priceTiers && item.priceTiers.length)
         ? priceTierLines(item.priceTiers)
         : singlePriceLine((item.prices && item.prices[0]) || item.price);
-      parts.push(`<article class="side-card reveal">
+      const sidePhoto = item.slug
+        ? `<div class="side-photo"><img src="${MENU_IMG_BASE}/${esc(item.slug)}.png" onerror="this.parentElement.remove()" alt="" loading="lazy"></div>`
+        : '';
+      parts.push(`<article class="side-card reveal${item.slug ? ' has-photo' : ''}">
+      ${sidePhoto}
       <div class="side-body">
         <h4 class="side-name">${esc(item.name)}</h4>
         ${desc ? `<p class="toppings">${esc(desc)}</p>` : ''}

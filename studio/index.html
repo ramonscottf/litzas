@@ -85,7 +85,7 @@
     <ol>
       <li><b>Copy prompt</b> on a pizza → paste it into your image generator, and attach one of the finished pizza photos as the style reference.</li>
       <li>Save the image it makes to your iPad.</li>
-      <li>Back here, tap <b>Add photo</b> on that pizza, pick the image. It auto-removes the white background — check the preview.</li>
+      <li>Back here, tap <b>Add photo</b> on that item, pick the image. Pizzas get the white background removed automatically; plated dishes (salads, spaghetti, lasagna) keep their plate — check the preview.</li>
       <li>Tap <b>Upload</b>. It lands in R2 and shows on the live menu on the next refresh. No rebuild.</li>
     </ol>
   </div>
@@ -96,6 +96,7 @@
       <button class="chip" data-cat="red">Red sauce</button>
       <button class="chip" data-cat="white">White / garlic</button>
       <button class="chip" data-cat="specialty">Specialty</button>
+      <button class="chip" data-cat="side">Sides &amp; salads</button>
     </div>
     <button class="btn gold dl" id="dlall" disabled>⬇ Download (0)</button>
   </div>
@@ -104,7 +105,7 @@
 
   <footer>
     Photos go to the <b>litzas-menu</b> R2 bucket and serve straight onto litzas.wickowaypoint.com.<br>
-    Already finished: Pepperoni, Little Litzas, Litzas Meatza, Kings Peak, Italian Carbonara, Spinach Artichoke.
+    24 pizzas plus sides &amp; salads. Pizzas get a transparent cut-out; plated dishes keep their plate.
   </footer>
 </div>
 <div class="toast" id="toast"></div>
@@ -137,12 +138,19 @@ const PIZZAS = [
   {slug:"vegetarian",name:"Vegetarian",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple."},
   {slug:"traditional",name:"Traditional",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of one meat."},
   {slug:"deluxe",name:"Deluxe",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats."},
+  {slug:"garden-salad",name:"Garden Salad",cat:"side",ingredients:"Crisp iceberg and red leaf lettuce, purple cabbage, ripe tomatoes, red beets, home-style croutons, and your choice of dressing."},
+  {slug:"chef-salad",name:"Chef Salad",cat:"side",ingredients:"A garden salad plus black olives, Monterey Jack and cheddar cheeses, Danish ham, and roasted turkey."},
+  {slug:"garlic-bread",name:"Garlic Bread",cat:"side",ingredients:"Thick toasted bread brushed with house garlic butter."},
+  {slug:"cheese-garlic-bread",name:"Cheese Garlic Bread",cat:"side",ingredients:"Garlic bread topped with melted mozzarella."},
+  {slug:"spaghetti",name:"Spaghetti",cat:"side",ingredients:"Traditional noodles with Litzas spaghetti sauce, made with pork."},
+  {slug:"lasagna",name:"Lasagna",cat:"side",ingredients:"Layered with Litzas ricotta and mozzarella blend, spaghetti sauce, and ground beef."},
+  {slug:"calzone",name:"Calzone",cat:"side",ingredients:"A turnover with pizza sauce, mozzarella, ricotta, and your choice of three toppings (excludes seasoned ground beef)."},
 ];
 
 const CAT_WHITE=["garlic-cheese","italian-carbonara","lone-peak","spinach-artichoke","five-cheese"];
 const CAT_SPECIAL=["western-bbq","mt-olympus"];
-PIZZAS.forEach(p=>{p.cat=CAT_WHITE.includes(p.slug)?"white":CAT_SPECIAL.includes(p.slug)?"specialty":"red";});
-const CAT_LABEL={all:"all",red:"red sauce",white:"white",specialty:"specialty"};
+PIZZAS.forEach(p=>{ if(!p.cat) p.cat=CAT_WHITE.includes(p.slug)?"white":CAT_SPECIAL.includes(p.slug)?"specialty":"red"; });
+const CAT_LABEL={all:"all",red:"red sauce",white:"white",specialty:"specialty",side:"sides"};
 const doneSet=new Set();
 let activeCat="all";
 
@@ -153,6 +161,15 @@ tok.addEventListener("input",()=>localStorage.setItem("litzas_menu_key",tok.valu
 const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),1900);};
 
 function promptFor(p){
+  if(p.cat==="side"){
+    return `Create a photorealistic straight-overhead (90°) menu photo of ${p.name}, plated on a plain round white plate on a plain solid white seamless background.
+
+STYLE — match the exact plating, lighting, crop, and style of the reference photo I'm attaching: soft even lighting, no harsh shadows, no props, the plate centered and filling most of the frame.
+
+THE DISH: ${p.ingredients}
+
+Do NOT include text, logos, labels, hands, or utensils. Keep the background pure white.`;
+  }
   return `Create a photorealistic top-down menu photo of a single whole ${p.name} pizza.
 
 STYLE — match the reference photo I'm attaching exactly: a straight 90° overhead view, the whole round pizza centered and filling the frame on a plain solid white seamless background (no plate, no table, no props), soft even lighting with no harsh shadows, a medium-thick golden hand-rolled crust with realistic browning, and melted, lightly browned mozzarella.
@@ -191,6 +208,15 @@ function knockout(img){
   const scale=760/side;
   octx.drawImage(c,minX,minY,cw,ch,(760-cw*scale)/2,(760-ch*scale)/2,cw*scale,ch*scale);
   return out;
+}
+
+// ---- plated sides: resize only, keep the plate (no knockout) ----
+function resizeOnly(img,max=1000){
+  let w=img.naturalWidth,h=img.naturalHeight;
+  if(Math.max(w,h)>max){const s=max/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s);}
+  const c=document.createElement("canvas");c.width=w;c.height=h;
+  c.getContext("2d").drawImage(img,0,0,w,h);
+  return c;
 }
 
 const grid=$("#grid");
@@ -238,14 +264,15 @@ PIZZAS.forEach(p=>{
     refs.note.className="note"; refs.note.textContent="Processing…";
     const img=new Image();
     img.onload=()=>{
-      const out=knockout(img);
+      const isSide=p.cat==="side";
+      const out=isSide?resizeOnly(img,1000):knockout(img);
       const pc=refs.prevC,pctx=pc.getContext("2d");
       pctx.clearRect(0,0,760,760);
-      // cream backdrop so the cutout reads like the card
-      pctx.fillStyle="#efe7d6";pctx.fillRect(0,0,760,760);
-      pctx.drawImage(out,0,0);
+      pctx.fillStyle=isSide?"#ffffff":"#efe7d6";pctx.fillRect(0,0,760,760);
+      const sc=Math.min(760/out.width,760/out.height),dw=out.width*sc,dh=out.height*sc;
+      pctx.drawImage(out,(760-dw)/2,(760-dh)/2,dw,dh);
       refs.prev.classList.add("show");
-      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent="Background removed — review, then upload.";},"image/png");
+      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent=isSide?"Ready — review, then upload.":"Background removed — review, then upload.";},"image/png");
     };
     img.onerror=()=>{refs.note.className="note err";refs.note.textContent="Couldn't read that image.";};
     img.src=URL.createObjectURL(f);
