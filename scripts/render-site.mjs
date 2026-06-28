@@ -524,9 +524,9 @@ function menuPage() {
         ? priceTierLines(item.priceTiers)
         : singlePriceLine((item.prices && item.prices[0]) || item.price);
       const sidePhoto = item.slug
-        ? `<div class="side-photo"><img src="${MENU_IMG_BASE}/${esc(item.slug)}.png" onerror="this.parentElement.remove()" alt="" loading="lazy"></div>`
+        ? `<img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(item.slug)}.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">`
         : '';
-      parts.push(`<article class="side-card reveal${item.slug ? ' has-photo' : ''}">
+      parts.push(`<article class="side-card reveal${item.slug ? ' has-peek' : ''}">
       ${sidePhoto}
       <div class="side-body">
         <h4 class="side-name">${esc(item.name)}</h4>

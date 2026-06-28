@@ -85,7 +85,7 @@
     <ol>
       <li><b>Copy prompt</b> on a pizza → paste it into your image generator, and attach one of the finished pizza photos as the style reference.</li>
       <li>Save the image it makes to your iPad.</li>
-      <li>Back here, tap <b>Add photo</b> on that item, pick the image. Pizzas get the white background removed automatically; plated dishes (salads, spaghetti, lasagna) keep their plate — check the preview.</li>
+      <li>Back here, tap <b>Add photo</b> on that item, pick the image. Pizzas get the white background removed; plated dishes (salads, spaghetti, lasagna) get cropped to their round plate — check the preview.</li>
       <li>Tap <b>Upload</b>. It lands in R2 and shows on the live menu on the next refresh. No rebuild.</li>
     </ol>
   </div>
@@ -105,7 +105,7 @@
 
   <footer>
     Photos go to the <b>litzas-menu</b> R2 bucket and serve straight onto litzas.wickowaypoint.com.<br>
-    24 pizzas plus sides &amp; salads. Pizzas get a transparent cut-out; plated dishes keep their plate.
+    24 pizzas plus sides &amp; salads. Pizzas are cut out; plated dishes are cropped to a round plate. Both peek from the corner.
   </footer>
 </div>
 <div class="toast" id="toast"></div>
@@ -210,13 +210,22 @@ function knockout(img){
   return out;
 }
 
-// ---- plated sides: resize only, keep the plate (no knockout) ----
-function resizeOnly(img,max=1000){
+// ---- plated sides: crop the round plate to a transparent disc (peeks like a pizza) ----
+function circularCrop(img,thr=245,pad=1.04,size=760){
   let w=img.naturalWidth,h=img.naturalHeight;
-  if(Math.max(w,h)>max){const s=max/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s);}
+  const cap=1200; if(Math.max(w,h)>cap){const s=cap/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s);}
   const c=document.createElement("canvas");c.width=w;c.height=h;
   c.getContext("2d").drawImage(img,0,0,w,h);
-  return c;
+  const d=c.getContext("2d").getImageData(0,0,w,h).data;
+  let x0=w,y0=h,x1=0,y1=0,any=false;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4; if(Math.max(d[i],d[i+1],d[i+2])<thr){any=true;if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}
+  if(!any){x0=0;y0=0;x1=w-1;y1=h-1;}
+  const cx=(x0+x1)/2,cy=(y0+y1)/2,r=0.5*Math.max(x1-x0,y1-y0)*pad;
+  const out=document.createElement("canvas");out.width=size;out.height=size;
+  const o=out.getContext("2d");
+  o.save();o.beginPath();o.arc(size/2,size/2,size/2,0,Math.PI*2);o.clip();
+  o.drawImage(c, cx-r, cy-r, 2*r, 2*r, 0,0,size,size);o.restore();
+  return out;
 }
 
 const grid=$("#grid");
@@ -265,14 +274,13 @@ PIZZAS.forEach(p=>{
     const img=new Image();
     img.onload=()=>{
       const isSide=p.cat==="side";
-      const out=isSide?resizeOnly(img,1000):knockout(img);
+      const out=isSide?circularCrop(img):knockout(img);
       const pc=refs.prevC,pctx=pc.getContext("2d");
       pctx.clearRect(0,0,760,760);
-      pctx.fillStyle=isSide?"#ffffff":"#efe7d6";pctx.fillRect(0,0,760,760);
-      const sc=Math.min(760/out.width,760/out.height),dw=out.width*sc,dh=out.height*sc;
-      pctx.drawImage(out,(760-dw)/2,(760-dh)/2,dw,dh);
+      pctx.fillStyle="#efe7d6";pctx.fillRect(0,0,760,760);
+      pctx.drawImage(out,0,0,760,760);
       refs.prev.classList.add("show");
-      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent=isSide?"Ready — review, then upload.":"Background removed — review, then upload.";},"image/png");
+      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent=isSide?"Plate cut to a round disc — review, then upload.":"Background removed — review, then upload.";},"image/png");
     };
     img.onerror=()=>{refs.note.className="note err";refs.note.textContent="Couldn't read that image.";};
     img.src=URL.createObjectURL(f);

@@ -1668,14 +1668,8 @@ section { position: relative; }
   border-color: var(--rule-gold);
   transform: translateY(-2px);
 }
-.side-card.has-photo { display: flex; gap: 16px; align-items: flex-start; }
-.side-card.has-photo .side-body { flex: 1; min-width: 0; }
-.side-photo {
-  flex: 0 0 92px; width: 92px; height: 92px;
-  border-radius: 14px; overflow: hidden; background: #fff;
-  border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center;
-}
-.side-photo img { width: 100%; height: 100%; object-fit: contain; }
+.side-card.has-peek { position: relative; overflow: hidden; }
+.side-card.has-peek .side-name { padding-right: 30%; }
 .side-name {
   font-family: var(--display);
   font-size: 20px;
