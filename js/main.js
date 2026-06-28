@@ -307,6 +307,7 @@
         }
         if (labelEl) labelEl.textContent = label;
       });
+      document.querySelectorAll('.byo-size-label').forEach((el) => { el.textContent = SIZE_LABELS[size] || ''; });
     };
     sizeTabBlocks.forEach((block) => {
       block.addEventListener('click', (ev) => {

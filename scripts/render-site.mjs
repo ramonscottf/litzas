@@ -500,9 +500,38 @@ function menuPage() {
   // Pizzas — multi-size cards, numbered 01–24 like the printed menu
   const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i, { numbered: true })).join('\n');
 
-  // Build-Your-Own — multi-size (uses same shape as pizzas)
-  const byo = (menu.categories.find((c) => c.id === 'create-your-own') || {}).items || [];
-  const byoCards = byo.map((item, i) => pizzaCard(item, i)).join('\n');
+  // Build-Your-Own — one clean card: cheese photo, the topping bar, and a
+  // price row per build tier. Each amount carries all four sizes as data attrs
+  // (padded by priceLine's rule) so the sticky size-tabs update them live.
+  const byoCat = menu.categories.find((c) => c.id === 'create-your-own') || {};
+  const byo = byoCat.items || [];
+  const byoTops = byoCat.toppings || {};
+  const byoTierRow = (item) => {
+    const four = [...(item.prices || [])].slice(0, 4);
+    if (!four.length) return '';
+    while (four.length < 4) four.push(four[four.length - 1] || '');
+    const dataAttrs = SIZE_KEYS.map((k, i) => `data-price-${k}="${esc(four[i])}"`).join(' ');
+    const shown = String(four[SIZE_KEYS.indexOf(DEFAULT_SIZE)] ?? '');
+    const amount = shown.startsWith('+') ? `+$${shown.slice(1)}` : `$${shown}`;
+    const note = item.description ? `<span class="tier-note"> · ${esc(item.description)}</span>` : '';
+    return `<li><span class="tier-label">${esc(item.name)}${note}</span><span class="pizza-price" ${dataAttrs}><span class="price-amount">${esc(amount)}</span></span></li>`;
+  };
+  const byoTopGroup = (label, arr) => (arr && arr.length)
+    ? `<div class="byo-topgroup"><span class="byo-toplabel">${esc(label)}</span><span class="byo-toplist">${esc(arr.join(', '))}</span></div>`
+    : '';
+  const byoCards = byo.length ? `<article class="side-card has-peek byo-card reveal">
+    <img class="pizza-peek" src="${MENU_IMG_BASE}/cheese.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+    <div class="byo-body">
+      <h3 class="side-name">Build Your Own</h3>
+      <div class="byo-toppings">
+        ${byoTopGroup('Sauces & Cheeses', byoTops.saucesAndCheeses)}
+        ${byoTopGroup('Meats', byoTops.meats)}
+        ${byoTopGroup('Veggies', byoTops.vegetables)}
+      </div>
+      <p class="byo-price-head">Per pizza · <span class="byo-size-label">${esc(SIZE_LABELS[DEFAULT_SIZE])}</span></p>
+      <ul class="price-tiers byo-tiers">${byo.map(byoTierRow).join('')}</ul>
+    </div>
+  </article>` : '';
 
   // True counts, surfaced as small chips next to the section heads.
   const countOf = (catId) => ((menu.categories.find((c) => c.id === catId) || {}).items || []).length;
@@ -593,7 +622,7 @@ ${byoCards ? `<section class="warm-section" id="build">
       <h2>Build Your Own ${countChip(countOf("create-your-own"), "ways")}</h2>
       <p>Start with a crust, add what you want.</p>
     </div>
-    <div class="menu-grid">${byoCards}</div>
+    <div class="byo-single">${byoCards}</div>
   </div>
 </section>` : ''}
 
