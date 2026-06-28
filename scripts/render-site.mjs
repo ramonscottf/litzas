@@ -1069,9 +1069,26 @@ const postBodies = {
 
 function blogPostPages() {
   const fmtDate = (d) => { try { return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); } catch(e){ return d || ''; } };
-  // markdown-lite: split body on blank lines into paragraphs
-  const bodyHtml = (raw) => String(raw || '').trim().split(/\n\s*\n/).map((para, i) =>
-    `<p${i === 0 ? ' class="lead"' : ''}>${tc(para.trim())}</p>`).join('\n');
+  // markdown-lite: blank-line paragraphs, plus "## " headings, "- " bullet lists,
+  // [text](url) links, and **bold**. Everything is tc()-escaped FIRST; only these
+  // specific patterns then emit tags, so store copy still can't inject arbitrary
+  // HTML (and link URLs are restricted to http(s)/relative/anchor/mailto).
+  const inlineMd = (s) => tc(s)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, text, url) => {
+      if (!/^(https?:\/\/|\/|#|mailto:)/i.test(url)) return text;
+      const ext = /^https?:\/\//i.test(url);
+      return `<a href="${url}"${ext ? ' target="_blank" rel="noopener"' : ''}>${text}</a>`;
+    });
+  const bodyHtml = (raw) => String(raw || '').trim().split(/\n\s*\n/).map((block, i) => {
+    const b = block.trim();
+    if (b.startsWith('## ')) return `<h2>${inlineMd(b.slice(3).trim())}</h2>`;
+    const lines = b.split('\n');
+    if (lines.length && lines.every((l) => l.trim().startsWith('- '))) {
+      return `<ul>${lines.map((l) => `<li>${inlineMd(l.trim().slice(2).trim())}</li>`).join('')}</ul>`;
+    }
+    return `<p${i === 0 ? ' class="lead"' : ''}>${inlineMd(b)}</p>`;
+  }).join('\n');
   const storeSlugs = new Set((storePosts || []).map((p) => p.slug));
   const storePages = (storePosts || []).map((p) => ({
     path: `blog/${p.slug}/index.html`,
