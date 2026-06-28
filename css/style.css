@@ -2468,3 +2468,19 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   font-size: 14px;
   color: rgba(41,39,42,.66);
 }
+
+/* ── Blog / story article: dark, readable text on cream ──────────────────────
+   These pages were styled for a dark background (light --bone headings, gold
+   body). The site is cream now, so remap the inherited vars to their cream
+   equivalents — the same trick the content sections use — and override the one
+   hardcoded light paragraph colour. */
+.post-article {
+  color: var(--char);
+  --bone: var(--char);
+  --gold-bright: var(--gink);
+}
+.post-article p { color: var(--char); }
+.post-article .post-meta { color: var(--gink); }
+
+/* Blog index / story-teaser cards: excerpt was light cream too. */
+.post-card .excerpt { color: var(--char-2); }
