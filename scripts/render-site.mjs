@@ -1,4 +1,5 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import menu from '../data/menu.json' with { type: 'json' };
@@ -8,6 +9,15 @@ import content from '../data/content.json' with { type: 'json' };
 import storePosts from '../data/posts.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+
+// Cache-bust CSS/JS by content hash. style.css ships with max-age=14400, so
+// without a versioned URL Safari serves a stale stylesheet for hours over the
+// always-fresh HTML — which is exactly how the side-photo peeks looked
+// "unclipped/floating" on a phone after the clipping fix had already shipped.
+// Hash changes only when the asset changes, so it busts precisely when needed.
+const assetVer = (rel) => createHash('sha1').update(readFileSync(join(root, rel))).digest('hex').slice(0, 8);
+const cssVer = assetVer('css/style.css');
+const jsVer = assetVer('js/main.js');
 
 // t(key, fallback): editable copy from the Foster Content Store (edit.fosterlabs.org).
 // Ali edits these values; `fallback` is the original baked-in text so a missing
@@ -220,7 +230,7 @@ function footer() {
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
-<script src="/js/main.js" defer></script>`;
+<script src="/js/main.js?v=${jsVer}" defer></script>`;
 }
 
 function head({ title, description, current = '', navStack = '' }) {
@@ -240,7 +250,7 @@ function head({ title, description, current = '', navStack = '' }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=${cssVer}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
