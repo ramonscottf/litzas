@@ -2484,3 +2484,22 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 
 /* Blog index / story-teaser cards: excerpt was light cream too. */
 .post-card .excerpt { color: var(--char-2); }
+
+/* ── Live open/closed status on location cards ───────────────────────────────
+   Populated by js/main.js from window.__LITZAS against store-local time. Pill
+   shows Open/Closed; muted line gives the next change. */
+.loc-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 2px 0 16px; }
+.loc-status-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 12px; border-radius: 999px;
+  font-family: var(--label); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; line-height: 1;
+  border: 1px solid var(--rule-cm); background: var(--cream-2); color: var(--char);
+}
+.loc-status .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.loc-status-sub { font-size: 12.5px; color: var(--char-2); letter-spacing: .01em; }
+.loc-status.is-open  .loc-status-pill { color: #246b2c; border-color: rgba(46,125,50,.34); background: rgba(46,125,50,.09); }
+.loc-status.is-open  .dot { background: #2e7d32; box-shadow: 0 0 0 3px rgba(46,125,50,.16); }
+.loc-status.is-closed .loc-status-pill { color: #9a2b22; border-color: rgba(176,42,30,.30); background: rgba(176,42,30,.07); }
+.loc-status.is-closed .dot { background: #c0392b; }
+.order-button.is-disabled { opacity: .82; }

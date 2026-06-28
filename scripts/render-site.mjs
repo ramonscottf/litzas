@@ -8,6 +8,7 @@ import manifest from '../data/menu-photo-manifest.json' with { type: 'json' };
 import content from '../data/content.json' with { type: 'json' };
 import storePosts from '../data/posts.json' with { type: 'json' };
 import reviewsData from '../data/reviews.json' with { type: 'json' };
+import orderLinks from '../data/order-links.json' with { type: 'json' };
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -112,6 +113,65 @@ function hoursFor(locId, fallbackRows) {
   }
   return rows;
 }
+
+// ── Live open/closed status ────────────────────────────────────────────────
+// parseClock("11:00 am") -> minutes since midnight (660). null if unparseable.
+function parseClock(s) {
+  if (!s) return null;
+  const m = String(s).trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m?\.?$/i);
+  if (!m) return null;
+  let h = parseInt(m[1], 10) % 12;
+  if (m[3].toLowerCase() === 'p') h += 12;
+  return h * 60 + (m[2] ? parseInt(m[2], 10) : 0);
+}
+const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']; // index = JS getDay()
+const DAY_IDX = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+// scheduleFor(locId): 7-element array indexed by getDay() (0=Sun). Each entry is
+// [openMinutes, closeMinutes] or null (closed). Uses the same CMS structured
+// hours hoursFor() displays; falls back to parsing locations.json string rows so
+// the live status always matches the posted hours.
+function scheduleFor(locId, fallbackRows) {
+  const week = [null, null, null, null, null, null, null];
+  let h = null;
+  try { h = JSON.parse(content['hours.' + locId] || 'null'); } catch (e) { h = null; }
+  if (h && typeof h === 'object') {
+    DAY_KEYS.forEach((k, i) => {
+      const x = h[k] || {};
+      if (x.closed) return;
+      const o = parseClock(x.open), c = parseClock(x.close);
+      if (o != null && c != null) week[i] = [o, c];
+    });
+    return week;
+  }
+  for (const row of (fallbackRows || [])) {
+    const time = String(row.time || '').trim();
+    let span = null;
+    if (!/closed/i.test(time)) {
+      const parts = time.split(/\s*[-–]\s*/);
+      const o = parseClock(parts[0]), c = parseClock(parts[1]);
+      if (o != null && c != null) span = [o, c];
+    }
+    const days = String(row.days || '').toLowerCase().split(/\s*[-–]\s*/);
+    const a = DAY_IDX[days[0]];
+    const b = days.length > 1 ? DAY_IDX[days[1]] : a;
+    if (a == null || b == null) continue;
+    for (let d = a; ; d = (d + 1) % 7) { week[d] = span; if (d === b) break; }
+  }
+  return week;
+}
+// Runtime payload the client reads to render the live status + order buttons.
+// Baked at build time; refreshes against the visitor's clock in America/Denver.
+const litzasRuntime = JSON.stringify({
+  tz: 'America/Denver',
+  hours: Object.fromEntries(locationsData.locations.map((l) => [l.id, scheduleFor(l.id, l.hours)])),
+  order: {
+    enabled: !!orderLinks.enabled,
+    locations: Object.fromEntries((orderLinks.locations || []).map((o) => {
+      const loc = locationsData.locations.find((l) => l.id === o.id) || {};
+      return [o.id, { url: o.orderUrl || '', phone: loc.phone || '' }];
+    }))
+  }
+});
 
 // Pizza price line.
 // All four sizes are embedded as data attributes; the visible span shows ONE
@@ -242,6 +302,7 @@ function head({ title, description, current = '', navStack = '' }) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0908">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>window.__LITZAS=${litzasRuntime};</script>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}">
@@ -346,6 +407,7 @@ function locationCards(opts = {}) {
   <div class="loc-body">
     <h3>${esc(location.name)}</h3>
     <p class="loc-meta">${esc(location.tag || 'Family pizza · Since 1965')}</p>
+    <div class="loc-status" data-loc-status="${esc(location.id)}" hidden></div>
     <p class="loc-address">${location.address.map(esc).join('<br>')}</p>
     <div class="loc-hours">
       ${hoursFor(location.id, location.hours).map((row) => `<div><strong>${esc(row.days)}</strong> · ${esc(row.time)}</div>`).join('\n      ')}
@@ -353,7 +415,7 @@ function locationCards(opts = {}) {
     <div class="loc-actions">
       <a class="btn btn-primary" href="tel:${esc(location.tel)}">${esc(location.phone)}</a>
       <a class="btn btn-ghost" data-maps="${esc(mapsQuery)}" data-lat="${coords.lat}" data-lng="${coords.lng}" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(mapsQuery)}">Directions</a>
-      ${withOrderButton ? `<button type="button" class="btn btn-ghost order-button" data-order-location="${esc(location.id)}">Order — Call Soon</button>` : ''}
+      ${withOrderButton ? `<button type="button" class="btn btn-ghost order-button" data-order-location="${esc(location.id)}">Online Ordering Soon</button>` : ''}
     </div>
   </div>
 </article>`;

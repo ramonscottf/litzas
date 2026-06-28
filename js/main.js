@@ -255,17 +255,72 @@
     });
   });
 
-  // SpotOn ordering placeholder (preserved from rescue)
-  document.querySelectorAll('.order-button').forEach((button) => {
-    button.classList.add('is-disabled');
-    button.setAttribute('aria-label', 'SpotOn ordering is coming soon.');
-    button.addEventListener('click', () => {
-      const message = 'Online ordering is being configured. Call SLC 801.359.5352 or Midvale 801.561.2171 to order.';
-      const original = button.textContent;
-      button.textContent = message;
-      setTimeout(() => { button.textContent = original; }, 4200);
+  // ── Live open/closed status + SpotOn-aware order buttons ─────────────────
+  // Reads window.__LITZAS (baked at build) and resolves each location's status
+  // against the visitor's clock in store-local time, refreshing every minute.
+  (function () {
+    const DATA = window.__LITZAS;
+    if (!DATA || !DATA.hours) return;
+    const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const fmt = (m) => {
+      const h = Math.floor(m / 60), mm = m % 60, ap = h >= 12 ? 'PM' : 'AM', h12 = h % 12 || 12;
+      return h12 + ':' + (mm < 10 ? '0' : '') + mm + ' ' + ap;
+    };
+    const statusFor = (sched, day, mins) => {
+      const today = sched[day];
+      if (today && mins >= today[0] && mins < today[1]) return { open: true, label: 'Open · closes ' + fmt(today[1]) };
+      if (today && mins < today[0]) return { open: false, label: 'Opens ' + fmt(today[0]) + ' today' };
+      for (let i = 1; i <= 7; i++) {
+        const d = (day + i) % 7;
+        if (sched[d]) return { open: false, label: 'Opens ' + (i === 1 ? 'tomorrow' : DAYS[d]) + ' ' + fmt(sched[d][0]) };
+      }
+      return { open: false, label: 'Closed' };
+    };
+    const update = () => {
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: DATA.tz || 'America/Denver' }));
+      const day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+      Object.keys(DATA.hours).forEach((id) => {
+        const st = statusFor(DATA.hours[id], day, mins);
+        const badge = document.querySelector('.loc-status[data-loc-status="' + id + '"]');
+        if (badge) {
+          badge.hidden = false;
+          badge.className = 'loc-status ' + (st.open ? 'is-open' : 'is-closed');
+          badge.innerHTML = '<span class="loc-status-pill"><span class="dot"></span>' +
+            (st.open ? 'Open Now' : 'Closed Now') + '</span><span class="loc-status-sub">' + st.label + '</span>';
+        }
+        const btn = document.querySelector('.order-button[data-order-location="' + id + '"]');
+        if (btn) {
+          const ord = (DATA.order && DATA.order.locations && DATA.order.locations[id]) || {};
+          if (st.open && DATA.order && DATA.order.enabled && ord.url) {
+            btn.textContent = 'Order Online'; btn.setAttribute('data-order-state', 'live'); btn.classList.remove('is-disabled');
+          } else if (!st.open) {
+            btn.textContent = 'Currently Closed'; btn.setAttribute('data-order-state', 'closed'); btn.classList.add('is-disabled');
+          } else {
+            btn.textContent = 'Online Ordering Soon'; btn.setAttribute('data-order-state', 'soon'); btn.classList.add('is-disabled');
+          }
+        }
+      });
+    };
+    update();
+    setInterval(update, 60000);
+
+    document.querySelectorAll('.order-button').forEach((button) => {
+      button.setAttribute('aria-label', 'Online ordering status');
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-order-location');
+        const ord = (DATA.order && DATA.order.locations && DATA.order.locations[id]) || {};
+        const state = button.getAttribute('data-order-state');
+        if (state === 'live' && ord.url) { window.open(ord.url, '_blank', 'noopener'); return; }
+        const phone = ord.phone || '';
+        const msg = state === 'closed'
+          ? 'We\u2019re currently closed.' + (phone ? ' Call ' + phone + ' during open hours.' : '')
+          : 'Online ordering is being set up.' + (phone ? ' Call ' + phone + ' to order for now.' : '');
+        const original = button.textContent;
+        button.textContent = msg;
+        setTimeout(() => { button.textContent = original; }, 4500);
+      });
     });
-  });
+  })();
 
   // Parallax — preserved from Codex
   const parallaxImages = document.querySelectorAll('[data-parallax]');
