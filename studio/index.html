@@ -138,12 +138,12 @@ const PIZZAS = [
   {slug:"vegetarian",name:"Vegetarian",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple."},
   {slug:"traditional",name:"Traditional",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of one meat."},
   {slug:"deluxe",name:"Deluxe",ingredients:"Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats."},
-  {slug:"garden-salad",name:"Garden Salad",cat:"side",ingredients:"Crisp iceberg and red leaf lettuce, purple cabbage, ripe tomatoes, red beets, home-style croutons, and your choice of dressing."},
-  {slug:"chef-salad",name:"Chef Salad",cat:"side",ingredients:"A garden salad plus black olives, Monterey Jack and cheddar cheeses, Danish ham, and roasted turkey."},
+  {slug:"garden-salad",plated:true,name:"Garden Salad",cat:"side",ingredients:"Crisp iceberg and red leaf lettuce, purple cabbage, ripe tomatoes, red beets, home-style croutons, and your choice of dressing."},
+  {slug:"chef-salad",plated:true,name:"Chef Salad",cat:"side",ingredients:"A garden salad plus black olives, Monterey Jack and cheddar cheeses, Danish ham, and roasted turkey."},
   {slug:"garlic-bread",name:"Garlic Bread",cat:"side",ingredients:"Thick toasted bread brushed with house garlic butter."},
   {slug:"cheese-garlic-bread",name:"Cheese Garlic Bread",cat:"side",ingredients:"Garlic bread topped with melted mozzarella."},
-  {slug:"spaghetti",name:"Spaghetti",cat:"side",ingredients:"Traditional noodles with Litzas spaghetti sauce, made with pork."},
-  {slug:"lasagna",name:"Lasagna",cat:"side",ingredients:"Layered with Litzas ricotta and mozzarella blend, spaghetti sauce, and ground beef."},
+  {slug:"spaghetti",plated:true,name:"Spaghetti",cat:"side",ingredients:"Traditional noodles with Litzas spaghetti sauce, made with pork."},
+  {slug:"lasagna",plated:true,name:"Lasagna",cat:"side",ingredients:"Layered with Litzas ricotta and mozzarella blend, spaghetti sauce, and ground beef."},
   {slug:"calzone",name:"Calzone",cat:"side",ingredients:"A turnover with pizza sauce, mozzarella, ricotta, and your choice of three toppings (excludes seasoned ground beef)."},
 ];
 
@@ -162,11 +162,20 @@ const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");cl
 
 function promptFor(p){
   if(p.cat==="side"){
-    return `Create a photorealistic straight-overhead (90°) menu photo of ${p.name}, plated on a plain round white plate on a plain solid white seamless background.
+    if(p.plated){
+      return `Create a photorealistic straight-overhead (90°) menu photo of ${p.name}, plated on a plain round white plate on a plain solid white seamless background.
 
 STYLE — match the exact plating, lighting, crop, and style of the reference photo I'm attaching: soft even lighting, no harsh shadows, no props, the plate centered and filling most of the frame.
 
 THE DISH: ${p.ingredients}
+
+Do NOT include text, logos, labels, hands, or utensils. Keep the background pure white.`;
+    }
+    return `Create a photorealistic straight-overhead (90°) menu photo of ${p.name}, the item itself centered on a plain solid white seamless background — no plate, no props.
+
+STYLE — match the lighting and style of the reference photo I'm attaching: soft even lighting, no harsh shadows.
+
+THE ITEM: ${p.ingredients}
 
 Do NOT include text, logos, labels, hands, or utensils. Keep the background pure white.`;
   }
@@ -273,14 +282,13 @@ PIZZAS.forEach(p=>{
     refs.note.className="note"; refs.note.textContent="Processing…";
     const img=new Image();
     img.onload=()=>{
-      const isSide=p.cat==="side";
-      const out=isSide?circularCrop(img):knockout(img);
+      const out=p.plated?circularCrop(img):knockout(img);
       const pc=refs.prevC,pctx=pc.getContext("2d");
       pctx.clearRect(0,0,760,760);
       pctx.fillStyle="#efe7d6";pctx.fillRect(0,0,760,760);
       pctx.drawImage(out,0,0,760,760);
       refs.prev.classList.add("show");
-      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent=isSide?"Plate cut to a round disc — review, then upload.":"Background removed — review, then upload.";},"image/png");
+      out.toBlob(b=>{refs.blob=b;refs.up.disabled=false;refs.note.textContent=p.plated?"Plate cut to a round disc — review, then upload.":"Background removed — review, then upload.";},"image/png");
     };
     img.onerror=()=>{refs.note.className="note err";refs.note.textContent="Couldn't read that image.";};
     img.src=URL.createObjectURL(f);
