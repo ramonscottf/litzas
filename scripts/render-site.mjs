@@ -219,6 +219,29 @@ const HIRES_API_BASE = 'https://hiresbigh.com';
 const JOBS_ENDPOINT = `${HIRES_API_BASE}/api/jobs`;
 const CATERING_ENDPOINT = `${HIRES_API_BASE}/api/catering`;
 
+function orderPickerHTML() {
+  const opts = (orderLinks.locations || []).map((o) => {
+    const loc = locationsData.locations.find((l) => l.id === o.id) || {};
+    const name = loc.name || o.label || o.id;
+    const addr = (loc.address && loc.address[0]) || '';
+    const live = orderLinks.enabled && o.orderUrl;
+    return live
+      ? `<a href="${esc(o.orderUrl)}" target="_blank" rel="noopener noreferrer" class="loc-picker-btn" onclick="closeOrderPicker()">${esc(name)}<span>${esc(addr)}</span></a>`
+      : `<button type="button" class="loc-picker-btn is-disabled" disabled aria-disabled="true">${esc(name)}<span>Coming soon</span></button>`;
+  }).join('\n      ');
+  return `
+<div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
+  <div class="order-picker-card">
+    <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
+    <h3 id="orderPickerTitle">Order Online</h3>
+    <p>Choose a location to start your order.</p>
+    <div class="order-picker-options">
+      ${opts}
+    </div>
+  </div>
+</div>`;
+}
+
 function nav(current = '', stack = '') {
   const links = [
     ['/', 'Home'],
@@ -239,7 +262,7 @@ function nav(current = '', stack = '') {
     </a>
     <nav id="nav-links" class="nav-links" aria-label="Primary">
       ${links.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ''}>${label}</a>`).join('\n      ')}
-      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
+      <a href="#" class="nav-cta" onclick="openOrderPicker(event)">Order Online</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -271,8 +294,7 @@ function footer() {
     <div class="footer-col">
       <h4>Order</h4>
       <ul>
-        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
-        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="#" onclick="openOrderPicker(event)">Order Online</a></li>
         <li><a href="/locations/">Get Directions</a></li>
         <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
       </ul>
@@ -291,6 +313,7 @@ function footer() {
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
+${orderPickerHTML()}
 <script src="/js/main.js?v=${jsVer}" defer></script>`;
 }
 
@@ -413,9 +436,8 @@ function locationCards(opts = {}) {
       ${hoursFor(location.id, location.hours).map((row) => `<div><strong>${esc(row.days)}</strong> · ${esc(row.time)}</div>`).join('\n      ')}
     </div>
     <div class="loc-actions">
-      <a class="btn btn-primary" href="tel:${esc(location.tel)}">${esc(location.phone)}</a>
+      <button type="button" class="btn btn-primary order-button" data-order-location="${esc(location.id)}">Coming soon</button>
       <a class="btn btn-ghost" data-maps="${esc(mapsQuery)}" data-lat="${coords.lat}" data-lng="${coords.lng}" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(mapsQuery)}">Directions</a>
-      ${withOrderButton ? `<button type="button" class="btn btn-ghost order-button" data-order-location="${esc(location.id)}">Online Ordering Soon</button>` : ''}
     </div>
   </div>
 </article>`;

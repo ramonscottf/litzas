@@ -284,7 +284,7 @@
           } else if (!st.open) {
             btn.textContent = 'Currently Closed'; btn.setAttribute('data-order-state', 'closed'); btn.classList.add('is-disabled');
           } else {
-            btn.textContent = 'Online Ordering Soon'; btn.setAttribute('data-order-state', 'soon'); btn.classList.add('is-disabled');
+            btn.textContent = 'Coming soon'; btn.setAttribute('data-order-state', 'soon'); btn.classList.add('is-disabled');
           }
         }
       });
@@ -299,10 +299,9 @@
         const ord = (DATA.order && DATA.order.locations && DATA.order.locations[id]) || {};
         const state = button.getAttribute('data-order-state');
         if (state === 'live' && ord.url) { window.open(ord.url, '_blank', 'noopener'); return; }
-        const phone = ord.phone || '';
         const msg = state === 'closed'
-          ? 'We\u2019re currently closed.' + (phone ? ' Call ' + phone + ' during open hours.' : '')
-          : 'Online ordering is being set up.' + (phone ? ' Call ' + phone + ' to order for now.' : '');
+          ? 'We\u2019re currently closed. Check back during open hours.'
+          : 'Online ordering is coming soon.';
         const original = button.textContent;
         button.textContent = msg;
         setTimeout(() => { button.textContent = original; }, 4500);
@@ -377,3 +376,9 @@
     });
   }
 })();
+
+/* Order-online location picker (global — invoked from nav/footer onclick) */
+function openOrderPicker(e){ if(e){ e.preventDefault(); } var p=document.getElementById('orderPicker'); if(p){ p.classList.add('open'); } }
+function closeOrderPicker(){ var p=document.getElementById('orderPicker'); if(p){ p.classList.remove('open'); } }
+document.addEventListener('click', function(e){ var p=document.getElementById('orderPicker'); if(p && e.target===p){ closeOrderPicker(); } });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeOrderPicker(); } });
