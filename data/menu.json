@@ -406,8 +406,7 @@
               "price": "9.75"
             }
           ],
-          "slug": "garden-salad",
-          "peek": false
+          "slug": "garden-salad"
         },
         {
           "name": "Chef Salad",
@@ -422,8 +421,7 @@
               "price": "16.75"
             }
           ],
-          "slug": "chef-salad",
-          "peek": false
+          "slug": "chef-salad"
         },
         {
           "name": "Garlic Bread",
@@ -487,42 +485,49 @@
       "items": [
         {
           "name": "Spaghetti Lunch",
+          "slug": "spaghetti",
           "group": "Lunch Specials · til 4 pm",
           "description": "Served with a small salad, a slice of garlic bread, and a medium drink.",
           "price": "15.50"
         },
         {
           "name": "Mini One-Item Pizza Lunch",
+          "slug": "pepperoni",
           "group": "Lunch Specials · til 4 pm",
           "description": "Served with a small salad, a slice of garlic bread, and a medium drink.",
           "price": "16.50"
         },
         {
           "name": "Lasagna Lunch",
+          "slug": "lasagna",
           "group": "Lunch Specials · til 4 pm",
           "description": "Served with a small salad, a slice of garlic bread, and a medium drink.",
           "price": "17.50"
         },
         {
           "name": "Garden Salad Meal for One",
+          "slug": "garden-salad",
           "group": "All-Day Specials",
           "description": "Medium garden salad, a slice of garlic bread, and a medium drink.",
           "price": "8.50"
         },
         {
           "name": "Pizza Meal for One",
+          "slug": "pepperoni",
           "group": "All-Day Specials",
           "description": "Mini two-item pizza, a medium salad, a slice of garlic bread, and a medium drink. Make it a small two-item pizza for $3.50 more.",
           "price": "18.25"
         },
         {
           "name": "Pizza Meal for Two",
+          "slug": "litzas-meatza",
           "group": "All-Day Specials",
           "description": "Small two-item pizza, two medium salads, two slices of garlic bread, and two medium drinks. Make it a medium two-item pizza for $3.50 more.",
           "price": "29.50"
         },
         {
           "name": "Meal for More",
+          "slug": "deluxe",
           "group": "All-Day Specials",
           "description": "Large two-item pizza, a large family salad, four slices of garlic bread, and a pitcher of soda (non-refillable).",
           "price": "46.75"
@@ -545,11 +550,11 @@
               "price": "+7.00"
             }
           ],
-          "slug": "spaghetti",
-          "peek": false
+          "slug": "spaghetti"
         },
         {
           "name": "Kid Kaper Meal",
+          "slug": "spaghetti",
           "group": "Entrees",
           "description": "Kid-size spaghetti with a slice of garlic bread and a kids beverage.",
           "price": "7.75"
@@ -568,8 +573,7 @@
               "price": "+7.00"
             }
           ],
-          "slug": "lasagna",
-          "peek": false
+          "slug": "lasagna"
         },
         {
           "name": "Calzone",

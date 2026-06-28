@@ -1797,6 +1797,9 @@ section { position: relative; }
 .byo-topgroup { min-width: 0; }
 .byo-toplabel { display: block; font-family: var(--label); text-transform: uppercase; letter-spacing: .14em; font-size: 10.5px; color: var(--gink); margin-bottom: 3px; }
 .byo-toplist { display: block; color: rgba(41, 39, 42, .64); font-size: 13px; line-height: 1.5; }
+/* The corner pizza peek sits over the top-right; keep the first topping group
+   (Sauces & Cheeses) clear of it so no text hides behind the photo. */
+.byo-card.has-peek .byo-topgroup:first-child { padding-right: clamp(116px, 24%, 156px); }
 .byo-price-head { font-family: var(--label); text-transform: uppercase; letter-spacing: .14em; font-size: 10.5px; color: rgba(41, 39, 42, .5); margin: 0 0 10px; padding-top: 18px; border-top: 1px solid var(--rule-cm); }
 .byo-tiers { margin: 0; }
 .byo-tiers .tier-note { text-transform: none; letter-spacing: .01em; font-size: 11px; opacity: .68; }
