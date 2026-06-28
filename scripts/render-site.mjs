@@ -469,7 +469,7 @@ function homePage() {
 </section>
 
 <section class="warm-section" aria-labelledby="loc-h">
-  <div class="section-kicker center reveal">
+  <div class="section-kicker center tight reveal">
     <p class="eyebrow">${tc(t('loc.eyebrow', 'Choose Your Location'))}</p>
     <h2 id="loc-h">${tc(t('loc.headline', 'Two locations.'))}<span class="slab">${tc(t('loc.headline_slab', ' Same pizza.'))}</span></h2>
     <p>${tc(t('loc.body', 'Walk in, or call ahead to order.'))}</p>
@@ -482,16 +482,16 @@ function homePage() {
 <section class="dark-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
-      <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
-      <p>${tc(t('bridge.p1', 'In Salt Lake, we share a parking lot with Hires Big H. In Midvale, we share the building — same family runs both. Order a frosted mug of Hires root beer to go with your pizza.'))}</p>
-      <div class="button-row">
-        <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
+      <div class="copy-text">
+        <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
+        <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
+        <p>${tc(t('bridge.p1', 'In Salt Lake, we share a parking lot with Hires Big H. In Midvale, we share the building — same family runs both. Order a frosted mug of Hires root beer to go with your pizza.'))}</p>
+        <div class="button-row">
+          <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
+        </div>
       </div>
+      <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
     </div>
-    <figure class="reveal">
-      <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer" loading="lazy">
-    </figure>
   </div>
 </section>`);
 }

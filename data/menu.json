@@ -460,15 +460,24 @@
     {
       "id": "dressings",
       "name": "Dressings",
-      "note": "Ranch, Roquefort, Thousand Island, French, Italian, Honey Mustard, and Fat-Free Vinaigrette. Made from scratch.",
       "items": [
         {
-          "name": "Extra Dressing · Regular",
-          "price": ".75"
-        },
-        {
-          "name": "Extra Dressing · Large",
-          "price": "1.00"
+          "name": "Extra Dressing",
+          "description": "Ranch, Roquefort, Thousand Island, French, Italian, Honey Mustard, and Fat-Free Vinaigrette.",
+          "priceTiers": [
+            {
+              "label": "Small",
+              "price": ".75"
+            },
+            {
+              "label": "Large",
+              "price": "1.00"
+            },
+            {
+              "label": "Take Home",
+              "price": "6.00"
+            }
+          ]
         }
       ]
     },
