@@ -458,6 +458,18 @@ function reviewScroll(list = REVIEWS) {
   if (!list.length) return '';
   return `<div class="review-scroll">${list.map(reviewCard).join('\n')}</div>`;
 }
+// Auto-scrolling "wall of love" — cards duplicated so translateX(-50%) loops
+// seamlessly; pauses on hover, falls back to a manual scroll for reduced-motion.
+function reviewMarquee(list = REVIEWS) {
+  if (!list.length) return '';
+  const cards = list.map(reviewCard).join('\n');
+  return `<div class="review-marquee"><div class="review-marquee-track">${cards}\n${cards}</div></div>`;
+}
+function reviewsStory() { return REVIEWS.filter(r => r.story); }
+function reviewGrid(list = reviewsStory()) {
+  if (!list.length) return '';
+  return `<div class="review-grid">${list.map(reviewCard).join('\n')}</div>`;
+}
 function reviewStandout(r, kicker = 'What people say') {
   if (!r) return '';
   return `<aside class="review-standout reveal" aria-label="Customer review">
@@ -799,7 +811,7 @@ function locationsPage() {
       <p class="eyebrow">Reviews · Google</p>
       <h2>Don't take our word for it.<span class="slab"> Take theirs.</span></h2>
     </div>
-    ${reviewScroll()}
+    ${reviewMarquee()}
   </div>
 </section>
 
@@ -950,6 +962,20 @@ function storyPage() {
     <figure class="reveal">
       <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer on a Litzas table" loading="lazy">
     </figure>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="page-band">
+    <div class="section-kicker center reveal">
+      <p class="eyebrow">Customer Love &middot; Google</p>
+      <h2>Sixty years of regulars.<span class="slab"> A thousand-plus reviews.</span></h2>
+      <p>We've been on 400 South since 1965, and more than a thousand Google reviews later, the regulars keep saying the same things. Here's a little of what they say.</p>
+    </div>
+    ${reviewGrid()}
+    <div class="button-row center-row" style="margin-top: clamp(28px, 4vw, 40px);">
+      <a href="/locations/" class="btn btn-ghost-light">See more, then come hungry &rarr;</a>
+    </div>
   </div>
 </section>`);
 }

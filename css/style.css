@@ -2433,6 +2433,44 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 /* Spacing for the reviews band on the locations page */
 .reviews-band .review-scroll { margin-top: clamp(20px, 3vw, 30px); }
 
+/* Auto-scroll review marquee — the "wall of love" */
+.review-marquee {
+  overflow: hidden;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 10px 0 16px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.review-marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-inline: var(--gutter);
+  animation: marqueeScroll 80s linear infinite;
+}
+.review-marquee:hover .review-marquee-track,
+.review-marquee:focus-within .review-marquee-track { animation-play-state: paused; }
+.reviews-band .review-marquee { margin-top: clamp(20px, 3vw, 30px); }
+
+/* Customer Love grid — Story page */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+  margin-top: clamp(24px, 3vw, 34px);
+}
+.review-grid .review-card { width: auto; }
+
+/* Light ghost button for dark sections */
+.btn-ghost-light { background: transparent; color: var(--cream-1, #fbf6ec); border: 1px solid rgba(251,246,236,.45); }
+.btn-ghost-light:hover { background: var(--cream-1, #fbf6ec); color: var(--ink, #0a0908); border-color: var(--cream-1, #fbf6ec); }
+
+@media (prefers-reduced-motion: reduce) {
+  .review-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .review-marquee::-webkit-scrollbar { display: none; }
+  .review-marquee-track { animation: none; width: max-content; }
+}
+
 /* Standout pull-quote — drops a single review between sections */
 .review-standout {
   max-width: 760px;

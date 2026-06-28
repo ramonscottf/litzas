@@ -1,41 +1,207 @@
 {
-  "_note": "REAL Google reviews only. Pulled from the Litzas Google Business Profiles. Never invent reviews. `author` may be null when the name isn't on hand — it renders as 'Google review'. Add your standout favorites here (with first names if you have them). `feature` pulls a review out as a standout: 'menu' shows it on the menu page, 'home' on the homepage. `pull` is an optional shorter verbatim excerpt used for the standout placement.",
-  "reviews": [
-    {
-      "id": "slc-incredible",
-      "quote": "This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs. A great little local spot I've frequented since my youth, now shared with my kids.",
-      "pull": "The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs.",
-      "author": null,
-      "rating": 5,
-      "location": "Salt Lake City",
-      "source": "Google",
-      "feature": "menu"
-    },
-    {
-      "id": "midvale-best-valley",
-      "quote": "This is some of the BEST pizza in the SLC valley! \u2026 Emily is the BEST waitress here!!!",
-      "pull": "This is some of the BEST pizza in the SLC valley!",
-      "author": null,
-      "rating": 5,
-      "location": "Midvale",
-      "source": "Google",
-      "feature": "home"
-    },
-    {
-      "id": "slc-parents-grad",
-      "quote": "My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent. The server was so friendly. It was a great place to bring our family, and we all had a great time.",
-      "author": null,
-      "rating": 5,
-      "location": "Salt Lake City",
-      "source": "Google"
-    },
-    {
-      "id": "slc-great-vibes",
-      "quote": "I really enjoyed my experience at Litzas. Great vibes, kind staff and great food!",
-      "author": null,
-      "rating": 5,
-      "location": "Salt Lake City",
-      "source": "Google"
-    }
-  ]
+ "_note": "REAL Google reviews from the Litzas Google Business Profile export (June 2026). Never invent reviews. `author` is the reviewer's first name (null -> renders 'Google review'). `feature`: 'menu'/'home' pulls a standout onto those pages. `pull` is an optional shorter excerpt for standouts. `story: true` surfaces a review in the Customer Love grid on the Story page.",
+ "reviews": [
+  {
+   "id": "slc-incredible",
+   "quote": "This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house — the dough, sauce, dressing, and garlic butter. A great little local spot I've frequented since my youth, now shared with my kids.",
+   "author": "Samantha",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "feature": "menu",
+   "pull": "The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house — the dough, sauce, dressing, and garlic butter."
+  },
+  {
+   "id": "midvale-best-valley",
+   "quote": "This is some of the BEST pizza in the SLC valley! … Emily is the BEST waitress here!!!",
+   "author": null,
+   "rating": 5,
+   "location": "Midvale",
+   "source": "Google",
+   "feature": "home",
+   "pull": "This is some of the BEST pizza in the SLC valley!"
+  },
+  {
+   "id": "slc-parents-grad",
+   "quote": "My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent, the server was so friendly, and we all had a great time.",
+   "author": null,
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "slc-great-vibes",
+   "quote": "I really enjoyed my experience at Litzas. Great vibes, kind staff and great food!",
+   "author": null,
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "liz-everything",
+   "quote": "Amazing restaurant — the best. Excellent service, and they make everything fresh: dressings, sauces, garlic butter, pizza dough. Great variety of pizzas, spaghetti, lasagne and delicious green salads. Love this restaurant.",
+   "author": "Liz",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "tricia-family",
+   "quote": "This is one of our family favorites and we have loved coming here over the years! Comforting atmosphere, that comfort-food pizza, delicious salad, and their amazing cheese bread. The whole family requests we come here several times a month.",
+   "author": "Tricia",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "elizabeth-garlic",
+   "quote": "Me and my family have been coming to this restaurant for years — it's a family favorite. The staff is always so friendly and the food is phenomenal. Nothing beats the garlic bread here!",
+   "author": "Elizabeth",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "shannon-office",
+   "quote": "Love this place. My office eats here about once a week. The pizzas are delicious, I love the salads with their homemade ranch, and the spaghetti and lasagna are both super yummy. And you can't forget the garlic bread! Maria is the best server.",
+   "author": "Shannon",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "kelsey-kid",
+   "quote": "Amazing pizza and root beer — get the cheesy garlic bread, it's so good! Friendly staff, quick service, beautiful dining area. Litza's is one of our family's favorite restaurants. I've been going since I was a kid, and now I take my own children.",
+   "author": "Kelsey",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "sara-downtown",
+   "quote": "Best pizza downtown. I've been going since I was little. Their ingredients are always fresh, and their garlic bread, homemade ranch, and root beer can't be matched. The staff is friendly and efficient. I wish I could give them more stars!",
+   "author": "Sara",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "caitlin-since7",
+   "quote": "I've been a Litzas fan since I was 7 and it never disappoints. Highly recommend their ground sausage and olive pizza. In love with the garlic bread there!",
+   "author": "Caitlin",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "nick-utah",
+   "quote": "Always a great place. Love the food and the atmosphere is amazing. Best pizza in all of Utah!",
+   "author": "Nick",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "mindy-30yrs",
+   "quote": "I have been going there for at least 30 years — my favorite pizza of all time! The downtown location has a server, Maria, who is the absolute best.",
+   "author": "Mindy",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "parker-downtown",
+   "quote": "We love Litzas! A great place to visit when you're in downtown SLC. The pizza is delicious, the service was super fast, and the root beer is to die for. Our server, Presli, was fantastic.",
+   "author": "Parker",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "richard-date",
+   "quote": "Went on a date at this location — amazing pizza, amazing waitress, and such a good atmosphere that after our short wait we stayed comfortably for two hours.",
+   "author": "Richard",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google",
+   "story": true
+  },
+  {
+   "id": "anna-gem",
+   "quote": "This has been one of my favorite restaurants ever since I was a child. The restaurant has a homey feel, the service is always great, and the pizza is delicious. Definitely a Salt Lake City gem.",
+   "author": "Anna",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "vanessa-sausage",
+   "quote": "Until I came here I'd never had sausage on pizza that I liked — the sausage here was amazing. The waiter was nice and everything tasted great, including the garlic bread.",
+   "author": "Vanessa",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "chad-30yrs",
+   "quote": "Been coming here for 30 years. Best ranch in the world, and the best ingredients make for one of the best pizza experiences you'll ever have. Plus Hires Big H is next door, owned by the same people — another five stars!",
+   "author": "Chad",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "jeffrey-60s",
+   "quote": "Best pizza, hands down. Ham and sausage is the only way to go. I've been eating here since the 60's and I'm still going strong.",
+   "author": "Jeffrey",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "heather-fresh",
+   "quote": "Holy cow, this pizza was amazing! It tasted super fresh and was perfectly cooked — even the crust was delicious. Our pickiest eater got the chicken strips and couldn't stop talking about them. Highly recommend Litzas.",
+   "author": "Heather",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "michelle-cheerleader",
+   "quote": "Fave pizza place! Love everything about it — the pizza, the garlic bread, the salad, the ranch dressing. So good. I'll always be a cheerleader for Litza's.",
+   "author": "Michelle",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "chris-gem",
+   "quote": "Absolutely a hidden gem! I'd known this place existed for years but never went in — I feel like I wasted years of good pizza. It's my go-to now whenever I'm downtown.",
+   "author": "Chris",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "kylee-1110",
+   "quote": "A great pizza spot! Went with a couple of friends and had a great experience. The atmosphere was fun, the service was friendly, and the food was 11/10.",
+   "author": "Kylee",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  },
+  {
+   "id": "jonathan-favorite",
+   "quote": "My favorite pizza in Salt Lake. It's not greasy, the crust is tasty, and I love the sauce. A reliable place to go for a really good pizza.",
+   "author": "Jonathan",
+   "rating": 5,
+   "location": "Salt Lake City",
+   "source": "Google"
+  }
+ ]
 }
