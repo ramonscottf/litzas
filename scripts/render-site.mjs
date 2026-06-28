@@ -226,7 +226,7 @@ function nav(current = '', stack = '') {
     ['/locations/', 'Locations'],
     ['/story/', 'Story'],
     ['/catering/', 'Catering'],
-    ['/blog/', 'Stories'],
+    ['/blog/', 'Blog'],
     ['/jobs/', 'Jobs']
   ];
   return `
@@ -282,7 +282,7 @@ function footer() {
       <ul>
         <li><a href="/jobs/">Join the Team</a></li>
         <li><a href="/catering/">Catering &amp; Events</a></li>
-        <li><a href="/blog/">Stories from the Booth</a></li>
+        <li><a href="/blog/">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -1069,7 +1069,7 @@ function blogPostPage(post, body) {
   <h1>${esc(post.title)}</h1>
   ${post.photo ? `<figure class="post-hero reveal"><img src="${esc(post.photo)}" alt="${esc(post.title)}" loading="lazy"></figure>` : ''}
   ${body}
-  <p style="margin-top: 48px;"><a href="/blog/" class="btn btn-ghost">← All Stories</a></p>
+  <p style="margin-top: 48px;"><a href="/blog/" class="btn btn-ghost">← All Posts</a></p>
 </article>`);
 }
 
