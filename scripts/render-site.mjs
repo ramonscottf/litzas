@@ -710,9 +710,9 @@ function menuPage() {
     <img data-parallax src="/assets/images/optimized/litzas-pizza-hero-wood.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">The Menu</p>
-    <h1 id="menu-h"><span class="ln">Hand-rolled dough.</span><span class="ln">Premium ingredients.</span><span class="ln">Unforgettable pizza.</span></h1>
-    <p>Twenty-four pizzas, hand-rolled every morning and baked the minute you order. Real mozzarella &mdash; never a blend &mdash; over a sauce we haven't changed since 1965. Add scratch-made salads and dressings, lasagna and spaghetti, and a frosted mug of Hires root beer next door. Sixty years on 400 South, and still the same recipe.</p>
+    <p class="eyebrow">${tc(t("menupg.hero.eyebrow", "The Menu"))}</p>
+    <h1 id="menu-h"><span class="ln">${tc(t("menupg.hero.line1", "Hand-rolled dough."))}</span><span class="ln">${tc(t("menupg.hero.line2", "Premium ingredients."))}</span><span class="ln">${tc(t("menupg.hero.line3", "Unforgettable pizza."))}</span></h1>
+    <p>${tc(t("menupg.hero.body", "Twenty-four pizzas, hand-rolled every morning and baked the minute you order. Real mozzarella — never a blend — over a sauce we haven't changed since 1965. Add scratch-made salads and dressings, lasagna and spaghetti, and a frosted mug of Hires root beer next door. Sixty years on 400 South, and still the same recipe."))}</p>
   </div>
 </section>
 
@@ -794,9 +794,9 @@ function locationsPage() {
     <img data-parallax src="/assets/images/optimized/litzas-night-sign.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Visit · Call · Stop In</p>
-    <h1 id="loc-page-h">Choose your location.<span class="slab"> Same pizza, two locations.</span></h1>
-    <p>SLC shares a parking lot with Hires Big H. Midvale shares a building. You won't have to look hard.</p>
+    <p class="eyebrow">${tc(t("locpg.hero.eyebrow", "Visit · Call · Stop In"))}</p>
+    <h1 id="loc-page-h">${tc(t("locpg.hero.headline", "Choose your location."))}<span class="slab">${tc(t("locpg.hero.headline_slab", " Same pizza, two locations."))}</span></h1>
+    <p>${tc(t("locpg.hero.body", "SLC shares a parking lot with Hires Big H. Midvale shares a building. You won't have to look hard."))}</p>
   </div>
 </section>
 
@@ -844,9 +844,9 @@ function shopPage() {
     <img data-parallax src="/assets/images/optimized/rootbeer-mug.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Hires Big H · Family Brand</p>
-    <h1 id="shop-h">Root Beer in a Frosted Mug.<span class="slab"> Always Has Been.</span></h1>
-    <p>Don Hale opened Hires in 1959. Six years later, he opened Litzas. The root beer has been the same all along.</p>
+    <p class="eyebrow">${tc(t("shoppg.hero.eyebrow", "Hires Big H · Family Brand"))}</p>
+    <h1 id="shop-h">${tc(t("shoppg.hero.headline", "Root Beer in a Frosted Mug."))}<span class="slab">${tc(t("shoppg.hero.headline_slab", " Always Has Been."))}</span></h1>
+    <p>${tc(t("shoppg.hero.body", "Don Hale opened Hires in 1959. Six years later, he opened Litzas. The root beer has been the same all along."))}</p>
   </div>
 </section>
 
@@ -1147,9 +1147,9 @@ function jobsPage() {
     <img data-parallax src="/assets/images/optimized/dough-hands.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Now Hiring</p>
-    <h1 id="jobs-h">Join the family.<span class="slab"> Make some pizza.</span></h1>
-    <p>Litzas hires people who care about the details — same as Hires Big H. Crew, cooks, cashiers, shift leads. Salt Lake City and Midvale.</p>
+    <p class="eyebrow">${tc(t("jobspg.hero.eyebrow", "Now Hiring"))}</p>
+    <h1 id="jobs-h">${tc(t("jobspg.hero.headline", "Join the family."))}<span class="slab">${tc(t("jobspg.hero.headline_slab", " Make some pizza."))}</span></h1>
+    <p>${tc(t("jobspg.hero.body", "Litzas hires people who care about the details — same as Hires Big H. Crew, cooks, cashiers, shift leads. Salt Lake City and Midvale."))}</p>
   </div>
 </section>
 
@@ -1273,9 +1273,9 @@ function cateringPage() {
     <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Catering &amp; Big Orders</p>
-    <h1 id="catering-h">Pizza for the<span class="slab"> whole crew.</span></h1>
-    <p>Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a family pizza — give us a heads-up and we'll take care of it.</p>
+    <p class="eyebrow">${tc(t("cateringpg.hero.eyebrow", "Catering & Big Orders"))}</p>
+    <h1 id="catering-h">${tc(t("cateringpg.hero.headline", "Pizza for the"))}<span class="slab">${tc(t("cateringpg.hero.headline_slab", " whole crew."))}</span></h1>
+    <p>${tc(t("cateringpg.hero.body", "Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a family pizza — give us a heads-up and we'll take care of it."))}</p>
   </div>
 </section>
 
