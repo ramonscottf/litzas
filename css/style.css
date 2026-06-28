@@ -758,9 +758,9 @@ section { position: relative; }
    ============================================================ */
 
 .hires-bridge {
-  max-width: 980px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: clamp(60px, 8vw, 100px) var(--gutter);
+  padding: clamp(40px, 6vw, 68px) var(--gutter);
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -776,21 +776,20 @@ section { position: relative; }
   .hires-bridge .copy { padding: 44px 44px; }
 }
 .hires-bridge .copy-text { min-width: 0; }
-/* Foot row: button + mug. On mobile the mug tucks into the bottom-right corner
-   under the button; on desktop they sit side-by-side, mug off to the right. */
-.hires-foot { display: flex; flex-direction: column; align-items: stretch; gap: clamp(14px, 3vw, 20px); margin-top: clamp(22px, 4vw, 30px); }
-.hires-foot .button-row { margin: 0; }
+/* Mug floats to the side; the paragraph wraps around it so the card stays
+   compact instead of stacking white space under the copy. */
+.hires-body { margin-top: clamp(14px, 2.5vw, 20px); }
+.hires-body::after { content: ""; display: block; clear: both; }
+.hires-body > p { margin-top: 0; }
 .hires-mug {
-  align-self: flex-end;
-  width: clamp(124px, 33vw, 160px);
+  float: right;
+  width: clamp(116px, 30vw, 176px);
   height: auto;
-  margin-bottom: clamp(-14px, -2vw, -2px);
+  margin: 6px 0 8px clamp(18px, 4vw, 30px);
   filter: drop-shadow(0 10px 16px rgba(20, 12, 6, .30));
   pointer-events: none;
 }
-@media (min-width: 620px) {
-  .hires-foot { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: clamp(16px, 3vw, 28px); }
-}
+.hires-body .button-row { margin: clamp(18px, 3vw, 26px) 0 0; }
 .hires-bridge .copy::before {
   content: "";
   position: absolute;
@@ -1507,6 +1506,7 @@ section { position: relative; }
 
 @media (max-width: 780px) {
   .nav { width: calc(100% - 20px); top: 12px; }
+  .menu-rails-slot { width: calc(100% - 20px); }
   .nav.scrolled { top: 8px; }
   .nav-toggle { display: block; }
   .nav-links {
@@ -2280,13 +2280,14 @@ html, body { background: var(--cream-1); }
 /* Slot holds the rails + their space in the page under the hero */
 .menu-rails-slot { width: calc(100% - 32px); max-width: 1080px; margin: 18px auto 22px; }
 
-/* Rails AT REST — dark glass bar under the hero */
+/* Rails AT REST — dark glass bar under the hero. Same width + corner radius as
+   the nav pill so the two read as one system when they stack. */
 .menu-rails {
   background: var(--glass-2);
   -webkit-backdrop-filter: blur(22px) saturate(140%);
   backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid var(--rule);
-  border-radius: 22px;
+  border-radius: 28px;
   box-shadow: 0 10px 30px rgba(0,0,0,.28);
 }
 .menu-rails-inner { display: flex; flex-direction: column; gap: 4px; padding: 8px 12px; }

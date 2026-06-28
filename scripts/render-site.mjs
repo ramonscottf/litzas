@@ -480,16 +480,14 @@ function homePage() {
 <section class="dark-section">
   <div class="hires-bridge">
     <div class="copy reveal">
-      <div class="copy-text">
-        <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
-        <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
+      <p class="eyebrow">${tc(t('bridge.eyebrow', 'Our sister restaurant'))}</p>
+      <h2>${tc(t('bridge.headline', 'Same parking lot.'))}<span class="slab">${tc(t('bridge.headline_slab', ' Same family.'))}</span></h2>
+      <div class="hires-body">
+        <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
         <p>${tc(t('bridge.p1', 'In Salt Lake, we share a parking lot with Hires Big H. In Midvale, we share the building — same family runs both. Order a frosted mug of Hires root beer to go with your pizza.'))}</p>
-      </div>
-      <div class="hires-foot">
         <div class="button-row">
           <a href="https://hiresbigh.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Hires Big H</a>
         </div>
-        <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
       </div>
     </div>
   </div>
