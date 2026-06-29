@@ -2609,7 +2609,7 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   display: inline-flex;
   align-items: center;
   /* smaller pill; left padding clears the larger box that overhangs the top-left */
-  padding: 9px 18px 9px 52px;
+  padding: 9px 18px 9px 56px;
   font-family: var(--label);
   font-size: 12px;
   font-weight: 700;
@@ -2626,13 +2626,13 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 .order-fab:active { transform: translateY(-1px); }
 .order-fab-icon { width: 19px; height: 19px; flex: none; display: block; }
 @media (max-width: 520px) {
-  .order-fab { padding: 8px 15px 8px 44px; font-size: 11px; letter-spacing: .1em; }
+  .order-fab { padding: 8px 15px 8px 48px; font-size: 11px; letter-spacing: .1em; }
 }
 
 /* Litzas box icon: closed by default; a quick crossfade to the open box (lid up,
    pizza revealed) plays as an ambient peek and on hover/tap. Both frames are
    base-aligned so the swap reads as the lid lifting. */
-.order-fab-icon.pbox { position: absolute; left: -16px; top: 50%; transform: translateY(-50%); width: 66px; height: 45px; overflow: visible; }
+.order-fab-icon.pbox { position: absolute; left: -28px; top: 50%; transform: translateY(-50%); width: 80px; height: 54px; overflow: visible; }
 .pbox-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 7px rgba(10, 9, 8, .30)); }
 .pbox-open  { opacity: 0; transform: scale(.96); transform-origin: 50% 92%; }
 .pbox-closed { opacity: 1; }
@@ -2642,7 +2642,7 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 @keyframes pboxClosedOut { 0%, 80%, 100% { opacity: 1; } 88%, 94% { opacity: 0; } }
 .order-fab:hover .pbox-open,  .order-fab.is-opening .pbox-open  { animation: none; opacity: 1; transform: scale(1); transition: opacity .22s var(--ease-out), transform .22s var(--ease-out); }
 .order-fab:hover .pbox-closed, .order-fab.is-opening .pbox-closed { animation: none; opacity: 0; transition: opacity .22s var(--ease-out); }
-@media (max-width: 520px) { .order-fab-icon.pbox { left: -13px; top: 50%; transform: translateY(-50%); width: 56px; height: 38px; } }
+@media (max-width: 520px) { .order-fab-icon.pbox { left: -24px; top: 50%; transform: translateY(-50%); width: 68px; height: 46px; } }
 @media (prefers-reduced-motion: reduce) {
   .pbox-open, .pbox-closed { animation: none; }
   .pbox-open { opacity: 0; } .pbox-closed { opacity: 1; }
