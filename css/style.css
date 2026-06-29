@@ -2469,10 +2469,12 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   gap: 16px;
   width: max-content;
   padding-inline: var(--gutter);
-  animation: marqueeScroll 80s linear infinite;
+  animation: marqueeScroll 140s linear infinite;
 }
 .review-marquee:hover .review-marquee-track,
-.review-marquee:focus-within .review-marquee-track { animation-play-state: paused; }
+.review-marquee:focus-within .review-marquee-track,
+.review-marquee:active .review-marquee-track,
+.review-marquee.is-paused .review-marquee-track { animation-play-state: paused; }
 .reviews-band .review-marquee { margin-top: clamp(20px, 3vw, 30px); }
 
 /* Customer Love grid — Story page */
@@ -2628,3 +2630,7 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 @media (max-width: 720px) {
   .photo-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
+
+/* Full-height story figure (uncropped — e.g. the dough flip) */
+.sticky-story .image-stack figure.full { aspect-ratio: auto; box-shadow: var(--shadow-lg); }
+.sticky-story .image-stack figure.full img { aspect-ratio: auto; height: auto; object-fit: contain; }

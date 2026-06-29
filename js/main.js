@@ -382,3 +382,23 @@ function openOrderPicker(e){ if(e){ e.preventDefault(); } var p=document.getElem
 function closeOrderPicker(){ var p=document.getElementById('orderPicker'); if(p){ p.classList.remove('open'); } }
 document.addEventListener('click', function(e){ var p=document.getElementById('orderPicker'); if(p && e.target===p){ closeOrderPicker(); } });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeOrderPicker(); } });
+
+/* Review marquee: pause while touched / pressed (CSS handles hover) */
+(function () {
+  function bind() {
+    document.querySelectorAll('.review-marquee').forEach(function (m) {
+      if (m.dataset.pauseBound) return; m.dataset.pauseBound = '1';
+      var pause = function () { m.classList.add('is-paused'); };
+      var play  = function () { m.classList.remove('is-paused'); };
+      m.addEventListener('touchstart', pause, { passive: true });
+      m.addEventListener('touchend', play);
+      m.addEventListener('touchcancel', play);
+      m.addEventListener('pointerdown', pause);
+      m.addEventListener('pointerup', play);
+      m.addEventListener('pointercancel', play);
+      m.addEventListener('pointerleave', play);
+    });
+  }
+  if (document.readyState !== 'loading') bind();
+  else document.addEventListener('DOMContentLoaded', bind);
+})();

@@ -514,7 +514,7 @@ function homePage() {
   }, `
 <section class="cinema-hero" aria-labelledby="hero-h">
   <div class="hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/litzas-pizza-spread.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-spread-hero.jpg" alt="">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
@@ -566,7 +566,7 @@ function homePage() {
       <p class="eyebrow">${tc(t('story.eyebrow', 'Sixty years on 400 South'))}</p>
       <h2 id="story-tease-h">${tc(t('story.headline', 'Walk in.'))}<span class="slab">${tc(t('story.headline_slab', 'Order. Sit down.'))}</span></h2>
       <figure class="wide-banner reveal">
-        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the Salt Lake City restaurant" loading="lazy">
+        <img src="/assets/images/optimized/litzas-spread-table.jpg" alt="A spread of Litzas pizzas on a reclaimed-wood table" loading="lazy">
       </figure>
       <p>${tc(t('story.p1', 'There’s a building on East 400 South that’s been making the same pizza for sixty years. Sticky booths in the best way. The cheese pulls. The cut is still done by hand. On Friday nights the line goes out the door and nobody complains, because the food is worth it.'))}</p>
       <p>${tc(t('story.p2', 'Litzas isn’t a date-night place. It’s not a reservation place. It’s the place your dad took you. It’s where the team eats after the game. It’s the one your kids will bring their kids to.'))}</p>
@@ -587,7 +587,7 @@ function homePage() {
     <p>${tc(t('menu.body', 'A few favorites below. The full menu — with sizes and prices — is one click away.'))}</p>
   </div>
   <figure class="wide-banner menu-dough reveal">
-    <img src="/assets/images/optimized/litzas-dough-toss.jpg" alt="A Litzas cook tossing fresh pizza dough in the air" loading="lazy">
+    <img src="/assets/images/optimized/litzas-topping-sausage.jpg" alt="Hand-spreading sausage and cheese over fresh-rolled dough" loading="lazy">
   </figure>
   </div>
   <div class="menu-band">
@@ -913,22 +913,12 @@ function storyPage() {
 </section>
 
 <section class="dark-section">
-  <div class="sticky-story">
+  <div class="sticky-story story-solo">
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('storypg.place.eyebrow','The Place'))}</p>
       <h2>${tc(t('storypg.place.headline','You know it'))}<span class="slab">${tc(t('storypg.place.headline_slab',' when you walk in.'))}</span></h2>
       <p>${tc(t('storypg.place.p1','Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a waitress who knows the menu by heart, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound. You sit down. They bring it to you. You pay on the way out.'))}</p>
       <p>${tc(t('storypg.place.p2','It’s the place you went after the game. The place your parents took you on Friday. The place where the same song’s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.'))}</p>
-    </div>
-    <div class="image-stack">
-      <figure class="reveal wide-fig">
-        <img src="/assets/images/optimized/litzas-slc-wall-sign.jpg" alt="Litzas Pizza Salt Lake City sign on the wood-panel wall inside the dining room" loading="lazy">
-        <figcaption>The wall when you walk in</figcaption>
-      </figure>
-      <figure class="reveal">
-        <img src="/assets/images/optimized/litzas-night-sign.jpg" alt="Litzas and Hires Big H sign glowing at night on East 400 South" loading="lazy">
-        <figcaption>SLC &middot; 400 South, after dark</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -936,8 +926,8 @@ function storyPage() {
 <section class="warm-section">
   <div class="sticky-story">
     <div class="image-stack">
-      <figure class="reveal">
-        <img src="/assets/images/optimized/litzas-dough-toss.jpg" alt="A Litzas cook tossing fresh pizza dough in the air" loading="lazy">
+      <figure class="reveal full">
+        <img src="/assets/images/optimized/litzas-dough-flip.jpg" alt="A Litzas cook tossing fresh pizza dough high in the air" loading="lazy">
         <figcaption>Hand-tossed, every single pie</figcaption>
       </figure>
       <figure class="reveal">
@@ -948,25 +938,20 @@ function storyPage() {
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('storypg.pizza.eyebrow','The Pizza'))}</p>
       <h2>${tc(t('storypg.pizza.headline','The dough still has'))}<span class="slab">${tc(t('storypg.pizza.headline_slab',' to earn the day.'))}</span></h2>
-      <p>${tc(t('storypg.pizza.p1','The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce — tomato, the right amount of spice, the right amount of restraint. The cheese is real mozzarella. Not a blend. Not a substitute. When you pick up a slice, the cheese pulls the way it’s supposed to pull.'))}</p>
-      <p>${emphasize(t('storypg.pizza.p2','The pies come out of the oven hot. The cut is done by hand. The box says Fresh Hot Pizza on the side in gold lettering. It’s not a slogan. It’s the instructions.'),['Fresh Hot Pizza'])}</p>
+      <p>${tc(t('storypg.pizza.p1','The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce — tomato, the right amount of spice, the right amount of restraint. It hasn’t changed since 1965, because it was right the first time.'))}</p>
+      <p>${emphasize(t('storypg.pizza.p2','The cheese is 100% real mozzarella — never a blend, never a substitute. We cube it by hand instead of shredding it, so it melts down into the pie instead of sliding off the top, and it pulls the way real cheese is supposed to when you lift a slice.'),['100% real mozzarella'])}</p>
+      <p>${emphasize(t('storypg.pizza.p3','The meats are cut and seasoned in our own butcher shop — the sausage, the pepperoni, all of it. Everything else comes from producers the family has bought from for the better part of sixty-five years, and when you’ve known your suppliers that long, quality stops being a decision and becomes a habit. The pies come out of the oven hot, the cut is done by hand, and the box says Fresh Hot Pizza on the side in gold lettering. It’s not a slogan. It’s the instructions.'),['Fresh Hot Pizza'])}</p>
     </div>
   </div>
 </section>
 
 <section class="dark-section">
-  <div class="sticky-story">
+  <div class="sticky-story story-solo">
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('storypg.don.eyebrow','A note on Don Hale'))}</p>
       <h2>${tc(t('storypg.don.headline','The guy who'))}<span class="slab">${tc(t('storypg.don.headline_slab',' started it.'))}</span></h2>
       <p>${tc(t('storypg.don.p1','Litzas exists because Don Hale couldn’t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn’t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.'))}</p>
       <p>${emphasize(t('storypg.don.p2','Don passed on. The recipes didn’t. He and his son Mark wrote a book about it called Opportunity Knocks Twice, if you’re curious. Otherwise that’s the whole Don story. The rest is the pizza.'),['Opportunity Knocks Twice'])}</p>
-    </div>
-    <div class="image-stack">
-      <figure class="reveal">
-        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the SLC dining room" loading="lazy">
-        <figcaption>The mural &middot; 400 South dining room</figcaption>
-      </figure>
     </div>
   </div>
 </section>
