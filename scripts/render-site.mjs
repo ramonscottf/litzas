@@ -244,14 +244,20 @@ function orderPickerHTML() {
   </div>
 </div>
 <a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
-  <!-- Placeholder pizza-slice icon. To swap in a custom one, replace this whole
-       <svg> (keep viewBox="0 0 24 24" and fill="currentColor" so it inherits the
-       button color), or drop in <img src="/assets/images/..." class="order-fab-icon"...>. -->
-  <svg class="order-fab-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 22 3.8 7.4c5.1-2.5 11.3-2.5 16.4 0L12 22Z" fill="currentColor"/>
-    <circle cx="9.3" cy="11" r="1.35" fill="var(--gold)"/>
-    <circle cx="14.2" cy="12.4" r="1.35" fill="var(--gold)"/>
-    <circle cx="11.6" cy="16" r="1.15" fill="var(--gold)"/>
+  <!-- Placeholder pizza BOX. The animation rotates the .pbox-lid group open on a
+       hinge at its top (back) edge; .pbox-base stays put and the gold pizza peeks
+       out as it lifts. To drop in a custom box: keep this two-group structure —
+       <g class="pbox-base"> (everything that stays) + <g class="pbox-lid"> (the
+       flap that opens) — viewBox 0 0 24 24, fill="currentColor", lid hinged along
+       its top edge. -->
+  <svg class="order-fab-icon pbox" viewBox="0 0 24 24" aria-hidden="true">
+    <g class="pbox-base">
+      <rect x="3.6" y="9.8" width="16.8" height="9.8" rx="1.7" fill="currentColor"/>
+      <circle class="pbox-pizza" cx="12" cy="10.4" r="2.3" fill="var(--gold)"/>
+    </g>
+    <g class="pbox-lid">
+      <rect x="3" y="6" width="18" height="4.4" rx="1.6" fill="currentColor"/>
+    </g>
   </svg>
   <span>Order Now</span>
 </a>`;

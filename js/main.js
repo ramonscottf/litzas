@@ -55,6 +55,17 @@
     window.addEventListener('resize', updateTint, { passive: true });
   })();
 
+  // Pizza-box FAB: pop the lid open on press for a tactile "it's opening" beat.
+  const orderFab = document.querySelector('.order-fab');
+  if (orderFab) {
+    orderFab.addEventListener('pointerdown', () => orderFab.classList.add('is-opening'));
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => {
+      orderFab.addEventListener(ev, () => {
+        setTimeout(() => orderFab.classList.remove('is-opening'), 420);
+      });
+    });
+  }
+
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 

@@ -2629,6 +2629,32 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
   .order-fab { padding: 12px 17px; font-size: 12px; gap: 8px; letter-spacing: .12em; }
   .order-fab-icon { width: 17px; height: 17px; }
 }
+
+/* Pizza-box icon: the lid hinges open. A subtle ambient "peek" every few seconds
+   pulls the eye; hover/tap lifts it wide. transform-box:fill-box pins the hinge
+   to the lid group's own top (back) edge; perspective lives in the transform so
+   the box doesn't need a 3D parent. */
+.order-fab-icon.pbox { width: 22px; height: 22px; overflow: visible; }
+.pbox-lid {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  transition: transform .45s var(--ease-out);
+  animation: pboxPeek 5.5s ease-in-out 1.6s infinite;
+}
+@keyframes pboxPeek {
+  0%, 78%, 100% { transform: perspective(46px) rotateX(0deg); }
+  86%, 91%      { transform: perspective(46px) rotateX(-32deg); }
+}
+.order-fab:hover .pbox-lid,
+.order-fab.is-opening .pbox-lid {
+  animation: none;
+  transform: perspective(46px) rotateX(-62deg);
+}
+@media (max-width: 520px) { .order-fab-icon.pbox { width: 20px; height: 20px; } }
+@media (prefers-reduced-motion: reduce) {
+  .order-fab .pbox-lid { animation: none; transition: none; }
+  .order-fab:hover .pbox-lid, .order-fab.is-opening .pbox-lid { transform: none; }
+}
 .order-picker-close:hover{color:var(--bone)}
 .order-picker-options{display:flex;flex-direction:column;gap:12px}
 .loc-picker-btn{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;padding:15px 18px;border-radius:var(--radius);border:1px solid var(--rule-gold);background:var(--gold);color:var(--ink);font-family:var(--slab);font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:transform .15s var(--ease-out),background .15s}
