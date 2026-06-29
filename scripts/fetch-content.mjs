@@ -12,7 +12,11 @@ const BASE = process.env.CONTENT_API_BASE || 'https://cms.wickowaypoint.com';
 async function pull(path, outName, minOk, validate) {
   const out = join(root, 'data', outName);
   try {
-    const res = await fetch(BASE + path, { headers: { 'cache-control': 'no-cache' } });
+    // Cache-buster: the content API sets `cache-control: max-age=60`, so without a
+    // unique URL the CDN edge can serve a stale snapshot to the build and a publish
+    // right after an edit lands only partially. A per-build query param forces fresh.
+    const url = BASE + path + (path.includes('?') ? '&' : '?') + '_cb=' + Date.now();
+    const res = await fetch(url, { cache: 'no-store', headers: { 'cache-control': 'no-cache' } });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     if (!validate(data)) throw new Error('failed validation');
