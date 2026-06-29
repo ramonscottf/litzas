@@ -748,7 +748,8 @@ ${menuRails}
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Litzas Favorites ${countChip(pizzas.length, "pizzas")}</h2>
+      <h2>Litzas Favorites</h2>
+      ${countChip(pizzas.length, "pizzas")}
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
     <div class="menu-grid">${pizzaCards}</div>
@@ -760,7 +761,8 @@ ${reviewStandout(reviewsFeatured('menu'), 'Why people keep coming back')}
 ${byoCards ? `<section class="warm-section" id="build">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Build Your Own ${countChip(countOf("create-your-own"), "ways")}</h2>
+      <h2>Build Your Own</h2>
+      ${countChip(countOf("create-your-own"), "ways")}
       <p>Start with a crust, add what you want.</p>
     </div>
     <div class="byo-single">${byoCards}</div>
@@ -770,7 +772,8 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="dark-section" id="sides">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Salads &amp; Appetizers ${countChip(countOf("salads-appetizers"), "plates")}</h2>
+      <h2>Salads &amp; Appetizers</h2>
+      ${countChip(countOf("salads-appetizers"), "plates")}
     </div>
     <div class="side-grid">${sideCards('salads-appetizers')}</div>
   </div>
@@ -779,7 +782,8 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="warm-section" id="dressings">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Dressings ${countChip(7, "from scratch")}</h2>
+      <h2>Dressings</h2>
+      ${countChip(7, "from scratch")}
       <p>All made from scratch. Pick one with any salad.</p>
     </div>
     <div class="side-grid">${sideCards('dressings')}</div>
@@ -789,7 +793,8 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="dark-section" id="specials">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Specials &amp; Entrees ${countChip(countOf("specials-entrees"), "meals")}</h2>
+      <h2>Specials &amp; Entrees</h2>
+      ${countChip(countOf("specials-entrees"), "meals")}
       <p>Lasagna, spaghetti, garlic bread — Don worked on these recipes too, back when he was figuring out the pizza.</p>
     </div>
     <div class="side-grid">${sideCards('specials-entrees')}</div>
@@ -799,7 +804,8 @@ ${byoCards ? `<section class="warm-section" id="build">
 <section class="warm-section" id="drinks">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Drinks ${countChip(13, "on tap")}</h2>
+      <h2>Drinks</h2>
+      ${countChip(13, "on tap")}
       <p>Yes — that includes Hires Root Beer in a frosted mug.</p>
     </div>
     <div class="side-grid">${sideCards('beverages')}</div>

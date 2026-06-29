@@ -1881,8 +1881,7 @@ section { position: relative; }
 /* True-count chips beside section heads */
 .count-chip {
   display: inline-block;
-  vertical-align: middle;
-  margin-left: 12px;
+  margin: 4px 0 16px;
   font-family: var(--label);
   font-size: 12px;
   font-weight: 500;
@@ -1892,7 +1891,6 @@ section { position: relative; }
   border: 1px solid var(--rule-gold);
   border-radius: var(--radius-pill);
   padding: 6px 14px;
-  transform: translateY(-4px);
   white-space: nowrap;
 }
 
