@@ -2593,8 +2593,9 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 /* ── Order-online location picker ─────────────────────────────────────────── */
 .order-picker{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(10,9,8,.74);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .order-picker.open{display:flex}
-.order-picker-card{position:relative;width:100%;max-width:420px;background:var(--smoke);border:1px solid var(--rule-gold);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:34px 28px 30px;text-align:center}
-.order-picker-card h3{font-family:var(--display);font-size:30px;letter-spacing:.01em;color:var(--bone);margin:0 0 6px}
+.order-picker-card{position:relative;width:100%;max-width:420px;background:linear-gradient(180deg,#181410,#100c08);border:1px solid rgba(174,152,96,.42);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:34px 28px 30px;text-align:center;overflow:hidden}
+.order-picker-card::before{content:"";position:absolute;top:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,#c9b079,transparent)}
+.order-picker-card h3{font-family:var(--display);font-size:30px;letter-spacing:.01em;color:#f4ede0;margin:0 0 6px}
 .order-picker-card p{font-family:var(--body);color:rgba(244,237,224,.66);font-size:14px;margin:0 0 20px}
 .order-picker-close{position:absolute;top:10px;right:16px;background:none;border:0;color:rgba(244,237,224,.6);font-size:30px;line-height:1;cursor:pointer}
 
