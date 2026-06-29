@@ -2598,3 +2598,33 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 .loc-picker-btn.is-disabled{background:transparent;color:rgba(244,237,224,.5);border-color:var(--rule);cursor:default}
 .loc-picker-btn.is-disabled span{color:rgba(244,237,224,.4)}
 .loc-picker-btn.is-disabled:hover{transform:none;background:transparent}
+
+/* ── New photos pass (2026-06) ───────────────────────────── */
+/* Google review mark is now an <img> (official updated logo) */
+.g-mark { vertical-align: -2px; margin-right: 4px; }
+
+/* Kitchen photo gallery — story page */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 1.6vw, 18px);
+  max-width: 1100px;
+  margin: clamp(36px, 5vw, 56px) auto 0;
+}
+.photo-gallery figure {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+.photo-gallery img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 1.2s var(--ease-out);
+}
+.photo-gallery figure:hover img { transform: scale(1.05); }
+@media (max-width: 720px) {
+  .photo-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}

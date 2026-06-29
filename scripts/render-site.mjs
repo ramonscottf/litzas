@@ -330,7 +330,7 @@ function head({ title, description, current = '', navStack = '' }) {
 <meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
+<meta property="og:image" content="/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -344,7 +344,7 @@ function head({ title, description, current = '', navStack = '' }) {
   "@type": "Restaurant",
   "name": "Litzas Pizza",
   "url": "https://www.litzaspizza.com",
-  "image": "https://www.litzaspizza.com/assets/images/optimized/pizza-overhead-pair.jpg",
+  "image": "https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
   "telephone": "+1-801-359-5352",
@@ -461,7 +461,7 @@ function reviewById(id) { return REVIEWS.find(r => r.id === id); }
 function reviewsFeatured(slot) { return REVIEWS.find(r => r.feature === slot); }
 
 function gMark() {
-  return `<svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>`;
+  return `<img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async">`;
 }
 function stars(n = 5) {
   const k = Math.max(0, Math.min(5, Math.round(n)));
@@ -514,7 +514,7 @@ function homePage() {
   }, `
 <section class="cinema-hero" aria-labelledby="hero-h">
   <div class="hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-pizza-spread.jpg" alt="">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content reveal">
@@ -587,7 +587,7 @@ function homePage() {
     <p>${tc(t('menu.body', 'A few favorites below. The full menu — with sizes and prices — is one click away.'))}</p>
   </div>
   <figure class="wide-banner menu-dough reveal">
-    <img src="/assets/images/optimized/dough-hands.jpg" alt="Hands rolling fresh pizza dough on flour" loading="lazy">
+    <img src="/assets/images/optimized/litzas-dough-toss.jpg" alt="A Litzas cook tossing fresh pizza dough in the air" loading="lazy">
   </figure>
   </div>
   <div class="menu-band">
@@ -729,7 +729,7 @@ function menuPage() {
   }, `
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/litzas-pizza-hero-wood.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-slice-closeup.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">${tc(t("menupg.hero.eyebrow", "The Menu"))}</p>
@@ -937,12 +937,12 @@ function storyPage() {
   <div class="sticky-story">
     <div class="image-stack">
       <figure class="reveal">
-        <img src="/assets/images/optimized/dough-hands.jpg" alt="Fresh pizza dough being rolled by hand" loading="lazy">
-        <figcaption>Rolled in the morning, baked when you order</figcaption>
+        <img src="/assets/images/optimized/litzas-dough-toss.jpg" alt="A Litzas cook tossing fresh pizza dough in the air" loading="lazy">
+        <figcaption>Hand-tossed, every single pie</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="Two Litzas pizzas on a worn wood table" loading="lazy">
-        <figcaption>The same pizza, sixty years running</figcaption>
+        <img src="/assets/images/optimized/litzas-owner-oven.jpg" alt="The owner sliding pizzas into the rotating deck oven" loading="lazy">
+        <figcaption>The owner, still working the oven</figcaption>
       </figure>
     </div>
     <div class="copy reveal">
@@ -976,16 +976,37 @@ function storyPage() {
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('storypg.today.eyebrow','Today'))}</p>
       <h2>${tc(t('storypg.today.headline','Same family.'))}<span class="slab">${tc(t('storypg.today.headline_slab',' Same crew. Same pizza.'))}</span></h2>
+      <div class="hires-body">
+        <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
       <p>${tc(t('storypg.today.p1','The Hale family still runs both places. A lot of the kitchen and floor crew has been here longer than most marriages last — some of them remember Don himself working a Friday rush. When you walk in on a Friday night you’ll wait a few minutes. The line is part of it.'))}</p>
       <p>${tc(t('storypg.today.p2','You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.'))}</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
         <a href="/locations/" class="btn btn-ghost">Find a Location</a>
       </div>
+      </div>
     </div>
-    <figure class="reveal">
-      <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer on a Litzas table" loading="lazy">
-    </figure>
+  </div>
+</section>
+
+<section class="warm-section">
+  <div class="page-band">
+    <div class="section-kicker center reveal">
+      <p class="eyebrow">From the kitchen</p>
+      <h2>Sixty years,<span class="slab"> one pizza at a time.</span></h2>
+      <p>Dough in the morning, sauce by the ladle, real mozzarella by the handful, into the oven and onto your table. A look behind the counter.</p>
+    </div>
+    <div class="photo-gallery">
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-cheese-pour.jpg" alt="Shredded mozzarella poured over fresh sauce" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-sauce-ladle.jpg" alt="Ladling sauce onto hand-rolled dough" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-building-supreme.jpg" alt="Building a pepperoni, mushroom and olive pizza" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-peels-row.jpg" alt="A row of topped pizzas on peels waiting for the oven" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-spinach-oven.jpg" alt="A spinach pizza going into the rotating oven" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-cutting-pizza.jpg" alt="Cutting a fresh pepperoni pizza with a wheel cutter" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-pizza-spread.jpg" alt="A spread of finished Litzas pizzas on the table" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-topping-sausage.jpg" alt="Hand-spreading sausage over cheese on a thin crust" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-slice-closeup.jpg" alt="A gooey slice of Litzas pepperoni pizza being lifted" loading="lazy"></figure>
+    </div>
   </div>
 </section>
 
@@ -1166,7 +1187,7 @@ function jobsPage() {
   }, `
 <section class="page-hero" aria-labelledby="jobs-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/dough-hands.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-topping-sausage.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">${tc(t("jobspg.hero.eyebrow", "Now Hiring"))}</p>
@@ -1292,7 +1313,7 @@ function cateringPage() {
   }, `
 <section class="page-hero" aria-labelledby="catering-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-cutting-pizza.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">${tc(t("cateringpg.hero.eyebrow", "Catering & Big Orders"))}</p>
