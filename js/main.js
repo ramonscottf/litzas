@@ -36,9 +36,24 @@
     window.addEventListener('scroll', updateNav, { passive: true });
   }
 
-  // Status-bar tint stays dark (#0a0908, set in <head>) on every page so it
-  // matches the always-dark floating nav. The previous adaptive cream-on-scroll
-  // left a cream bar above the nav once the hero scrolled off (e.g. the menu).
+  // Adaptive status-bar tint. The floating nav sits on the dark hero at the top
+  // (dark tint) and on cream content once you scroll past it (cream tint), so the
+  // band behind the iOS status bar matches whatever is directly under it. Safe now
+  // that the dark top-cap is gone (it used to leave a cream bar above the nav).
+  (() => {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const hero = document.querySelector('.page-hero, .hero');
+    if (!meta) return;
+    const DARK = '#0a0908';
+    const CREAM = '#fbf6ec';
+    const updateTint = () => {
+      const onHero = hero ? hero.getBoundingClientRect().bottom > 6 : false;
+      meta.setAttribute('content', onHero ? DARK : CREAM);
+    };
+    updateTint();
+    window.addEventListener('scroll', updateTint, { passive: true });
+    window.addEventListener('resize', updateTint, { passive: true });
+  })();
 
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();

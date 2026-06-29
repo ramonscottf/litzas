@@ -904,6 +904,20 @@ section { position: relative; }
 .sticky-story.story-solo .copy { position: static; }
 .sticky-story.story-solo .wide-banner { margin: clamp(26px, 3.5vw, 40px) 0; }
 
+/* Don's portrait — inset in the story card, smaller than the gallery photos,
+   floated so the copy wraps around it (same idea as the root-beer mug). */
+.don-portrait {
+  float: right;
+  width: clamp(124px, 32vw, 178px);
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  height: auto;
+  margin: 6px 0 14px clamp(18px, 4vw, 28px);
+  border-radius: var(--radius);
+  border: 1px solid var(--rule-cm);
+  box-shadow: 0 14px 32px rgba(10, 9, 8, .16);
+}
+
 /* Menu intro — header beside the dough on desktop, dough beneath it on mobile. */
 .menu-intro { max-width: var(--max); margin: 0 auto; padding: clamp(48px, 6vw, 80px) var(--gutter) 0; }
 .menu-intro .section-kicker { margin-bottom: 0; padding-inline: 0; }

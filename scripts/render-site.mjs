@@ -975,6 +975,7 @@ function storyPage() {
     <div class="copy reveal">
       <p class="eyebrow">${tc(t('storypg.don.eyebrow','A note on Don Hale'))}</p>
       <h2>${tc(t('storypg.don.headline','The guy who'))}<span class="slab">${tc(t('storypg.don.headline_slab',' started it.'))}</span></h2>
+      <img class="don-portrait" src="/assets/images/optimized/don-hale.jpg" alt="Don Hale, who founded Litzas and Hires Big H" width="500" height="750" loading="lazy">
       <p>${tc(t('storypg.don.p1','Litzas exists because Don Hale couldn’t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn’t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.'))}</p>
       <p>${emphasize(t('storypg.don.p2','Don passed on. The recipes didn’t. He and his son Mark wrote a book about it called Opportunity Knocks Twice, if you’re curious. Otherwise that’s the whole Don story. The rest is the pizza.'),['Opportunity Knocks Twice'])}</p>
     </div>
