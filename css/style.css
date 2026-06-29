@@ -2597,6 +2597,38 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 .order-picker-card h3{font-family:var(--display);font-size:30px;letter-spacing:.01em;color:var(--bone);margin:0 0 6px}
 .order-picker-card p{font-family:var(--body);color:rgba(244,237,224,.66);font-size:14px;margin:0 0 20px}
 .order-picker-close{position:absolute;top:10px;right:16px;background:none;border:0;color:rgba(244,237,224,.6);font-size:30px;line-height:1;cursor:pointer}
+
+/* Floating "Order Now" — always-on CTA, bottom-right, opens the location picker.
+   Sits above content but below the picker overlay (z 1000) and the nav (z 100,
+   top of screen, no overlap). Clears the iOS home indicator via safe-area inset. */
+.order-fab {
+  position: fixed;
+  right: clamp(16px, 4vw, 24px);
+  bottom: calc(clamp(16px, 4vw, 22px) + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 22px;
+  font-family: var(--label);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--gold);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 30px rgba(10, 9, 8, .30);
+  transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out), background .25s var(--ease-out);
+}
+.order-fab:hover { transform: translateY(-3px); background: var(--gold-bright); box-shadow: 0 16px 40px rgba(10, 9, 8, .40); }
+.order-fab:active { transform: translateY(-1px); }
+.order-fab-icon { width: 19px; height: 19px; flex: none; display: block; }
+@media (max-width: 520px) {
+  .order-fab { padding: 12px 17px; font-size: 12px; gap: 8px; letter-spacing: .12em; }
+  .order-fab-icon { width: 17px; height: 17px; }
+}
 .order-picker-close:hover{color:var(--bone)}
 .order-picker-options{display:flex;flex-direction:column;gap:12px}
 .loc-picker-btn{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;padding:15px 18px;border-radius:var(--radius);border:1px solid var(--rule-gold);background:var(--gold);color:var(--ink);font-family:var(--slab);font-weight:600;font-size:18px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:transform .15s var(--ease-out),background .15s}

@@ -242,7 +242,19 @@ function orderPickerHTML() {
       ${opts}
     </div>
   </div>
-</div>`;
+</div>
+<a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
+  <!-- Placeholder pizza-slice icon. To swap in a custom one, replace this whole
+       <svg> (keep viewBox="0 0 24 24" and fill="currentColor" so it inherits the
+       button color), or drop in <img src="/assets/images/..." class="order-fab-icon"...>. -->
+  <svg class="order-fab-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 22 3.8 7.4c5.1-2.5 11.3-2.5 16.4 0L12 22Z" fill="currentColor"/>
+    <circle cx="9.3" cy="11" r="1.35" fill="var(--gold)"/>
+    <circle cx="14.2" cy="12.4" r="1.35" fill="var(--gold)"/>
+    <circle cx="11.6" cy="16" r="1.15" fill="var(--gold)"/>
+  </svg>
+  <span>Order Now</span>
+</a>`;
 }
 
 function nav(current = '', stack = '') {
