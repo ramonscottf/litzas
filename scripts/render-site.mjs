@@ -632,7 +632,7 @@ ${reviewStandout(reviewsFeatured('home'), 'From the reviews')}
 
 function menuPage() {
   // Pizzas — multi-size cards, numbered 01–24 like the printed menu
-  const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i, { numbered: true })).join('\n');
+  const pizzaCards = pizzas.map((pizza, i) => pizzaCard(pizza, i)).join('\n');
 
   // Build-Your-Own — one clean card: cheese photo, the topping bar, and a
   // price row per build tier. Each amount carries all four sizes as data attrs

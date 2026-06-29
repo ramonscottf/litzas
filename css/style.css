@@ -2634,3 +2634,14 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 /* Full-height story figure (uncropped — e.g. the dough flip) */
 .sticky-story .image-stack figure.full { aspect-ratio: auto; box-shadow: var(--shadow-lg); }
 .sticky-story .image-stack figure.full img { aspect-ratio: auto; height: auto; object-fit: contain; }
+
+/* Menu pizza cards (2026-06-29): the printed menu has no record-numbers, the
+   title reads a touch larger, and the corner pizza sits larger so it covers
+   the card surface behind it instead of leaving a white gap. */
+body[data-page="/menu/"] .pizza-name { font-size: 28px; }
+.pizza-card.text-only .pizza-peek {
+  width: clamp(190px, 56%, 265px);
+  transform: translate(26%, -38%);
+}
+.pizza-card.text-only .pizza-name,
+.pizza-card.text-only .toppings { padding-right: 38%; }
