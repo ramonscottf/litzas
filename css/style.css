@@ -2640,8 +2640,19 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
    the card surface behind it instead of leaving a white gap. */
 body[data-page="/menu/"] .pizza-name { font-size: 28px; }
 .pizza-card.text-only .pizza-peek {
-  width: clamp(190px, 56%, 265px);
-  transform: translate(26%, -38%);
+  width: clamp(150px, 46%, 205px);
+  transform: translate(28%, -40%);
 }
 .pizza-card.text-only .pizza-name,
 .pizza-card.text-only .toppings { padding-right: 38%; }
+
+
+/* Menu cards (2026-06-29): on short descriptions the corner photo used to reach
+   the price. Pin the price row to the card bottom and give a min height so the
+   photo (anchored top-right) always clears it. */
+.pizza-card.text-only { display: flex; min-height: 200px; }
+.pizza-card.text-only .pizza-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+.pizza-card.text-only .pizza-price { margin-top: auto; }
+.side-card.has-peek { display: flex; min-height: 188px; }
+.side-card.has-peek .side-body { display: flex; flex-direction: column; flex: 1 1 auto; width: 100%; }
+.side-card.has-peek .price-tiers, .side-card.has-peek .pizza-price { margin-top: auto; }
