@@ -2565,23 +2565,13 @@ body[data-page="/menu/"] .warm-section[id] { scroll-margin-top: 210px; }
 .loc-status.is-closed .dot { background: #c0392b; }
 .order-button.is-disabled { opacity: .82; }
 
-/* ── Dark cap over the very top on mobile ────────────────────────────────────
-   The nav is a floating pill with a small gap above it; once the dark hero
-   scrolls off, the cream page bg (and the iOS safe-area strip behind the status
-   bar) showed as a cream bar above the nav. This fills that strip with the same
-   dark as the nav + theme-color so the top reads as one dark band. Sits behind
-   the nav (z-index 100) and is shorter than it, so it never bleeds into content. */
-@media (max-width: 780px) {
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: calc(env(safe-area-inset-top, 0px) + 16px);
-    background: var(--ink);
-    z-index: 90;
-    pointer-events: none;
-  }
-}
+/* (Removed the dark cap over the top — it read as a solid block on cream
+   sections. The dark hero already covers the safe area at the top; when
+   scrolled, the cream page bg now runs edge-to-edge behind the status bar.) */
+
+/* Force one sentence per line in two-part display headlines (.slab headers). */
+.hl-line { display: block; }
+.hl-line.slab + .hl-line.slab { margin-top: 0; }
 
 /* ── Order-online location picker ─────────────────────────────────────────── */
 .order-picker{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(10,9,8,.74);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}

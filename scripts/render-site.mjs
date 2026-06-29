@@ -363,10 +363,26 @@ function head({ title, description, current = '', navStack = '' }) {
 ${nav(current, navStack)}`;
 }
 
+// Force one sentence per line in two-part display headlines. Any <h1>/<h2> that
+// uses the .slab styling gets each sentence wrapped in a block line, so a 2–3
+// sentence header lands on 2–3 lines instead of wrapping mid-sentence.
+function breakHeadlineSentences(html) {
+  return html.replace(/(<h[12][^>]*>)([\s\S]*?)(<\/h[12]>)/g, (m, open, inner, close) => {
+    if (!inner.includes('class="slab"')) return m;
+    const sm = inner.match(/^([\s\S]*?)<span class="slab">([\s\S]*?)<\/span>([\s\S]*)$/);
+    if (!sm) return m;
+    const [, main, slab, tail] = sm;
+    const sentences = (t) => t.trim().split(/(?<=[.!?])\s+/).filter(Boolean);
+    const lines = sentences(main).map((s) => `<span class="hl-line">${s}</span>`).join('')
+      + sentences(slab).map((s) => `<span class="hl-line slab">${s}</span>`).join('');
+    return open + lines + (tail || '') + close;
+  });
+}
+
 function layout(meta, body) {
   return `${head(meta)}
 <main id="main">
-${body}
+${breakHeadlineSentences(body)}
 </main>
 ${footer()}
 </body>
