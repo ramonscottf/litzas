@@ -51,6 +51,9 @@ const approvedPhotos = new Map(
 // at /studio/ — they appear on the next page load, no rebuild needed.
 const MENU_IMG_BASE = 'https://litzas-menu.ramonscottf.workers.dev/img';
 const PEEK_FALLBACK = '/assets/images/optimized/pizza-pepperoni-peek.png';
+// Bump when a menu photo is re-uploaded to R2 — the worker serves images with
+// max-age=300, so a version param forces browsers/CDN to pull the new file now.
+const PEEK_VER = '2';
 
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
@@ -394,7 +397,7 @@ function pizzaCard(pizza, index, { numbered = false, showPrice = true } = {}) {
   // Text-only card — clean numbered tile with a per-pizza photo "peek" pulled
   // from R2 by slug; falls back to the generic pepperoni peek if none yet.
   return `<article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(pizza.slug)}.png" onerror="this.onerror=null;this.src='${PEEK_FALLBACK}'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(pizza.slug)}.png?v=${PEEK_VER}" onerror="this.onerror=null;this.src='${PEEK_FALLBACK}'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
     ${chip}
     <h3 class="pizza-name">${esc(pizza.name)}</h3>
@@ -654,7 +657,7 @@ function menuPage() {
     ? `<div class="byo-topgroup"><span class="byo-toplabel">${esc(label)}</span><span class="byo-toplist">${esc(arr.join(', '))}</span></div>`
     : '';
   const byoCards = byo.length ? `<article class="side-card has-peek byo-card reveal">
-    <img class="pizza-peek" src="${MENU_IMG_BASE}/cheese.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+    <img class="pizza-peek" src="${MENU_IMG_BASE}/cheese.png?v=${PEEK_VER}" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
     <div class="byo-body">
       <h3 class="side-name">Build Your Own</h3>
       <div class="byo-toppings">
@@ -691,7 +694,7 @@ function menuPage() {
         : singlePriceLine((item.prices && item.prices[0]) || item.price);
       const hasPeek = item.slug && item.peek !== false;
       const sidePhoto = hasPeek
-        ? `<img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(item.slug)}.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">`
+        ? `<img class="pizza-peek" src="${MENU_IMG_BASE}/${esc(item.slug)}.png?v=${PEEK_VER}" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">`
         : '';
       parts.push(`<article class="side-card reveal${hasPeek ? ' has-peek' : ''}">
       ${sidePhoto}
