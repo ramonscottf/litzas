@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Internal tools — keep out of indexes
+Disallow: /studio/
+Disallow: /downloads/
+
+Sitemap: https://litzas.wickowaypoint.com/sitemap.xml
