@@ -10,21 +10,21 @@
 <meta name="description" content="Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.">
 <meta property="og:title" content="Menu · Litzas Pizza · Salt Lake City &amp; Midvale">
 <meta property="og:description" content="Twenty-four pizzas, hand-rolled and baked when you order. Plus salads, build-your-own, specials, and Hires root beer in a frosted mug.">
-<meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
+<meta property="og:image" content="https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
-<link rel="stylesheet" href="/css/style.css?v=d561656c">
+<link rel="stylesheet" href="/css/style.css?v=d1bd8dcf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Litzas Pizza",
   "url": "https://www.litzaspizza.com",
-  "image": "https://www.litzaspizza.com/assets/images/optimized/pizza-overhead-pair.jpg",
+  "image": "https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
   "telephone": "+1-801-359-5352",
@@ -35,6 +35,8 @@
   ]
 }
 </script>
+<link rel="canonical" href="https://www.litzaspizza.com/menu/">
+<meta property="og:url" content="https://www.litzaspizza.com/menu/">
 </head>
 <body data-page="/menu/">
 
@@ -51,9 +53,9 @@
       <a href="/locations/">Locations</a>
       <a href="/story/">Story</a>
       <a href="/catering/">Catering</a>
-      <a href="/blog/">Stories</a>
+      <a href="/blog/">Blog</a>
       <a href="/jobs/">Jobs</a>
-      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
+      <a href="#" class="nav-cta" onclick="openOrderPicker(event)">Order Online</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -65,12 +67,12 @@
 
 <section class="page-hero menu-hero" aria-labelledby="menu-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/litzas-pizza-hero-wood.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-slice-closeup.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Menu</p>
     <h1 id="menu-h"><span class="ln">Hand-rolled dough.</span><span class="ln">Premium ingredients.</span><span class="ln">Unforgettable pizza.</span></h1>
-    <p>Prices update based on the size you pick up top. Browse, or jump to a section.</p>
+    <p>Made-from-scratch dough. Real mozzarella &mdash; never a blend &mdash; over a sauce we haven't changed since 1965. Add scratch-made salads and dressings, lasagna and spaghetti, and a frosted mug of root beer, and you've got a restaurant worth coming back to for generations. More than sixty years on 400 South, and still the same recipes. </p>
   </div>
 </section>
 
@@ -96,223 +98,226 @@
   </div>
 </div>
 
+<p class="menu-rails-note">Prices update based on the size you pick up top. Browse, or jump to a section.</p>
+
 <section class="dark-section" id="favorites">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Litzas Favorites <span class="count-chip">24 pizzas</span></h2>
+      <h2>Litzas Favorites</h2>
+      <span class="count-chip">24 pizzas</span>
       <p>Twenty-four pizzas, each available in 4 sizes.</p>
     </div>
     <div class="menu-grid"><article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 01</span>
+    
     <h3 class="pizza-name">Cheese</h3>
     <p class="toppings">Pizza sauce and mozzarella cheese.</p>
     <p class="pizza-price" data-price-mini="8.75" data-price-sm="11.50" data-price-md="14.25" data-price-lg="21.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$14.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garlic-cheese.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garlic-cheese.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 02</span>
+    
     <h3 class="pizza-name">Garlic Cheese</h3>
     <p class="toppings">Garlic butter sauce and mozzarella cheese.</p>
     <p class="pizza-price" data-price-mini="8.75" data-price-sm="11.50" data-price-md="14.25" data-price-lg="21.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$14.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 03</span>
+    
     <h3 class="pizza-name">Pepperoni</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, and pepperoni.</p>
     <p class="pizza-price" data-price-mini="9.25" data-price-sm="12.50" data-price-md="15.75" data-price-lg="22.25"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$15.75</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/ground-sausage.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/ground-sausage.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 04</span>
+    
     <h3 class="pizza-name">Ground Sausage</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, and ground Italian sausage.</p>
     <p class="pizza-price" data-price-mini="9.25" data-price-sm="12.50" data-price-md="15.75" data-price-lg="22.25"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$15.75</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/western-bbq.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/western-bbq.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 05</span>
+    
     <h3 class="pizza-name">Western BBQ</h3>
     <p class="toppings">BBQ sauce, mozzarella cheese, and grilled chicken.</p>
     <p class="pizza-price" data-price-mini="9.75" data-price-sm="13.00" data-price-md="16.25" data-price-lg="23.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$16.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/ham.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/ham.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 06</span>
+    
     <h3 class="pizza-name">Ham</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, and ham.</p>
     <p class="pizza-price" data-price-mini="8.75" data-price-sm="11.50" data-price-md="14.25" data-price-lg="21.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$14.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/canadian.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/canadian.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 07</span>
+    
     <h3 class="pizza-name">Canadian</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, and Canadian bacon.</p>
     <p class="pizza-price" data-price-mini="9.25" data-price-sm="12.50" data-price-md="15.75" data-price-lg="22.25"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$15.75</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/hawaiian.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/hawaiian.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 08</span>
+    
     <h3 class="pizza-name">Hawaiian</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, ham, and pineapple.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-black.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-black.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 09</span>
+    
     <h3 class="pizza-name">Red &amp; Black</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and black olives.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-green.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-green.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 10</span>
+    
     <h3 class="pizza-name">Red &amp; Green</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and jalapenos.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-green-yellow.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/red-green-yellow.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 11</span>
+    
     <h3 class="pizza-name">Red, Green &amp; Yellow</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, jalapenos, and pineapple.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/italian-carbonara.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/italian-carbonara.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 12</span>
+    
     <h3 class="pizza-name">Italian Carbonara</h3>
     <p class="toppings">Garlic butter sauce, mozzarella cheese, chicken, bacon, and sliced tomatoes.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lone-peak.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lone-peak.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 13</span>
+    
     <h3 class="pizza-name">Lone Peak</h3>
     <p class="toppings">Garlic butter sauce, mozzarella cheese, and chicken.</p>
     <p class="pizza-price" data-price-mini="9.75" data-price-sm="13.00" data-price-md="16.25" data-price-lg="23.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$16.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/mt-olympus.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/mt-olympus.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 14</span>
+    
     <h3 class="pizza-name">Mt Olympus</h3>
     <p class="toppings">Honey mustard sauce, mozzarella cheese, chicken, bacon, and BBQ sauce drizzle.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/twin-peaks.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/twin-peaks.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 15</span>
+    
     <h3 class="pizza-name">Twin Peaks</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and mushrooms.</p>
     <p class="pizza-price" data-price-mini="10.25" data-price-sm="14.00" data-price-md="17.75" data-price-lg="24.25"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$17.75</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/kings-peak.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/kings-peak.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 16</span>
+    
     <h3 class="pizza-name">Kings Peak</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, black olives, and mushrooms.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/little-litzas.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/little-litzas.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 17</span>
+    
     <h3 class="pizza-name">Little Litzas</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, and ground Italian sausage.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/classic-litzas.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/classic-litzas.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 18</span>
+    
     <h3 class="pizza-name">Classic Litzas</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, ground Italian sausage, and mushrooms.</p>
     <p class="pizza-price" data-price-mini="10.75" data-price-sm="14.50" data-price-md="18.25" data-price-lg="26.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$18.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/litzas-meatza.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/litzas-meatza.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 19</span>
+    
     <h3 class="pizza-name">Litzas Meatza</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, pepperoni, ham, and ground Italian sausage.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spinach-artichoke.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spinach-artichoke.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 20</span>
+    
     <h3 class="pizza-name">Spinach Artichoke</h3>
     <p class="toppings">Garlic butter sauce, mozzarella cheese, spinach, artichoke, and feta cheese.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/five-cheese.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/five-cheese.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 21</span>
+    
     <h3 class="pizza-name">Five Cheese</h3>
     <p class="toppings">Garlic butter sauce, mozzarella, cheddar and Monterey Jack blend, parmesan, and feta.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/vegetarian.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/vegetarian.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 22</span>
+    
     <h3 class="pizza-name">Vegetarian</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and sliced tomatoes or pineapple.</p>
     <p class="pizza-price" data-price-mini="11.75" data-price-sm="16.00" data-price-md="20.25" data-price-lg="28.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$20.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/traditional.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/traditional.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 23</span>
+    
     <h3 class="pizza-name">Traditional</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of one meat.</p>
     <p class="pizza-price" data-price-mini="12.75" data-price-sm="17.50" data-price-md="22.25" data-price-lg="31.00"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$22.25</span></p>
   </div>
 </article>
 <article class="pizza-card text-only reveal">
-  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/deluxe.png" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+  <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/deluxe.png?v=2" onerror="this.onerror=null;this.src='/assets/images/optimized/pizza-pepperoni-peek.png'" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
   <div class="pizza-body">
-    <span class="pizza-no" aria-hidden="true">N<sup>o</sup> 24</span>
+    
     <h3 class="pizza-name">Deluxe</h3>
     <p class="toppings">Pizza sauce, mozzarella cheese, mushrooms, black olives, green peppers, onions, and your choice of three meats.</p>
     <p class="pizza-price" data-price-mini="13.75" data-price-sm="19.00" data-price-md="24.25" data-price-lg="33.50"><span class="price-size">Medium 12&quot;</span><span class="price-amount">$24.25</span></p>
@@ -324,18 +329,19 @@
 <aside class="review-standout reveal" aria-label="Customer review">
   <p class="review-standout-kicker">Why people keep coming back</p>
   <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
-  <blockquote>The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs.</blockquote>
-  <p class="review-standout-meta"><svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span>Google review · Salt Lake City</span></p>
+  <blockquote>The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house &mdash; the dough, sauce, dressing, and garlic butter.</blockquote>
+  <p class="review-standout-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span>Samantha · Salt Lake City</span></p>
 </aside>
 
 <section class="warm-section" id="build">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Build Your Own <span class="count-chip">8 ways</span></h2>
+      <h2>Build Your Own</h2>
+      <span class="count-chip">8 ways</span>
       <p>Start with a crust, add what you want.</p>
     </div>
     <div class="byo-single"><article class="side-card has-peek byo-card reveal">
-    <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+    <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
     <div class="byo-body">
       <h3 class="side-name">Build Your Own</h3>
       <div class="byo-toppings">
@@ -353,10 +359,11 @@
 <section class="dark-section" id="sides">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Salads &amp; Appetizers <span class="count-chip">4 plates</span></h2>
+      <h2>Salads &amp; Appetizers</h2>
+      <span class="count-chip">4 plates</span>
     </div>
     <div class="side-grid"><article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garden-salad.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garden-salad.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Garden Salad</h4>
         <p class="toppings">Crisp iceberg and red leaf lettuce, purple cabbage, ripe tomatoes, red beets, home-style croutons, and your choice of dressing.</p>
@@ -364,7 +371,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/chef-salad.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/chef-salad.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Chef Salad</h4>
         <p class="toppings">A garden salad plus black olives, Monterey Jack and cheddar cheeses, Danish ham, and roasted turkey.</p>
@@ -372,7 +379,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garlic-bread.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garlic-bread.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Garlic Bread</h4>
         <p class="toppings">Thick toasted bread brushed with house garlic butter.</p>
@@ -380,7 +387,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese-garlic-bread.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/cheese-garlic-bread.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Cheese Garlic Bread</h4>
         <p class="toppings">Garlic bread topped with melted mozzarella.</p>
@@ -393,7 +400,8 @@
 <section class="warm-section" id="dressings">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Dressings <span class="count-chip">7 from scratch</span></h2>
+      <h2>Dressings</h2>
+      <span class="count-chip">7 from scratch</span>
       <p>All made from scratch. Pick one with any salad.</p>
     </div>
     <div class="side-grid"><article class="side-card reveal">
@@ -410,12 +418,13 @@
 <section class="dark-section" id="specials">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Specials &amp; Entrees <span class="count-chip">11 meals</span></h2>
+      <h2>Specials &amp; Entrees</h2>
+      <span class="count-chip">11 meals</span>
       <p>Lasagna, spaghetti, garlic bread — Don worked on these recipes too, back when he was figuring out the pizza.</p>
     </div>
     <div class="side-grid"><h3 class="side-group">Lunch Specials · til 4 pm</h3>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Spaghetti Lunch</h4>
         <p class="toppings">Served with a small salad, a slice of garlic bread, and a medium drink.</p>
@@ -423,7 +432,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Mini One-Item Pizza Lunch</h4>
         <p class="toppings">Served with a small salad, a slice of garlic bread, and a medium drink.</p>
@@ -431,7 +440,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lasagna.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lasagna.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Lasagna Lunch</h4>
         <p class="toppings">Served with a small salad, a slice of garlic bread, and a medium drink.</p>
@@ -440,7 +449,7 @@
     </article>
 <h3 class="side-group">All-Day Specials</h3>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garden-salad.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/garden-salad.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Garden Salad Meal for One</h4>
         <p class="toppings">Medium garden salad, a slice of garlic bread, and a medium drink.</p>
@@ -448,7 +457,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/pepperoni.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Pizza Meal for One</h4>
         <p class="toppings">Mini two-item pizza, a medium salad, a slice of garlic bread, and a medium drink. Make it a small two-item pizza for $3.50 more.</p>
@@ -456,7 +465,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/litzas-meatza.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/litzas-meatza.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Pizza Meal for Two</h4>
         <p class="toppings">Small two-item pizza, two medium salads, two slices of garlic bread, and two medium drinks. Make it a medium two-item pizza for $3.50 more.</p>
@@ -464,7 +473,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/deluxe.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/deluxe.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Meal for More</h4>
         <p class="toppings">Large two-item pizza, a large family salad, four slices of garlic bread, and a pitcher of soda (non-refillable).</p>
@@ -473,7 +482,7 @@
     </article>
 <h3 class="side-group">Entrees</h3>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Spaghetti</h4>
         <p class="toppings">Traditional noodles with Litzas spaghetti sauce, made with pork.</p>
@@ -481,7 +490,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/spaghetti.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Kid Kaper Meal</h4>
         <p class="toppings">Kid-size spaghetti with a slice of garlic bread and a kids beverage.</p>
@@ -489,7 +498,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lasagna.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/lasagna.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Lasagna</h4>
         <p class="toppings">Layered with Litzas ricotta and mozzarella blend, spaghetti sauce, and ground beef.</p>
@@ -497,7 +506,7 @@
       </div>
     </article>
 <article class="side-card reveal has-peek">
-      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/calzone.png" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
+      <img class="pizza-peek" src="https://litzas-menu.ramonscottf.workers.dev/img/calzone.png?v=2" onerror="this.closest('.side-card').classList.remove('has-peek');this.remove()" alt="" aria-hidden="true" loading="lazy" width="680" height="680">
       <div class="side-body">
         <h4 class="side-name">Calzone</h4>
         <p class="toppings">A turnover with pizza sauce, mozzarella, ricotta, and your choice of three toppings (excludes seasoned ground beef).</p>
@@ -510,7 +519,8 @@
 <section class="warm-section" id="drinks">
   <div class="menu-band">
     <div class="menu-section-head reveal">
-      <h2>Drinks <span class="count-chip">13 on tap</span></h2>
+      <h2>Drinks</h2>
+      <span class="count-chip">13 on tap</span>
       <p>Yes — that includes Hires Root Beer in a frosted mug.</p>
     </div>
     <div class="side-grid"><article class="side-card reveal">
@@ -579,8 +589,7 @@
     <div class="footer-col">
       <h4>Order</h4>
       <ul>
-        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
-        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="#" onclick="openOrderPicker(event)">Order Online</a></li>
         <li><a href="/locations/">Get Directions</a></li>
         <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
       </ul>
@@ -590,7 +599,7 @@
       <ul>
         <li><a href="/jobs/">Join the Team</a></li>
         <li><a href="/catering/">Catering &amp; Events</a></li>
-        <li><a href="/blog/">Stories from the Booth</a></li>
+        <li><a href="/blog/">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -599,6 +608,28 @@
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
-<script src="/js/main.js?v=ed3e6022" defer></script>
+
+<div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
+  <div class="order-picker-card">
+    <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
+    <h3 id="orderPickerTitle">Call to Order</h3>
+    <p>Online ordering is coming soon. For now, give us a call and we’ll get your order started.</p>
+    <div class="order-picker-options">
+      <a href="tel:+18013595352" class="loc-picker-btn" onclick="closeOrderPicker()">Salt Lake City<span>Call 801-359-5352</span></a>
+      <a href="tel:+18015612171" class="loc-picker-btn" onclick="closeOrderPicker()">Midvale<span>Call 801-561-2171</span></a>
+    </div>
+  </div>
+</div>
+<a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
+  <!-- Litzas box art (Scott's renders). Default = closed box; a quick crossfade to
+       the open box (lid up, pizza revealed) plays as an ambient peek and on
+       hover/tap. Both frames are base-aligned so it reads as the lid lifting. -->
+  <span class="order-fab-icon pbox" aria-hidden="true">
+    <img class="pbox-img pbox-closed" src="/assets/images/optimized/box-closed.png?v=1" alt="" width="200" height="136" decoding="async">
+    <img class="pbox-img pbox-open" src="/assets/images/optimized/box-open.png?v=1" alt="" width="200" height="136" decoding="async">
+  </span>
+  <span>Order Now</span>
+</a>
+<script src="/js/main.js?v=9ea0bfdb" defer></script>
 </body>
 </html>

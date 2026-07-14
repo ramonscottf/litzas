@@ -10,21 +10,21 @@
 <meta name="description" content="Visit Litzas Pizza at 716 East 400 South in Salt Lake City, or 835 East Fort Union Boulevard in Midvale.">
 <meta property="og:title" content="Litzas Pizza Locations · Salt Lake City &amp; Midvale">
 <meta property="og:description" content="Visit Litzas Pizza at 716 East 400 South in Salt Lake City, or 835 East Fort Union Boulevard in Midvale.">
-<meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
+<meta property="og:image" content="https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
-<link rel="stylesheet" href="/css/style.css?v=d561656c">
+<link rel="stylesheet" href="/css/style.css?v=d1bd8dcf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Litzas Pizza",
   "url": "https://www.litzaspizza.com",
-  "image": "https://www.litzaspizza.com/assets/images/optimized/pizza-overhead-pair.jpg",
+  "image": "https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
   "telephone": "+1-801-359-5352",
@@ -35,6 +35,8 @@
   ]
 }
 </script>
+<link rel="canonical" href="https://www.litzaspizza.com/locations/">
+<meta property="og:url" content="https://www.litzaspizza.com/locations/">
 </head>
 <body data-page="/locations/">
 
@@ -51,9 +53,9 @@
       <a href="/locations/" aria-current="page">Locations</a>
       <a href="/story/">Story</a>
       <a href="/catering/">Catering</a>
-      <a href="/blog/">Stories</a>
+      <a href="/blog/">Blog</a>
       <a href="/jobs/">Jobs</a>
-      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
+      <a href="#" class="nav-cta" onclick="openOrderPicker(event)">Order Online</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -68,8 +70,8 @@
     <img data-parallax src="/assets/images/optimized/litzas-night-sign.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
-    <p class="eyebrow">Visit · Call · Stop In</p>
-    <h1 id="loc-page-h">Choose your location.<span class="slab"> Same pizza, two locations.</span></h1>
+    <p class="eyebrow">Visit &middot; Call &middot; Stop In</p>
+    <h1 id="loc-page-h"><span class="hl-line">Choose your location.</span><span class="hl-line slab">Same pizza, two locations.</span></h1>
     <p>SLC shares a parking lot with Hires Big H. Midvale shares a building. You won't have to look hard.</p>
   </div>
 </section>
@@ -93,9 +95,8 @@
       <div><strong>Sun</strong> · Closed</div>
     </div>
     <div class="loc-actions">
-      <a class="btn btn-primary" href="tel:+18013595352">801-359-5352</a>
+      <a class="btn btn-primary" href="tel:+18013595352">Call to Order</a>
       <a class="btn btn-ghost" data-maps="Litzas Pizza, 716 E 400 S, Salt Lake City, UT 84102" data-lat="40.76078" data-lng="-111.86432" href="https://www.google.com/maps/search/?api=1&amp;query=Litzas%20Pizza%2C%20716%20E%20400%20S%2C%20Salt%20Lake%20City%2C%20UT%2084102">Directions</a>
-      <button type="button" class="btn btn-ghost order-button" data-order-location="salt-lake-city">Online Ordering Soon</button>
     </div>
   </div>
 </article>
@@ -115,9 +116,8 @@
       <div><strong>Sun</strong> · Closed</div>
     </div>
     <div class="loc-actions">
-      <a class="btn btn-primary" href="tel:+18015612171">801-561-2171</a>
+      <a class="btn btn-primary" href="tel:+18015612171">Call to Order</a>
       <a class="btn btn-ghost" data-maps="Litzas Pizza, 835 E Fort Union Blvd, Midvale, UT 84047" data-lat="40.62462" data-lng="-111.87336" href="https://www.google.com/maps/search/?api=1&amp;query=Litzas%20Pizza%2C%20835%20E%20Fort%20Union%20Blvd%2C%20Midvale%2C%20UT%2084047">Directions</a>
-      <button type="button" class="btn btn-ghost order-button" data-order-location="midvale">Online Ordering Soon</button>
     </div>
   </div>
 </article></div>
@@ -134,28 +134,248 @@
   <div class="page-band">
     <div class="section-kicker center reveal">
       <p class="eyebrow">Reviews · Google</p>
-      <h2>Don't take our word for it.<span class="slab"> Take theirs.</span></h2>
+      <h2><span class="hl-line">Don't take our word for it.</span><span class="hl-line slab">Take theirs.</span></h2>
     </div>
-    <div class="review-scroll"><figure class="review-card">
+    <div class="review-marquee"><div class="review-marquee-track"><figure class="review-card">
   <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
-  <blockquote>This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house from the dough, sauce, dressing, garlic butter and meatballs. A great little local spot I've frequented since my youth, now shared with my kids.</blockquote>
-  <figcaption class="review-meta"><svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+  <blockquote>This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house &mdash; the dough, sauce, dressing, and garlic butter. A great little local spot I've frequented since my youth, now shared with my kids.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Samantha</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
 </figure>
 <figure class="review-card">
   <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
   <blockquote>This is some of the BEST pizza in the SLC valley! … Emily is the BEST waitress here!!!</blockquote>
-  <figcaption class="review-meta"><svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Midvale</span></figcaption>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Midvale</span></figcaption>
 </figure>
 <figure class="review-card">
   <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
-  <blockquote>My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent. The server was so friendly. It was a great place to bring our family, and we all had a great time.</blockquote>
-  <figcaption class="review-meta"><svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+  <blockquote>My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent, the server was so friendly, and we all had a great time.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
 </figure>
 <figure class="review-card">
   <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
   <blockquote>I really enjoyed my experience at Litzas. Great vibes, kind staff and great food!</blockquote>
-  <figcaption class="review-meta"><svg class="g-mark" viewBox="0 0 48 48" width="15" height="15" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
-</figure></div>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing restaurant &mdash; the best. Excellent service, and they make everything fresh: dressings, sauces, garlic butter, pizza dough. Great variety of pizzas, spaghetti, lasagne and delicious green salads. Love this restaurant.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Liz</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This is one of our family favorites and we have loved coming here over the years! Comforting atmosphere, that comfort-food pizza, delicious salad, and their amazing cheese bread. The whole family requests we come here several times a month.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Tricia</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Me and my family have been coming to this restaurant for years &mdash; it's a family favorite. The staff is always so friendly and the food is phenomenal. Nothing beats the garlic bread here!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Elizabeth</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Love this place. My office eats here about once a week. The pizzas are delicious, I love the salads with their homemade ranch, and the spaghetti and lasagna are both super yummy. And you can't forget the garlic bread! Maria is the best server.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Shannon</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing pizza and root beer &mdash; get the cheesy garlic bread, it's so good! Friendly staff, quick service, beautiful dining area. Litza's is one of our family's favorite restaurants. I've been going since I was a kid, and now I take my own children.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Kelsey</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Best pizza downtown. I've been going since I was little. Their ingredients are always fresh, and their garlic bread, homemade ranch, and root beer can't be matched. The staff is friendly and efficient. I wish I could give them more stars!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Sara</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I've been a Litzas fan since I was 7 and it never disappoints. Highly recommend their ground sausage and olive pizza. In love with the garlic bread there!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Caitlin</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Always a great place. Love the food and the atmosphere is amazing. Best pizza in all of Utah!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Nick</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I have been going there for at least 30 years &mdash; my favorite pizza of all time! The downtown location has a server, Maria, who is the absolute best.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Mindy</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>We love Litzas! A great place to visit when you're in downtown SLC. The pizza is delicious, the service was super fast, and the root beer is to die for. Our server, Presli, was fantastic.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Parker</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Went on a date at this location &mdash; amazing pizza, amazing waitress, and such a good atmosphere that after our short wait we stayed comfortably for two hours.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Richard</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This has been one of my favorite restaurants ever since I was a child. The restaurant has a homey feel, the service is always great, and the pizza is delicious. Definitely a Salt Lake City gem.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Anna</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Until I came here I'd never had sausage on pizza that I liked &mdash; the sausage here was amazing. The waiter was nice and everything tasted great, including the garlic bread.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Vanessa</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Been coming here for 30 years. Best ranch in the world, and the best ingredients make for one of the best pizza experiences you'll ever have. Plus Hires Big H is next door, owned by the same people &mdash; another five stars!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Chad</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Best pizza, hands down. Ham and sausage is the only way to go. I've been eating here since the 60's and I'm still going strong.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Jeffrey</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Holy cow, this pizza was amazing! It tasted super fresh and was perfectly cooked &mdash; even the crust was delicious. Our pickiest eater got the chicken strips and couldn't stop talking about them. Highly recommend Litzas.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Heather</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Fave pizza place! Love everything about it &mdash; the pizza, the garlic bread, the salad, the ranch dressing. So good. I'll always be a cheerleader for Litza's.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Michelle</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Absolutely a hidden gem! I'd known this place existed for years but never went in &mdash; I feel like I wasted years of good pizza. It's my go-to now whenever I'm downtown.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Chris</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>A great pizza spot! Went with a couple of friends and had a great experience. The atmosphere was fun, the service was friendly, and the food was 11/10.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Kylee</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>My favorite pizza in Salt Lake. It's not greasy, the crust is tasty, and I love the sauce. A reliable place to go for a really good pizza.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Jonathan</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This place has been open forever! The pizza is incredible. They have amazing cheese which I think sets their flavors apart. They make all things in house &mdash; the dough, sauce, dressing, and garlic butter. A great little local spot I've frequented since my youth, now shared with my kids.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Samantha</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This is some of the BEST pizza in the SLC valley! … Emily is the BEST waitress here!!!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Midvale</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>My parents used to come to Litza's when they were students at the U, and we went as a family to celebrate my sister's graduation from law school. The pizza was excellent, the server was so friendly, and we all had a great time.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I really enjoyed my experience at Litzas. Great vibes, kind staff and great food!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Google review</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing restaurant &mdash; the best. Excellent service, and they make everything fresh: dressings, sauces, garlic butter, pizza dough. Great variety of pizzas, spaghetti, lasagne and delicious green salads. Love this restaurant.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Liz</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This is one of our family favorites and we have loved coming here over the years! Comforting atmosphere, that comfort-food pizza, delicious salad, and their amazing cheese bread. The whole family requests we come here several times a month.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Tricia</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Me and my family have been coming to this restaurant for years &mdash; it's a family favorite. The staff is always so friendly and the food is phenomenal. Nothing beats the garlic bread here!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Elizabeth</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Love this place. My office eats here about once a week. The pizzas are delicious, I love the salads with their homemade ranch, and the spaghetti and lasagna are both super yummy. And you can't forget the garlic bread! Maria is the best server.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Shannon</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing pizza and root beer &mdash; get the cheesy garlic bread, it's so good! Friendly staff, quick service, beautiful dining area. Litza's is one of our family's favorite restaurants. I've been going since I was a kid, and now I take my own children.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Kelsey</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Best pizza downtown. I've been going since I was little. Their ingredients are always fresh, and their garlic bread, homemade ranch, and root beer can't be matched. The staff is friendly and efficient. I wish I could give them more stars!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Sara</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I've been a Litzas fan since I was 7 and it never disappoints. Highly recommend their ground sausage and olive pizza. In love with the garlic bread there!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Caitlin</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Always a great place. Love the food and the atmosphere is amazing. Best pizza in all of Utah!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Nick</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I have been going there for at least 30 years &mdash; my favorite pizza of all time! The downtown location has a server, Maria, who is the absolute best.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Mindy</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>We love Litzas! A great place to visit when you're in downtown SLC. The pizza is delicious, the service was super fast, and the root beer is to die for. Our server, Presli, was fantastic.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Parker</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Went on a date at this location &mdash; amazing pizza, amazing waitress, and such a good atmosphere that after our short wait we stayed comfortably for two hours.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Richard</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This has been one of my favorite restaurants ever since I was a child. The restaurant has a homey feel, the service is always great, and the pizza is delicious. Definitely a Salt Lake City gem.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Anna</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Until I came here I'd never had sausage on pizza that I liked &mdash; the sausage here was amazing. The waiter was nice and everything tasted great, including the garlic bread.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Vanessa</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Been coming here for 30 years. Best ranch in the world, and the best ingredients make for one of the best pizza experiences you'll ever have. Plus Hires Big H is next door, owned by the same people &mdash; another five stars!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Chad</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Best pizza, hands down. Ham and sausage is the only way to go. I've been eating here since the 60's and I'm still going strong.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Jeffrey</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Holy cow, this pizza was amazing! It tasted super fresh and was perfectly cooked &mdash; even the crust was delicious. Our pickiest eater got the chicken strips and couldn't stop talking about them. Highly recommend Litzas.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Heather</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Fave pizza place! Love everything about it &mdash; the pizza, the garlic bread, the salad, the ranch dressing. So good. I'll always be a cheerleader for Litza's.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Michelle</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Absolutely a hidden gem! I'd known this place existed for years but never went in &mdash; I feel like I wasted years of good pizza. It's my go-to now whenever I'm downtown.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Chris</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>A great pizza spot! Went with a couple of friends and had a great experience. The atmosphere was fun, the service was friendly, and the food was 11/10.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Kylee</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>My favorite pizza in Salt Lake. It's not greasy, the crust is tasty, and I love the sauce. A reliable place to go for a really good pizza.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Jonathan</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure></div></div>
   </div>
 </section>
 
@@ -163,7 +383,7 @@
   <div class="page-band">
     <div class="section-kicker center reveal">
       <p class="eyebrow">Private Room · Up to 40</p>
-      <h2>Birthdays. Teams.<span class="slab"> Whatever you've got.</span></h2>
+      <h2><span class="hl-line">Birthdays.</span><span class="hl-line">Teams.</span><span class="hl-line slab">Whatever you've got.</span></h2>
       <p>The SLC back room hosts up to 40. Pizza, root beer in frosted mugs, salad, lasagna, spaghetti. No event coordinator. No minimum spend acrobatics. Call Sherry or Ali, they'll set it up.</p>
       <div class="button-row center-row">
         <a href="/catering/" class="btn btn-primary">Plan a Gathering</a>
@@ -195,8 +415,7 @@
     <div class="footer-col">
       <h4>Order</h4>
       <ul>
-        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
-        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="#" onclick="openOrderPicker(event)">Order Online</a></li>
         <li><a href="/locations/">Get Directions</a></li>
         <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
       </ul>
@@ -206,7 +425,7 @@
       <ul>
         <li><a href="/jobs/">Join the Team</a></li>
         <li><a href="/catering/">Catering &amp; Events</a></li>
-        <li><a href="/blog/">Stories from the Booth</a></li>
+        <li><a href="/blog/">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -215,6 +434,28 @@
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
-<script src="/js/main.js?v=ed3e6022" defer></script>
+
+<div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
+  <div class="order-picker-card">
+    <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
+    <h3 id="orderPickerTitle">Call to Order</h3>
+    <p>Online ordering is coming soon. For now, give us a call and we’ll get your order started.</p>
+    <div class="order-picker-options">
+      <a href="tel:+18013595352" class="loc-picker-btn" onclick="closeOrderPicker()">Salt Lake City<span>Call 801-359-5352</span></a>
+      <a href="tel:+18015612171" class="loc-picker-btn" onclick="closeOrderPicker()">Midvale<span>Call 801-561-2171</span></a>
+    </div>
+  </div>
+</div>
+<a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
+  <!-- Litzas box art (Scott's renders). Default = closed box; a quick crossfade to
+       the open box (lid up, pizza revealed) plays as an ambient peek and on
+       hover/tap. Both frames are base-aligned so it reads as the lid lifting. -->
+  <span class="order-fab-icon pbox" aria-hidden="true">
+    <img class="pbox-img pbox-closed" src="/assets/images/optimized/box-closed.png?v=1" alt="" width="200" height="136" decoding="async">
+    <img class="pbox-img pbox-open" src="/assets/images/optimized/box-open.png?v=1" alt="" width="200" height="136" decoding="async">
+  </span>
+  <span>Order Now</span>
+</a>
+<script src="/js/main.js?v=9ea0bfdb" defer></script>
 </body>
 </html>

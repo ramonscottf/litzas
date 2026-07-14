@@ -10,21 +10,21 @@
 <meta name="description" content="Sixty years of pizza in Salt Lake City. The place, the dough, the booths, the regulars — and the family that’s been keeping it going since 1965.">
 <meta property="og:title" content="The Story · Litzas Pizza · Sixty years on 400 South">
 <meta property="og:description" content="Sixty years of pizza in Salt Lake City. The place, the dough, the booths, the regulars — and the family that’s been keeping it going since 1965.">
-<meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
+<meta property="og:image" content="https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
-<link rel="stylesheet" href="/css/style.css?v=d561656c">
+<link rel="stylesheet" href="/css/style.css?v=d1bd8dcf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Litzas Pizza",
   "url": "https://www.litzaspizza.com",
-  "image": "https://www.litzaspizza.com/assets/images/optimized/pizza-overhead-pair.jpg",
+  "image": "https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
   "telephone": "+1-801-359-5352",
@@ -35,6 +35,8 @@
   ]
 }
 </script>
+<link rel="canonical" href="https://www.litzaspizza.com/story/">
+<meta property="og:url" content="https://www.litzaspizza.com/story/">
 </head>
 <body data-page="/story/">
 
@@ -51,9 +53,9 @@
       <a href="/locations/">Locations</a>
       <a href="/story/" aria-current="page">Story</a>
       <a href="/catering/">Catering</a>
-      <a href="/blog/">Stories</a>
+      <a href="/blog/">Blog</a>
       <a href="/jobs/">Jobs</a>
-      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
+      <a href="#" class="nav-cta" onclick="openOrderPicker(event)">Order Online</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -69,28 +71,18 @@
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">The Story</p>
-    <h1 id="story-h">There&rsquo;s a place<span class="slab"> on 400 South.</span></h1>
-    <p>It&rsquo;s been there longer than most things in this city. Salt Lake has gotten taller and weirder around it. The pizza hasn&rsquo;t moved.</p>
+    <h1 id="story-h"><span class="hl-line">There&rsquo;s a place</span><span class="hl-line slab">on 400 South.</span></h1>
+    <p>It&rsquo;s been there longer than most things in this city. Salt Lake has gotten taller and busier around it. The pizza hasn&rsquo;t changed.</p>
   </div>
 </section>
 
 <section class="dark-section">
-  <div class="sticky-story">
+  <div class="sticky-story story-solo">
     <div class="copy reveal">
       <p class="eyebrow">The Place</p>
-      <h2>You know it<span class="slab"> when you walk in.</span></h2>
-      <p>Squat brick building. Gold lettering on the door. A gravel parking lot it shares with a Hires drive-in. Inside: booths that squeak, a waitress who knows the menu by heart, a kitchen you can hear, a dining room that sounds like a dining room is supposed to sound. You sit down. They bring it to you. You pay on the way out.</p>
-      <p>It&rsquo;s the place you went after the game. The place your parents took you on Friday. The place where the same song&rsquo;s been on the speakers since the Carter administration. Salt Lake is full of pizza now. Some of it is very good. None of it has been here for sixty years.</p>
-    </div>
-    <div class="image-stack">
-      <figure class="reveal wide-fig">
-        <img src="/assets/images/optimized/litzas-slc-wall-sign.jpg" alt="Litzas Pizza Salt Lake City sign on the wood-panel wall inside the dining room" loading="lazy">
-        <figcaption>The wall when you walk in</figcaption>
-      </figure>
-      <figure class="reveal">
-        <img src="/assets/images/optimized/litzas-night-sign.jpg" alt="Litzas and Hires Big H sign glowing at night on East 400 South" loading="lazy">
-        <figcaption>SLC &middot; 400 South, after dark</figcaption>
-      </figure>
+      <h2><span class="hl-line">You know it</span><span class="hl-line slab">when you walk in.</span></h2>
+      <p>Squat brick building with a sign out front that's become a recognized landmark. A small parking lot shared with Hires drive-in. Inside: plush booths, a waitress who knows the menu and the name of every regular by heart, a kitchen that hums along, and a dining room that is surrounded by the sounds of life. Birthday celebrations, regular weekly lunches out, kids seeing how long they can stretch the cheese on their slice of pizza. We're here to create the moments you'll remember. Take a seat, you'll fit right in. </p>
+      <p>It&rsquo;s the place you went after the game. The place your parents took you for a family night out. The place where the same song&rsquo;s been on the speakers since the Johnson administration. Salt Lake is full of pizza now. Some of it very good. None of it has been here for sixty years.</p>
     </div>
   </div>
 </section>
@@ -98,37 +90,33 @@
 <section class="warm-section">
   <div class="sticky-story">
     <div class="image-stack">
-      <figure class="reveal">
-        <img src="/assets/images/optimized/dough-hands.jpg" alt="Fresh pizza dough being rolled by hand" loading="lazy">
-        <figcaption>Rolled in the morning, baked when you order</figcaption>
+      <figure class="reveal full">
+        <img src="/assets/images/optimized/litzas-dough-flip.jpg" alt="A Litzas cook tossing fresh pizza dough high in the air" loading="lazy">
+        <figcaption>Hand-tossed, every single pie</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="Two Litzas pizzas on a worn wood table" loading="lazy">
-        <figcaption>The same pizza, sixty years running</figcaption>
+        <img src="/assets/images/optimized/litzas-owner-oven.jpg" alt="The owner sliding pizzas into the rotating deck oven" loading="lazy">
+        <figcaption>The owner, still working the oven</figcaption>
       </figure>
     </div>
     <div class="copy reveal">
       <p class="eyebrow">The Pizza</p>
-      <h2>The dough still has<span class="slab"> to earn the day.</span></h2>
-      <p>The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce &mdash; tomato, the right amount of spice, the right amount of restraint. The cheese is real mozzarella. Not a blend. Not a substitute. When you pick up a slice, the cheese pulls the way it&rsquo;s supposed to pull.</p>
-      <p>The pies come out of the oven hot. The cut is done by hand. The box says <em>Fresh Hot Pizza</em> on the side in gold lettering. It&rsquo;s not a slogan. It&rsquo;s the instructions.</p>
+      <h2><span class="hl-line">The dough still has</span><span class="hl-line slab">to earn the day.</span></h2>
+      <p>The dough rests overnight and gets hand-rolled the next morning. The sauce is the sauce &mdash; tomato, the right amount of spice, the right amount of restraint. It hasn&rsquo;t changed since 1965, because it was right the first time.</p>
+      <p>The cheese is <em>100% real mozzarella</em> &mdash; never a blend, never a substitute. Cubed instead of shredded, for that perfect pull, the way real cheese is supposed to when you lift a slice.</p>
+      <p>The ground beef is made in our in-house butcher shop. The produce is chopped and prepped fresh daily. Everything else comes from producers the family has bought from for the better part of sixty-five years, and when you&rsquo;ve known your suppliers that long, quality stops being a decision and becomes a habit. The pies come out of the oven hot, the cut is done by hand, and the box says <em>Fresh Hot Pizza</em> on the side in gold lettering. It&rsquo;s not filler. It&rsquo;s the instructions.</p>
     </div>
   </div>
 </section>
 
 <section class="dark-section">
-  <div class="sticky-story">
+  <div class="sticky-story story-solo">
     <div class="copy reveal">
       <p class="eyebrow">A note on Don Hale</p>
-      <h2>The guy who<span class="slab"> started it.</span></h2>
-      <p>Litzas exists because Don Hale couldn&rsquo;t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, also still going). He didn&rsquo;t need another restaurant. He just wanted a real slice in his own town. So he drove around the West for a couple of summers tasting every pie he could find, came home with notebooks full of recipes, and built one. He picked a name with a Z in it because he thought it sounded solid. He was right about both things.</p>
-      <p>Don passed on. The recipes didn&rsquo;t. He and his son Mark wrote a book about it called <em>Opportunity Knocks Twice</em>, if you&rsquo;re curious. Otherwise that&rsquo;s the whole Don story. The rest is the pizza.</p>
-    </div>
-    <div class="image-stack">
-      <figure class="reveal">
-        <img src="/assets/images/optimized/pizzeria-mural.jpg" alt="The gold Litzas mural inside the SLC dining room" loading="lazy">
-        <figcaption>The mural &middot; 400 South dining room</figcaption>
-      </figure>
+      <h2><span class="hl-line">The guy who</span><span class="hl-line slab">started it.</span></h2>
+      <img class="don-portrait" src="/assets/images/optimized/don-hale.jpg" alt="Don Hale, who founded Litzas and Hires Big H" width="500" height="750" loading="lazy">
+      <p>Litzas exists because Don Hale couldn&rsquo;t find pizza he liked in Utah in the early sixties. He already ran Hires Big H, the hamburger drive-in next door (since 1959, and still going strong). He didn&rsquo;t need another restaurant. He just wanted a real slice in his home town. So he took his family on a series of road trips, tasting every pie he could find along the way, and came home with notebooks full of recipes and ideas, and built the pie that would stand the text of the next four generations. </p>
+      <p>Don has since passed on. The recipes haven&rsquo;t. Don and his son Mark wrote a book about it called <em>Opportunity Knocks Twice</em>, if you want to read the full story. Otherwise that&rsquo;s it. The rest is the pizza.</p>
     </div>
   </div>
 </section>
@@ -137,17 +125,81 @@
   <div class="hires-bridge">
     <div class="copy reveal">
       <p class="eyebrow">Today</p>
-      <h2>Same family.<span class="slab"> Same crew. Same pizza.</span></h2>
-      <p>The Hale family still runs both places. A lot of the kitchen and floor crew has been here longer than most marriages last &mdash; some of them remember Don himself working a Friday rush. When you walk in on a Friday night you&rsquo;ll wait a few minutes. The line is part of it.</p>
-      <p>You can get a Litzas pizza and a Hires burger from the same parking lot. Most people do.</p>
+      <h2><span class="hl-line">Same family.</span><span class="hl-line slab">Same crew.</span><span class="hl-line slab">Same pizza.</span></h2>
+      <div class="hires-body">
+        <img class="hires-mug" src="/assets/images/optimized/hires-mug.png" alt="Frosty mug of Hires Big H root beer" loading="lazy">
+      <p>The Hale family still runs both places. Some employees have been here nearly 35 years &mdash; that's older than the average person in Utah. Many of them remember Don himself working the lunch rush, then bussing tables all night. You'll feel the culture when you walk in: a love for pizza, and a genuine love for the customers who become part of the experience.</p>
+      <p>You can get a Litzas pizza and a Hires burger from the same corner. Many people do.</p>
       <div class="button-row">
         <a href="/menu/" class="btn btn-primary">See the Menu</a>
         <a href="/locations/" class="btn btn-ghost">Find a Location</a>
       </div>
+      </div>
     </div>
-    <figure class="reveal">
-      <img src="/assets/images/optimized/rootbeer-mug.jpg" alt="Frosty mug of Hires Big H root beer on a Litzas table" loading="lazy">
-    </figure>
+  </div>
+</section>
+
+<section class="warm-section">
+  <div class="page-band">
+    <div class="section-kicker center reveal">
+      <p class="eyebrow">From the kitchen</p>
+      <h2><span class="hl-line">Sixty years,</span><span class="hl-line slab">one pizza at a time.</span></h2>
+      <p>Dough in the morning, sauce by the ladle, real mozzarella by the handful, into the oven and onto your table. A look behind the counter.</p>
+    </div>
+    <div class="photo-gallery">
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-cheese-pour.jpg" alt="Shredded mozzarella poured over fresh sauce" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-sauce-ladle.jpg" alt="Ladling sauce onto hand-rolled dough" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-building-supreme.jpg" alt="Building a pepperoni, mushroom and olive pizza" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-peels-row.jpg" alt="A row of topped pizzas on peels waiting for the oven" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-spinach-oven.jpg" alt="A spinach pizza going into the rotating oven" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-cutting-pizza.jpg" alt="Cutting a fresh pepperoni pizza with a wheel cutter" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-pizza-spread.jpg" alt="A spread of finished Litzas pizzas on the table" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-topping-sausage.jpg" alt="Hand-spreading sausage over cheese on a thin crust" loading="lazy"></figure>
+      <figure class="reveal"><img src="/assets/images/optimized/litzas-slice-closeup.jpg" alt="A gooey slice of Litzas pepperoni pizza being lifted" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="page-band">
+    <div class="section-kicker center reveal">
+      <p class="eyebrow">Customer Love &middot; Google</p>
+      <h2><span class="hl-line">Sixty years of regulars.</span><span class="hl-line slab">A thousand-plus reviews.</span></h2>
+      <p>We've been on 400 South since 1965, and more than a thousand Google reviews later, the regulars keep saying the same things. Here's a little of what they say.</p>
+    </div>
+    <div class="review-grid"><figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing restaurant &mdash; the best. Excellent service, and they make everything fresh: dressings, sauces, garlic butter, pizza dough. Great variety of pizzas, spaghetti, lasagne and delicious green salads. Love this restaurant.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Liz</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>This is one of our family favorites and we have loved coming here over the years! Comforting atmosphere, that comfort-food pizza, delicious salad, and their amazing cheese bread. The whole family requests we come here several times a month.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Tricia</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Me and my family have been coming to this restaurant for years &mdash; it's a family favorite. The staff is always so friendly and the food is phenomenal. Nothing beats the garlic bread here!</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Elizabeth</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Amazing pizza and root beer &mdash; get the cheesy garlic bread, it's so good! Friendly staff, quick service, beautiful dining area. Litza's is one of our family's favorite restaurants. I've been going since I was a kid, and now I take my own children.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Kelsey</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>I have been going there for at least 30 years &mdash; my favorite pizza of all time! The downtown location has a server, Maria, who is the absolute best.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Mindy</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure>
+<figure class="review-card">
+  <span class="rev-stars" aria-label="5 out of 5 stars" role="img">★★★★★<span class="rev-stars-empty"></span></span>
+  <blockquote>Went on a date at this location &mdash; amazing pizza, amazing waitress, and such a good atmosphere that after our short wait we stayed comfortably for two hours.</blockquote>
+  <figcaption class="review-meta"><img class="g-mark" src="/assets/images/brand/google-g.png" width="15" height="15" alt="Google" loading="lazy" decoding="async"><span class="rev-who">Richard</span><span class="rev-dot">·</span><span class="rev-loc">Salt Lake City</span></figcaption>
+</figure></div>
+    <div class="button-row center-row" style="margin-top: clamp(28px, 4vw, 40px);">
+      <a href="/locations/" class="btn btn-ghost-light">See more, then come hungry &rarr;</a>
+    </div>
   </div>
 </section>
 </main>
@@ -172,8 +224,7 @@
     <div class="footer-col">
       <h4>Order</h4>
       <ul>
-        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
-        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="#" onclick="openOrderPicker(event)">Order Online</a></li>
         <li><a href="/locations/">Get Directions</a></li>
         <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
       </ul>
@@ -183,7 +234,7 @@
       <ul>
         <li><a href="/jobs/">Join the Team</a></li>
         <li><a href="/catering/">Catering &amp; Events</a></li>
-        <li><a href="/blog/">Stories from the Booth</a></li>
+        <li><a href="/blog/">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -192,6 +243,28 @@
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
-<script src="/js/main.js?v=ed3e6022" defer></script>
+
+<div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
+  <div class="order-picker-card">
+    <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
+    <h3 id="orderPickerTitle">Call to Order</h3>
+    <p>Online ordering is coming soon. For now, give us a call and we’ll get your order started.</p>
+    <div class="order-picker-options">
+      <a href="tel:+18013595352" class="loc-picker-btn" onclick="closeOrderPicker()">Salt Lake City<span>Call 801-359-5352</span></a>
+      <a href="tel:+18015612171" class="loc-picker-btn" onclick="closeOrderPicker()">Midvale<span>Call 801-561-2171</span></a>
+    </div>
+  </div>
+</div>
+<a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
+  <!-- Litzas box art (Scott's renders). Default = closed box; a quick crossfade to
+       the open box (lid up, pizza revealed) plays as an ambient peek and on
+       hover/tap. Both frames are base-aligned so it reads as the lid lifting. -->
+  <span class="order-fab-icon pbox" aria-hidden="true">
+    <img class="pbox-img pbox-closed" src="/assets/images/optimized/box-closed.png?v=1" alt="" width="200" height="136" decoding="async">
+    <img class="pbox-img pbox-open" src="/assets/images/optimized/box-open.png?v=1" alt="" width="200" height="136" decoding="async">
+  </span>
+  <span>Order Now</span>
+</a>
+<script src="/js/main.js?v=9ea0bfdb" defer></script>
 </body>
 </html>

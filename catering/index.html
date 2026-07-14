@@ -10,21 +10,21 @@
 <meta name="description" content="Catering for offices, schools, teams, weddings, and family gatherings. Big pizza orders, gluten-free options, and the SLC back room for up to 40 guests.">
 <meta property="og:title" content="Litzas Pizza Catering · Salt Lake City &amp; Midvale">
 <meta property="og:description" content="Catering for offices, schools, teams, weddings, and family gatherings. Big pizza orders, gluten-free options, and the SLC back room for up to 40 guests.">
-<meta property="og:image" content="/assets/images/optimized/pizza-overhead-pair.jpg">
+<meta property="og:image" content="https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/webp" href="/assets/images/optimized/logo-wordmark.webp">
-<link rel="stylesheet" href="/css/style.css?v=d561656c">
+<link rel="stylesheet" href="/css/style.css?v=d1bd8dcf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Litzas Pizza",
   "url": "https://www.litzaspizza.com",
-  "image": "https://www.litzaspizza.com/assets/images/optimized/pizza-overhead-pair.jpg",
+  "image": "https://www.litzaspizza.com/assets/images/optimized/litzas-pizza-spread.jpg",
   "servesCuisine": "Pizza",
   "priceRange": "$$",
   "telephone": "+1-801-359-5352",
@@ -35,6 +35,8 @@
   ]
 }
 </script>
+<link rel="canonical" href="https://www.litzaspizza.com/catering/">
+<meta property="og:url" content="https://www.litzaspizza.com/catering/">
 </head>
 <body data-page="/catering/">
 
@@ -51,9 +53,9 @@
       <a href="/locations/">Locations</a>
       <a href="/story/">Story</a>
       <a href="/catering/" aria-current="page">Catering</a>
-      <a href="/blog/">Stories</a>
+      <a href="/blog/">Blog</a>
       <a href="/jobs/">Jobs</a>
-      <a href="tel:+18013595352" class="nav-cta">Call to Order</a>
+      <a href="#" class="nav-cta" onclick="openOrderPicker(event)">Order Online</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
@@ -65,12 +67,12 @@
 
 <section class="page-hero" aria-labelledby="catering-h">
   <div class="page-hero-bg" aria-hidden="true">
-    <img data-parallax src="/assets/images/optimized/pizza-overhead-pair.jpg" alt="">
+    <img data-parallax src="/assets/images/optimized/litzas-cutting-pizza.jpg" alt="">
   </div>
   <div class="page-hero-copy reveal">
     <p class="eyebrow">Catering &amp; Big Orders</p>
-    <h1 id="catering-h">Pizza for the<span class="slab"> whole crew.</span></h1>
-    <p>Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a family pizza — give us a heads-up and we'll take care of it.</p>
+    <h1 id="catering-h"><span class="hl-line">Pizza for the</span><span class="hl-line slab">whole crew.</span></h1>
+    <p>Office lunches. Team dinners. Birthday parties. Weddings. Anything bigger than a dozen pizzas &mdash; give us a heads-up and we'll take care of it.</p>
   </div>
 </section>
 
@@ -141,7 +143,7 @@
   <div class="page-band">
     <div class="section-kicker center reveal">
       <p class="eyebrow">What we cater</p>
-      <h2>The full menu.<span class="slab"> At scale.</span></h2>
+      <h2><span class="hl-line">The full menu.</span><span class="hl-line slab">At scale.</span></h2>
       <p>Whole pizzas, half-and-half, salads, made-from-scratch lasagna and spaghetti, garlic bread, gluten-free options. Drinks include the family root beer in frosted mugs (for in-room events) or bottled.</p>
     </div>
   </div>
@@ -168,8 +170,7 @@
     <div class="footer-col">
       <h4>Order</h4>
       <ul>
-        <li><a href="tel:+18013595352">SLC · 801.359.5352</a></li>
-        <li><a href="tel:+18015612171">Midvale · 801.561.2171</a></li>
+        <li><a href="#" onclick="openOrderPicker(event)">Order Online</a></li>
         <li><a href="/locations/">Get Directions</a></li>
         <li><a href="https://hiresbigh.com" target="_blank" rel="noopener">Hires Big H</a></li>
       </ul>
@@ -179,7 +180,7 @@
       <ul>
         <li><a href="/jobs/">Join the Team</a></li>
         <li><a href="/catering/">Catering &amp; Events</a></li>
-        <li><a href="/blog/">Stories from the Booth</a></li>
+        <li><a href="/blog/">Blog</a></li>
       </ul>
     </div>
   </div>
@@ -188,6 +189,28 @@
     <span>Salt Lake City · Midvale · Utah</span>
   </div>
 </footer>
-<script src="/js/main.js?v=ed3e6022" defer></script>
+
+<div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
+  <div class="order-picker-card">
+    <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
+    <h3 id="orderPickerTitle">Call to Order</h3>
+    <p>Online ordering is coming soon. For now, give us a call and we’ll get your order started.</p>
+    <div class="order-picker-options">
+      <a href="tel:+18013595352" class="loc-picker-btn" onclick="closeOrderPicker()">Salt Lake City<span>Call 801-359-5352</span></a>
+      <a href="tel:+18015612171" class="loc-picker-btn" onclick="closeOrderPicker()">Midvale<span>Call 801-561-2171</span></a>
+    </div>
+  </div>
+</div>
+<a class="order-fab" href="#" onclick="openOrderPicker(event)" aria-label="Order online">
+  <!-- Litzas box art (Scott's renders). Default = closed box; a quick crossfade to
+       the open box (lid up, pizza revealed) plays as an ambient peek and on
+       hover/tap. Both frames are base-aligned so it reads as the lid lifting. -->
+  <span class="order-fab-icon pbox" aria-hidden="true">
+    <img class="pbox-img pbox-closed" src="/assets/images/optimized/box-closed.png?v=1" alt="" width="200" height="136" decoding="async">
+    <img class="pbox-img pbox-open" src="/assets/images/optimized/box-open.png?v=1" alt="" width="200" height="136" decoding="async">
+  </span>
+  <span>Order Now</span>
+</a>
+<script src="/js/main.js?v=9ea0bfdb" defer></script>
 </body>
 </html>

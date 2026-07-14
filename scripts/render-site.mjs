@@ -49,6 +49,14 @@ const approvedPhotos = new Map(
 // litzas-menu Worker. Cards point at R2 by slug; if a pizza has no photo yet
 // the <img> onerror falls back to the generic pepperoni peek. Upload new ones
 // at /studio/ — they appear on the next page load, no rebuild needed.
+// The site's real, canonical home. Every indexed URL on the legacy Squarespace
+// site was https://www.litzaspizza.com/* and Squarespace 301'd apex -> www, so www
+// stays canonical through the cutover — changing it would throw away the ranking
+// we're migrating. The same build also answers on litzas.wickowaypoint.com and
+// litzas.pages.dev; the canonical tag below is what stops Google treating those
+// as duplicate copies of the real site.
+const SITE_ORIGIN = 'https://www.litzaspizza.com';
+
 const MENU_IMG_BASE = 'https://litzas-menu.ramonscottf.workers.dev/img';
 const PEEK_FALLBACK = '/assets/images/optimized/pizza-pepperoni-peek.png';
 // Bump when a menu photo is re-uploaded to R2 — the worker serves images with
@@ -223,6 +231,10 @@ const JOBS_ENDPOINT = `${HIRES_API_BASE}/api/jobs`;
 const CATERING_ENDPOINT = `${HIRES_API_BASE}/api/catering`;
 
 function orderPickerHTML() {
+  // SpotOn online ordering is not live yet. Until orderLinks.enabled flips to true,
+  // the picker routes customers to the phone instead of dead-ending on a disabled
+  // button. The live SpotOn branch below is untouched and takes over automatically
+  // once Ali finishes setup and the URLs land in data/order-links.json.
   const opts = (orderLinks.locations || []).map((o) => {
     const loc = locationsData.locations.find((l) => l.id === o.id) || {};
     const name = loc.name || o.label || o.id;
@@ -230,14 +242,19 @@ function orderPickerHTML() {
     const live = orderLinks.enabled && o.orderUrl;
     return live
       ? `<a href="${esc(o.orderUrl)}" target="_blank" rel="noopener noreferrer" class="loc-picker-btn" onclick="closeOrderPicker()">${esc(name)}<span>${esc(addr)}</span></a>`
-      : `<button type="button" class="loc-picker-btn is-disabled" disabled aria-disabled="true">${esc(name)}<span>Coming soon</span></button>`;
+      : `<a href="tel:${esc(loc.tel || '')}" class="loc-picker-btn" onclick="closeOrderPicker()">${esc(name)}<span>Call ${esc(loc.phone || '')}</span></a>`;
   }).join('\n      ');
+  const liveOrdering = !!orderLinks.enabled;
+  const title = liveOrdering ? 'Order Online' : 'Call to Order';
+  const blurb = liveOrdering
+    ? 'Choose a location to start your order.'
+    : 'Online ordering is coming soon. For now, give us a call and we\u2019ll get your order started.';
   return `
 <div class="order-picker" id="orderPicker" role="dialog" aria-modal="true" aria-labelledby="orderPickerTitle">
   <div class="order-picker-card">
     <button type="button" class="order-picker-close" onclick="closeOrderPicker()" aria-label="Close">&times;</button>
-    <h3 id="orderPickerTitle">Order Online</h3>
-    <p>Choose a location to start your order.</p>
+    <h3 id="orderPickerTitle">${esc(title)}</h3>
+    <p>${esc(blurb)}</p>
     <div class="order-picker-options">
       ${opts}
     </div>
@@ -343,7 +360,7 @@ function head({ title, description, current = '', navStack = '' }) {
 <meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:image" content="/assets/images/optimized/litzas-pizza-spread.jpg">
+<meta property="og:image" content="${SITE_ORIGIN}/assets/images/optimized/litzas-pizza-spread.jpg">
 <meta property="og:type" content="restaurant.restaurant">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -465,7 +482,9 @@ function locationCards(opts = {}) {
       ${hoursFor(location.id, location.hours).map((row) => `<div><strong>${esc(row.days)}</strong> · ${esc(row.time)}</div>`).join('\n      ')}
     </div>
     <div class="loc-actions">
-      <button type="button" class="btn btn-primary order-button" data-order-location="${esc(location.id)}">Coming soon</button>
+      ${orderLinks.enabled
+        ? `<button type="button" class="btn btn-primary order-button" data-order-location="${esc(location.id)}">Coming soon</button>`
+        : `<a class="btn btn-primary" href="tel:${esc(location.tel || '')}">Call to Order</a>`}
       <a class="btn btn-ghost" data-maps="${esc(mapsQuery)}" data-lat="${coords.lat}" data-lng="${coords.lng}" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(mapsQuery)}">Directions</a>
     </div>
   </div>
@@ -1433,10 +1452,58 @@ const pages = [
   ...blogPostPages()
 ];
 
-for (const { path, html } of pages) {
-  const target = join(root, path);
-  mkdirSync(dirname(target), { recursive: true });
-  writeFileSync(target, html);
+function notFoundPage() {
+  return layout({
+    title: 'Page Not Found · Litzas Pizza',
+    description: 'That page has moved or no longer exists. Find the menu, our two locations, and how to order.',
+    current: '',
+  }, `
+<section class="section">
+  <div class="wrap" style="text-align:center;max-width:720px">
+    <p class="eyebrow">404</p>
+    <h1 class="slab-h">We can\u2019t find that one.<span class="slab"> The pizza\u2019s still here.</span></h1>
+    <p>That page has moved or no longer exists \u2014 but everything you came for is a click away.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a class="btn btn-primary" href="/menu/">See the Menu</a>
+      <a class="btn btn-ghost" href="/locations/">Find a Location</a>
+    </div>
+  </div>
+</section>`);
 }
 
-console.log(`Rendered ${pages.length} pages.`);
+// 'index.html' -> '/'   |   'menu/index.html' -> '/menu/'   |   'blog/x/index.html' -> '/blog/x/'
+const urlPathFor = (p) => '/' + p.replace(/index\.html$/, '');
+
+for (const { path, html } of pages) {
+  const canonical = SITE_ORIGIN + urlPathFor(path);
+  // Single injection point beats threading a `path` through all 24 layout() calls.
+  // Assert the anchor is unique so a template change can never silently no-op this.
+  if ((html.match(/<\/head>/g) || []).length !== 1) {
+    throw new Error(`canonical injection: expected exactly one </head> in ${path}`);
+  }
+  const withCanonical = html.replace('</head>',
+    `<link rel="canonical" href="${canonical}">\n<meta property="og:url" content="${canonical}">\n</head>`);
+
+  const target = join(root, path);
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(target, withCanonical);
+}
+
+// Sitemap is generated from the real page list so it can never drift from what we
+// actually shipped (the hand-maintained one had gone stale AND pointed at the dev
+// domain). /studio/ and /downloads/ are internal and are not in `pages`, so they
+// stay out by construction — matching robots.txt.
+const today = new Date().toISOString().slice(0, 10);
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(({ path }) => `  <url><loc>${SITE_ORIGIN}${urlPathFor(path)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+</urlset>
+`;
+writeFileSync(join(root, 'sitemap.xml'), sitemap);
+
+// 404 is written outside `pages` on purpose: it must not appear in the sitemap and
+// must not carry a self-referencing canonical. noindex keeps it out of the index.
+const notFoundHtml = notFoundPage().replace('</head>', '<meta name="robots" content="noindex">\n</head>');
+writeFileSync(join(root, '404.html'), notFoundHtml);
+
+console.log(`Rendered ${pages.length} pages + 404.html + sitemap.xml (${SITE_ORIGIN}).`);

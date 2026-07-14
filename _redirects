@@ -1,0 +1,30 @@
+# Cloudflare Pages redirect map.
+#
+# Legacy Squarespace URLs -> new site. Taken from the live Squarespace sitemap on
+# 2026-07-13 (the full set: /home /menu /locations /midvale /salt-lake-city /order
+# /order-1 /blog + 2 blog posts). These are the URLs Google already has indexed —
+# the site ranks for "Best Pizza in Salt Lake City & Midvale" — so every one of
+# them has to land somewhere real, not on a soft-404.
+#
+# NOT listed here on purpose: /menu, /locations, /blog. Pages already 308s those to
+# their trailing-slash form (verified), so adding rules would only duplicate it.
+
+# Squarespace homepage alias
+/home                                                                             /                                 301
+/home/                                                                            /                                 301
+
+# Squarespace order pages — SpotOn isn't live; the homepage's order box routes to a call
+/order                                                                            /                                 301
+/order/                                                                           /                                 301
+/order-1                                                                          /                                 301
+/order-1/                                                                         /                                 301
+
+# Squarespace per-location pages -> the combined locations page
+/salt-lake-city                                                                   /locations/                       301
+/salt-lake-city/                                                                  /locations/                       301
+/midvale                                                                          /locations/                       301
+/midvale/                                                                         /locations/                       301
+
+# Squarespace blog posts -> nearest real equivalent on the new site
+/blog/looking-for-pizza-in-salt-lake-city-heres-why-litzas-belongs-on-your-list    /blog/best-pizza-salt-lake-city/  301
+/blog/what-keeps-a-pizza-place-busy-for-60-years-litzas-recipe-for-staying-power   /story/                           301

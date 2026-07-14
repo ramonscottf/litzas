@@ -5,4 +5,4 @@ Allow: /
 Disallow: /studio/
 Disallow: /downloads/
 
-Sitemap: https://litzas.wickowaypoint.com/sitemap.xml
+Sitemap: https://www.litzaspizza.com/sitemap.xml

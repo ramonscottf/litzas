@@ -101,7 +101,11 @@ test('served local images referenced by pages and manifests exist', () => {
   ];
 
   for (const src of [...htmlImageRefs, ...manifestRefs]) {
-    const clean = src.startsWith('/') ? src.slice(1) : src;
+    // Strip cache-buster query/hash (e.g. "box-closed.png?v=1") before hitting the
+    // filesystem — otherwise this looks for a file literally named "...png?v=1" and
+    // fails on every asset that carries a version param.
+    const bare = src.split(/[?#]/)[0];
+    const clean = bare.startsWith('/') ? bare.slice(1) : bare;
     const target = join(root, clean);
     assert.ok(existsSync(target), `${src} should exist`);
     assert.ok(statSync(target).size > 1000, `${src} should not be an empty placeholder`);
