@@ -17,32 +17,35 @@
   if (!ACTIVE) return;
 
   var css = ''
-    + '.ltz-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:1.25rem;background:rgba(10,9,8,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);font-family:Georgia,"Times New Roman",serif}'
+    + '.ltz-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:1.25rem;background:rgba(10,9,8,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}'
     + '.ltz-overlay.is-open{display:flex}'
-    + '.ltz-card{position:relative;width:100%;max-width:30rem;max-height:92vh;overflow-y:auto;background:#0A0908;border:1px solid rgba(240,230,210,.18);border-radius:1rem;padding:2rem 1.75rem 1.75rem;text-align:center;color:#F0E6D2;box-shadow:0 24px 60px rgba(0,0,0,.55);animation:ltz-rise .32s cubic-bezier(.2,.8,.3,1) both}'
-    + '@keyframes ltz-rise{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}'
+    + '.ltz-card{position:relative;width:100%;max-width:29rem;max-height:92vh;overflow-y:auto;background:#0a0908;border:1px solid rgba(174,152,96,.28);border-radius:28px;padding:2.3rem 1.9rem 1.9rem;text-align:center;color:#f4ede0;box-shadow:0 34px 90px rgba(0,0,0,.58),0 0 60px rgba(174,152,96,.12);animation:ltz-rise .4s cubic-bezier(.16,1,.3,1) both}'
+    + '@keyframes ltz-rise{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}'
     + '@media (prefers-reduced-motion:reduce){.ltz-card{animation:none}}'
-    + '.ltz-close{position:absolute;top:.9rem;right:.9rem;width:2rem;height:2rem;border:0;border-radius:50%;background:transparent;color:#F0E6D2;font-size:1.4rem;line-height:1;cursor:pointer;opacity:.55}'
-    + '.ltz-close:hover{opacity:1}.ltz-close:focus-visible{outline:2px solid #F0E6D2;outline-offset:2px;opacity:1}'
-    + '.ltz-logo{display:block;width:180px;max-width:60%;height:auto;margin:0 auto 1.1rem}'
-    + '.ltz-rule{width:3.5rem;height:2px;background:#C8452E;border:0;margin:0 auto 1.3rem}'
-    + '.ltz-eyebrow{font-size:.98rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,230,210,.75);margin:0 0 .4rem;font-weight:700}'
-    + '.ltz-headline{font-size:clamp(1.85rem,7.5vw,2.4rem);line-height:1.08;color:#F0E6D2;margin:0 0 1.15rem;font-weight:700}'
-    + '.ltz-lede{font-size:1rem;font-weight:700;color:#F0E6D2;margin:0 0 .5rem}'
-    + '.ltz-body{font-size:.96rem;line-height:1.55;color:rgba(240,230,210,.85);margin:0 0 .9rem}'
-    + '.ltz-signoff{font-style:italic;color:#C8452E;margin:0 0 1.4rem}'
-    + '.ltz-form-label{display:block;font-size:.84rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,230,210,.8);margin-bottom:.55rem;font-weight:700}'
+    + '.ltz-close{position:absolute;top:.85rem;right:.85rem;width:2.1rem;height:2.1rem;border:0;border-radius:50%;background:rgba(244,237,224,.07);color:#f4ede0;font-size:1.25rem;line-height:1;cursor:pointer;transition:background .2s}'
+    + '.ltz-close:hover{background:rgba(244,237,224,.15)}.ltz-close:focus-visible{outline:2px solid #ae9860;outline-offset:2px}'
+    + '.ltz-logo{display:block;width:170px;max-width:56%;height:auto;margin:0 auto 1.2rem}'
+    + '.ltz-eyebrow{font-family:"Oswald","Arial Narrow",sans-serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:#ae9860;margin:0 0 .55rem;font-weight:600}'
+    + '.ltz-headline{font-family:"Anton","Arial Narrow",sans-serif;font-size:clamp(2.2rem,8.5vw,3rem);line-height:1.04;letter-spacing:.02em;color:#f4ede0;margin:0 0 1.05rem;font-weight:400;text-transform:uppercase}'
+    + '.ltz-rule{width:56px;height:2px;background:linear-gradient(90deg,transparent,#ae9860,transparent);border:0;margin:0 auto 1.15rem}'
+    + '.ltz-lede{font-size:.98rem;font-weight:700;color:#f4ede0;margin:0 0 .5rem}'
+    + '.ltz-body{font-size:.93rem;line-height:1.65;color:rgba(244,237,224,.78);margin:0 0 .85rem}'
+    + '.ltz-signoff{font-family:"Oswald","Arial Narrow",sans-serif;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#c9b079;margin:0 0 1.5rem}'
+    + '.ltz-form-label{display:block;font-family:"Oswald","Arial Narrow",sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,237,224,.85);margin-bottom:.6rem;font-weight:600}'
     + '.ltz-field{display:flex;gap:.5rem;flex-wrap:wrap}'
-    + '.ltz-input{flex:1 1 12rem;min-width:0;padding:.7rem .85rem;border:1px solid rgba(240,230,210,.3);border-radius:.4rem;background:rgba(240,230,210,.06);font:inherit;font-size:.95rem;color:#F0E6D2}'
-    + '.ltz-input::placeholder{color:rgba(240,230,210,.45)}'
-    + '.ltz-input:focus-visible{outline:2px solid #C8452E;outline-offset:1px}'
-    + '.ltz-btn{flex:0 0 auto;padding:.7rem 1.2rem;border:0;border-radius:.4rem;background:#C8452E;color:#F0E6D2;font:inherit;font-size:.92rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;cursor:pointer}'
-    + '.ltz-btn:hover{background:#A5361F}.ltz-btn:focus-visible{outline:2px solid #F0E6D2;outline-offset:2px}.ltz-btn[disabled]{opacity:.6;cursor:default}'
-    + '.ltz-status{min-height:1.2rem;margin:.6rem 0 0;font-size:.88rem;color:#E0A18F}'
-    + '.ltz-fineprint{margin:.85rem 0 0;font-size:.78rem;color:rgba(240,230,210,.5)}'
-    + '.ltz-alt{display:inline-block;margin-top:1.1rem;font-size:.92rem;color:#F0E6D2;text-decoration:underline;text-underline-offset:3px}'
-    + '.ltz-dismiss{display:inline-block;margin-top:1.2rem;margin-left:1rem;background:none;border:0;border-bottom:1px solid rgba(240,230,210,.4);padding:0 0 2px;font:inherit;font-size:.92rem;color:rgba(240,230,210,.85);cursor:pointer}'
-    + '.ltz-dismiss:hover{color:#F0E6D2;border-bottom-color:#F0E6D2}';
+    + '.ltz-input{flex:1 1 12rem;min-width:0;padding:.78rem .95rem;border:1px solid rgba(244,237,224,.22);border-radius:999px;background:rgba(244,237,224,.05);font:inherit;font-size:.93rem;color:#f4ede0;transition:border-color .2s,background .2s}'
+    + '.ltz-input::placeholder{color:rgba(244,237,224,.38)}'
+    + '.ltz-input:hover{border-color:rgba(244,237,224,.38)}'
+    + '.ltz-input:focus-visible{outline:none;border-color:#ae9860;background:rgba(244,237,224,.08);box-shadow:0 0 0 3px rgba(174,152,96,.18)}'
+    + '.ltz-btn{flex:0 0 auto;padding:.78rem 1.5rem;border:0;border-radius:999px;background:#ae9860;color:#0a0908;font-family:"Oswald","Arial Narrow",sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 28px rgba(174,152,96,.26);transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s,box-shadow .2s}'
+    + '.ltz-btn:hover{background:#c9b079;transform:translateY(-2px);box-shadow:0 12px 34px rgba(174,152,96,.34)}'
+    + '.ltz-btn:focus-visible{outline:2px solid #f4ede0;outline-offset:2px}.ltz-btn[disabled]{opacity:.6;cursor:default;transform:none}'
+    + '.ltz-status{min-height:1.2rem;margin:.6rem 0 0;font-size:.85rem;font-weight:500;color:#c9b079}'
+    + '.ltz-fineprint{margin:.8rem 0 0;font-size:.75rem;color:rgba(244,237,224,.42)}'
+    + '.ltz-alt{display:inline-block;margin-top:1.05rem;font-family:"Oswald","Arial Narrow",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#ae9860;text-decoration:none;border-bottom:1px solid rgba(174,152,96,.4);padding-bottom:2px;transition:color .2s,border-color .2s}'
+    + '.ltz-alt:hover{color:#c9b079;border-bottom-color:#c9b079}'
+    + '.ltz-dismiss{display:inline-block;margin-top:1.25rem;margin-left:1.2rem;background:none;border:0;padding:0;font:inherit;font-size:.86rem;font-weight:500;color:rgba(244,237,224,.5);cursor:pointer;transition:color .2s}'
+    + '.ltz-dismiss:hover{color:#f4ede0}';
 
   var LOGO = '/assets/images/brand/litzas-logo-cream.png';
 
@@ -50,9 +53,9 @@
     return '<div class="ltz-card">'
       + '<button class="ltz-close" type="button" data-ltz-dismiss aria-label="Close">&times;</button>'
       + '<img class="ltz-logo" src="' + LOGO + '" alt="Litzas Pizza">'
-      + '<hr class="ltz-rule">'
       + '<p class="ltz-eyebrow">Midvale &middot; Fort Union</p>'
-      + '<h2 class="ltz-headline" id="' + titleId + '">' + headline + '</h2>';
+      + '<h2 class="ltz-headline" id="' + titleId + '">' + headline + '</h2>'
+      + '<hr class="ltz-rule">';
   }
 
   function emailForm(idx, label) {
