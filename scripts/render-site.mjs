@@ -21,6 +21,12 @@ const assetVer = (rel) => createHash('sha1').update(readFileSync(join(root, rel)
 const cssVer = assetVer('css/style.css');
 const jsVer = assetVer('js/main.js');
 
+// MIDVALE TEMPORARY CLOSURE (2026-07-31, neighborhood power outage).
+// Emits the site-wide closure popup (js/closure.js) on every page.
+// TO REMOVE when Midvale reopens: set this to false and push to main.
+const MIDVALE_CLOSURE_ACTIVE = true;
+const closureVer = MIDVALE_CLOSURE_ACTIVE ? assetVer('js/closure.js') : '';
+
 // t(key, fallback): editable copy from the Foster Content Store (edit.fosterlabs.org).
 // Ali edits these values; `fallback` is the original baked-in text so a missing
 // key never blanks the page. content.json is produced by scripts/fetch-content.mjs.
@@ -344,7 +350,7 @@ function footer() {
   </div>
 </footer>
 ${orderPickerHTML()}
-<script src="/js/main.js?v=${jsVer}" defer></script>`;
+<script src="/js/main.js?v=${jsVer}" defer></script>${MIDVALE_CLOSURE_ACTIVE ? `\n<script src="/js/closure.js?v=${closureVer}" defer></script>` : ''}`;
 }
 
 function head({ title, description, current = '', navStack = '' }) {
