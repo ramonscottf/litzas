@@ -24,7 +24,7 @@ const jsVer = assetVer('js/main.js');
 // MIDVALE TEMPORARY CLOSURE (2026-07-31, neighborhood power outage).
 // Emits the site-wide closure popup (js/closure.js) on every page.
 // TO REMOVE when Midvale reopens: set this to false and push to main.
-const MIDVALE_CLOSURE_ACTIVE = true;
+const MIDVALE_CLOSURE_ACTIVE = false;
 const closureVer = MIDVALE_CLOSURE_ACTIVE ? assetVer('js/closure.js') : '';
 
 // t(key, fallback): editable copy from the Foster Content Store (edit.fosterlabs.org).
